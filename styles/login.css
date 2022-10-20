@@ -1,0 +1,237 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Franklin Gothic Demi italic', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-transform: capitalize;
+    font-style: italic;
+
+}
+
+
+body {
+    background: white;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container .header {
+    display: flex;
+    flex-wrap: wrap;
+    height: 106px;
+    padding: 0px 40px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #BCDDC6;
+    border-radius: 0 0 60px 60px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#logoOfppt {
+
+    height: 100px;
+    width: 100px;
+}
+
+
+.buttonDeconexion button {
+    margin-right: 0px;
+    background-color: #008B45;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 20px;
+    width: 150px;
+    height: 35px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+#container {
+    width: 600px;
+    margin: 0 auto;
+
+
+
+
+}
+
+form {
+    width: 100%;
+    padding: 30px;
+    border: 1px solid black;
+    background: rgb(232, 236, 239);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    font-family: arial black;
+    border-radius: 10px;
+
+}
+
+#container h1 {
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 8%;
+    font-size: 45px;
+    padding-bottom: 40px;
+    color: #008B45;
+    max-width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+input[type=text],
+input[type=password] {
+    width: 90%;
+    padding: 15px 20px;
+    margin: 20px 0;
+    display: block;
+    margin-left: 5%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: 0;
+
+}
+
+
+button[type=submit] {
+    background-color: #008B45;
+    color: white;
+    padding: 14px 20px;
+    font-size: 20px;
+    margin: 8px 25%;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 10px;
+
+}
+
+button[type=submit]:hover {
+    background-color: #BCDDC6;
+    color: green;
+    border: 0 solid#008B45;
+}
+
+label {
+    font-size: 19px;
+}
+
+
+#motDePasseOublier {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #004B93;
+}
+
+footer {
+    display: flex;
+    margin-top: 50px;
+    background-color: #bcddc6;
+    justify-content: center;
+    align-items: center;
+
+    color: #004b93;
+    position: relative;
+    left: 0;
+    bottom: -175.5px;
+    width: 100%;
+    height: 7vh;
+}
+
+footer p {
+    font-size: 20px;
+}
+
+/*----------------------------*/
+.formControl {
+    display: flex;
+    flex-direction: column;
+}
+
+.formControl input:focus {
+    outline: 0;
+
+}
+
+;
+
+.formControl.success input {
+    border-color: #09c372;
+}
+
+;
+
+.formControl.error input {
+    border-color: #ff3860;
+
+
+}
+
+#error {
+    color: red;
+}
+
+/*---------------------*/
+@media screen and (min-width:375px)and (max-width:800) {
+    #container {
+        width: 450px;
+        margin: 0 auto;
+        margin-top: 8%;
+        margin-bottom: 51%;
+
+    }
+}
+
+
+
+
+
+
+
+
+
+/* Desktops and laptops ----------- */
+
+@media screen and (max-width: 1280px) {
+    #container {
+        width: 500px;
+        margin: 0 auto;
+        margin-bottom: 45%;
+        margin-top: 10%;
+
+
+    }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+    /* Styles */
+    #container {
+        width: 450px;
+        margin: 0 auto;
+        margin-top: 20%;
+        margin-bottom: 111%;
+
+    }
+
+}
+
+@media all and (min-width: 1024px) and (max-width: 1280px) {
+    #container {
+        width: 450px;
+        margin: 0 auto;
+        margin-top: 8%;
+        margin-bottom: 20%;
+
+
+    }
+}
