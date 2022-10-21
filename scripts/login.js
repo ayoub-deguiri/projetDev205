@@ -36,7 +36,7 @@ const checkInputs=()=>{
     const passwordValue=password.value.trim(); 
 
     if(matriculeValue===''){
-        setError(matricule,'matricule est obligatoir')
+        setError(matricule,'matricule est obligatoire')
     } 
     else{
         setSuccess(matricule)
@@ -45,7 +45,7 @@ const checkInputs=()=>{
 
 
     if(passwordValue===''){
-        setError(password,'mot de passe est obligatoir')
+        setError(password,'mot de passe est obligatoire')
     }
     else{
         setSuccess(password)
