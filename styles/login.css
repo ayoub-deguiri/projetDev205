@@ -37,21 +37,6 @@ a {
     width: 100px;
 }
 
-
-.buttonDeconexion button {
-    margin-right: 0px;
-    background-color: #008B45;
-    text-align: center;
-    border-radius: 15px;
-    font-size: 20px;
-    width: 150px;
-    height: 35px;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    border: none;
-}
-
 #container {
     width: 600px;
     margin: 0 auto;
