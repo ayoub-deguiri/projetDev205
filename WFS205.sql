@@ -1,0 +1,1325 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Oct 22, 2022 at 08:27 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `WFS205`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absence`
+--
+
+CREATE TABLE `absence` (
+  `idAbsence` int(11) NOT NULL,
+  `dateAbsence` date DEFAULT NULL,
+  `heureAbsence` time DEFAULT NULL,
+  `moduleAbsence` varchar(45) DEFAULT NULL,
+  `formateurAbsence` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  `annee_idAnnee` int(11) DEFAULT NULL,
+  `filiere_idFiliere` int(11) DEFAULT NULL,
+  `groupe_idGroupe` int(11) DEFAULT NULL,
+  `anneeScolaire_idAnneeScolaire` int(11) DEFAULT NULL,
+  `idStagiaire` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `annee`
+--
+
+CREATE TABLE `annee` (
+  `idAnnee` int(11) NOT NULL,
+  `nomAnnee` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `annee`
+--
+
+INSERT INTO `annee` (`idAnnee`, `nomAnnee`) VALUES
+(1, '2021-2023'),
+(23, '2022/2023');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anneescolaire`
+--
+
+CREATE TABLE `anneescolaire` (
+  `idAnneeScolaire` int(11) NOT NULL,
+  `nomAnneeScolaire` varchar(45) DEFAULT NULL,
+  `annee_idAnnee` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `anneescolaire`
+--
+
+INSERT INTO `anneescolaire` (`idAnneeScolaire`, `nomAnneeScolaire`, `annee_idAnnee`) VALUES
+(1, '1ere Annee', 23),
+(2, '2eme Annee', 23),
+(3, '3eme  Annee', 23),
+(10, '2EME', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `compte`
+--
+
+CREATE TABLE `compte` (
+  `user` int(11) NOT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `compteType` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `compte`
+--
+
+INSERT INTO `compte` (`user`, `password`, `compteType`) VALUES
+(28, '123', 'stagire');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `filiere`
+--
+
+CREATE TABLE `filiere` (
+  `idFiliere` int(11) NOT NULL,
+  `nomFiliere` varchar(45) DEFAULT NULL,
+  `anneescolaire_idAnneeScolaire` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `filiere`
+--
+
+INSERT INTO `filiere` (`idFiliere`, `nomFiliere`, `anneescolaire_idAnneeScolaire`) VALUES
+(3, 'FS', 10),
+(11, "developpeur d\'applications python", 1),
+(12, 'Développement digital', 1),
+(13, 'Infrastructure digitale', 1),
+(14, 'Developpement des applications web et mobiles', 1),
+(15, 'Developpement digital option Web full stack', 2),
+(16, 'Infrastructure Digitale option Systemes et Re', 2),
+(17, 'Infrastructure Digitale option Cyber securite', 2),
+(18, 'Infrastructure Digitale option Cloud Computin', 2),
+(19, 'Developpement Digital option Applications Mob', 2),
+(20, 'Maintenance Informatique et Reseaux', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `groupe`
+--
+
+CREATE TABLE `groupe` (
+  `idGroupe` int(11) NOT NULL,
+  `nomGroupe` varchar(45) DEFAULT NULL,
+  `filiere_idFiliere` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `groupe`
+--
+
+INSERT INTO `groupe` (`idGroupe`, `nomGroupe`, `filiere_idFiliere`) VALUES
+(22, 'DAP101', 11),
+(23, 'DAP102', 11),
+(24, 'DEV101', 12),
+(25, 'DEV102', 12),
+(26, 'DEV103', 12),
+(27, 'DEV104', 12),
+(28, 'DEV105', 12),
+(29, 'DEV106', 12),
+(30, 'DEV107', 12),
+(31, 'DEV108', 12),
+(32, 'DEV109', 12),
+(34, 'DEV110', 12),
+(35, 'ID101', 13),
+(36, 'ID102', 13),
+(37, 'ID103', 13),
+(38, 'ID104', 13),
+(39, 'ID105', 13),
+(40, 'ID106', 13),
+(41, 'ID107', 13),
+(42, 'DAWM101', 14),
+(43, 'DEVOWFS201', 15),
+(44, 'DEVOWFS202', 15),
+(45, 'DEVOWFS203', 15),
+(46, 'DEVOWFS204', 15),
+(47, 'DEVOWFS205', 15),
+(48, 'DEVOWFS206', 15),
+(49, 'DEVOWFS207', 15),
+(50, 'DEVOWFS208', 15),
+(51, 'DEVOWFS209', 15),
+(52, 'IDOSR201', 16),
+(53, 'IDOSR202', 16),
+(54, 'IDOSR203', 16),
+(55, 'IDOSR204', 16),
+(56, 'IDOSR205', 16),
+(57, 'IDOSR206', 16),
+(58, 'IDOCS201', 17),
+(59, 'IDOCC201', 18),
+(60, 'IDOCC202', 18),
+(61, 'DEVOAM201', 19),
+(62, 'MIR301', 20),
+(205, 'WF205', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `justifierabsence`
+--
+
+CREATE TABLE `justifierabsence` (
+  `idAbsence` int(11) NOT NULL,
+  `Justifier` varchar(45) DEFAULT NULL,
+  `motif` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `note`
+--
+
+CREATE TABLE `note` (
+  `idStagiaire` int(11) NOT NULL,
+  `Note` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stagiaire`
+--
+
+CREATE TABLE `stagiaire` (
+  `idStagiaire` int(11) NOT NULL,
+  `nomStagiaire` varchar(45) DEFAULT NULL,
+  `prenomStagiaire` varchar(45) DEFAULT NULL,
+  `groupe_idGroupe` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `stagiaire`
+--
+
+INSERT INTO `stagiaire` (`idStagiaire`, `nomStagiaire`, `prenomStagiaire`, `groupe_idGroupe`) VALUES
+(1, 'EL HAILA', 'HAMZA', 42),
+(2, 'ELMAHRAOUI', 'OUIJDANE', 42),
+(3, 'ISOUKTAN', 'RADOUANE', 42),
+(4, 'NOUIDRAT', 'JAMALEDDINE', 42),
+(5, 'LAKHDAR', 'MOURAD', 42),
+(6, 'AMSAAFI', 'SALAH-EDDINE', 42),
+(7, 'AMMIMNI', 'MOUHCINE', 42),
+(8, 'HALLAL', 'SIHAM', 42),
+(9, 'LAHLALI', 'ZINEB', 42),
+(10, 'AHMANE', 'NOUHAILA', 42),
+(11, 'AKABLI', 'MARYAME', 42),
+(12, 'FAKIHI', 'YASIN', 42),
+(13, 'ANAMIR', 'NOUHAILA', 42),
+(14, 'RAISI', 'HAMZA', 42),
+(15, 'ELAKKAL', 'AYOUB', 42),
+(16, 'BENKHAZRA', 'OUSSAMA', 42),
+(17, 'ESSIFAR', 'MOHAMED', 42),
+(18, 'ELALLAOUI', 'ABDELFATTAH', 42),
+(19, 'AIMRANE', 'ZAROUAL', 24),
+(20, 'MOUZARIA', 'IMRANE', 24),
+(21, 'LAQSSIR', 'AMINA', 24),
+(22, 'AOURIN-MOUCHE', 'ILIAS', 24),
+(23, 'MANOULI', 'IMAD', 24),
+(24, 'BELFAKIR', 'OUSSAMA', 24),
+(25, 'CHAOUFI', 'HIBA', 24),
+(26, 'FASSEH', 'ANAS', 24),
+(27, 'MAJID', 'ABDELLATIF', 24),
+(28, 'BENLARBI', 'ABDERRAHMAN', 24),
+(29, 'AOUFOUSSI', 'HACHIM', 24),
+(30, 'BELLA', 'AMINE', 24),
+(31, 'DAKIR', 'ABDELLAH', 24),
+(32, 'RIGALE', 'NORDINE', 24),
+(33, 'BOUSSALEM', 'ANAS', 24),
+(34, 'LOTFI', 'ZAKARIA', 24),
+(35, 'MANOULI', 'MOUAD', 24),
+(36, 'ISSKOURN', 'ABDERAHMAN', 24),
+(37, 'MOUKHTARI', 'MOHAMED', 24),
+(38, 'ZARRIA', 'ABDERRAHMANE', 24),
+(39, 'LAMRISS', 'ABDELHAKIM', 24),
+(40, 'BOUNNIT', 'KARIMA', 24),
+(41, 'LAHBARI', 'YOUSSEF', 24),
+(42, 'FALLAH', 'ADNANE', 24),
+(43, 'RHALMI', 'ZAKARIA', 24),
+(44, 'AKHCHCHAN', 'MARIAM', 25),
+(45, 'AKHCHCHAN', 'LATIFA', 25),
+(46, 'ELMAZROUA', 'HAMZA', 25),
+(47, 'ERRAQUI', 'TAHAR', 25),
+(48, 'KORKECH', 'OUSSAMA', 25),
+(49, 'MARNI', 'HAFSSA', 25),
+(50, 'CHNAH', 'ABDELMOUGHIT', 25),
+(51, 'TAOUIL', 'ABDELLAH', 25),
+(52, 'BIDI', 'HASSAN', 25),
+(53, 'ILYASSE', 'AITTOUFAKI', 25),
+(54, 'ILAHIANE', 'YOUSSEF', 25),
+(55, 'EL FANKARI', 'MOHAMED', 25),
+(56, 'BOUHOU', 'MAJDOULINE', 25),
+(57, 'KHARSOS', 'KHALIL', 25),
+(58, 'CHRIOUITI', 'SOUFIA', 25),
+(59, 'HAZMIRI', 'KHAOULA', 25),
+(60, 'RBIB', 'HAMZA', 25),
+(61, 'SANDID', 'HAJAR', 25),
+(62, 'LAATRI', 'KHAOULA', 25),
+(63, 'TAALITE', 'ANAS', 25),
+(64, 'KALIL', 'YOUSSEF', 25),
+(65, 'EL BOUCHANI', 'HAMZA', 25),
+(66, 'BELLAMANE', 'ANOUAR', 25),
+(67, 'JAHA', 'HASSAN', 25),
+(68, 'CHAHID', 'ABDELILAH', 25),
+(69, 'EZZAOUINI', 'ABDERRAHMANE', 30),
+(70, 'SOUIFI', 'ISMAIL', 30),
+(71, 'LAFROUH', 'MOHAMED', 30),
+(72, 'TAJINE', 'IKRAM', 30),
+(73, 'BAAYA', 'SALMA', 30),
+(74, 'OURIK', 'AMINA', 30),
+(75, 'EL MOFID', 'YOUSSEF', 30),
+(76, 'LAKHLILI', 'SALAH EDDINE', 30),
+(77, 'MCHICHI', 'MOHAMED', 30),
+(78, 'ENNAJMI', 'MOUAD', 30),
+(79, 'AARIBIA', 'ABIDARAHMAN', 30),
+(80, 'DAROUICH', 'ABDELLAH', 30),
+(81, 'ELAMINE', 'NADIA', 30),
+(82, 'BOUNNOU', 'MOHAMED REDA', 30),
+(83, 'EL MALKI', 'FATIMA', 30),
+(84, 'ABOUHAFID', 'OUAFA', 30),
+(85, 'DAKIR', 'ISMAIL', 30),
+(86, 'EL IDRISSI', 'ISSAM', 30),
+(87, 'BATILI', 'NOUHAILA', 30),
+(88, 'IBEN ELAMID', 'REDA', 30),
+(89, 'HOUMAME', 'NOUR EDDINE', 30),
+(90, 'KHEDID', 'ABDELLAH', 30),
+(91, 'KAATICH', 'ABDESSAMAD', 30),
+(92, 'KHAZNAOUI', 'SOUFIANE', 30),
+(93, 'DHIH', 'ACHRAF', 30),
+(144, 'LAHLANE', 'OTHMANE', 31),
+(145, 'SASSAOUI', 'YASSER', 31),
+(146, 'MOUTTAKHID', 'CHAIMAA', 31),
+(147, 'NISSOUKIN', 'OTHMANE', 31),
+(148, 'EL HOUNI', 'NOUAMANE', 31),
+(149, 'KORNIFA', 'YOUNES', 31),
+(150, 'TELMOUDI', 'NOUAMANE', 31),
+(151, 'CHERKAOUI GHATTATI', 'AYMANE', 31),
+(152, 'MOTAHHIR', 'MOUATAZ', 31),
+(153, 'BEN ABBOU', 'MOHAMED ELAMINE', 31),
+(154, 'BENADDI', 'SARA', 31),
+(155, 'IDDI', 'SALMA', 31),
+(156, 'DAJI', 'KHALID', 31),
+(157, 'YAFIK', 'SAMIRA', 31),
+(158, 'AITBENTALEB', 'HABIBA', 31),
+(159, 'AKHFAMANI', 'AMINE', 31),
+(160, 'MOUSTAJIL', 'AIMAD', 31),
+(161, 'TARIKI', 'MOHAMED ANAS', 31),
+(162, 'MIGHRANI', 'MOHAMED', 31),
+(163, 'BOUYOUB', 'FATIMA ZAHRA', 31),
+(164, 'ESSADOQ', 'MOHAMED', 31),
+(165, 'AIT ECHCHIKH', 'FATIMA', 31),
+(166, 'LAHLANE', 'HANAE', 31),
+(167, 'MOUSTAID', 'ASSMA', 31),
+(168, 'OUADEH', 'IMAD', 31),
+(169, 'GOUIDA', 'KARIM', 32),
+(170, 'RKINI', 'OTHMAN', 32),
+(171, 'TIRAR', 'SAFIA', 32),
+(172, 'TIKO', 'HAFÃ‡A', 32),
+(173, 'EL AAOUAM', 'MOHAMED', 32),
+(174, 'ABDOUH', 'SOUKAINA', 32),
+(175, 'KHIBI', 'IMANE', 32),
+(176, 'IBNOUZAHER', 'RAJA', 32),
+(177, 'BOULKERCH', 'OUSSAMA', 32),
+(178, 'LAMRIBAH', 'SALMA', 32),
+(179, 'EZ-ZYGHAM', 'SOUKAINA', 32),
+(180, 'TBER', 'ILYASS', 32),
+(181, 'BENNAQTE', 'ZAHIRA', 32),
+(182, 'LAGHLIMI', 'AYOUB', 32),
+(183, 'ELKHALIFA', 'MOHAMED NOUREDDINE', 32),
+(184, 'EZZAARAOUI', 'AYOUB', 32),
+(185, 'LAKHDAR', 'ABDERAFIA', 32),
+(186, 'SEMLALI', 'ISMAIL', 32),
+(187, 'ABIDI', 'ZAINAB', 32),
+(188, 'BELKADI', 'ELMAHDI', 32),
+(189, 'ETTAYEF', 'ASMAA', 32),
+(190, 'NAYSSA', 'NOUHA', 32),
+(191, 'AIT-ELCADI', 'MAROUANE', 32),
+(192, 'TAOUFIQ', 'YOUNESS', 32),
+(193, 'LAMSAAF', 'EL MAHDI', 32),
+(194, 'NSILA', 'ABDELLAH', 34),
+(195, 'ELMELIANI', 'YOUSSEF', 34),
+(196, 'WAHMANE', 'HAMZA', 34),
+(197, 'NAJDAOUI', 'ZOBAIR', 34),
+(198, 'ABDESSADEK', 'EL MOUTASSIM', 34),
+(199, 'MAATOUQUI', 'MERIEM', 34),
+(200, 'BOUTANNOURA', 'ABDESSADEK', 34),
+(201, 'ANASSER', 'OSSAMA', 34),
+(202, 'EZZAIM', 'HOUSSAM', 34),
+(203, 'LBIDA', 'MAHDI', 34),
+(204, 'JAOUJAOUI', 'ABDELHAKIM', 34),
+(205, 'AZAMMAR', 'SALMA', 34),
+(206, 'AIT OUCHLIH', 'MOHAMED', 34),
+(207, 'SBIHI', 'YASSIR', 34),
+(208, 'LAMZAOUAK', 'OTHMANE', 34),
+(209, 'BELMOUDDINE', 'NACIRA', 34),
+(210, 'ELKADI', 'ANAS', 34),
+(211, 'ISGUAR', 'MERIEM', 34),
+(212, 'GHEBBARI', 'MOHAMED ELAMINE', 34),
+(213, 'BATTAH', 'KAOUTAR', 34),
+(214, 'EL HASSIA', 'KHADIJA', 34),
+(215, 'LANIBI', 'LAMYA', 34),
+(216, 'BAHI', 'HAJAR', 34),
+(217, 'EL METKOUL', 'ABDELMOULA', 34),
+(218, 'ELFELLAH', 'ADIL', 34),
+(219, 'ELBAL', 'TAHA', 43),
+(220, 'ROUHI', 'HAJAR', 43),
+(221, 'LOUACHE', 'MOUAD', 43),
+(222, 'SAHIL', 'AICHA', 43),
+(223, 'EL FAIZANI', 'AYA', 43),
+(224, 'ABAACH', 'ILHAM', 43),
+(225, 'EL HATAF', 'GHIZLANE', 43),
+(226, 'ZEROUAL', 'WIAM', 43),
+(227, 'ELFATIMI', 'SALAHEDDINE', 43),
+(228, 'KATIR', 'OUALID', 43),
+(229, 'OUTMASSINT', 'HAMZA', 43),
+(230, 'EDDAIDI', 'IMAD', 43),
+(231, 'EL KABLAOUI', 'MOURAD', 43),
+(232, 'ELGAZZOULI', 'HAJIBA', 43),
+(233, 'AZAGROUZE', 'MOHAMED', 43),
+(234, 'ISSIS', 'SALMA', 43),
+(235, 'BELGADI', 'SALMA', 43),
+(236, 'MEGLAOUI', 'SAMIR', 43),
+(237, 'TOLMAN', 'MOHAMED', 43),
+(238, 'BOUBA', 'YASSINE', 43),
+(239, 'BOURAS', 'IMANE', 43),
+(240, 'ELHADDAD', 'ABDELMOUNAIM', 43),
+(241, 'OUHADDA', 'FATIM-EZZAHRA', 43),
+(242, 'BOUTRIG', 'ZAKARIA', 43),
+(243, 'EDDIRAA', 'ABDELHADI', 44),
+(244, 'BENBAKKA', 'YOUNESS', 44),
+(245, 'BENHIDA', 'OUSSAMA', 44),
+(246, 'MOUMTAZ', 'HAMZA', 44),
+(247, 'LAANANI', 'HAMZA', 44),
+(248, 'BENJIMA', 'YASSIR', 44),
+(249, 'AMDJAR', 'ABDELWAHID', 44),
+(250, 'OUAISSA', 'OUSSAMA', 44),
+(251, 'LAMDIRA', 'ELMEHDI', 44),
+(252, 'EL FARISSI', 'HIBA', 44),
+(253, 'RHAZLANI', 'HIBA', 44),
+(254, 'MIQASSE', 'ABDESSAMAD', 44),
+(255, 'BENCHOUK', 'AMAL', 44),
+(256, 'CHAAOULA', 'NIZAR', 44),
+(257, 'HALAS', 'ZAKARIA', 44),
+(258, 'GHARRAB', 'AHMED', 44),
+(259, 'EL MANSSOURI', 'ABDELKARIM', 44),
+(260, 'BOUIKRAITE', 'FATIM EZZAHRA', 44),
+(261, 'BEN DEMRANE', 'GHADA', 44),
+(262, 'GUERFOUSS', 'ANAS', 44),
+(263, 'ITOU', 'OUSSAMA', 44),
+(264, 'ELHASNAOUI', 'MEHDI', 44),
+(265, 'LOHMAM', 'ABDERRAHMAN', 44),
+(266, 'GOURTI', 'YOUNESS', 44),
+(267, 'SIDI BBA', 'YOUSSEF', 44),
+(268, 'JIAA', 'CHAIMAA', 45),
+(269, 'AIT OULHINE', 'IKRAM', 45),
+(270, 'ERROUMANI', 'GHIZLANE', 45),
+(271, 'AIT MOHAMED', 'ACHRAF', 45),
+(272, 'LHAROUFIA', 'FATIM-EZZAHRA', 45),
+(273, 'TRIAY', 'FATIMA-EZZAHRA', 45),
+(274, 'TARFI', 'IMANE', 45),
+(275, 'AIT NACEUR', 'RAHHAL', 45),
+(276, 'LAKSIOUER', 'MEHDI', 45),
+(277, 'BENALI', 'YOUNES', 45),
+(278, 'DRAI', 'BADR', 45),
+(279, 'GHALLABI', 'NOUSSAIBA', 45),
+(280, 'JAMIM', 'NADA', 45),
+(281, 'ZIRRI', 'BOUHCINE', 45),
+(282, 'EL HASNAOUI', 'ZAINEB', 45),
+(283, 'HIDAOUI', 'YOUNES', 45),
+(284, 'BELAKHAL', 'OUSSAMA', 45),
+(285, 'KAICH', 'ZAKARIA', 45),
+(286, 'DIRZAD', 'OUALID', 45),
+(287, 'ETTAKADDOUMI', 'HAMZA', 45),
+(288, 'BENMALEK', 'WALID', 45),
+(289, 'WASSOU', 'LAHOUCINE', 45),
+(290, 'ESSEBAA', 'ABDERRAZZAK', 45),
+(291, 'AIT EL HAJ', 'ELHASSAN', 45),
+(292, 'HISSOU', 'ILHAM', 45),
+(293, 'BENHAJJAJ', 'HIBA', 46),
+(294, 'BOUAALI', 'SOUAD', 46),
+(295, 'BABIGHEF', 'ZAKIA', 46),
+(296, 'AIT FNINE', 'SAMIRA', 46),
+(297, 'MOUFAKKIR', 'CHARIFA', 46),
+(298, 'OUTIZI', 'NADIA', 46),
+(299, 'EL MOUDNI', 'FOUAD', 46),
+(300, 'AFROUSS', 'HAMZA', 46),
+(301, 'BOULLOUZ', 'YASSINE', 46),
+(302, 'SAS', 'RAYANE', 46),
+(303, 'MRABTI FASSI', 'YAHYA', 46),
+(304, 'HARAKAT', 'YAHYA', 46),
+(305, 'MIRICH', 'ABDELHALIM', 46),
+(306, 'KHARRAZ', 'ZOUHAIR', 46),
+(307, 'AGNOUCH', 'MOHAMED', 46),
+(308, 'BENKARROUME', 'BADR', 46),
+(309, 'HAFED', 'ELHOUSSAINE', 46),
+(310, 'MEZOUARI', 'NABIL', 46),
+(311, 'BADAOUI', 'ZAKARIA', 46),
+(312, 'AIT BELHADDAD', 'SALMA', 46),
+(313, 'BOUMOULA', 'SAFOUANE', 46),
+(314, 'ILYAS', 'LAMSALEK', 46),
+(315, 'AIT HQI', 'ABDELKARIM', 46),
+(316, 'AZAIRIT', 'ADNANE', 46),
+(317, 'KABBAJ', 'YASSINE', 35),
+(318, 'AIT BRIK', 'ASMAE', 35),
+(319, 'MAKKA', 'HAJAR', 35),
+(320, 'NIBARKIOUN', 'ALI', 35),
+(321, 'KHALLOUF', 'SOULAIMANE', 35),
+(322, 'ELMAJDOULI', 'ZAKARIAE', 35),
+(323, 'ZAKRANE', 'HAFSA', 35),
+(324, 'SAIDAT', 'YOUSSEF', 35),
+(325, 'BEN FAIDA', 'MOHAMED HAYTAM', 35),
+(326, 'ELMANNI', 'MOHAMED AMINE', 35),
+(327, 'ELOUADI', 'ABDELLAH', 35),
+(328, 'ELGAROUNI', 'ZOUHAIR', 35),
+(329, 'MECHOUAT', 'OTHMANE', 35),
+(330, 'BEN HNINOU', 'TAIB', 35),
+(331, 'OUDRA', 'SALAH', 35),
+(332, 'OUARDINI', 'CHOUAIB', 35),
+(333, 'HANALI', 'SOUFIANE', 35),
+(334, 'BENKHABBA', 'ISMAIL', 35),
+(335, 'GHAOUCH', 'OUSSAMA', 35),
+(336, 'MOUATAMIDE', 'ADAM', 35),
+(337, 'WIJDANE', 'BELATTAR', 35),
+(338, 'EL MANYANI', 'ASMA', 35),
+(339, 'ERRADI', 'HIBA', 35),
+(340, 'LAAZIZE', 'ZAKARIA', 35),
+(341, 'KHAIRI', 'CHAIMAA', 35),
+(342, 'EL ADRAOUI', 'AMINA', 36),
+(343, 'EL BERKHAMI', 'MOHAMED RIDA', 36),
+(344, 'BIZERGANE', 'HASNA', 36),
+(345, 'LAQRIBSSI', 'SALMA', 36),
+(346, 'AKHATTAT', 'YASSER', 36),
+(347, 'CHOUINI', 'ISMAIL', 36),
+(348, 'ALOUAH', 'ADNANE ', 36),
+(349, 'CHATTER', 'ASMAA', 36),
+(350, 'EL QOURI', 'HAMZA', 36),
+(351, 'DRIRIJ', 'ALI', 36),
+(352, 'BENLHOUSSAINE', 'ZAKARIA', 36),
+(353, 'ELMOUJAHED', 'MOHAMED', 36),
+(354, 'ELMOULKIA', 'MAROINE', 36),
+(355, 'AHRISS', 'HASSAN', 36),
+(356, 'LAFHALE', 'HOMAM', 36),
+(357, 'AIT BELKACEM', 'ISSAM', 36),
+(358, 'LAAMRI', 'ABDELHAKIM', 36),
+(359, 'HADDANE', 'FATIMA-EZZAHRA', 36),
+(360, 'BEN DABIA', 'ABDELOUFI', 36),
+(361, 'ZARGANI', 'MAHMOUD', 36),
+(362, 'AIT OUFLIH', 'RANYA', 36),
+(363, 'FAKHRI', 'NOUHAILA', 36),
+(364, 'ELAABID', 'HICHAM', 36),
+(365, 'ESSALAM', 'ZAKARIA', 36),
+(366, 'MOUHADDAB', 'ISSAM', 36),
+(367, 'KAHIME', 'BASMA', 37),
+(368, 'EL OUARRAQI', 'ABDELFATTAH', 37),
+(369, 'ECH-CHALH', 'HOUDA', 37),
+(370, 'ELMOUTRIS', 'CHAIMA', 37),
+(371, 'BOUGANE', 'MEHDI', 37),
+(372, 'ABBOU', 'RIDA', 37),
+(373, 'JNIOUI', 'ZAKARIA', 37),
+(374, 'LAMZOUKI', 'JAMAL', 37),
+(375, 'BERRIOUA', 'AYMANE', 37),
+(376, 'AIT AHMAD', 'HAMZA', 37),
+(377, 'ESSOUAIDI', 'ADEL', 37),
+(378, 'AIT BEN AMEUR', 'AYOUB', 37),
+(379, 'BAKHACH', 'OUALID', 37),
+(380, 'ERROUISSI', 'HASSAN', 37),
+(381, 'EL OUARDY', 'ANASS', 37),
+(382, 'MOUSTAJIL', 'ISMAIL', 37),
+(383, 'KORAIT', 'MOHAMED TAHA', 37),
+(384, 'NIF', 'ABDELFETTAH', 37),
+(385, 'LAHNIDA', 'KHAOULA', 37),
+(386, 'KOUTAMI', 'OUSSAMA', 37),
+(387, 'CHADLI', 'ASMAA', 37),
+(388, 'EL MAHZOULI', 'NOUR EDDINE', 37),
+(389, 'BELFHAILI', 'FADI', 37),
+(390, 'KALLOUCH', 'TAOUFIQ', 37),
+(391, 'DOUAMNA', 'HAMZA', 37),
+(392, 'ZOUHAYR', 'LAYLA', 38),
+(393, 'EL GHAZOUANI', 'OUALID', 38),
+(394, 'ELMOUADANE', 'AYOUB', 38),
+(395, 'ABOUHASSI', 'ASMAA', 38),
+(396, 'BAGHAZ', 'MAHMOUD', 38),
+(397, 'IDABBOU', 'OUSSAMA', 38),
+(398, 'DAMHARI', 'ABDELKARIM', 38),
+(399, 'MAHRACH', 'AYOUB', 38),
+(400, 'IHDIDI', 'NOUR EDDINE', 38),
+(401, 'HILALI NAZIH', 'REDA', 38),
+(402, 'HACHIMI', 'IBTISSAM', 38),
+(403, 'EZ-ZYZY', 'MOHAMED', 38),
+(404, 'AIT BOUAZZA', 'ABDERRAHIM', 38),
+(405, 'KARKOHI', 'NADIR', 38),
+(406, 'SABOUI', 'MOHAMED HASSAN', 38),
+(407, 'LAAYDI', 'TARIK', 38),
+(408, 'AIT MANSOUR', 'SLIMANE', 38),
+(409, 'RABIAI', 'ANAS', 38),
+(410, 'EL KADDAOUI', 'ALI', 38),
+(411, 'LAMHAKKEM', 'HAITAM', 38),
+(412, 'BOUSSAKKINE', 'RACHID', 38),
+(413, 'BENNIS', 'YOUSSEF', 38),
+(414, 'ZOUINE', 'ADAM', 38),
+(415, 'BANI', 'RIDA', 38),
+(416, 'GHARAD', 'MOHAMED AMINE', 38),
+(417, 'LAMNADI', 'IMANE', 39),
+(418, 'EL MAKKOUI', 'MOHAMED', 39),
+(419, 'EL MANDILI', 'SALMA', 39),
+(420, 'DASSAA', 'SADIK', 39),
+(421, 'MENTAGUI', 'ACHRAF', 39),
+(422, 'BAQASSE', 'YAHYA', 39),
+(423, 'MARDAT', 'MOUAD', 39),
+(424, 'BOUABOUT', 'OUSSAMA', 39),
+(425, 'NADIRI', 'MAJIDA', 39),
+(426, 'ADIBI', 'ZAKARIAE', 39),
+(427, 'EL KHADYM', 'MOHAMED', 39),
+(428, 'BOUNNITE', 'SALIM', 39),
+(429, 'AIT OUAKKA', 'ADNANE', 39),
+(430, 'MOUSTAOUI', 'YOUSSEF', 39),
+(431, 'TOUHIRI', 'MAROUANE', 39),
+(432, 'MOUNJID', 'AHMED', 39),
+(433, 'EL MAMOUN', 'MOHAMED ELHABIB', 39),
+(434, 'BOUDCHICH', 'OUIJDANE', 39),
+(435, 'BASSLI', 'MARIEM', 39),
+(436, 'BOUCHAIRA', 'FARID', 39),
+(437, 'MAHROUZ', 'DOHA', 39),
+(438, 'EL MEJDOUB', 'MOHAMED', 39),
+(439, 'MGHIRITE', 'HAYTHAM', 39),
+(440, 'EZOUINI', 'AYOUB', 39),
+(441, 'EL ANNAOUI', 'ZAKARIA', 39),
+(442, 'CHNITEF', 'JIHANE', 40),
+(443, 'TACHRIMANTE', 'HAMZA', 40),
+(444, 'BADRY', 'OUSSAMA', 40),
+(445, 'DAGHASTANI', 'KAMAL', 40),
+(446, 'ABDELMOUMEN', 'ABDELLAH', 40),
+(447, 'MAKFOUNI', 'YOUSSEF', 40),
+(448, 'BENBAKH', 'ABDELLAH', 40),
+(449, 'TALAGHTE', 'EL MAHDI', 40),
+(450, 'BENDRAAOU', 'RIDA', 40),
+(451, 'KHALLOUK', 'HASSAN', 40),
+(452, 'FAQIR', 'SAADIA', 40),
+(453, 'BOULOUAYA', 'NISSRINE', 40),
+(454, 'BOUJOU', 'AMINA', 40),
+(455, 'CHAOUAY', 'SAID', 40),
+(456, 'TOUSSI', 'ZAKARIA', 40),
+(457, 'OUALI', 'HAMID', 40),
+(458, 'EZZALZOULI', 'REDA', 40),
+(459, 'BOURKHISS', 'HOUSSAM', 40),
+(460, 'BOUSSOUAB', 'YOUSSEF', 40),
+(461, 'BIZI', 'SALAHEDDINE', 40),
+(462, 'EL BOUAZAOUI', 'MAROUANE', 40),
+(463, 'KAOUCH', 'OUSSAMA', 40),
+(464, 'TOUGARI', 'HAMZA', 40),
+(465, 'TENNOUKHI', 'FATIMA', 40),
+(466, 'BABRAIM', 'ABDELAZIZ', 40),
+(467, 'MOURABIT', 'FATIMA EZZAHRA', 41),
+(468, 'HIFOU', 'RAOUIA', 41),
+(469, 'BERJILA ', 'ZAKARIA', 41),
+(470, 'IOUT', 'HIND', 41),
+(471, 'BOUDRARI', 'MOHAMED', 41),
+(472, 'ELHIRAJANE', 'YASSINE', 41),
+(473, 'AIT LMADANI', 'AZZEDDINE', 41),
+(474, 'HNIKER', 'ISMAIL', 41),
+(475, 'MOSAID', 'AYOUB', 41),
+(476, 'LAGHOUASLI', 'TAREK', 41),
+(477, 'AMESKALI', 'HAMZA', 41),
+(478, 'EL HANINE', 'KHAIR ALLAH', 41),
+(479, 'NAJA', 'YASSINE', 41),
+(480, 'LAGRIOUI', 'HOUSSAM', 41),
+(481, 'SAHDANE', 'OUSSAMA', 41),
+(482, 'EL OUARRARI', 'ILYAS', 41),
+(483, 'BOUSSAFANE', 'YOUNES', 41),
+(484, 'BOUJTITA', 'AIMANE', 41),
+(485, 'MACHOUAR', 'SAID', 41),
+(486, 'BOUKERCH', 'ANASS', 41),
+(487, 'GHALBANE', 'ZIAD', 41),
+(488, 'KNANBI', 'KHALID', 41),
+(489, 'AFKHKHAR', 'ABDELHADI', 41),
+(490, 'EDDOHA', 'AYA', 41),
+(491, 'KAHL LAAYOUN', 'ABDERRAHMAN', 41),
+(492, 'HAMMAMA', 'ELMEHDI', 22),
+(493, 'EL HAMDAOUI', 'AYMAN', 22),
+(494, 'EL GHOJDAMI', 'MOHAMED AMINE', 22),
+(495, 'IDRISSI AIT ELOUALI', 'YAZID', 22),
+(496, 'BAZZI', 'AYOUB', 22),
+(497, 'BARKHOUSS', 'SAAD EDDINE', 22),
+(498, 'LAHIAOUNI', 'HICHAM', 22),
+(499, 'LABRASSI', 'MOHAMED', 22),
+(500, 'ELFARKH', 'MUSTAPHA', 22),
+(501, 'RAGI', 'NAJWA', 22),
+(502, 'EL ASLANI', 'MOHAMED TAHA', 22),
+(503, 'EL MOUDEN', 'HAMZA', 22),
+(504, 'ALOUAH', 'EL MASTAPHA', 22),
+(505, 'RIHI', 'MOHAMED', 22),
+(506, 'ECH-CHOURFI', 'OUSSAMA', 22),
+(507, 'GHAZI', 'ICHRAK', 22),
+(508, 'ELMANSOURI', 'TAHA', 22),
+(509, 'AASRI', 'OUSSAMA', 22),
+(510, 'BOUALLI', 'ABDELLAH', 22),
+(511, 'ELAABID', 'ELMOKHTAR', 22),
+(512, 'ABBAD', 'AYOUB', 22),
+(513, 'HAIKAL', 'OMAR', 22),
+(514, 'RHOUMIZA', 'HAJAR', 22),
+(515, 'BENOUAZIZ', 'KHADIJA', 22),
+(516, 'KORAIBAN', 'KARAM', 22),
+(517, 'ELBOUHAOUI', 'SALIMA', 22),
+(518, 'LAKRITI', 'ANAS ', 22),
+(519, 'NABOULSI', 'ILIAS', 22),
+(520, 'ACHEIKH', 'ALI LOOL', 22),
+(521, 'ITOUNI', 'YASSINE', 22),
+(522, 'ESSANI', 'ABDERRAZAQ', 23),
+(523, 'AMSAAFI', 'IMANE', 23),
+(524, 'MARKABI', 'GHIZLANE', 23),
+(525, 'FAOUZI', 'NOURDDINE', 26),
+(526, 'CHOUHAD', 'HALIMA', 26),
+(527, 'MOUZGHI', 'FATIMA EZZAHRA', 26),
+(528, 'CHOKHMANE', 'AYA', 26),
+(529, 'MOHAMED', 'BENBELKHIR', 26),
+(530, 'GADDAH', 'MOHAMMAD', 26),
+(531, 'AIT DAOUD', 'LAMIA', 26),
+(532, 'MARZAQ', 'AYOUB', 26),
+(533, 'KZAIBER', 'ATIKA', 26),
+(534, 'BOUMRIS', 'RACHID', 26),
+(535, 'AIT ZIDAN', 'MAROUANE', 26),
+(536, 'DRAOUI', 'HAMZA', 26),
+(537, 'SABROUKI', 'SAHAR', 26),
+(538, 'ABOULOUAFA', 'KHADIJA', 26),
+(539, 'NASSER', 'IKRAM', 26),
+(540, 'ABERJI', 'GHIZLANE', 26),
+(541, 'IBNOUZAHIR', 'NABIL', 26),
+(542, 'ABDELLAOUI', 'MEHDI', 26),
+(543, 'LAMSSELEK', 'WISSAL', 26),
+(544, 'OUAISSA', 'MERIEM', 26),
+(545, 'ATMANI', 'HAMZA', 26),
+(546, 'EL HAFIANI', 'ISMAIL', 26),
+(547, 'ZAAZAA', 'AYA', 26),
+(548, 'SNIBA', 'AYA', 26),
+(549, 'BOUZERB', 'HANANE', 26),
+(550, 'EL-HOUIJ', 'ABDERRAHMANE', 27),
+(551, 'AIT HDA', 'ABDE SSAMAD', 27),
+(552, 'MOHAMED', 'ABOU-LJAD', 27),
+(553, 'EL KAMRI', 'MARYEM', 27),
+(554, 'AICHI', 'MOHAMED', 27),
+(555, 'BOUGADER', 'MOHAMED', 27),
+(556, 'AKCHACH', 'ZAHRA', 27),
+(557, 'ELBARJI', 'ABDERRAHMAN', 27),
+(558, 'ELKHALFAOUI', 'ZAKARIA', 27),
+(559, 'BOUKHRIS', 'OTHMANE', 27),
+(560, 'BELKABOUS', 'ANIR', 27),
+(561, 'BOUZIANE', 'ABDELFATTAH', 27),
+(562, 'OUCHERAA', 'LAMYA', 27),
+(563, 'KEMMISSA', 'MUSTAPHA', 27),
+(564, 'ELGHABRA', 'YASSINE', 27),
+(565, 'ELHARCHI', 'AHMED', 27),
+(566, 'AMAKDOUF', 'ALI', 27),
+(567, 'LACHKAR', 'MERIEM', 27),
+(568, 'CHABILI', 'MAROUANE', 27),
+(569, 'EL FADLI', 'HOUDA', 27),
+(570, 'LOKRITI', 'ZINEB', 27),
+(571, 'NAAIM', 'OTHMANE', 27),
+(572, 'AMENZOU', 'IBTISSAM', 27),
+(573, 'LAMSAOUI', 'MOHAMED', 27),
+(574, 'KHALLOUKI', 'AMINE', 27),
+(575, 'SABRI', 'HAFSA', 28),
+(576, 'ZOUITINI', 'RABAB', 28),
+(577, 'CHAMSI', 'MUSTAPHA', 28),
+(578, 'ZAKINE', 'SALMA', 28),
+(579, 'KADDOURI', 'ASMA', 28),
+(580, 'ELALAOUI BANOUZI', 'SALMA', 28),
+(581, 'ELMIFDALI', 'MUSTAPHA', 28),
+(582, 'ELGOUENNOUNI', 'TOUHFA', 28),
+(583, 'MECHOUAT', 'HIBA', 28),
+(584, 'TAGHOUNI', 'ABDELLA', 28),
+(585, 'ALLAOUI', 'YAHYA', 28),
+(586, 'FALAH', 'ANAS', 28),
+(587, 'BOUBLIGHA', 'ABDERRAHMAN', 28),
+(588, 'CHAKRAOUI', 'ANAS', 28),
+(589, 'MOUSDIK', 'ISMAIL', 28),
+(590, 'BOUZIT', 'ANIR', 28),
+(591, 'CHAAOULA', 'IMAN', 28),
+(592, 'TAHIRI', 'ABD ELKRIM', 28),
+(593, 'TAINIT', 'ABDELILAH', 28),
+(594, 'LABIB', 'ABDELKARIM', 28),
+(595, 'BOUABRIK', 'HICHAM', 28),
+(596, 'OUAMI', 'AYOUB', 28),
+(597, 'FLOULOU', 'AMINE', 28),
+(598, 'AIT HADDOU', 'SARA', 28),
+(599, 'MADADI', 'ABDELILAH', 28),
+(600, 'BOUSSENNA', 'HAJAR', 29),
+(601, 'EL HOUBRI', 'ZAKARYA', 29),
+(602, 'AHKIM', 'YOUSSEF', 29),
+(603, 'SBITI', 'KHALID', 29),
+(604, 'OUKTIT', 'HAMZA', 29),
+(605, 'RHIRHA', 'IBTISSAM', 29),
+(606, 'BOURADOUAN', 'RADOUANE', 29),
+(607, 'KHALIL', 'OMAR', 29),
+(608, 'ELOUARDI', 'AYOUB', 29),
+(609, 'ELAATAOUI', 'ABDELLATIF', 29),
+(610, 'DRAOU', 'AIMRANE', 29),
+(611, 'ICHAHANE', 'OUSSAMA', 29),
+(612, 'RHARIBI', 'ABDERRAHMANE', 29),
+(613, 'LAAJOULI', 'AHMED', 29),
+(614, 'BOUALLAGA', 'MANAR', 29),
+(615, 'BENNAJMA', 'RABIA', 29),
+(616, 'AIT ZOUINET', 'ANAS', 29),
+(617, 'KESTRAOUI', 'ANAS', 29),
+(618, 'MOULAY BENAISSA', 'JOUMANA', 29),
+(619, 'ELKARIMY', 'ASMAE', 29),
+(620, 'OULAMINE', 'HICHAM', 29),
+(621, 'EL AAROUMI', 'YASSIR', 29),
+(622, 'MANSOUR', 'IMAD', 29),
+(623, 'AZAGZA', 'AYOUB', 29),
+(624, 'BAROUSSI', 'ABDERRAZAK', 29),
+(625, 'NOUINI', 'OUMAIMA', 61),
+(626, 'FALIH', 'ABDELILAH', 61),
+(627, 'IOUIRY', 'OUSSAMA', 61),
+(628, 'MECHHAB', 'YASSER', 61),
+(629, 'SAADEN', 'YASSIN', 61),
+(630, 'EL AAGAIBA', 'ABDELAADIM', 61),
+(631, 'EL MOUSAOUI', 'AYOUB', 61),
+(632, 'AIT BELHAJ', 'YOUSSEF', 61),
+(633, 'EL HAKIMY', 'YOUNESE', 61),
+(634, 'ES-SARRAR', 'SMAIL', 61),
+(635, 'MANOUR', 'MOHAMMED', 61),
+(636, 'OULOUARK', 'OUSSAMA', 61),
+(637, 'AHBALY', 'MOHAMED', 61),
+(638, 'BELATTAR', 'JAMAL', 61),
+(639, 'IDOUAHMANE', 'KHALID', 61),
+(640, 'ALOUAH', 'ABDELMAJID', 61),
+(641, 'HARDA', 'TARIK', 61),
+(642, 'ESSEBAIY', 'MOHAMED', 61),
+(643, 'LAHMYED', 'OUSSAMA', 61),
+(644, 'SEKKOUMI', 'HOUSSAM', 61),
+(645, 'FARAHAT', 'HAMZA', 61),
+(646, 'ABOUZAHID', 'ABDELFETTAH', 61),
+(647, 'TRICHA', 'ABDELMOUGHIT', 61),
+(648, 'EL MARBOUH', 'KHALID', 61),
+(649, 'GHOUTANI', 'HICHAM', 61),
+(650, 'ABOUKHOURA', 'IBTISSAM', 48),
+(651, 'TAKI', 'KAOUTAR', 48),
+(652, 'EL HOUARY', 'FATIMA', 48),
+(653, 'TEHOUKI', 'ASSIA', 48),
+(654, 'DABOUSSI', 'SANAE', 48),
+(655, 'ENNAJI', 'ABDESSAMIA', 48),
+(656, 'NAJI', 'OSSAMA', 48),
+(657, 'AZMOUR', 'HOUSSAM', 48),
+(658, 'MSITTA', 'YAZID', 48),
+(659, 'CHERKAOUI AZZAB', 'YASSINE', 48),
+(660, 'EL KHALIL', 'AYOUB', 48),
+(661, 'EL BAKAL', 'AYOUB', 48),
+(662, 'ELLATIFI', 'HOUSSAM', 48),
+(663, 'CHOUAFNI', 'RIDA', 48),
+(664, 'TAILBA', 'OUSSAMA', 48),
+(665, 'LOUAAGUID', 'HAITAM', 48),
+(666, 'AIT BENZEKRI', 'HAMZA', 48),
+(667, 'BOUGAJDI', 'NOUR EDDINE', 48),
+(668, 'BENSIDI', 'YASSINE', 48),
+(669, 'TAOUBI', 'WISSAL', 48),
+(670, 'AL RADWANE', 'MEHDI', 48),
+(671, 'AIT TATA', 'MOHAMED', 48),
+(672, 'BANACER', 'SOUFIANE', 48),
+(673, 'KOUDOUA', 'ZOUHAIR', 48),
+(674, 'BAROUD', 'ABDELKARIM', 48),
+(675, 'AIT-LAHCEN', 'ZAHRA', 49),
+(676, 'AZGUITI', 'MERIEM', 49),
+(677, 'TAJI', 'IMRANE', 49),
+(678, 'NASRI', 'ABDELADIM', 49),
+(679, 'BOUYESK', 'MOHAMED', 49),
+(680, 'SALGANE', 'TAHA', 49),
+(681, 'BOULAKTAF', 'FATIMA EZZAHRAE', 49),
+(682, 'AIT EL BAZE', 'OUSSAMA', 49),
+(683, 'ELBANOUJI', 'OMAR', 49),
+(684, 'ZAHOUAN', 'ABDELMOUHCINE', 49),
+(685, 'LAGDIM SOUSSI', 'RYAD', 49),
+(686, 'CHAKHAIS', 'FATIM-EZZAHRA', 49),
+(687, 'BARIAN', 'SOULAIMANE', 49),
+(688, 'EBN ERRADIY', 'ANASS', 49),
+(689, 'LAYADI', 'OLIA', 49),
+(690, 'BAHMANE', 'YASSINE', 49),
+(691, 'BOUDAR', 'ABDELLAH', 49),
+(692, 'AGOURAM', 'YASSMINA', 49),
+(693, 'JAKANI', 'FATIMA ZAHRA', 49),
+(694, 'ELHOUARI', 'ABDELATI', 49),
+(695, 'AL KHASSASSY', 'EL MOUATAZ BILLAH', 49),
+(696, 'BENAMIR', 'YAHYA', 49),
+(697, 'MOUAKITI', 'JAOUAD', 49),
+(698, 'MAJID', 'NACER EDDINE', 49),
+(699, 'OUNASSER', 'SAAD-EDDINE', 49),
+(700, 'BOUKHAIMA', 'KAWTAR', 50),
+(701, 'NANI', 'FATIMA', 50),
+(702, 'EL HAIBOUBI', 'ZAHRA', 50),
+(703, 'AGOURRAM', 'IKRAM', 50),
+(704, 'BOUKHAIMA', 'CHAIMAE', 50),
+(705, 'SIKOUK', 'AYOUB', 50),
+(706, 'KIRBA', 'ABDELGHANI', 50),
+(707, 'BOULBAROUD', 'MOHAMED', 50),
+(708, 'ACHBANI', 'HOUSSAME', 50),
+(709, 'AMER', 'HAJAR', 50),
+(710, 'EL HANDAOUI', 'HICHAM', 50),
+(711, 'ZAOUICH', 'BADER', 50),
+(712, 'CHAKIR', 'EL ARABI', 50),
+(713, 'LAFKIRI', 'ACHRAF', 50),
+(714, 'MHIDRA', 'MOHAMED', 50),
+(715, 'OUTKATERT', 'FATIMA', 50),
+(716, 'AIT ELHAJ', 'SOUKAINA', 50),
+(717, 'HAOUA', 'KHALID', 50),
+(718, 'ID-BRAHIM', 'MUSTAFA', 50),
+(719, 'MAKRAZ', 'MOUAD', 50),
+(720, 'EL FETOUAKI', 'OMAR', 50),
+(721, 'ELHADDAJI', 'OTMANE', 50),
+(722, 'TAZRI', 'HAMZA', 50),
+(723, 'ELMEZDI', 'ABDELHAMID', 50),
+(724, 'IMZILEN', 'MEHDI', 50),
+(725, 'OUBOUH', 'WALID', 51),
+(726, 'SEBTI', 'MOHAMED KHALIL', 51),
+(727, 'AJZAGH', 'KHAOULA', 51),
+(728, 'BAHID', 'ZAKARIA', 51),
+(729, 'JIAA', 'LOUBNA', 51),
+(730, 'MACH', 'YASSMINE', 51),
+(731, 'LAMRABET', 'HANANE', 51),
+(732, 'TAGHOUNI', 'HALIMA', 51),
+(733, 'AKBOUR', 'AHLAM', 51),
+(734, 'BERBOUCHI', 'MOHAMED', 51),
+(735, 'MORAD', 'MAROUANE', 51),
+(736, 'AGRAB', 'HAMZA', 51),
+(737, 'AIT TAMALDOU', 'ANASS', 51),
+(738, 'KRIOUITA', 'ABDESSAMAD', 51),
+(739, 'MOUSTAKIM', 'AYOUB', 51),
+(740, 'ABDELLAOUI', 'ADNANE', 51),
+(741, 'LAHGAZ', 'ZAKARIA', 51),
+(742, 'AIT BOUDOUAR', 'ILYASSE', 51),
+(743, 'LAKHNIKH', 'KHALIL', 51),
+(744, 'ANOUAR', 'HAMZA', 51),
+(745, 'ELHACHIMI', 'DOHA', 51),
+(746, 'CHERQUAOUI', 'OUSSAMA', 51),
+(747, 'MAGHLAL', 'MEHDI', 51),
+(748, 'ARSAOUI', 'ABDELFATTAH', 51),
+(749, 'OUACHOUCH', 'ABDELLAH', 51),
+(750, 'OUAGAG', 'MOHAMED ACHRAF', 47),
+(751, 'ASEMLAL', 'HANANE', 47),
+(752, 'BAKANY', 'HOUDA', 47),
+(753, 'BERROUCH', 'KAWTAR', 47),
+(754, 'AITIDAR', 'NIAMA', 47),
+(755, 'MOUSSADDAQ', 'IKRAM', 47),
+(756, 'BAANNI', 'ZAINEB', 47),
+(757, 'MOUDALI', 'NASSIMA', 47),
+(758, 'ABOU-NAAMANE', 'BOCHRA', 47),
+(759, 'OUCHN', 'YAHYA', 47),
+(760, 'ZARHOUN', 'ZIAD', 47),
+(761, 'R\'GUIBI', 'MAROUANE', 47),
+(762, 'HAMOUCHI', 'AKRAM', 47),
+(763, 'HIDAR', 'MOHAMED', 47),
+(764, 'BENLARBI', 'YOUSSEF', 47),
+(765, 'DEGUIRI', 'AYOUB', 47),
+(766, 'LAHNIDA', 'ABDELGHAFOUR', 47),
+(767, 'JABRI', 'ANAS', 47),
+(768, 'IDRISSI', 'MOHAMED', 47),
+(769, 'MOUSSAOUI', 'ABDELKARIM', 47),
+(770, 'BENCHAHYD', 'ILYASS', 47),
+(771, 'GHALLABI', 'HIBA', 47),
+(772, 'AZDYOU', 'AYOUB', 47),
+(773, 'ABLAD', 'ILYAS', 47),
+(774, 'QUARRO', 'SAMI', 47),
+(775, 'MOUNSI', 'AMAL', 59),
+(776, 'HASNAOUI', 'ELMEHDI', 59),
+(777, 'AIT LAOUNI', 'DOUNIA', 59),
+(778, 'LYAKROUMI', 'YOUNESS', 59),
+(779, 'ELDDOUAB', 'ABDELLAH', 59),
+(780, 'BENSALAH', 'DOUNIA', 59),
+(781, 'SEGGARI', 'OTHMANE', 59),
+(782, 'AHKIMOU', 'SALMA', 59),
+(783, 'AIT FTIM', 'YAHYA', 59),
+(784, 'ELBAHI', 'FATIMA', 59),
+(785, 'AIT ALI', 'OUASSILA', 59),
+(786, 'EL KHANTOURI', 'BILAL', 59),
+(787, 'FAIDA', 'ABDEL HAKIM', 59),
+(788, 'KABIBI', 'SOHAYB', 59),
+(789, 'KARKACHI', 'MOHAMED', 59),
+(790, 'AIT NASSIR', 'MERYEM', 59),
+(791, 'OUBOUALI', 'YOUSSEF', 59),
+(792, 'BAYAD', 'ABDELHAKIM', 59),
+(793, 'BENLAMLIH', 'MOHAMMED', 59),
+(794, 'ZANNOURE', 'AYMANE', 59),
+(795, 'HARACH', 'HIBA', 59),
+(796, 'AIT EL MADANI', 'ABDELKRIM', 59),
+(797, 'MAHOUAT', 'FATIMA EZZAHRA', 59),
+(798, 'ED-DAHBY', 'YOUNES', 60),
+(799, 'DAKIR', 'ISMAIL', 60),
+(800, 'CHEGDALI', 'ABDELLAH', 60),
+(801, 'GADIRI', 'TARIK', 60),
+(802, 'BAHLAOUI', 'MAROUA', 60),
+(803, 'LAGHMIR', 'MOHAMED', 60),
+(804, 'ERRAISS', 'AYOUB', 60),
+(805, 'THIMI', 'FATIMEZZAHRA', 60),
+(806, 'EL KAOUAY', 'MOHAMED', 60),
+(807, 'ELJOUNI', 'HAITAM', 60),
+(808, 'KAMINE', 'BADR EDDINE', 60),
+(809, 'OUATTOU', 'OTMAN', 60),
+(810, 'BAHLAOUI', 'OUSSAMA', 60),
+(811, 'BOUSTAHE', 'FATIMA EZZAHRA', 60),
+(812, 'BELGHOUL', 'MEHDI', 60),
+(813, 'ALOUANE', 'HATIM', 60),
+(814, 'ENOUITI', 'AYOUB', 60),
+(815, 'EL KARNI', 'HASSAN', 60),
+(816, 'BADDOU', 'ABDELLAH', 60),
+(817, 'AAMIRICHE', 'WISSAL', 60),
+(818, 'HROUCHAN', 'ABDECHAKOUR', 60),
+(819, 'DOUBABI', 'MARIAM', 60),
+(820, 'CHAFIK', 'NAOUFEL', 60),
+(821, 'EL MOURABIT', 'MOHAMED', 60),
+(822, 'SARAMOU', 'MOHAMED REDA', 60),
+(823, 'EL FARAZI', 'SAAD', 58),
+(824, 'IDA BBOU', 'NOHAYLA', 58),
+(825, 'HMIMID', 'MOHAMED', 58),
+(826, 'LAICHI', 'YASSINE', 58),
+(827, 'BOUDOUNIT', 'OUSSAMA', 58),
+(828, 'MAGHACHE', 'IBTISSAM', 58),
+(829, 'EL MAHLALI', 'EL MEHDI', 58),
+(830, 'HILALI', 'CHAIMAE', 58),
+(831, 'FAJRI', 'YOUSSEF', 58),
+(832, 'EL BAKHRI', 'AISSAM', 58),
+(833, 'AIT SIDI ALI', 'SALAH EDDINE', 58),
+(834, 'HARAKATIA', 'KAOUTAR', 58),
+(835, 'MOUNIR', 'KARIM', 58),
+(836, 'DERDARI', 'ZINEB', 58),
+(837, 'AIT TADDART', 'JAWAD', 58),
+(838, 'CHEKROUN', 'ADNAN', 58),
+(839, 'AIT EDERY', 'ABDERRAHMAN', 58),
+(840, 'MOHAMED', 'QZADRI', 58),
+(841, 'KHARBOUCH', 'ZIAD', 58),
+(842, 'BRAOU', 'AYOUB', 58),
+(843, 'DAHOU', 'ABDELILAH', 58),
+(844, 'AIT AABOU', 'YOUSSEF', 58),
+(845, 'BINIKE', 'OUSSAMA', 58),
+(846, 'HABOU', 'ILYAS', 58),
+(847, 'IBNOUMAJAH', 'ILIASS', 52),
+(848, 'AIT IHYA', 'ABDELMAJID', 52),
+(849, 'EL AANG', 'ABDESSADEK', 52),
+(850, 'OUAINAHOU', 'SALAH EDDINE', 52),
+(851, 'OULED CHATER', 'MERIEM', 52),
+(852, 'KAMRONE', 'WIAM', 52),
+(853, 'FERNANE', 'MOAD', 52),
+(854, 'ECHIGUER', 'ABDERRAHMANE', 52),
+(855, 'SIMAMRI', 'OUSSAMA', 52),
+(856, 'ELBARGUI', 'HAMZA', 52),
+(857, 'TOUFNOUTI', 'YOUSSEF', 52),
+(858, 'AMALOU', 'YOUSSEF', 52),
+(859, 'MAKNAOUI', 'SOUFIANE', 52),
+(860, 'GUYAR', 'YOUSSEF', 52),
+(861, 'ROSSAYSSI', 'FATIMA-EZZAHRA', 52),
+(862, 'MAGHMOURI', 'SALMA', 52),
+(863, 'IBNOUBAR', 'AMINE', 52),
+(864, 'ELHAJI', 'ZAKARIA', 52),
+(865, 'JEMAANE', 'AYOUB', 52),
+(866, 'LAADIMI', 'YOUSSEF', 52),
+(867, 'TOURABI', 'YASSINE', 54),
+(868, 'BARCHA', 'SALAH EDDINE', 54),
+(869, 'LAHSINI', 'MOHAMED', 54),
+(870, 'GHOUNDOULI', 'OUALID', 54),
+(871, 'NOURTI', 'OUSSAMA', 54),
+(872, 'HAIDOURI', 'AHMED', 54),
+(873, 'NAJAHI', 'OUSSAMA', 54),
+(874, 'OUAHIDI', 'ABDELGHAFOUR', 54),
+(875, 'BOUSSOU', 'JAWAD', 54),
+(876, 'EDDAHIOUI', 'KHAWLA', 54),
+(877, 'BEN AMMI', 'HAMZA', 54),
+(878, 'JANATE', 'ANAS', 54),
+(879, 'CHATIR', 'OUMNIA', 54),
+(880, 'ANAS', 'MAHMOUDI', 54),
+(881, 'GOURIZMI', 'OUMNIA', 54),
+(882, 'GUERGUER', 'YASSER', 54),
+(883, 'EL MEDDAI', 'REDA', 54),
+(884, 'EL FASSIHI', 'OUSSAMA', 54),
+(885, 'ABDELGHANI', 'MOUJOUD', 54),
+(886, 'NABIR', 'YAHYA', 54),
+(887, 'IOUI', 'ABDERRAHMANE', 54),
+(888, 'CHOUIRGUI', 'ABDELKADER', 54),
+(889, 'EL ATTAR', 'FATIMA EZZAHRA', 55),
+(890, 'GABSI', 'OUMAIMA', 55),
+(891, 'KABAB', 'ABDELKARYM', 55),
+(892, 'QARIOUH', 'NIZAR', 55),
+(893, 'JAAOUANI', 'ZINEB', 55),
+(894, 'FATHALLAH', 'YOUSSRA', 55),
+(895, 'TAHI', 'NAJOUA', 55),
+(896, 'LAGHIRI', 'HAMZA', 55),
+(897, 'DAMOUCH', 'MONA', 55),
+(898, 'IRIK', 'SARA', 55),
+(899, 'BOUTERHAQ', 'ABDERRAHIM', 55),
+(900, 'ET-TONIA', 'HAMZA', 55),
+(901, 'ELGHACHI', 'HAMZA', 55),
+(902, 'HAJJAJ', 'ILYAS', 55),
+(903, 'KARCHAOUI', 'OTHMANE', 55),
+(904, 'BENHRA', 'MOAD', 55),
+(905, 'AQIL', 'AMINE', 55),
+(906, 'LARGOU', 'KHALIL', 55),
+(907, 'BOUTOUBA', 'ZOUBAIR', 55),
+(908, 'ELMOQDADI', 'ABDELJALIL', 55),
+(909, 'EL HAMIDI', 'HAMZA', 55),
+(910, 'EL BIDAKI', 'WISSAL', 55),
+(911, 'ENNAKIMI', 'ZINEB', 56),
+(912, 'MOUNNAN', 'SANA', 56),
+(913, 'EL KOSTASSI', 'KAOUTAR', 56),
+(914, 'GHIRMOUKA', 'YOUSEF', 56),
+(915, 'EL MATTAT', 'MEHDI', 56),
+(916, 'AIT LAHCEN', 'HALIMA', 56),
+(917, 'DRISSI', 'OMAR', 56),
+(918, 'GOUNANE', 'CHARAF', 56),
+(919, 'ARROUSS', 'HAMZA ', 56),
+(920, 'HATTA', 'NOAMANE', 56),
+(921, 'BENYASSINE', 'ANOUAR', 56),
+(922, 'BENSIDI', 'ABDERRAZZAK', 56),
+(923, 'MEKOUAR', 'ABDELAZIZ', 56),
+(924, 'EL ALLAOUIA', 'AMAL', 56),
+(925, 'KEMMOUCH', 'ZINEB', 56),
+(926, 'EL AZIZ', 'AYOUB', 56),
+(927, 'ENNAHI', 'KHALID', 56),
+(928, 'MITAK', 'YASSINE', 56),
+(929, 'KOUNANE', 'HAMZA', 56),
+(930, 'YASSIR', 'LAHJILA', 56),
+(931, 'TIKANAB', 'M\'HAMED', 56),
+(932, 'TIJANI', 'AYMANE', 56),
+(933, 'HBACHOU', 'SOUAAD', 56),
+(934, 'ET-TALEBY', 'HAJAR', 57),
+(935, 'AMJAHDI', 'LOBNA', 57),
+(936, 'IZERG', 'MOUNIR', 57),
+(937, 'BNOUSSAAD', 'MOATAZE', 57),
+(938, 'ETTITAOU', 'SALOUA', 57),
+(939, 'TITIF', 'GHITA', 57),
+(940, 'TALEB', 'FATIMA EZZAHRA', 57),
+(941, 'OUHADDOUCH', 'MANAL', 57),
+(942, 'JAATIT', 'FATIMA-EZZAHRA', 57),
+(943, 'DOUMNAJI', 'BTISSAM', 57),
+(944, 'TOUFFELLA', 'OUSSAMA', 57),
+(945, 'BEN MBAREK', 'SIHAM', 57),
+(946, 'OUAKRIM', 'MOHAMED', 57),
+(947, 'ZAIDY', 'ICHRAQ', 57),
+(948, 'AIT ELHAJ', 'ABDELAZIZ', 57),
+(949, 'MOUMAN', 'TAOUFIK', 57),
+(950, 'HALMAOUI', 'ABDELLAH', 57),
+(951, 'MOBTAHIJ', 'ACHRAF', 57),
+(952, 'BENHAMOU', 'ABDESSAMAD', 57),
+(953, 'HAMAME', 'SALAHEDDINE', 57),
+(954, 'EL MAHFOUDY', 'ANAS', 57),
+(955, 'LAMHIZAM', 'SALMA', 62),
+(956, 'BENMINA', 'CHAIMA', 62),
+(957, 'SEMMAA', 'KHALIL', 62),
+(958, 'ALHILALI', 'AYEMANE', 62),
+(959, 'IBN AHMED', 'KAMAL', 62),
+(960, 'NIZARI', 'MOHAMED', 62),
+(961, 'AMDICH   ', 'MOHAMED ', 62),
+(962, 'KHARBOUCHI  ', 'MOHAMED', 62),
+(963, 'KALSADI  ', 'AIMRANE ', 62),
+(964, 'BOUKDIR', 'AYOUB', 62),
+(965, 'TROMBATI', 'MONCEF', 62),
+(966, 'SAJIM', 'MOUAD', 62),
+(967, 'BLANI', 'HOUSSAM', 62),
+(968, 'AIT SAID', 'AYOUB', 62),
+(969, 'SEMMAÃ  ', 'WALID ', 62),
+(970, 'BADJI  ', 'ADNANE ', 62),
+(971, 'BIGANI', 'BADER', 62),
+(972, 'FARCHIOUI  ', 'AMINA ', 62),
+(973, 'LAHJOUJI', 'ACHRAF', 62),
+(974, 'BOUSMAIL', 'ABD ELFATTAH', 62),
+(975, 'EL HAMMOURI', 'AHMED AYMANE', 62),
+(976, 'LAGRAM', 'MOHAMED', 62);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `absence`
+--
+ALTER TABLE `absence`
+  ADD PRIMARY KEY (`idAbsence`),
+  ADD KEY `fk_absence_annee` (`annee_idAnnee`),
+  ADD KEY `fk_absence_filiere` (`filiere_idFiliere`),
+  ADD KEY `fk_absence_anneescolaire` (`anneeScolaire_idAnneeScolaire`),
+  ADD KEY `fk_absence_groupe` (`groupe_idGroupe`),
+  ADD KEY `fk_absence_stagiaire` (`idStagiaire`);
+
+--
+-- Indexes for table `annee`
+--
+ALTER TABLE `annee`
+  ADD PRIMARY KEY (`idAnnee`);
+
+--
+-- Indexes for table `anneescolaire`
+--
+ALTER TABLE `anneescolaire`
+  ADD PRIMARY KEY (`idAnneeScolaire`);
+
+--
+-- Indexes for table `compte`
+--
+ALTER TABLE `compte`
+  ADD PRIMARY KEY (`user`);
+
+--
+-- Indexes for table `filiere`
+--
+ALTER TABLE `filiere`
+  ADD PRIMARY KEY (`idFiliere`),
+  ADD KEY `fk_filiere_anneescolaire` (`anneescolaire_idAnneeScolaire`);
+
+--
+-- Indexes for table `groupe`
+--
+ALTER TABLE `groupe`
+  ADD PRIMARY KEY (`idGroupe`),
+  ADD KEY `fk_groupe_filiere` (`filiere_idFiliere`);
+
+--
+-- Indexes for table `justifierabsence`
+--
+ALTER TABLE `justifierabsence`
+  ADD PRIMARY KEY (`idAbsence`);
+
+--
+-- Indexes for table `note`
+--
+ALTER TABLE `note`
+  ADD PRIMARY KEY (`idStagiaire`);
+
+--
+-- Indexes for table `stagiaire`
+--
+ALTER TABLE `stagiaire`
+  ADD PRIMARY KEY (`idStagiaire`),
+  ADD KEY `fk_stagiaire_groupe` (`groupe_idGroupe`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `absence`
+--
+ALTER TABLE `absence`
+  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `annee`
+--
+ALTER TABLE `annee`
+  MODIFY `idAnnee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `anneescolaire`
+--
+ALTER TABLE `anneescolaire`
+  MODIFY `idAnneeScolaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `filiere`
+--
+ALTER TABLE `filiere`
+  MODIFY `idFiliere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `groupe`
+--
+ALTER TABLE `groupe`
+  MODIFY `idGroupe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+
+--
+-- AUTO_INCREMENT for table `justifierabsence`
+--
+ALTER TABLE `justifierabsence`
+  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `note`
+--
+ALTER TABLE `note`
+  MODIFY `idStagiaire` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `stagiaire`
+--
+ALTER TABLE `stagiaire`
+  MODIFY `idStagiaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=977;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `absence`
+--
+ALTER TABLE `absence`
+  ADD CONSTRAINT `fk_absence_annee` FOREIGN KEY (`annee_idAnnee`) REFERENCES `annee` (`idAnnee`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_absence_anneescolaire` FOREIGN KEY (`anneeScolaire_idAnneeScolaire`) REFERENCES `anneescolaire` (`idAnneeScolaire`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_absence_filiere` FOREIGN KEY (`filiere_idFiliere`) REFERENCES `filiere` (`idFiliere`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_absence_groupe` FOREIGN KEY (`groupe_idGroupe`) REFERENCES `groupe` (`idGroupe`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_absence_stagiaire` FOREIGN KEY (`idStagiaire`) REFERENCES `stagiaire` (`idStagiaire`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `filiere`
+--
+ALTER TABLE `filiere`
+  ADD CONSTRAINT `fk_filiere_anneescolaire` FOREIGN KEY (`anneescolaire_idAnneeScolaire`) REFERENCES `anneescolaire` (`idAnneeScolaire`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `groupe`
+--
+ALTER TABLE `groupe`
+  ADD CONSTRAINT `fk_groupe_filiere` FOREIGN KEY (`filiere_idFiliere`) REFERENCES `filiere` (`idFiliere`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `justifierabsence`
+--
+ALTER TABLE `justifierabsence`
+  ADD CONSTRAINT `fk_JustifierAbsence_absence` FOREIGN KEY (`idAbsence`) REFERENCES `absence` (`idAbsence`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `note`
+--
+ALTER TABLE `note`
+  ADD CONSTRAINT `fk_note_stagiaire` FOREIGN KEY (`idStagiaire`) REFERENCES `stagiaire` (`idStagiaire`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `stagiaire`
+--
+ALTER TABLE `stagiaire`
+  ADD CONSTRAINT `fk_stagiaire_groupe` FOREIGN KEY (`groupe_idGroupe`) REFERENCES `groupe` (`idGroupe`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
