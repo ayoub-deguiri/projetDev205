@@ -42,4 +42,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// created by Rguibi Marouane  and Idrissi Mohammed
+// created by Rguibi Marouane  and Idrissi Mohammed 
