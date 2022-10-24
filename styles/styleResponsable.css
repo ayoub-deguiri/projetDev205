@@ -211,7 +211,7 @@ select {
   
   select#heure {
     height: 30px;
-    width: 30px;
+    width: 80px;
     outline: 1px solid black;
     border: 1px solid black;
     background-color: rgb(232, 236, 239);
@@ -387,7 +387,10 @@ u::before {
 
   
 
-    
+    input{
+            -webkit-appearance: none;
+
+    }
 
     
 

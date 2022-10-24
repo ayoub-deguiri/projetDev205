@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>responsable</title>
-    <link rel="icon" type="image/x-icon" href="images/logo.jpeg">
+    <link rel="icon" type="image/x-icon" href="./images/logo.jpeg">
     <link rel="stylesheet" href="./styles/styleResponsable.css">
     <link rel="stylesheet" href="mediaQueries.css">
    
@@ -14,12 +14,12 @@
     <div class="container">
         <div class="header">
             <div class="logoOfppt">
-                <img src="images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt">
+                <img src="./images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt">
             </div>
             <div class="logoApp">
-                <img src="images/logo.jpeg" alt="logo" id="logoApp">
+                <img src="./images/logo.jpeg" alt='logo' id="logoApp">
             </div>
-            <a class="buttonDeconexion" href="./login.html"><button>Déconnexion</button></a>
+            <div class="buttonDeconexion"><button>Déconnexion</button></div>
     
         </div>
         <section>
@@ -48,9 +48,10 @@
                         <th>prénom</th>
                         <th>absence</th>
                         <th>retard</th>
-                        <th>heure</th>
+                        <th>heure debut</th>
+                        <th>heure fin</th>
                     </tr>
-                    <tr>
+                        
                         <td>test</td>
                         <td>test</td>
                         <td>
@@ -59,11 +60,15 @@
                         <td>
                             <input type="checkbox" name="AB/RET" id="btnRet"  />
                         </td>
-                        <td class="heure">
-                            <select name="heure" id="heure"></select>
-                            <u> </u>
+                        <td>
+                           <input type="time" min="8:30" max="18:30">
+        
                           </td>
-                    </tr>
+                          <td>
+                            <input type="time" min="8:30" max="18:30">
+         
+                           </td>
+                </tr>
                 </table>
                 
             </div>
