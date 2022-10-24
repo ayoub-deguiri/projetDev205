@@ -1,0 +1,150 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Franklin Gothic Demi italic', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-transform: capitalize;
+    font-style: italic;
+
+}
+
+.container > .header {
+    display: flex;
+    flex-wrap: wrap;
+    height: 106px;
+    padding: 0px 40px;
+    align-items: center;
+    justify-content:space-between;
+    background-color:#BCDDC6 ;
+    border-radius: 0 0 60px 60px;
+}
+
+#logoOfppt{
+ 
+  height: 100px;
+  width: 100px;
+}
+
+.buttonDeconexion button {
+    margin-right: 0px;
+    background-color: #008B45;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 20px;
+    width: 150px;
+    height: 35px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+/* .form{
+    height: 180px;
+} */
+
+
+/*--------------------------------------------------------------------------------------------------*/
+
+
+#Déconnexion {
+    margin-right: 0px;
+    background-color: #008B45;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 20px;
+    width: 150px;
+    height: 35px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+button[type=button]:hover {
+    background-color: #BCDDC6;
+    color: green;
+    border: 1px solid#008B45;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* @media (max-width:375px) {
+    .Partie1 {
+        height: 150px;
+        display: block;
+    }
+} */
+h1{
+    margin-left: 70px;
+}
+
+/*--------------------------------------------------------------------------------------------------*/
+.HomePage {
+    position: relative;
+}
+
+table {
+    box-shadow: 10px 10px 8px rgb(147, 147, 147);
+    background-color: rgb(232, 236, 239);
+    /* height: 100px; */
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* width: 400px; */
+
+}
+
+table,tr,
+th {
+    font-size: 20px;
+    text-align: center;
+    border: 2px solid black;
+    border-collapse: collapse;
+    /* height: 90px;
+    width: 180px; */
+    padding: 15px;
+    
+}
+
+table th {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 900;
+    height: 10px;
+    width: 60px;
+} 
+
+/*--------------------------------------------------------------------------------------------------*/
+footer {
+    display: flex;
+    margin-top: 30%;
+    background-color: #BCDDC6;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    position: absolute;
+    /* position: relative;*/
+    /*bottom: -195.5px;*/
+    bottom: 0;
+    color: #004b93;
+    left: 0;
+    width: 100%;
+    height: 7vh;
+    font-size: 20px;
+
+
+
+}
+
+@media(max-width:375px) {
+    footer {
+        bottom: -160.5px;
+    }
+}
+
+/* Form style */
+form{
+    margin-left: 100px;
+}
