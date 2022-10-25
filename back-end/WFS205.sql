@@ -114,7 +114,7 @@ CREATE TABLE `filiere` (
 --
 
 INSERT INTO `filiere` (`idFiliere`, `nomFiliere`, `anneescolaire_idAnneeScolaire`) VALUES
-(3, 'FS', 10),
+(3, 'FS', 1),
 (11, "developpeur d\'applications python", 1),
 (12, 'Développement digital', 1),
 (13, 'Infrastructure digitale', 1),
