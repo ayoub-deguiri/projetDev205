@@ -2,18 +2,6 @@
 include('db.php');
 session_start();
 ?>
-<?php
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (isset($_POST['valider'])) {
-		$_SESSION['anneeScolaire'] = $_POST['annee-Scolaire'];
-		$_SESSION['annee'] = $_POST['annee'];
-		$_SESSION['filiere'] = $_POST['filiere'];
-		$_SESSION['groupe'] = $_POST['groupe'];
-	}
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<h1 id="bienvenue">Bienvenue!</h1>
 
-	<form action="PageNassima_Naima" method="Post" name="form1">
+	<form action="DirectriceAffich.php" method="Post" name="form1">
 		<table>
 			<tr>
 				<th>
@@ -63,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						Année Scolaire:</label>
 					<?php
 					$sql = ("SELECT * FROM annee ");
-					$pdo_statement = $pdo_conn->prepare($sql);
+					$pdo_statement = $conn->prepare($sql);
 					$pdo_statement->execute();
 					$annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 					?>
@@ -93,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<select id="annee" name="annee" required>
 						<?php
 						$sql = ("SELECT * FROM anneeScolaire ");
-						$pdo_statement = $pdo_conn->prepare($sql);
+						$pdo_statement = $conn->prepare($sql);
 						$pdo_statement->execute();
 						$anneescolaire = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 						?>
@@ -117,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<label for="lblfiliére"> Filiére:</label>
 					<?php
 					$sql = ("SELECT * FROM filiere ");
-					$pdo_statement = $pdo_conn->prepare($sql);
+					$pdo_statement = $conn->prepare($sql);
 					$pdo_statement->execute();
 					$filieres = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 					?>
@@ -142,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<label for="lblgroupe" style="margin-left: -39px"> Groupe:</label>
 					<?php
 					$sql = ("SELECT * FROM groupe ");
-					$pdo_statement = $pdo_conn->prepare($sql);
+					$pdo_statement = $conn->prepare($sql);
 					$pdo_statement->execute();
 					$groupe = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 					?>
