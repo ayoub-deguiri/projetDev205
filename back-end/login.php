@@ -7,15 +7,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // get user and password
     $user = $_POST["matricule"];
     $password = $_POST["password"];
+    
 
     // Validate Form Data  
     $user = htmlspecialchars($user);
     $user = trim($user);
     $user = stripslashes($user);
+    $_SESSION['CEF'] = $user;
 
     $password = htmlspecialchars($password);
     $password = trim($password);
     $password = stripslashes($password);
+
 
     // feching the data 
     $sql = "SELECT * FROM  compte  WHERE user = ? and password = ?";
