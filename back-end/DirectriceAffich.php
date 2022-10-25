@@ -12,15 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['groupe'] = $_POST['groupe'];
 	}
 }
-
-echo($_SESSION['anneeScolaire']);
-echo($_SESSION['annee']) ;
-echo($_SESSION['filiere'] );
-echo($_SESSION['groupe']) ;
-
-
-
-
 ?>
 <?php
 $anneesolaire2=$_SESSION['anneeScolaire'];
