@@ -39,7 +39,7 @@ CREATE TABLE `absence` (
   `filiere_idFiliere` int(11) DEFAULT NULL,
   `groupe_idGroupe` int(11) DEFAULT NULL,
   `anneeScolaire_idAnneeScolaire` int(11) DEFAULT NULL,
-  `CEF` varchar(30) DEFAULT NULL
+  `CEF` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -88,7 +88,7 @@ INSERT INTO `anneescolaire` (`idAnneeScolaire`, `nomAnneeScolaire`, `annee_idAnn
 --
 
 CREATE TABLE `compte` (
-  `user` int(11) NOT NULL,
+  `user` varchar(50) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
   `compteType` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -204,7 +204,7 @@ CREATE TABLE `justifierabsence` (
 --
 
 CREATE TABLE `note` (
-  `CEF` varchar(30) NOT NULL,
+  `CEF` varchar(50) NOT NULL,
   `Note` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1284,7 +1284,7 @@ ALTER TABLE `justifierabsence`
 -- AUTO_INCREMENT for table `note`
 --
 ALTER TABLE `note`
-  MODIFY `CEF` varchar(30) NOT NULL ;
+  MODIFY `CEF` varchar(50) NOT NULL ;
 -- Constraints for dumped tables
 
 -- Constraints for table `absence`
