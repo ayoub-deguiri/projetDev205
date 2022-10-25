@@ -29,14 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $pdo_statement->fetch();
 
 
-    // redrection to main pages 
-    if (empty($result)) {
+     // redrection to main pages 
+     if (empty($result)) {
         header('location:./../login.html');
     } else {
         if ($result['compteType'] == 'stagire') {
             header('location:./../responsable.html');
         } elseif ($result['compteType'] == 'directrice') {
-            header('location:./../accueil-directrice.html');
+            header('location:./accueil-directrice.php');
         }
         // anzidoha fach yt9ado les page t surveillance general
         //elseif ($result['compteType'] == 'sg') {
