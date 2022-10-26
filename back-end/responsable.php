@@ -1,6 +1,9 @@
 <?php
 include "db.php";
 session_start();
+if (empty($_SESSION)) {
+    header('location:./login.php');
+}
 ?>
 <?php
 $user = $_SESSION['CEF'];

@@ -1,5 +1,9 @@
 <?php
 include('db.php');
+session_start();
+if (empty($_SESSION)) {
+    header('location:./login.php');
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["valider"])) {
         $_SESSION["anneeScolaire"] = $_POST["annee-Scolaire"];
