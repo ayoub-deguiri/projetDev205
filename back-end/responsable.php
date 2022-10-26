@@ -82,8 +82,8 @@ $resultfinale = $pdo_statement->fetchALL();
                    
                     <td><?= $row['nomStagiaire']?></td>
                     <td><?= $row['prenomStagiaire']?></td>
-                    <td><input type="checkbox" name="AB/RET" id="btnAb"  /></td>
-                    <td><input type="checkbox" name="AB/RET" id="btnRet"  /></td>
+                    <td><input type="radio" name="AB/RET" id="btnAb"  /></td>
+                    <td><input type="radio" name="AB/RET" id="btnRet"  /></td>
                     <td><input type="time" min="8:30" max="18:30"></td>
                     <td> <input type="time" min="8:30" max="18:30"></td>
                 </tr>
