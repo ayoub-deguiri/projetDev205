@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
       <div id="container">
         <h1>Bienvenue!</h1>
-        <form id="form" action="./back-end/login.php" method="POST">
+        <form id="form" action="#" method="POST">
           <div id="formControl ">
             <label><b>Votre matricule:</b></label>
             <span id="star">*</span>
