@@ -36,7 +36,9 @@ a {
     height: 100px;
     width: 100px;
 }
-
+.logoApp{
+    margin-right: 43%;
+}
 
 #container {
     width: 600px;
