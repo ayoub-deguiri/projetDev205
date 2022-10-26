@@ -22,7 +22,7 @@ body {
     padding: 0px 40px;
     align-items: center;
     justify-content: space-between;
-    background-color: #BCDDC6;
+    background-color:var( --color1);
     border-radius: 0 0 60px 60px;
 }
 
@@ -36,6 +36,7 @@ a {
     height: 100px;
     width: 100px;
 }
+
 
 #container {
     width: 600px;
@@ -51,7 +52,7 @@ form {
     width: 100%;
     padding: 30px;
     border: 1px solid black;
-    background: rgb(232, 236, 239);
+    background: var( --color3);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     font-family: arial black;
     border-radius: 10px;
@@ -65,7 +66,7 @@ form {
     margin-top: 8%;
     font-size: 45px;
     padding-bottom: 40px;
-    color: #008B45;
+    color:var( --color2);
     max-width: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -87,7 +88,7 @@ input[type=password] {
 
 
 button[type=submit] {
-    background-color: #008B45;
+    background-color: var( --color2);
     color: white;
     padding: 14px 20px;
     font-size: 20px;
@@ -100,8 +101,8 @@ button[type=submit] {
 }
 
 button[type=submit]:hover {
-    background-color: #BCDDC6;
-    color: green;
+    background-color: var( --color2);
+    color:white;
     border: 0 solid#008B45;
 }
 
@@ -121,11 +122,11 @@ label {
 footer {
     display: flex;
     margin-top: 50px;
-    background-color: #bcddc6;
+    background-color: var( --color1);
     justify-content: center;
     align-items: center;
 
-    color: #004b93;
+    color: white;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -221,4 +222,9 @@ footer p {
        
     
     }
+}
+:root{
+    --color1:#155A93;
+    --color2:#FB931B;
+    --color3:#D8E6EA;
 }
