@@ -95,8 +95,8 @@ if (!empty($resultfinale)) {
             
                     <td><?= $row['nomStagiaire']?></td>
                     <td><?= $row['prenomStagiaire']?></td>
-                    <td><input type="radio" name=<?=$row['CEF']?> id="btnAb"  /></td>
-                    <td><input type="radio" name=<?=$row['CEF']?> id="btnRet"  /></td>
+                    <td><input type="radio" name=<?=$row['CEF']?> id="btnAb"  value="absence" /></td>
+                    <td><input type="radio" name=<?=$row['CEF']?> id="btnRet" value="retard"/></td>
                     <td><input type="time" min="8:30" max="18:30"></td>
                     <td> <input type="time" min="8:30" max="18:30"></td>
                 </tr>
