@@ -1,113 +1,115 @@
-* {
+*{
     padding: 0px;
     margin: 0px;
-    font-family: 'Franklin Gothic Demi italic', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:'Franklin Gothic Demi italic','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
     text-transform: capitalize;
     font-style: italic;
-
+    
 }
-
 /*--------------------------------------------------------------------------------------------------*/
-.Partie1 {
+.Partie1{           
     display: flex;
     flex-wrap: wrap;
-    background-color: #BCDDC6;
+    background-color:#BCDDC6;
     padding: 0px 40px;
     border-radius: 0 0 60px 60px;
-    justify-content: space-between;
+    justify-content:space-between;
     height: 106px;
-    align-items: center;
+    align-items :center;
 
 }
 
-#Déconnexion {
-    margin-right: 0px;
-    background-color: #008B45;
-    text-align: center;
-    border-radius: 15px;
-    font-size: 20px;
-    width: 150px;
-    height: 35px;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    border: none;
-}
+#Déconnexion{
+        margin-right: 0px;
+        background-color: #008B45;
+        text-align: center;
+        border-radius: 15px;
+        font-size: 20px;
+        width: 150px;
+        height: 35px;
+        color: white;
+        cursor: pointer;
+        outline: none;
+        border: none;
+    }
 
 button[type=button]:hover {
-    background-color: #BCDDC6;
+    background-color:#BCDDC6;
     color: green;
     border: 1px solid#008B45;
 }
 
-a {
+a{
     text-decoration: none;
     color: white;
 }
 
-@media (max-width:375px) {
-    .Partie1 {
+@media (max-width:375px){
+    .Partie1{
         height: 150px;
         display: block;
     }
 }
 
 /*--------------------------------------------------------------------------------------------------*/
-.HomePage {
-    position: relative;
+main{
+    display: flex;
+    justify-content: center;
+   
+    width: 100%;
+    margin-top: 100px;
+    
 }
+table{
 
-table {
     box-shadow: 10px 10px 8px rgb(147, 147, 147);
     background-color: rgb(232, 236, 239);
-    height: 400px;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 750px;
+    width: 60%;
+    
 }
-
-table,
-th,
-td {
-    font-size: 20px;
+table ,th ,td{ 
+   font-size: 20px;
+   text-align: center;
+   border:2px solid black ;
+   border-collapse:collapse;
+  
+}
+table th{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight:900;
     text-align: center;
-    border: 2px solid black;
-    border-collapse: collapse;
+    height:10px;
+    width:120px;
+    
+   
 }
-
-table th {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: 900;
-    height: 10px;
-    width: 120px;
-}
-
 /*--------------------------------------------------------------------------------------------------*/
-footer {
+footer{
     display: flex;
-    margin-top: 30%;
-    background-color: #BCDDC6;
     justify-content: center;
     align-items: center;
-    font-size: 26px;
-    position: absolute;
-    /* position: relative;*/
-    /*bottom: -195.5px;*/
-    bottom: 0;
-    color: #004b93;
-    left: 0;
-    width: 100%;
-    height: 7vh;
     font-size: 20px;
-
-
+    background-color:#BCDDC6;
+    color: #004b93;
+    margin-top: 50px;
+    position: relative;
+    bottom: -382.5px;
+    left:0;
+    width:100%;
+    height: 7vh;
+   
+    
 
 }
 
-@media(max-width:375px) {
-    footer {
+@media(max-width:375px){
+    footer{
         bottom: -160.5px;
     }
 }
+
+
+
+
+
+           
