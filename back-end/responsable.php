@@ -75,21 +75,35 @@ $resultfinale = $pdo_statement->fetchALL();
                     <th>heure fin</th>
                 </tr>
                 <?php
-                if (!empty($resultfinale)) {
-                    foreach ($resultfinale as $row) {
-                        ?>
+                function rand_char($length)
+                {
+                    $random = '';
+                    for ($i = 0; $i < $length; $i++) {
+                        $random .= chr(mt_rand(33, 126));
+                    }
+                    return $random;
+                }
+
+?>
+                <?php
+if (!empty($resultfinale)) {
+    foreach ($resultfinale as $row) {
+        ?>
+
+        
                 <tr>
-                   
+            
                     <td><?= $row['nomStagiaire']?></td>
                     <td><?= $row['prenomStagiaire']?></td>
-                    <td><input type="radio" name="AB/RET" id="btnAb"  /></td>
-                    <td><input type="radio" name="AB/RET" id="btnRet"  /></td>
+                    <td><input type="radio" name=<?=$row['CEF']?> id="btnAb"  /></td>
+                    <td><input type="radio" name=<?=$row['CEF']?> id="btnRet"  /></td>
                     <td><input type="time" min="8:30" max="18:30"></td>
                     <td> <input type="time" min="8:30" max="18:30"></td>
                 </tr>
                 <?php
-                    }
-                }
+
+    }
+}
 ?> 
                </table>
             
