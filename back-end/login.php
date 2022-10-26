@@ -1,4 +1,5 @@
 <?php
+
 include('db.php');
 session_start();
 
@@ -7,9 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // get user and password
     $user = $_POST["matricule"];
     $password = $_POST["password"];
-    
 
-    // Validate Form Data  
+
+    // Validate Form Data
     $user = htmlspecialchars($user);
     $user = trim($user);
     $user = stripslashes($user);
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = stripslashes($password);
 
 
-    // feching the data 
+    // feching the data
     $sql = "SELECT * FROM  compte  WHERE user = ? and password = ?";
     $pdo_statement = $conn->prepare($sql);
     $pdo_statement->bindParam(1, $user);
@@ -29,12 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $pdo_statement->fetch();
 
 
-     // redrection to main pages 
-     if (empty($result)) {
+    // redrection to main pages
+    if (empty($result)) {
         header('location:./../login.html');
     } else {
         if ($result['compteType'] == 'stagire') {
-            header('location:./../responsable.html');
+            header('location:./responsable.php');
         } elseif ($result['compteType'] == 'directrice') {
             header('location:./accueil-directrice.php');
         }
@@ -45,4 +46,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// created by Rguibi Marouane  and Idrissi Mohammed 
+// created by Rguibi Marouane  and Idrissi Mohammed
