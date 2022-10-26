@@ -47,3 +47,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // created by Rguibi Marouane  and Idrissi Mohammed
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="./../styles/login.css"
+      media="screen"
+      type="text/css"
+    />
+    <!-- CSS only -->
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logoOfppt">
+          <img src="./../images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt" />
+        </div>
+        <div class="logoApp">
+          <img src="./../images/logo.jpeg" alt="logo" id="logoApp" />
+        </div>
+      </div>
+      <div id="container">
+        <h1>Bienvenue!</h1>
+        <form id="form" action="./back-end/login.php" method="POST">
+          <div id="formControl ">
+            <label><b>Votre matricule:</b></label>
+            <span id="star">*</span>
+            <input
+              type="text"
+              placeholder="Entrer votre matricule"
+              name="matricule"
+              id="matricule"
+            />
+            <div class="error" id="error"></div>
+          </div>
+          <div id="formControl">
+            <label><b> Votre mot de passe:</b></label>
+            <span id="star">*</span>
+            <input
+              type="password"
+              placeholder="Entrer le mot de passe"
+              name="password"
+              id="password"
+            />
+            <div class="error" id="error"></div>
+          </div>
+
+          <button type="submit">Se connecter</button>
+        </form>
+      </div>
+      <footer>
+        <p>© Copyright | DevWFS205 |2022</p>
+      </footer>
+    </div>
+    <script src="./../scripts/login.js"></script>
+  </body>
+</html>
