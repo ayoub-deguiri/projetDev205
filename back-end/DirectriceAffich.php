@@ -16,7 +16,6 @@ $pdo_statement->bindParam(3, $_SESSION["annee"]);
 $pdo_statement->bindParam(4, $_SESSION["anneeScolaire"]);
 $pdo_statement->execute();
 $result1 =$pdo_statement->fetchAll();
-var_dump($result1)
 ?>
 
 <!-- --------------------------------------------- -->
