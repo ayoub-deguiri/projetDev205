@@ -14,6 +14,7 @@ $pdo_statement->execute();
 $result = $pdo_statement->fetch();
 $idgrp = $result['groupe_idGroupe'];
 
+
 $sql2 = "SELECT * FROM stagiaire WHERE groupe_idGroupe =$idgrp";
 $pdo_statement = $conn->prepare($sql2);
 $pdo_statement->execute();
@@ -21,6 +22,7 @@ $resultfinale = $pdo_statement->fetchALL();
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +49,7 @@ $resultfinale = $pdo_statement->fetchALL();
         </div>
         <section>
             <h1>espace responsable : </h1>
-            <form action="verf.php" method="POST">
+            <form action="respovalide.php" method="POST">
             <div class="responsable">
                 
                 <div>
@@ -55,7 +57,7 @@ $resultfinale = $pdo_statement->fetchALL();
                       
                 </div>
                 <div>
-                      formateur<input type="text" id="formateur">
+                      formateur<input type="text" name="formateur" id="formateur">
                       
                 </div>
                 <div> 
@@ -79,16 +81,17 @@ $resultfinale = $pdo_statement->fetchALL();
 if (!empty($resultfinale)) {
     foreach ($resultfinale as $row) {
         $id = $row['CEF'];
+        $_SESSION['idgrp'] =$row['groupe_idGroupe']
         ?>
         
         
                 <tr>
                     <td><?= $row['nomStagiaire']?></td>
                     <td><?= $row['prenomStagiaire']?></td>
-                    <td><input type="checkbox" name="absence[<?=$id?>]" id="btnAb"  value="absence" /></td>
-                    <td><input type="checkbox" name="retard[<?=$id?>]" id="btnRet" value="retard"/></td>
-                    <td><input type="time" name="debut[<?=$id?>]" min="8:30" max="18:30"></td>
-                    <td> <input type="time" name="Fin[<?=$id?>]" min="8:30" max="18:30"></td>
+                    <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="absence" /></td>
+                    <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value="retard"/></td>
+                    <td><input type="time" name="debut-<?=$id?>" min="8:30" max="18:30"></td>
+                    <td> <input type="time" name="Fin-<?=$id?>" min="8:30" max="18:30"></td>
                 </tr>
                 <?php
 
