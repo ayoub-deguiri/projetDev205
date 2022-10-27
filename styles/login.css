@@ -224,6 +224,20 @@ footer p {
        
     
     }
+      #error {
+       
+        margin-left: 300px;
+    
+    
+     
+    }
+    input[type=text],
+input[type=password] {
+   
+   
+    margin: 13px 0;
+    
+}
 }
 :root{
     --color1:#155A93;
