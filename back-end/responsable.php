@@ -47,23 +47,24 @@ $resultfinale = $pdo_statement->fetchALL();
         </div>
         <section>
             <h1>espace responsable : </h1>
+            <form action="verf.php" method="POST">
             <div class="responsable">
                 
                 <div>
-                       date        <input type="date" name="date" id="date">
+                       date<input type="date" name="date" id="date">
                       
                 </div>
                 <div>
-                      formateur   <input type="text" id="formateur">
+                      formateur<input type="text" id="formateur">
                       
                 </div>
                 <div> 
-                     module   <input type="text" name="module" id="module">
+                     module<input type="text" name="module" id="module">
                     
                 </div>
             </div>
             <div class="listeEtudiants">
-            <form action="" method="post">
+            
                <table>
                 <tr>
                     <th>Nom</th>
@@ -75,30 +76,19 @@ $resultfinale = $pdo_statement->fetchALL();
                     <th>heure fin</th>
                 </tr>
                 <?php
-                function rand_char($length)
-                {
-                    $random = '';
-                    for ($i = 0; $i < $length; $i++) {
-                        $random .= chr(mt_rand(33, 126));
-                    }
-                    return $random;
-                }
-
-?>
-                <?php
 if (!empty($resultfinale)) {
     foreach ($resultfinale as $row) {
+        $id = $row['CEF'];
         ?>
-
+        
         
                 <tr>
-            
                     <td><?= $row['nomStagiaire']?></td>
                     <td><?= $row['prenomStagiaire']?></td>
-                    <td><input type="radio" name=<?=$row['CEF']?> id="btnAb"  value="absence" /></td>
-                    <td><input type="radio" name=<?=$row['CEF']?> id="btnRet" value="retard"/></td>
-                    <td><input type="time" min="8:30" max="18:30"></td>
-                    <td> <input type="time" min="8:30" max="18:30"></td>
+                    <td><input type="checkbox" name="absence[<?=$id?>]" id="btnAb"  value="absence" /></td>
+                    <td><input type="checkbox" name="retard[<?=$id?>]" id="btnRet" value="retard"/></td>
+                    <td><input type="time" name="debut[<?=$id?>]" min="8:30" max="18:30"></td>
+                    <td> <input type="time" name="Fin[<?=$id?>]" min="8:30" max="18:30"></td>
                 </tr>
                 <?php
 
@@ -113,7 +103,7 @@ if (!empty($resultfinale)) {
                 <input type="file" name="buttonPhoto" id="buttonPhoto">
                 <i></i>
             </div>
-                <input type="submit" value="valider" id="buttonValider" >
+                <input type="submit" name="valider" value="valider" id="buttonValider" >
             </div>
         </form>
         </section>
