@@ -1,397 +1,359 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    font-family:'Franklin Gothic Demi italic','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
-    text-transform: capitalize;
-    font-style: italic;
-    
+:root {
+  --color1: #155a93;
+  --color2: #fb931b;
+  --color3: #d8e6ea;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Franklin Gothic Demi italic", "Franklin Gothic Medium",
+    "Arial Narrow", Arial, sans-serif;
+  text-transform: capitalize;
+  font-style: italic;
 }
 /* ! partie  header    */
 
 .container .header {
-    display: flex;
-    flex-wrap: wrap;
-    height: 106px;
-    padding: 0px 40px;
-    align-items: center;
-    justify-content:space-between;
-    background-color:#BCDDC6 ;
-    border-radius: 0 0 60px 60px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 106px;
+  padding: 10px 30px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color1);
+  border-radius: 0 0 60px 60px;
 }
 
-#logoOfppt{
- 
-  height: 100px;
+#logoDev {
+  height: 70px;
   width: 100px;
 }
 
-.logoApp {
-   
-}
 .buttonDeconexion button {
-    margin-right: 0px;
-    background-color: #008B45;
-    text-align: center;
-    border-radius: 15px;
-    font-size: 20px;
-    width: 150px;
-    height: 35px;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    border: none;
+  margin-right: 0px;
+  background-color: var(--color2);
+  text-align: center;
+  border-radius: 15px;
+  font-size: 20px;
+  width: 150px;
+  height: 35px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  border: none;
 }
-
-
-
 
 /*                  ?partie deyla les select     + nom de  bresponsable    */
 
 /*           !nom de responsable   */
-section h1{
-    display: flex;
-    align-items: center;
-   margin-left: 240px;
-  
-    padding: 35px 25px;
-    font-size: 38px;
-    color:  #008B45;
-
-
+section h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 35px 25px;
+  font-size: 32px;
+  color: var(--color2);
 }
 .responsable {
-
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    color:#004B93 ;
-    font-size: 24px;
-   
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: #004b93;
+  font-size: 24px;
 }
-#date{
-    color: #004b93;
+#date {
+  color: #004b93;
 }
-.responsable div input{
-    width: 170px;
-    height: 25px;
-    outline: none;
-    background-color: rgb(147, 147, 147);
-    border: 2px solid #004B93 ;
-    border-radius: 10px;
-    font-size: 20px;
-    padding-left: 10px;
+.responsable div input {
+  width: 170px;
+  height: 25px;
+  outline: none;
+  border: 2px solid var(--color1);
+  border-radius: 10px;
+  font-size: 20px;
+  padding-left: 10px;
 }
 .responsable div {
-    margin:15px 65px 25px;
-   
+  margin: 15px 65px 25px;
 }
 
 [type="checkbox"] {
-    position: relative;
-    cursor: pointer;
-    outline: none;
-  }
-  
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
 [type="checkbox"]:checked::before {
-    content: "";
-    width: 16px;
-    height: 16px;
-    background-color: #004b93;
-    position: absolute;
-    top: -1.75px;
-    left: -1.75px;
-    opacity: 1;
-    border-radius: 50%;
-  }
-  
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: var(--color1);
+  position: absolute;
+  top: -1.75px;
+  left: -1.75px;
+  opacity: 1;
+  border-radius: 50%;
+}
+
 /*                  ?partie deyla les liste de etudiant ' la table '  + deux button valider photo      */
 
 .listeEtudiants {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
-table{
-    width:100%;
-    font-weight: bolder;
-    font-size: 22px;
-    box-shadow: 10px 10px 8px rgb(147, 147, 147);
-    background-color: rgb(232, 236, 239);
+table {
+  width: 100%;
+  font-size: 24px;
+  box-shadow: 10px 10px 8px rgb(147, 147, 147);
+  background-color: rgb(232, 236, 239);
 }
-.listeEtudiants table,td,th{
-    border: 2px solid black;
-    border-collapse:collapse;
-    text-align: center;
-    padding: 15px;
-   
 
+table tr td {
+  font-size: 20px;
+}
+
+.listeEtudiants table,
+td,
+th {
+  border: 2px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 15px;
 }
 
 .buttonVlaiderPhoto {
-    
-    position: relative;
-    
-    
+  position: relative;
 }
-.buttonPhoto{
-    margin-left: 100px;
-    margin-top: 30px;
+.buttonPhoto {
+  margin-left: 100px;
+  margin-top: 30px;
 }
 #buttonPhoto::-webkit-file-upload-button {
-    visibility: hidden;
-    
+  visibility: hidden;
 }
 #buttonPhoto::before {
-    content: 'photo';
-    display: inline-block;
-    background: #008B45;
-    border: 1px solid #999;
-    border-radius: 8px;
-    padding-top: 4px;
-    padding-right: 8px;
-    
-    padding-left: 8px;
-    outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 20px;
-    width: 100px;
-    height: 30px;
-    text-align: center;
-    margin-left: 8px;
-    color: white;
+  content: "photo";
+  display: inline-block;
+  background: var(--color2);
+  border: 1px solid #999;
+  border-radius: 8px;
+  padding-top: 4px;
+  padding-right: 8px;
+
+  padding-left: 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 20px;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  margin-left: 8px;
+  color: white;
 }
-  
-#buttonValider{
-    position: absolute;
-    right: 0;
-    margin-right: 100px;
-    background-color: #008B45;
-    text-align: center;
-    border-radius: 8px;
-    font-size: 20px;
-    width: 100px;
-    height: 36px;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    margin-top: -44px;
-    padding: 4px;
-   
+
+#buttonValider {
+  position: absolute;
+  right: 0;
+  margin-right: 100px;
+  background-color: var(--color2);
+  text-align: center;
+  border-radius: 8px;
+  font-size: 20px;
+  width: 100px;
+  height: 36px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  margin-top: -44px;
+  padding: 4px;
 }
 
 /*   partie footer */
 footer {
-    display: flex;
-    margin-top: 50px;
-    background-color: #bcddc6;
-    justify-content: center;
-    align-items: center;
-   
-    color: #004b93;
-    position: relative;
-    left: 0;
-    bottom:-175.5px;
-    width: 100%;
-    height: 7vh;
-  }
+  display: flex;
+  margin-top: 50px;
+  background-color: var(--color1);
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  color: white;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 7vh;
+}
 footer p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
-  
 select {
-    -webkit-appearance: none;
-  }
-  
-  select#heure {
-    height: 30px;
-    width: 80px;
-    outline: 1px solid black;
-    border: 1px solid black;
-    background-color: rgb(232, 236, 239);
-  }
-  
-.heure {
-    text-align: right;
-  }
-  
-u {
-    position: relative;
-  }
-  
-u::after {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: -18px;
-    width: 3px;
-    height: 50%;
-    background-color: black;
-    transform: rotate(-45deg);
-  }
-  
-u::before {
-    content: "";
-    position: absolute;
-    top: 7px;
-    right: 7px;
-    width: 3px;
-    height: 48%;
-    background-color: black;
-    transform: rotate(45deg);
+  -webkit-appearance: none;
 }
-  
 
+select#heure {
+  height: 30px;
+  width: 80px;
+  outline: 1px solid black;
+  border: 1px solid black;
+  background-color: rgb(232, 236, 239);
+}
+
+.heure {
+  text-align: right;
+}
+
+u {
+  position: relative;
+}
+
+u::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -18px;
+  width: 3px;
+  height: 50%;
+  background-color: black;
+  transform: rotate(-45deg);
+}
+
+u::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 3px;
+  height: 48%;
+  background-color: black;
+  transform: rotate(45deg);
+}
 
 @media screen and (max-width: 376px) {
-    .container .header{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        
-        height: 70px;
-        
-        border-radius: 0px 0px 40px 40px;
-    }
-    #logoOfppt{
-       
-        margin-left: -21px;
-        width: 61px;
-        height: 50px;
-    }
+  .container .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    #logoApp{
-        width: 68px;
-        HEIGHT: 45px;
+    height: 70px;
 
-    }
-    .buttonDeconexion button {
-       
-        margin-right: -25px;
-        width: 73px;
-        height: 23px;
-        font-size: 13px;
-    }
-  
- 
-    section h1{
-        
-       
-        font-size: 16px;
-        margin-left: -17px;
-    }
-    .responsable div {
-        /* margin: 11px 10px; */
-        margin: 11px 14px; 
-        font-size: 15px;
-        font-weight: bolder;
-    }
-    #date{
-        font-size: 11px;
-        
-    }
-    .responsable div input{
-        width: 80px;
-        height: 20px;
-        font-size: 15px;
-    }
-    /*             after befor span  i  */
+    border-radius: 0px 0px 40px 40px;
+  }
+  #logoOfppt {
+    margin-left: -21px;
+    width: 61px;
+    height: 50px;
+  }
 
-   
-    .listeEtudiants {
-        display: block;
-       
-    }
-    table{
-        position: relative;
-        font-size: 15px;
-        width: 98%;
-        margin: auto;
-        
-    }
-    .listeEtudiants table,td,th{
-      
-        padding: 3px;
-    
-    }
-    u::after {
-  
-   
-        top: 5px;
-        left: -17px;
-        width: 3px;
-        height: 50%;
-    
-    }
-    u::before {
-       
-        top: 5px;
-        right: 10px;
-        width: 3px;
-        height: 50%;
-    
-      }
-    select#heure {
-        height: 28px;
-        width: 26px;
-      
-    }
-    .buttonVlaiderPhoto {
-        margin-top: 15px ;
-        position: relative;
-    }
-    .buttonPhoto{
-        margin-left: 0px;
-        margin-top: 10px;
-    }
-    #buttonPhoto::before{
-        position: absolute;
-        width: 57px;
-        height: 24px;
-        font-size: 15px;
-        right: 292px;
-    }
-        
-      
-      #buttonValider{
-        position: absolute;
-        width: 73px;
-        height: 30px;
-        font-size: 15px;
-        right: -93px;
-        top: 44px;
-    }
-    
+  #logoApp {
+    width: 68px;
+    height: 45px;
+  }
+  .buttonDeconexion button {
+    margin-right: -25px;
+    width: 73px;
+    height: 23px;
+    font-size: 13px;
+  }
 
-    footer {
-        height: auto;
-        margin-top: 50%;
-        font-size: 15px;
-        position: relative;
-        height: 27px;
-    
-    }
-    footer P {
-        /* padding-right: 20px; */
-        /* padding-left: 5px; */
-        margin: auto;
-        font-size: 14px;
-    }
-      
+  section h1 {
+    font-size: 16px;
+    margin-left: -17px;
+  }
+  .responsable div {
+    /* margin: 11px 10px; */
+    margin: 11px 14px;
+    font-size: 15px;
+    font-weight: bolder;
+  }
+  #date {
+    font-size: 11px;
+  }
+  .responsable div input {
+    width: 80px;
+    height: 20px;
+    font-size: 15px;
+  }
+  /*             after befor span  i  */
 
-  
+  .listeEtudiants {
+    display: block;
+  }
+  table {
+    position: relative;
+    font-size: 15px;
+    width: 98%;
+    margin: auto;
+  }
+  .listeEtudiants table,
+  td,
+  th {
+    padding: 3px;
+  }
+  u::after {
+    top: 5px;
+    left: -17px;
+    width: 3px;
+    height: 50%;
+  }
+  u::before {
+    top: 5px;
+    right: 10px;
+    width: 3px;
+    height: 50%;
+  }
+  select#heure {
+    height: 28px;
+    width: 26px;
+  }
+  .buttonVlaiderPhoto {
+    margin-top: 15px;
+    position: relative;
+  }
+  .buttonPhoto {
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+  #buttonPhoto::before {
+    position: absolute;
+    width: 57px;
+    height: 24px;
+    font-size: 15px;
+    right: 292px;
+  }
 
-    input{
-            -webkit-appearance: none;
+  #buttonValider {
+    position: absolute;
+    width: 73px;
+    height: 30px;
+    font-size: 15px;
+    right: -93px;
+    top: 44px;
+  }
 
-    }
+  footer {
+    height: auto;
+    margin-top: 50%;
+    font-size: 15px;
+    position: relative;
+    height: 27px;
+  }
+  footer P {
+    /* padding-right: 20px; */
+    /* padding-left: 5px; */
+    margin: auto;
+    font-size: 14px;
+  }
 
-    
-
+  input {
+    -webkit-appearance: none;
+  }
 }
