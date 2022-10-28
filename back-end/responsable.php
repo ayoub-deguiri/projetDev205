@@ -48,7 +48,7 @@ $resultfinale = $pdo_statement->fetchALL();
     
         </div>
         <section>
-            <h1>espace responsable : </h1>
+            <h1>espace responsable : <?=$result['nomStagiaire'].' '.$result['prenomStagiaire']?></h1>
             <form action="respovalide.php" method="POST">
             <div class="responsable">
                 

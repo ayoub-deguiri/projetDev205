@@ -11,8 +11,6 @@ $sql = "SELECT CEF FROM stagiaire WHERE groupe_idGroupe = $idgrp";
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->execute();
 $result = $pdo_statement->fetchALL();
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["valider"])) {
         $date = $_POST['date'];
