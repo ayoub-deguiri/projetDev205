@@ -1,18 +1,9 @@
 <?php
 include('db.php');
 session_start();
-?>
-<?php
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if (isset($_POST['valider'])) {
-		$_SESSION['anneeScolaire'] = $_POST['annee-Scolaire'];
-		$_SESSION['annee'] = $_POST['annee'];
-		$_SESSION['filiere'] = $_POST['filiere'];
-		$_SESSION['groupe'] = $_POST['groupe'];
-	}
+if (empty($_SESSION)) {
+    header('location:./login.php');
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<div class="logoApp">
 				<img src="images/logo.jpeg" alt="logo" id="logoApp">
 			</div>
-			<div class="buttonDeconexion"><button>Déconnexion</button></div>
+			<a href="./logout.php"><div class="buttonDeconexion"><button>Déconnexion</button></div></a>
 
 		</div>
 	</div>
@@ -55,32 +46,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<h1 id="bienvenue">Bienvenue!</h1>
 
-	<form action="PageNassima_Naima" method="Post" name="form1">
+	<form action="./DirectriceAffich.php" method="Post" name="form1">
 		<table>
 			<tr>
 				<th>
 					<label for="lblannee-scolaire" style="margin-left: -39px">
 						Année Scolaire:</label>
 					<?php
-					$sql = ("SELECT * FROM annee ");
-					$pdo_statement = $pdo_conn->prepare($sql);
-					$pdo_statement->execute();
-					$annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
-					?>
+                    $sql = ("SELECT * FROM annee ");
+$pdo_statement = $conn->prepare($sql);
+$pdo_statement->execute();
+$annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+?>
 
 					<select id="annee-Scolaire" name="annee-Scolaire" style="margin-left: 24px" required>
 						<option value="rien" selected>Select Annee scolaire</option>
 						<?php
-						if (isset($annee)) {
-							foreach ($annee as $row) {
-
-						?>
-								<option value="<?= $row['idAnnee'] ?>"><?= $row['nomAnnee'] ?></option>
+    if (isset($annee)) {
+        foreach ($annee as $row) {
+            ?>
+								<option value="<?= $row['nomAnnee'] ?>"><?= $row['nomAnnee'] ?></option>
 
 						<?php
-							}
-						}
-						?>
+        }
+    }
+?>
 
 					</select>
 					<!-- <input type="hidden" name="" id="inputHidden"> -->
@@ -92,23 +82,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<label for="lblannee"> Année:</label>
 					<select id="annee" name="annee" required>
 						<?php
-						$sql = ("SELECT * FROM anneeScolaire ");
-						$pdo_statement = $pdo_conn->prepare($sql);
-						$pdo_statement->execute();
-						$anneescolaire = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
-						?>
+$sql = ("SELECT * FROM anneeScolaire ");
+$pdo_statement = $conn->prepare($sql);
+$pdo_statement->execute();
+$anneescolaire = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+?>
 						<option value="rien">select year</option>
 						<?php
-						if (isset($anneescolaire)) {
-							foreach ($anneescolaire as $row) {
-
-						?>
-								<option value="<?= $row['idAnneeScolaire'] ?>"><?= $row['nomAnneeScolaire'] ?></option>
+if (isset($anneescolaire)) {
+    foreach ($anneescolaire as $row) {
+        ?>
+								<option value="<?= $row['nomAnneeScolaire'] ?>"><?= $row['nomAnneeScolaire'] ?></option>
 
 						<?php
-							}
-						}
-						?>
+    }
+}
+?>
 					</select>
 				</th>
 
@@ -116,24 +105,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<th colspan="2">
 					<label for="lblfiliére"> Filiére:</label>
 					<?php
-					$sql = ("SELECT * FROM filiere ");
-					$pdo_statement = $pdo_conn->prepare($sql);
-					$pdo_statement->execute();
-					$filieres = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
-					?>
+                    $sql = ("SELECT * FROM filiere ");
+$pdo_statement = $conn->prepare($sql);
+$pdo_statement->execute();
+$filieres = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+?>
 					<select id="filiere" name="filiere" required>
 						<option value="rien">Select filiere </option>
 						<?php
-						if (isset($filieres)) {
-							foreach ($filieres as $row) {
-
-						?>
-								<option value="<?= $row['idFiliere'] ?>"><?= $row['nomFiliere'] ?></option>
+    if (isset($filieres)) {
+        foreach ($filieres as $row) {
+            ?>
+								<option value="<?= $row['nomFiliere'] ?>"><?= $row['nomFiliere'] ?></option>
 
 						<?php
-							}
-						}
-						?>
+        }
+    }
+?>
 					</select>
 				</th>
 
@@ -141,24 +129,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<th colspan="2">
 					<label for="lblgroupe" style="margin-left: -39px"> Groupe:</label>
 					<?php
-					$sql = ("SELECT * FROM groupe ");
-					$pdo_statement = $pdo_conn->prepare($sql);
-					$pdo_statement->execute();
-					$groupe = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
-					?>
+                    $sql = ("SELECT * FROM groupe ");
+$pdo_statement = $conn->prepare($sql);
+$pdo_statement->execute();
+$groupe = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+?>
 					<select id="groupe" name="groupe" required>
 						<option value="rien">select Groupe</option>
 						<?php
-						if (isset($groupe)) {
-							foreach ($groupe as $row) {
-
-						?>
-								<option value="<?= $row['idGroupe'] ?>"><?= $row['nomGroupe'] ?></option>
+    if (isset($groupe)) {
+        foreach ($groupe as $row) {
+            ?>
+								<option value="<?= $row['nomGroupe'] ?>"><?= $row['nomGroupe'] ?></option>
 
 						<?php
-							}
-						}
-						?>
+        }
+    }
+?>
 					</select>
 				</th>
 

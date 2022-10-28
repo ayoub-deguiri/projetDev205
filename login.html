@@ -8,7 +8,6 @@
       media="screen"
       type="text/css"
     />
-    <!-- CSS only -->
   </head>
   <body>
     <div class="container">
@@ -17,7 +16,7 @@
           <img src="./images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt" />
         </div>
         <div class="logoApp">
-          <img src="images/logo.jpeg" alt="logo" id="logoApp" />
+          <img src="images/logoApp.png" width="100px" height="70px" alt="logo" id="logoApp" />
         </div>
       </div>
       <div id="container">
@@ -25,6 +24,7 @@
         <form id="form" action="./back-end/login.php" method="POST">
           <div id="formControl ">
             <label><b>Votre matricule:</b></label>
+            <span id="star">*</span>
             <input
               type="text"
               placeholder="Entrer votre matricule"
@@ -35,6 +35,7 @@
           </div>
           <div id="formControl">
             <label><b> Votre mot de passe:</b></label>
+            <span id="star">*</span>
             <input
               type="password"
               placeholder="Entrer le mot de passe"

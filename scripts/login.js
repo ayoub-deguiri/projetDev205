@@ -32,14 +32,15 @@ const checkInputs = () => {
   let etat1 = false;
   let etat2 = false;
   if (matriculeValue === "") {
-    setError(matricule, "matricule est obligatoire");
+    setError(matricule, "matricule obligatoire");
   } else {
     setSuccess(matricule);
     etat1 = true;
   }
 
   if (passwordValue === "") {
-    setError(password, "mot de passe est obligatoire");
+    setError(password, "mot de passe obligatoire");
+    
   } else {
     setSuccess(password);
     etat2 = true;
