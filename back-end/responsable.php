@@ -22,7 +22,6 @@ $resultfinale = $pdo_statement->fetchALL();
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +29,8 @@ $resultfinale = $pdo_statement->fetchALL();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>responsable</title>
-    <link rel="icon" type="image/x-icon" href="./images/logo.jpeg">
-    <link rel="stylesheet" href="../styles/styleResponsable.css">
+    <link rel="icon" type="image/x-icon" href="./../images/logo.jpeg">
+    <link rel="stylesheet" href="./../styles/styleResponsable.css">
     <link rel="stylesheet" href="mediaQueries.css">
    
 </head>
@@ -39,74 +38,72 @@ $resultfinale = $pdo_statement->fetchALL();
     <div class="container">
         <div class="header">
             <div class="logoOfppt">
-                <img src="./images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt">
+                <img src="./../images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt">
             </div>
             <div class="logoApp">
-                <img src="./images/logo.jpeg" alt='logo' id="logoApp">
+                <img src="./../images/logoApp.png" alt='logo' id="logoApp">
+            </div >
+            <div class="buttonDeconexion"><a href="logout.php"> <button>Déconnexion</button></a>
             </div>
-            <a href="./logout.php"><div class="buttonDeconexion"><button>Déconnexion</button></div></a>
-    
         </div>
         <section>
-            <h1>espace responsable : <?=$result['nomStagiaire'].' '.$result['prenomStagiaire']?></h1>
-            <form action="respovalide.php" method="POST">
+            <h1>espace responsable : <?=$result['nomStagiaire']." ".$result['prenomStagiaire'];?></h1>
             <div class="responsable">
                 
                 <div>
-                       date<input type="date" name="date" id="date">
+                       date        <input type="date" name="date" id="date">
                       
                 </div>
                 <div>
-                      formateur<input type="text" name="formateur" id="formateur">
+                      formateur   <input type="text" id="formateur">
                       
                 </div>
                 <div> 
-                     module<input type="text" name="module" id="module">
+                     module   <input type="text" name="module" id="module">
                     
                 </div>
             </div>
             <div class="listeEtudiants">
-            
-               <table>
-                <tr>
-                    <th>Nom</th>
-                    <th>prénom</th>
-                    <th>absence</th>
-                    <th>retard</th>
-                    <th>heure debut</th>
+                <form action="" method="post">
+                <table>
+                    <tr>
+                       
+                        <th>nom</th>
+                        <th>prénom</th>
+                        <th>absence</th>
+                        <th>retard</th>
+                        <th>heure debut</th>
+                        <th>heure fin</th>
+                    </tr>
+                    <?php
+                    if (!empty($resultfinale)) {
+                        foreach ($resultfinale as $row) {
+                            $id = $row['CEF'];
+                            $_SESSION['idgrp'] =$row['groupe_idGroupe']
+                            ?>
+                     <tr>
+                        <td><?= $row['nomStagiaire']?></td>
+                        <td><?= $row['prenomStagiaire']?></td>
+                        <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="absence" /></td>
+                        <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value="retard"/></td>
+                        <td><input type="time" name="debut-<?=$id?>" min="8:30" max="18:30"></td>
+                        <td> <input type="time" name="Fin-<?=$id?>" min="8:30" max="18:30"></td>
+                    </tr>
+                     <?php
 
-                    <th>heure fin</th>
-                </tr>
-                <?php
-if (!empty($resultfinale)) {
-    foreach ($resultfinale as $row) {
-        $id = $row['CEF'];
-        $_SESSION['idgrp'] =$row['groupe_idGroupe']
-        ?>
-        
-        
-                <tr>
-                    <td><?= $row['nomStagiaire']?></td>
-                    <td><?= $row['prenomStagiaire']?></td>
-                    <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="absence" /></td>
-                    <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value="retard"/></td>
-                    <td><input type="time" name="debut-<?=$id?>" min="8:30" max="18:30"></td>
-                    <td> <input type="time" name="Fin-<?=$id?>" min="8:30" max="18:30"></td>
-                </tr>
-                <?php
-
-    }
-}
+                        }
+                    }
 ?> 
-               </table>
-            
+      
+                </table>
+                
             </div>
             <div class="buttonVlaiderPhoto">
                 <div class="buttonPhoto">
                 <input type="file" name="buttonPhoto" id="buttonPhoto">
                 <i></i>
             </div>
-                <input type="submit" name="valider" value="valider" id="buttonValider" >
+                <input type="submit" value="valider" id="buttonValider" >
             </div>
         </form>
         </section>
@@ -116,3 +113,10 @@ if (!empty($resultfinale)) {
     </div>
 </body>
 </html>
+
+
+
+
+
+
+

@@ -5,113 +5,99 @@ if (empty($_SESSION)) {
     header('location:./login.php');
 }
 ?>
+<!--html-->
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="./styles/STYLEDIRECTRICE.css" />
-	<title>Directrice</title>
-	<style>
-		h1 {
-			font-size: 40px;
-			font-weight: 600;
-			color: lightseagreen;
-			font-family: cursive;
-		}
-		/* label{
-			color: lightseagreen;
-			font-family: cursive;
-		} */
-	</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" media="screen" href="./../styles/Accueil_directrice.css">
 </head>
-
 <body>
-	<!--header-->
-	<div class="container">
-		<div class="header">
-			<div class="logoOfppt">
-				<img src="images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt">
-			</div>
-			<div class="logoApp">
-				<img src="images/logo.jpeg" alt="logo" id="logoApp">
-			</div>
-			<a href="./logout.php"><div class="buttonDeconexion"><button>Déconnexion</button></div></a>
+<!--header-->
+    <header>
+            <div class="logoOfppt">
+                <img src="./../images/Ofpptlogo.png" width='100px' height='70px' alt="logoOfppt" id="logoOfppt">
+            </div>
+            <div class="logoApp">
+                <img src="./../images/logoApp.png" height="70px" width="100px" alt="logo" id="logoApp">
+            </div>
+            <div class="déconnexion">
+			<button type="button" id="Déconnexion"><a href="./logout.php">Déconnexion</a></button>
+          </div> 
+    </header>
+<!--body-->
+	<div class="title">
+  
+  <h1 id="bienvenue">Bienvenue !</h1>
 
-		</div>
-	</div>
-	<!--flitre-->
-
-	<h1 id="bienvenue">Bienvenue!</h1>
-
-	<form action="./DirectriceAffich.php" method="Post" name="form1">
-		<table>
-			<tr>
-				<th>
-					<label for="lblannee-scolaire" style="margin-left: -39px">
-						Année Scolaire:</label>
-					<?php
-                    $sql = ("SELECT * FROM annee ");
+</div>
+<div class="container">
+  
+<form action="./DirectriceAffich.php" method="POST" name="form1">
+  <div class="row">
+	  <div class="col-25">
+		  <label for="année-scolaire">Année Scolaire :</label>
+				<?php
+             $sql = ("SELECT * FROM annee ");
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->execute();
 $annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
-					<select id="annee-Scolaire" name="annee-Scolaire" style="margin-left: 24px" required>
-						<option value="rien" selected>Select Annee scolaire</option>
-						<?php
-    if (isset($annee)) {
-        foreach ($annee as $row) {
-            ?>
+	  </div>
+	<div class="col-75">
+		  <select id="année-scolaire" id="année-scolaire" name="annee-Scolaire" required>
+		  <option value="" selected>Select Annee scolaire</option>
+			<?php
+                    if (isset($annee)) {
+                        foreach ($annee as $row) {
+                            ?>
 								<option value="<?= $row['nomAnnee'] ?>"><?= $row['nomAnnee'] ?></option>
-
 						<?php
-        }
-    }
+                        }
+                    }
 ?>
-
-					</select>
-					<!-- <input type="hidden" name="" id="inputHidden"> -->
-				</th>
-
-
-
-				<th colspan="2">
-					<label for="lblannee"> Année:</label>
-					<select id="annee" name="annee" required>
+		  </select>
+	</div>
+  </div>
+  <div class="row">
+		  <div class="col-25">
+				<label for="année">Année :</label>
+		  </div>
+		  <div class="col-75">
+				<select id="année" name="annee" required>
 						<?php
 $sql = ("SELECT * FROM anneeScolaire ");
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->execute();
 $anneescolaire = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
-						<option value="rien">select year</option>
-						<?php
-if (isset($anneescolaire)) {
-    foreach ($anneescolaire as $row) {
-        ?>
+					<option value="">select year</option>
+<?php
+                        if (isset($anneescolaire)) {
+                            foreach ($anneescolaire as $row) {
+                                ?>
 								<option value="<?= $row['nomAnneeScolaire'] ?>"><?= $row['nomAnneeScolaire'] ?></option>
 
 						<?php
-    }
-}
+                            }
+                        }
 ?>
-					</select>
-				</th>
-
-
-				<th colspan="2">
-					<label for="lblfiliére"> Filiére:</label>
-					<?php
+				</select>
+		  </div>
+  </div>
+  <div class="row">
+		  <div class="col-25">
+				<label for="filiére">Filiére  :</label>
+				<?php
                     $sql = ("SELECT * FROM filiere ");
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->execute();
 $filieres = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
-					<select id="filiere" name="filiere" required>
-						<option value="rien">Select filiere </option>
+		  </div>
+		  <div class="col-75">
+				<select id="filiére" name="filiere" required>
+				<option value="">Select filiere </option>
 						<?php
     if (isset($filieres)) {
         foreach ($filieres as $row) {
@@ -122,20 +108,22 @@ $filieres = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 ?>
-					</select>
-				</th>
-
-
-				<th colspan="2">
-					<label for="lblgroupe" style="margin-left: -39px"> Groupe:</label>
-					<?php
+				</select>
+		  </div>
+  </div>
+  <div class="row">
+	  <div class="col-25">
+			<label for="groupe">Groupe :</label>
+			<?php
                     $sql = ("SELECT * FROM groupe ");
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->execute();
 $groupe = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
-					<select id="groupe" name="groupe" required>
-						<option value="rien">select Groupe</option>
+	  </div>
+	  <div class="col-75">
+			<select id="groupe" name="groupe" required>
+			<option value="">select Groupe</option>
 						<?php
     if (isset($groupe)) {
         foreach ($groupe as $row) {
@@ -146,23 +134,18 @@ $groupe = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 ?>
-					</select>
-				</th>
+			</select>
+	  </div>
+</div>
 
-				<th colspan="2">
-					<input type="submit" id="valider" name="valider" value="Valider" />
-				</th>
-			</tr>
-
-		</table>
-		<form>
-
-
-			<!--footer-->
-			<footer>
-				<h3>© Copyright | DevWFS205 |2022</h3>
-			</footer>
-
+  <div class="box-submit">
+			<input type="submit" name="valider" value="Valider" id="valider">
+  </div>  
+</form>
+</div>
+<!--footer-->
+  <footer>
+	<p> © Copyright | DevWFS205 |2022 </p>
+ </footer>
 </body>
-
 </html>
