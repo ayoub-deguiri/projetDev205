@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($result)) {
         header('location:./../login.html');
     } else {
-        if ($result['compteType'] == 'stagire') {
+        if ($result['compteType'] == 'stagiaire') {
             header('location:./responsable.php');
         } elseif ($result['compteType'] == 'directrice') {
             header('location:./accueil-directrice.php');
