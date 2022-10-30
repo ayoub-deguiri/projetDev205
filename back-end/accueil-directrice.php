@@ -19,7 +19,7 @@ if (empty($_SESSION)) {
                 <img src="./../images/Ofpptlogo.png"  alt="logoOfppt" id="logoOfppt">
             </div>
             <div class="logoApp">
-                <img src="./../images/logoApp.png"  alt="logo" id="logoApp">
+                <img src="./../images/logoApp.png"  alt="logo" class="logoApp">
             </div>
             <div class="déconnexion">
 			<button type="button" id="Déconnexion"><a href="./logout.php">Déconnexion</a></button>
