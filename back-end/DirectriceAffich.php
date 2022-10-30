@@ -41,10 +41,10 @@ if (empty($result1)) {
             <!--*********************************************************************************-->          
             <header>
                 <div class="logo-OFPPT">
-                    <img src="./../images/Ofpptlogo.png" width='100px' height='70px'alt="ErreurlogoOFPPT">
+                    <img src="./../images/Ofpptlogo.png" width='100px' height='100px'alt="ErreurlogoOFPPT">
                 </div>  
                 <div class="logo-APP">
-                    <img src="./../images/logoApp.png" width='100px' height='70px' alt="ErreurlogoOFPPT">
+                    <img src="./../images/logoApp.png" width='100px' height='100px' alt="ErreurlogoOFPPT">
                 </div>
                 <div class="déconnexion">
                 <button type="button" id="Déconnexion"><a href="logout.php">Déconnexion</a></button>
