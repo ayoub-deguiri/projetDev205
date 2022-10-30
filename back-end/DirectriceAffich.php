@@ -33,7 +33,7 @@ if (empty($result1)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" media="screen"  href="./../styles/Affichage directrice.css">
-    <title>1</title>
+    <title>Directrice</title>
 </head>
 <body>
 <div id="HomePage">
@@ -41,7 +41,7 @@ if (empty($result1)) {
             <!--*********************************************************************************-->          
             <header>
                 <div class="logo-OFPPT">
-                    <img src="./../images/Ofpptlogo.png" width='80px' height='70px'alt="ErreurlogoOFPPT">
+                    <img src="./../images/Ofpptlogo.png" width='100px' height='70px'alt="ErreurlogoOFPPT">
                 </div>  
                 <div class="logo-APP">
                     <img src="./../images/logoApp.png" width='100px' height='70px' alt="ErreurlogoOFPPT">
