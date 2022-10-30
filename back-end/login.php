@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <img src="./../images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt" />
         </div>
         <div class="logoApp">
-        <img src="./../images/logoApp.png" width="100px" height="70px" alt="logo" id="logoApp" />
+        <img src="./../images/logoApp.png" width="100px" height="100px" alt="logo" id="logoApp" />
         </div>
       </div>
       <div id="container">
