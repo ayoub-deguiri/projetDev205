@@ -91,7 +91,7 @@ if (empty($result1)) {
                         $pdo_statement->execute();
                         $result6 =$pdo_statement->fetch();
                         if (empty($result6)) {
-                            echo  "<td>Le stagire n'a aucun note </td>";
+                            echo  "<td>Le stagiaire n'a aucun note </td>";
                         } else {
                             echo  "<td>".$result6["Note"]."</td>";
                         }
