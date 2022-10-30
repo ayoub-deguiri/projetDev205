@@ -12,15 +12,22 @@ header{
     justify-content:space-between;
     align-items: center;
     top:0;
+    height: 106px;
     background-color:var( --color2);
     padding: 1px 40px;
     border-radius: 0 0 60px 60px;
-    height: 73px;
+    
      }
-.logo-OFPPT{
-    height: 2px;
-    width: 2px;
-}
+#logoOfppt{
+    height: 100px;
+    width: 100px;
+      }
+.logoApp{
+    margin-right: -10%;
+    height:100px;
+    width:100px;
+
+  }
 
  :root{
     --color1:#FB931B;
