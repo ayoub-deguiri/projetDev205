@@ -1,6 +1,9 @@
 <?php
-include("db.php");
+include('inc/db.php');
 session_start();
+if (empty($_SESSION) or $_SESSION['compteType'] == "directrice") {
+    header('location:./login.php');
+}
 ?>
 
 <?php

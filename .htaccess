@@ -1,0 +1,4 @@
+Options -Indexes
+DirectoryIndex login.php
+ErrorDocument 404 /error.html
+RewriteEngine On

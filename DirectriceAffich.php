@@ -1,7 +1,7 @@
 <?php
-include('db.php');
+include('inc/db.php');
 session_start();
-if (empty($_SESSION)) {
+if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
     header('location:./login.php');
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,7 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["groupe"] = $_POST["groupe"];
     }
 }
-$sql='SELECT CEF,nomStagiaire,prenomStagiaire from stagiaire where groupe_idGroupe in (select idGroupe from groupe where nomGroupe=?and filiere_idFiliere in ( select idFiliere from filiere where nomFiliere=? and anneeScolaire_idAnneeScolaire in (select idAnneeScolaire from anneeSColaire where nomAnneeScolaire= ? and annee_idAnnee in (select idAnnee from annee where nomAnnee= ?) )))';
+$sql="SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where groupe_idGroupe in 
+(select idGroupe from groupe where idGroupe=? and filiere_idFiliere in ( select idFiliere from filiere where 
+idFiliere=? and anneeScolaire_idAnneeScolaire in 
+(select idAnneeScolaire from anneeSColaire where idAnneeScolaire=? and annee_idAnnee in 
+(select idAnnee from annee where idAnnee=?)
+)));";
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->bindParam(1, $_SESSION["groupe"]);
 $pdo_statement->bindParam(2, $_SESSION["filiere"]);
@@ -32,7 +37,7 @@ if (empty($result1)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen"  href="./../styles/Affichage directrice.css">
+    <link rel="stylesheet" media="screen"  href="./styles/Affichage directrice.css">
     <title>Directrice</title>
 </head>
 <body>
@@ -41,10 +46,10 @@ if (empty($result1)) {
             <!--*********************************************************************************-->          
             <header>
                 <div class="logo-OFPPT">
-                    <img src="./../images/Ofpptlogo.png" width='100px' height='100px'alt="ErreurlogoOFPPT">
+                    <img src="./images/Ofpptlogo.png" width='100px' height='100px'alt="ErreurlogoOFPPT">
                 </div>  
                 <div class="logo-APP">
-                    <img src="./../images/logoApp.png" width='100px' height='100px' alt="ErreurlogoOFPPT">
+                    <img src="./images/logoApp.png" width='100px' height='100px' alt="ErreurlogoOFPPT">
                 </div>
                 <div class="déconnexion">
                 <button type="button" id="Déconnexion"><a href="logout.php">Déconnexion</a></button>

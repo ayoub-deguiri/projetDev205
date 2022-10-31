@@ -1,7 +1,7 @@
 <?php
-include('db.php');
+include('inc/db.php');
 session_start();
-if (empty($_SESSION)) {
+if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
     header('location:./login.php');
 }
 ?>
@@ -10,16 +10,16 @@ if (empty($_SESSION)) {
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" media="screen" href="./../styles/Accueil_directrice.css">
+<link rel="stylesheet" media="screen" href="./styles/Accueil_directrice.css">
 </head>
 <body>
 <!--header-->
     <header>
             <div class="logoOfppt">
-                <img src="./../images/Ofpptlogo.png"  alt="logoOfppt" id="logoOfppt">
+                <img src="./images/Ofpptlogo.png"  alt="logoOfppt" id="logoOfppt">
             </div>
             <div class="logoApp">
-                <img src="./../images/logoApp.png"  alt="logo" class="logoApp">
+                <img src="./images/logoApp.png"  alt="logo" class="logoApp">
             </div>
             <div class="déconnexion">
 			<button type="button" id="Déconnexion"><a href="./logout.php">Déconnexion</a></button>
@@ -46,12 +46,12 @@ $annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 	  </div>
 	<div class="col-75">
 		  <select id="année-scolaire" id="année-scolaire" name="annee-Scolaire" required>
-		  <option value="" selected>Select Annee scolaire</option>
+		  <option value="" disabled  selected>Année Scolaire</option>
 			<?php
                     if (isset($annee)) {
                         foreach ($annee as $row) {
                             ?>
-								<option value="<?= $row['nomAnnee'] ?>"><?= $row['nomAnnee'] ?></option>
+								<option value="<?= $row['idAnnee'] ?>"><?= $row['nomAnnee'] ?></option>
 						<?php
                         }
                     }
@@ -71,12 +71,12 @@ $pdo_statement = $conn->prepare($sql);
 $pdo_statement->execute();
 $anneescolaire = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
-					<option value="">select year</option>
+					<option value="" disabled  selected>Année</option>
 <?php
                         if (isset($anneescolaire)) {
                             foreach ($anneescolaire as $row) {
                                 ?>
-								<option value="<?= $row['nomAnneeScolaire'] ?>"><?= $row['nomAnneeScolaire'] ?></option>
+								<option value="<?= $row['idAnneeScolaire'] ?>"><?= $row['nomAnneeScolaire'] ?></option>
 
 						<?php
                             }
@@ -97,12 +97,12 @@ $filieres = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 		  </div>
 		  <div class="col-75">
 				<select id="filiére" name="filiere" required>
-				<option value="">Select filiere </option>
+				<option value="" disabled  selected>Filiére</option>
 						<?php
     if (isset($filieres)) {
         foreach ($filieres as $row) {
             ?>
-								<option value="<?= $row['nomFiliere'] ?>"><?= $row['nomFiliere'] ?></option>
+								<option value="<?= $row['idFiliere'] ?>"><?= $row['nomFiliere'] ?></option>
 
 						<?php
         }
@@ -113,7 +113,7 @@ $filieres = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
   </div>
   <div class="row">
 	  <div class="col-25">
-			<label for="groupe">Groupe :</label>
+			<label for="groupe" disabled>Groupe :</label>
 			<?php
                     $sql = ("SELECT * FROM groupe ");
 $pdo_statement = $conn->prepare($sql);
@@ -123,12 +123,12 @@ $groupe = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 	  </div>
 	  <div class="col-75">
 			<select id="groupe" name="groupe" required>
-			<option value="">select Groupe</option>
+			<option value="" disabled  selected>Groupe</option>
 						<?php
     if (isset($groupe)) {
         foreach ($groupe as $row) {
             ?>
-								<option value="<?= $row['nomGroupe'] ?>"><?= $row['nomGroupe'] ?></option>
+								<option value="<?= $row['idGroupe'] ?>"><?= $row['nomGroupe'] ?></option>
 
 						<?php
         }

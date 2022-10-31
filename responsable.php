@@ -1,7 +1,7 @@
 <?php
-include "db.php";
+include('inc/db.php');
 session_start();
-if (empty($_SESSION)) {
+if (empty($_SESSION) or $_SESSION['compteType'] == "directrice") {
     header('location:./login.php');
 }
 ?>
@@ -29,8 +29,8 @@ $resultfinale = $pdo_statement->fetchALL();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>responsable</title>
-    <link rel="icon" type="image/x-icon" href="./../images/logo.jpeg">
-    <link rel="stylesheet" href="./../styles/styleResponsable.css">
+    <link rel="icon" type="image/x-icon" href="./images/logo.jpeg">
+    <link rel="stylesheet" href="./styles/styleResponsable.css">
     <link rel="stylesheet" href="mediaQueries.css">
    
 </head>
@@ -38,10 +38,10 @@ $resultfinale = $pdo_statement->fetchALL();
     <div class="container">
         <div class="header">
             <div class="logoOfppt">
-                <img src="./../images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt">
+                <img src="./images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt">
             </div>
             <div class="logoApp">
-                <img src="./../images/logoApp.png" alt='logo' id="logoApp">
+                <img src="./images/logoApp.png" alt='logo' id="logoApp">
             </div >
             <div class="buttonDeconexion"><a href="logout.php"> <button>Déconnexion</button></a>
             </div>
@@ -51,15 +51,15 @@ $resultfinale = $pdo_statement->fetchALL();
             <div class="responsable">
                 
                 <div>
-                       date        <input type="date" name="date" id="date">
+                       Date  :     <input placeholder="La Date" class="textbox-n" type="text" onfocus="(this.type='date')" id="date">
                       
                 </div>
                 <div>
-                      formateur   <input type="text" id="formateur">
+                      Formateur :  <input type="text" id="formateur"  placeholder="Le Formateur">
                       
                 </div>
                 <div> 
-                     module   <input type="text" name="module" id="module">
+                     Module :  <input type="text" name="module" id="module" placeholder="Le Module">
                     
                 </div>
             </div>
