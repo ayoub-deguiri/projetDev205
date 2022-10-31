@@ -60,7 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       media="screen"
       type="text/css"
     />
-    <title>Login </title>
+    <link rel="shortcut icon" type="image/png" href="./images/icon.png" />
+    <title>Login 🐱‍👤</title>
   </head>
   <body>
     <div class="container">
