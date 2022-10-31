@@ -13,17 +13,25 @@
   text-transform: capitalize;
   font-style: italic;
 }
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
 
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 /* ! partie  header    */
 
 .container .header {
   display: flex;
   flex-wrap: wrap;
-  
-  padding: 1.5px 40px;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 1px 40px;
   background-color: var(--color1);
   border-radius: 0 0 60px 60px;
 }
@@ -32,8 +40,8 @@
   width: 100px;
 }
 #logoApp {
-  height: 70px;
-  width: 100px;
+  height:100px;
+  width:100px;
 }
 
 .buttonDeconexion button {
@@ -55,7 +63,7 @@
 section h1 {
   display: flex;
   align-items: center;
-  margin-left: 147px;
+  justify-content: center;
   text-align: center;
   padding: 35px 25px;
   font-size: 32px;
