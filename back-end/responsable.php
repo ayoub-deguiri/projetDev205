@@ -47,7 +47,7 @@ $resultfinale = $pdo_statement->fetchALL();
             </div>
         </div>
         <section>
-            <h1>espace responsable : <?=$result['nomStagiaire']." ".$result['prenomStagiaire'];?></h1>
+            <h1>espace responsable  <?=$result['nomStagiaire']." ".$result['prenomStagiaire'];?></h1>
             <div class="responsable">
                 
                 <div>
