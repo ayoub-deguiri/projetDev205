@@ -24,6 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `absenceimg`
+--
+CREATE TABLE `absenceimg` (
+  `img_name` varchar(40) NOT NULL,
+  `img_data` longblob DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `absence`
 --
 
@@ -39,7 +51,8 @@ CREATE TABLE `absence` (
   `filiere_idFiliere` int(11) DEFAULT NULL,
   `groupe_idGroupe` int(11) DEFAULT NULL,
   `anneeScolaire_idAnneeScolaire` int(11) DEFAULT NULL,
-  `CEF` varchar(50) DEFAULT NULL
+  `CEF` varchar(50) DEFAULT NULL,
+  `img_name` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1177,7 +1190,10 @@ INSERT INTO stagiaire(CEF,nomStagiaire,prenomStagiaire,groupe_idGroupe) VALUES (
 
 -- ndexes for dumped tables
 --
-
+-- Indexes for table `absenceimg`
+--
+ALTER TABLE `absenceimg`
+  ADD PRIMARY KEY (`img_name`);
 --
 -- Indexes for table `absence`
 --
@@ -1290,6 +1306,7 @@ ALTER TABLE `note`
 -- Constraints for table `absence`
 
 ALTER TABLE `absence`
+  ADD CONSTRAINT `fk_absence_absenceimg` FOREIGN KEY (`img_name`) REFERENCES `absenceimg` (`img_name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_absence_annee` FOREIGN KEY (`annee_idAnnee`) REFERENCES `annee` (`idAnnee`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_absence_anneescolaire` FOREIGN KEY (`anneeScolaire_idAnneeScolaire`) REFERENCES `anneescolaire` (`idAnneeScolaire`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_absence_filiere` FOREIGN KEY (`filiere_idFiliere`) REFERENCES `filiere` (`idFiliere`) ON DELETE CASCADE ON UPDATE CASCADE,

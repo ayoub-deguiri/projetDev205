@@ -50,7 +50,7 @@ $resultfinale = $pdo_statement->fetchALL();
         <section>
             <h1>espace responsable  <?=$result['nomStagiaire']." ".$result['prenomStagiaire'];?></h1>
             <div class="responsable">
-            <form action="./inc/InsertAbsence.php" method="POST">
+            <form action="./inc/InsertAbsence.php" method="POST" enctype="multipart/form-data">
             <div class="listeEtudiants">
                 <div>
                        Date  :<input placeholder="La Date" name="date" class="textbox-n" type="text" onfocus="(this.type='date')" id="date">
@@ -98,8 +98,7 @@ $resultfinale = $pdo_statement->fetchALL();
             </div>
             <div class="buttonVlaiderPhoto">
                 <div class="buttonPhoto">
-                <input type="file" name="buttonPhoto" id="buttonPhoto">
-                <i></i>
+                <input type="file" name="file" id="buttonPhoto">
             </div>
                 <input type="submit" value="valider" name="valider" id="buttonValider" >
             </div>

@@ -7,7 +7,6 @@ if (empty($_SESSION) or $_SESSION['compteType'] == "directrice") {
 ?>
 <?php
 $idgrp =$_SESSION['idgrp'];
-
 // fetch all "stagiare" id's
 $sql = "SELECT CEF FROM stagiaire WHERE groupe_idGroupe = $idgrp";
 $pdo_statement = $conn->prepare($sql);
@@ -15,6 +14,19 @@ $pdo_statement->execute();
 $result = $pdo_statement->fetchALL();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["valider"])) {
+        // get image
+
+        if (isset($_FILES['file'])) {
+            $filename = $_FILES['file']['name'];
+            $tempname = file_get_contents($_FILES['file']['tmp_name']);
+            $sqlimg = "INSERT INTO `absenceimg` (`img_name`,`img_data`)
+            VALUES (?,?)";
+            $pdo_statement = $conn->prepare($sqlimg);
+            $pdo_statement->bindParam(1, $filename);
+            $pdo_statement->bindParam(2, $tempname);
+            $pdo_statement->execute();
+        }
+        $filename = $_FILES['file']['name'];
         $date = $_POST['date'];
         $formateur = $_POST['formateur'];
         $module = $_POST['module'];
@@ -48,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // insert int absence table
 
 
-                $sql="INSERT INTO absence (dateAbsence,heureDebutAbsence,heureFinAbsence,moduleAbsence,formateurAbsence,type,annee_idAnnee,filiere_idFiliere,groupe_idGroupe,anneeScolaire_idAnneeScolaire,CEF)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                $sql="INSERT INTO absence (dateAbsence,heureDebutAbsence,heureFinAbsence,moduleAbsence,formateurAbsence,type,annee_idAnnee,filiere_idFiliere,groupe_idGroupe,anneeScolaire_idAnneeScolaire,CEF,img_name)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
                 $pdo_statement = $conn->prepare($sql);
                 $pdo_statement->bindParam(1, $date);
                 $pdo_statement->bindParam(2, $timeDebut);
@@ -62,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $pdo_statement->bindParam(9, $idgrp);
                 $pdo_statement->bindParam(10, $idscolaire);
                 $pdo_statement->bindParam(11, $cef[0]);
+                $pdo_statement->bindParam(12, $filename);
                 $pdo_statement->execute();
                 header('location:./../responsable.php');
             }

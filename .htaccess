@@ -1,5 +1,5 @@
 Options -Indexes
-DirectoryIndex login.php
-ErrorDocument 404 /error.html
-ErrorDocument 403 /error.html
 RewriteEngine On
+DirectoryIndex login.php
+ErrorDocument 404 /projetDev205/404.html
+ErrorDocument 403 /projetDev205/404.html
