@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       media="screen"
       type="text/css"
     />
-    <!-- CSS only -->
+    <title>Login </title>
   </head>
   <body>
     <div class="container">

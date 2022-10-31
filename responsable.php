@@ -28,7 +28,7 @@ $resultfinale = $pdo_statement->fetchALL();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>responsable</title>
+    <title>responsable 🥼</title>
     <link rel="icon" type="image/x-icon" href="./images/logo.jpeg">
     <link rel="stylesheet" href="./styles/styleResponsable.css">
     <link rel="stylesheet" href="mediaQueries.css">

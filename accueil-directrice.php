@@ -11,6 +11,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" media="screen" href="./styles/Accueil_directrice.css">
+<title>Directrice 👩‍⚖️</title>
 </head>
 <body>
 <!--header-->
