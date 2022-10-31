@@ -1,6 +1,5 @@
 <?php
-
-include('db.php');
+include('inc/db.php');
 session_start();
 
 
@@ -32,21 +31,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // redrection to main pages
     if (empty($result)) {
-        header('location:./../login.html');
+        header('location:./logout.php');
     } else {
-        if ($result['compteType'] == 'stagire') {
+        if ($result['compteType'] == 'stagiaire') {
+            $_SESSION['compteType'] = $result['compteType'] ;
             header('location:./responsable.php');
         } elseif ($result['compteType'] == 'directrice') {
+            $_SESSION['compteType'] = $result['compteType'] ;
             header('location:./accueil-directrice.php');
         }
         // anzidoha fach yt9ado les page t surveillance general
         //elseif ($result['compteType'] == 'sg') {
-        //     header('location:./../accueil-sg.html');
+        //     header('location:./accueil-sg.html');
         // }
     }
 }
 
 // created by Rguibi Marouane  and Idrissi Mohammed
+// hiba test
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,20 +56,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="utf-8" />
     <link
       rel="stylesheet"
-      href="./../styles/login.css"
+      href="./styles/login.css"
       media="screen"
       type="text/css"
     />
-    <!-- CSS only -->
+    <link rel="shortcut icon" type="image/png" href="./images/icon.png" />
+    <title>Login 🐱‍👤</title>
   </head>
   <body>
     <div class="container">
       <div class="header">
         <div class="logoOfppt">
-          <img src="./../images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt" />
+          <img src="./images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt" />
         </div>
         <div class="logoApp">
-          <img src="./../images/logoApp.png" width="100px" height="70px" alt="logo" id="logoApp" />
+        <img src="./images/logoApp.png" width="100px" height="100px" alt="logo" id="logoApp" />
         </div>
       </div>
       <div id="container">
@@ -103,6 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p>© Copyright | DevWFS205 |2022</p>
       </footer>
     </div>
-    <script src="./../scripts/login.js"></script>
+    <script src="./scripts/login.js"></script>
   </body>
 </html>
