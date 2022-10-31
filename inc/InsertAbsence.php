@@ -1,13 +1,12 @@
 <?php
-include('inc/db.php');
+include('db.php');
 session_start();
 if (empty($_SESSION) or $_SESSION['compteType'] == "directrice") {
-    header('location:./login.php');
+    header('location:./../login.php');
 }
 ?>
-
 <?php
-$idgrp = $_SESSION['idgrp'];
+$idgrp =$_SESSION['idgrp'];
 
 // fetch all "stagiare" id's
 $sql = "SELECT CEF FROM stagiaire WHERE groupe_idGroupe = $idgrp";
@@ -64,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $pdo_statement->bindParam(10, $idscolaire);
                 $pdo_statement->bindParam(11, $cef[0]);
                 $pdo_statement->execute();
-                header('location:./responsable.php');
+                header('location:./../responsable.php');
             }
         }
     }
