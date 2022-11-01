@@ -12,6 +12,47 @@ if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" media="screen" href="./styles/Accueil_directrice.css">
 <link rel="shortcut icon" type="image/png" href="./images/icon.png" />
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+		$('#année-scolaire').on('change',function(){
+			var annescolID = $(this).val(); 
+			if (annescolID){
+				$.get(
+					'./DirectriceAjax.php',
+					{annescolID : annescolID },
+					function(data){
+						$('#année').html(data);
+					}
+					);
+			}
+		})
+		$('#année').on('change',function(){
+			var anneeID = $(this).val(); 
+			if (anneeID){
+				$.get(
+					'./DirectriceAjax.php',
+					{anneeID : anneeID },
+					function(data){
+						$('#filiére').html(data);
+					}
+					);
+			}
+		})	
+		$('#filiére').on('change',function(){
+			var filiereID = $(this).val(); 
+			if (filiereID){
+				$.get(	
+					'./DirectriceAjax.php',
+					{filiereID : filiereID },
+					function(data){
+						$('#groupe').html(data);
+					}
+					);
+			}
+		})			
+	});
+</script>
 <title>Directrice 👩‍⚖️</title>
 </head>
 <body>
@@ -37,26 +78,26 @@ if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
   
 <form action="./DirectriceAffich.php" method="POST" name="form1">
   <div class="row">
-	  <div class="col-25">
-		  <label for="année-scolaire">Année Scolaire :</label>
-				<?php
-             $sql = ("SELECT * FROM annee ");
+	<div class="col-25">
+		<label for="année-scolaire">Année Scolaire :</label>
+<?php
+$sql = ("SELECT * FROM annee ");
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->execute();
 $annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
-	  </div>
+	</div>
 	<div class="col-75">
-		  <select id="année-scolaire" id="année-scolaire" name="annee-Scolaire" required>
+		  <select id="année-scolaire" name="annee-Scolaire" required>
 		  <option value="" disabled  selected>Année Scolaire</option>
 			<?php
-                    if (isset($annee)) {
-                        foreach ($annee as $row) {
-                            ?>
+            if (isset($annee)) {
+                foreach ($annee as $row) {
+                    ?>
 								<option value="<?= $row['idAnnee'] ?>"><?= $row['nomAnnee'] ?></option>
 						<?php
-                        }
-                    }
+                }
+            }
 ?>
 		  </select>
 	</div>
@@ -67,75 +108,24 @@ $annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 		  </div>
 		  <div class="col-75">
 				<select id="année" name="annee" required>
-						<?php
-$sql = ("SELECT * FROM anneeScolaire ");
-$pdo_statement = $conn->prepare($sql);
-$pdo_statement->execute();
-$anneescolaire = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
-?>
-					<option value="" disabled  selected>Année</option>
-<?php
-                        if (isset($anneescolaire)) {
-                            foreach ($anneescolaire as $row) {
-                                ?>
-								<option value="<?= $row['idAnneeScolaire'] ?>"><?= $row['nomAnneeScolaire'] ?></option>
-
-						<?php
-                            }
-                        }
-?>
 				</select>
 		  </div>
   </div>
   <div class="row">
 		  <div class="col-25">
 				<label for="filiére">Filiére  :</label>
-				<?php
-                    $sql = ("SELECT * FROM filiere ");
-$pdo_statement = $conn->prepare($sql);
-$pdo_statement->execute();
-$filieres = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
-?>
 		  </div>
 		  <div class="col-75">
 				<select id="filiére" name="filiere" required>
-				<option value="" disabled  selected>Filiére</option>
-						<?php
-    if (isset($filieres)) {
-        foreach ($filieres as $row) {
-            ?>
-								<option value="<?= $row['idFiliere'] ?>"><?= $row['nomFiliere'] ?></option>
-
-						<?php
-        }
-    }
-?>
 				</select>
 		  </div>
   </div>
   <div class="row">
 	  <div class="col-25">
 			<label for="groupe" disabled>Groupe :</label>
-			<?php
-                    $sql = ("SELECT * FROM groupe ");
-$pdo_statement = $conn->prepare($sql);
-$pdo_statement->execute();
-$groupe = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
-?>
 	  </div>
 	  <div class="col-75">
 			<select id="groupe" name="groupe" required>
-			<option value="" disabled  selected>Groupe</option>
-						<?php
-    if (isset($groupe)) {
-        foreach ($groupe as $row) {
-            ?>
-								<option value="<?= $row['idGroupe'] ?>"><?= $row['nomGroupe'] ?></option>
-
-						<?php
-        }
-    }
-?>
 			</select>
 	  </div>
 </div>
