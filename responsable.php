@@ -53,16 +53,16 @@ $resultfinale = $pdo_statement->fetchALL();
             <form action="./inc/InsertAbsence.php" method="POST" enctype="multipart/form-data">
             <div class="listeEtudiants">
                 <div>
-                       Date  :<input placeholder="La Date" name="date" class="textbox-n" type="text" onfocus="(this.type='date')" id="date">
+                       Date  : <input placeholder="La Date" name="date" class="textbox-n" type="text" onfocus="(this.type='date')" id="date">
                 </div>
                 <div>
-                      Formateur :<input type="text" name="formateur" id="formateur"  placeholder="Le Formateur">
+                      Formateur : <input type="text" name="formateur" id="formateur"  placeholder="Le Formateur">
                 </div>
                 <div> 
-                     Module :  <input type="text" name="module" id="module" placeholder="Le Module">
+                     Module : <input type="text" name="module" id="module" placeholder="Le Module">
                 </div>
             </div>
-           
+          
                 <table>
                     <tr>
                        
