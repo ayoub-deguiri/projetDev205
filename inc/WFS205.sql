@@ -52,7 +52,7 @@ CREATE TABLE `absence` (
   `groupe_idGroupe` int(11) DEFAULT NULL,
   `anneeScolaire_idAnneeScolaire` int(11) DEFAULT NULL,
   `CEF` varchar(50) DEFAULT NULL,
-  `img_name` varchar(40) DEFAULT NULL
+  `img_name` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
