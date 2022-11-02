@@ -49,6 +49,15 @@ $resultfinale = $pdo_statement->fetchALL();
         </div>
         <section>
             <h1>espace responsable  <?=$result['nomStagiaire']." ".$result['prenomStagiaire'];?></h1>
+            <?php
+    $errormsg = "" ;
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET['errormsg'])) {
+        $errormsg = $_GET ["errormsg"] ;
+    }
+}
+?>
+            <h2 style="text-align: center;color : red;"><?php echo $errormsg;?></h2>
             <div class="responsable">
             <form action="./inc/InsertAbsence.php" method="POST" enctype="multipart/form-data">
             <div class="listeEtudiants">
@@ -83,8 +92,8 @@ $resultfinale = $pdo_statement->fetchALL();
                         <td><?= $row['nomStagiaire']?></td>
                         <td><?= $row['prenomStagiaire']?></td>
 
-                        <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="absence" /></td>
-                        <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value="retard"/></td>
+                        <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="" /></td>
+                        <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value=""/></td>
                         <td><input type="time" name="debut-<?=$id?>" min="8:30" max="18:30" ></td>
                         <td> <input type="time" name="Fin-<?=$id?>" min="8:30" max="18:30"></td>
                     </tr>
