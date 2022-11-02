@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `absenceimg`
 --
 CREATE TABLE `absenceimg` (
-  `img_name` varchar(40) NOT NULL,
+  `img_name` varchar(256) NOT NULL,
   `img_data` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
