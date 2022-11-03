@@ -92,8 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         <td><?= $row['nomStagiaire']?></td>
                         <td><?= $row['prenomStagiaire']?></td>
 
-                        <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="" /></td>
-                        <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value=""/></td>
+                        <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="absence" /></td>
+                        <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value="retard"/></td>
                         <td><input type="time" name="debut-<?=$id?>" min="8:30" max="18:30" ></td>
                         <td> <input type="time" name="Fin-<?=$id?>" min="8:30" max="18:30"></td>
                     </tr>
