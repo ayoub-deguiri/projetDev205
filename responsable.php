@@ -49,17 +49,26 @@ $resultfinale = $pdo_statement->fetchALL();
         </div>
         <section>
             <h1>espace responsable  <?=$result['nomStagiaire']." ".$result['prenomStagiaire'];?></h1>
+            <?php
+    $errormsg = "" ;
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (isset($_GET['errormsg'])) {
+        $errormsg = $_GET ["errormsg"] ;
+    }
+}
+?>
+            <h2 style="text-align: center;color : red;"><?php echo $errormsg;?></h2>
             <div class="responsable">
             <form action="./inc/InsertAbsence.php" method="POST" enctype="multipart/form-data">
             <div class="listeEtudiants">
                 <div>
-                       Date  : <input placeholder="La Date" name="date" class="textbox-n" type="text" onfocus="(this.type='date')" id="date">
+                       Date  : <input  placeholder="La Date" name="date" class="textbox-n" type="text" onfocus="(this.type='date')" id="date" required>
                 </div>
                 <div>
-                      Formateur : <input type="text" name="formateur" id="formateur"  placeholder="Le Formateur">
+                      Formateur : <input type="text" name="formateur" id="formateur"  placeholder="Le Formateur" required>
                 </div>
                 <div> 
-                     Module : <input type="text" name="module" id="module" placeholder="Le Module">
+                     Module : <input type="text" name="module" id="module" placeholder="Le Module" required>
                 </div>
             </div>
           
@@ -82,9 +91,10 @@ $resultfinale = $pdo_statement->fetchALL();
                      <tr>
                         <td><?= $row['nomStagiaire']?></td>
                         <td><?= $row['prenomStagiaire']?></td>
-                        <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="absence" /></td>
-                        <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value="retard"/></td>
-                        <td><input type="time" name="debut-<?=$id?>" min="8:30" max="18:30"></td>
+
+                        <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="" /></td>
+                        <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value=""/></td>
+                        <td><input type="time" name="debut-<?=$id?>" min="8:30" max="18:30" ></td>
                         <td> <input type="time" name="Fin-<?=$id?>" min="8:30" max="18:30"></td>
                     </tr>
                      <?php
@@ -98,7 +108,7 @@ $resultfinale = $pdo_statement->fetchALL();
             </div>
             <div class="buttonVlaiderPhoto">
                 <div class="buttonPhoto">
-                <input type="file" name="file" id="buttonPhoto">
+                <input type="file" name="file" id="buttonPhoto" required>
             </div>
                 <input type="submit" value="valider" name="valider" id="buttonValider" >
             </div>

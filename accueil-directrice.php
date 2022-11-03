@@ -12,7 +12,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" media="screen" href="./styles/Accueil_directrice.css">
 <link rel="shortcut icon" type="image/png" href="./images/icon.png" />
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="./scripts/jquery-3.6.1.min.js"></script>
 <script>
 	$(document).ready(function(){
 		$('#année-scolaire').on('change',function(){

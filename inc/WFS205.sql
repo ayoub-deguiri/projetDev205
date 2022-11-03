@@ -27,9 +27,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `absenceimg`
 --
 CREATE TABLE `absenceimg` (
-  `img_name` varchar(40) NOT NULL,
+  `img_name` varchar(256) NOT NULL,
   `img_data` longblob DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 
 
@@ -52,8 +52,8 @@ CREATE TABLE `absence` (
   `groupe_idGroupe` int(11) DEFAULT NULL,
   `anneeScolaire_idAnneeScolaire` int(11) DEFAULT NULL,
   `CEF` varchar(50) DEFAULT NULL,
-  `img_name` varchar(40) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `img_name` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE `absence` (
 CREATE TABLE `annee` (
   `idAnnee` int(11) NOT NULL,
   `nomAnnee` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `annee`
@@ -83,7 +83,7 @@ CREATE TABLE `anneescolaire` (
   `idAnneeScolaire` int(11) NOT NULL,
   `nomAnneeScolaire` varchar(45) DEFAULT NULL,
   `annee_idAnnee` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `anneescolaire`
@@ -104,7 +104,7 @@ CREATE TABLE `compte` (
   `user` varchar(50) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
   `compteType` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `compte`
@@ -120,7 +120,7 @@ CREATE TABLE `filiere` (
   `idFiliere` int(11) NOT NULL,
   `nomFiliere` varchar(45) DEFAULT NULL,
   `anneescolaire_idAnneeScolaire` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `filiere`
@@ -149,7 +149,7 @@ CREATE TABLE `groupe` (
   `idGroupe` int(11) NOT NULL,
   `nomGroupe` varchar(45) DEFAULT NULL,
   `filiere_idFiliere` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `groupe`
@@ -208,7 +208,7 @@ CREATE TABLE `justifierabsence` (
   `idAbsence` int(11) NOT NULL,
   `Justifier` varchar(45) DEFAULT NULL,
   `motif` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -219,7 +219,7 @@ CREATE TABLE `justifierabsence` (
 CREATE TABLE `note` (
   `CEF` varchar(50) NOT NULL,
   `Note` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -232,7 +232,7 @@ CREATE TABLE `stagiaire` (
   `nomStagiaire` varchar(45) DEFAULT NULL,
   `prenomStagiaire` varchar(45) DEFAULT NULL,
   `groupe_idGroupe` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `stagiaire`

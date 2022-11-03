@@ -80,5 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+} else {
+    header('location:./../responsable.php?errormsg="veuillez vérifier les informations saisies"');
 }
 ?>
