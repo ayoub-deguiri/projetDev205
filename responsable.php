@@ -30,10 +30,9 @@ $resultfinale = $pdo_statement->fetchALL();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>responsable 🥼</title>
     <link rel="shortcut icon" type="image/png" href="./images/icon.png" />
-    <link rel="icon" type="image/x-icon" href="./images/logo.jpeg">
+    <link rel="icon" type="image/x-icon" href="./images/logoApp.png">
     <link rel="stylesheet" href="./styles/styleResponsable.css">
-    <link rel="stylesheet" href="mediaQueries.css">
-   
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -59,22 +58,21 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 ?>
             <h2 style="text-align: center;color : red;"><?php echo $errormsg;?></h2>
             <div class="responsable">
-            <form action="./inc/InsertAbsence.php" method="POST" enctype="multipart/form-data">
+            <form action="./inc/InsertAbsence.php" method="POST" id='formrespo' enctype="multipart/form-data">
             <div class="listeEtudiants">
                 <div>
-                       Date  : <input  placeholder="La Date" name="date" class="textbox-n" type="text" onfocus="(this.type='date')" id="date" required>
+                       Date  : <input required  placeholder="La Date" name="date" class="textbox-n" type="text" onfocus="(this.type='date')" id="date" >
                 </div>
                 <div>
-                      Formateur : <input type="text" name="formateur" id="formateur"  placeholder="Le Formateur" required>
+                      Formateur : <input required type="text" name="formateur" id="formateur"  placeholder="Le Formateur" >
                 </div>
                 <div> 
-                     Module : <input type="text" name="module" id="module" placeholder="Le Module" required>
+                     Module : <input  required type="text" name="module" id="module" placeholder="Le Module" >
                 </div>
             </div>
           
                 <table>
                     <tr>
-                       
                         <th>nom</th>
                         <th>prénom</th>
                         <th>absence</th>
@@ -84,36 +82,114 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     </tr>
                     <?php
                     if (!empty($resultfinale)) {
+                        $c =1;
                         foreach ($resultfinale as $row) {
                             $id = $row['CEF'];
                             $_SESSION['idgrp'] =$row['groupe_idGroupe']
                             ?>
-                     <tr>
+                     <tr id="tr-<?=$c++?>">
                         <td><?= $row['nomStagiaire']?></td>
                         <td><?= $row['prenomStagiaire']?></td>
 
                         <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="absence" /></td>
                         <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value="retard"/></td>
-                        <td><input type="time" name="debut-<?=$id?>" min="8:30" max="18:30" ></td>
-                        <td> <input type="time" name="Fin-<?=$id?>" min="8:30" max="18:30"></td>
+                        <td><input type="time" class="debut" name="debut-<?=$id?>" min="8:30" max="18:30" ></td>
+                        <td> <input type="time" class="fin" name="Fin-<?=$id?>" min="8:30" max="18:30"></td>
                     </tr>
+                           
                      <?php
 
                         }
+                        
+                        
+                      
                     }
 ?> 
-      
+                <input type="hidden" id="trcount" value="<?=$c?>"/>     
                 </table>
                 
             </div>
             <div class="buttonVlaiderPhoto">
                 <div class="buttonPhoto">
-                <input type="file" name="file" id="buttonPhoto" required>
+                <input type="file" name="file" id="buttonPhoto" >
             </div>
-                <input type="submit" value="valider" name="valider" id="buttonValider" >
+                <input type="submit" value="valider" name="valider" id="buttonValider" required>
             </div>
         </form>
         </section>
+        <script >
+            $( document ).ready(function() {
+            const countrow = parseInt($('#trcount').val())
+                
+                $('#buttonValider').click(function(e){
+                   console.log('clicked!!')
+                    e.preventDefault()
+                    let countDubt =0
+                    let countFin =0
+                    let checkboxLength2 = $("input:checkbox:checked").length
+                  /* $("input[type:time]").each(function(){
+                        if ($('.debut').val() !== ''){
+                            countDubt ++
+                        }
+                        if ($('.fin').val() !== ''){
+                            countFin ++
+                        }
+                    })
+                    if(countTime !== 0 && checkboxLength !== 0 ){
+                        //$('#formrespo').submit()
+                        console.log('done')
+                    }else{
+                        console.log('not done')
+                    }*/
+                    let errorgenral = 1
+                    let breaker = false
+                    for(i=1;i<=countrow;i++){
+                    if(breaker){
+                        break
+                    }
+                        let checkboxLength = $("#tr-"+i +" input:checkbox:checked").length
+                        if(checkboxLength == 1){  
+                            $("#tr-"+i+" input[type=time]").each(function(){
+                                let debut = 0
+                                let fin  = 0
+                                if($(this).hasClass("debut")){
+                                    if($(this).val() != ''){
+                                        debut = 1
+                                        console.log("debut changed")
+                                    }
+                                }
+                                if($(this).hasClass("fin")){
+                                    if($(this).val() != ''){
+                                        fin = 1
+                                        console.log(typeof($(this).val()))
+                                    }
+                                }
+                               
+                                if(debut !==1 && fin !==1){
+                                    $('#tr-'+i).css({"color": "red", 
+                                                    });
+                                    console.log("can style "+i)
+                                    errorgenral = 1
+                                    breaker  = true 
+                                    return false
+                                }else{
+                                    errorgenral = 0
+                                }
+                            })
+                                                        
+                        }
+                        
+                       
+                    }
+                    if(errorgenral == 0){
+                        $('#formrespo').submit()
+                    }else{
+                        alert('wa ktb ya wld l9heba lwi9ita yn3el rabk')
+                    }
+                })
+                
+});
+        </script>
         <footer>
                 <p>        © Copyright | DevWFS205 |2022 </p>
         </footer>
