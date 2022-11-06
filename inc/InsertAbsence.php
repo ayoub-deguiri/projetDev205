@@ -1,9 +1,11 @@
 <?php
+ini_set('display_errors', '1');
 include('db.php');
 session_start();
 if (empty($_SESSION) or $_SESSION['compteType'] == "directrice") {
     header('location:./../login.php');
 }
+
 ?>
 <?php
 $idgrp =$_SESSION['idgrp'];
