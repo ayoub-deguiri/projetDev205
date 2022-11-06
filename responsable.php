@@ -48,6 +48,7 @@ $resultfinale = $pdo_statement->fetchALL();
         </div>
         <section>
             <h1>espace responsable  <?=$result['nomStagiaire']." ".$result['prenomStagiaire'];?></h1>
+            <h1>Testing</h1>
             <?php
     $errormsg = "" ;
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -100,9 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                      <?php
 
                         }
-                        
-                        
-                      
                     }
 ?> 
                 <input type="hidden" id="trcount" value="<?=$c?>"/>     
@@ -127,20 +125,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     let countDubt =0
                     let countFin =0
                     let checkboxLength2 = $("input:checkbox:checked").length
-                  /* $("input[type:time]").each(function(){
-                        if ($('.debut').val() !== ''){
-                            countDubt ++
-                        }
-                        if ($('.fin').val() !== ''){
-                            countFin ++
-                        }
-                    })
-                    if(countTime !== 0 && checkboxLength !== 0 ){
-                        //$('#formrespo').submit()
-                        console.log('done')
-                    }else{
-                        console.log('not done')
-                    }*/
                     let errorgenral = 1
                     let breaker = false
                     for(i=1;i<=countrow;i++){
