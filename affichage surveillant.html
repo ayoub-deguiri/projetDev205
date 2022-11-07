@@ -125,7 +125,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td ><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -243,7 +243,9 @@
                     {
                         if(btn[i].checked ==true)
                         {
-                           Commentaire[i].removeAttribute('disabled')
+                           Commentaire[i].removeAttribute('disabled');
+                           Commentaire[i].style.backgroundColor='rgb(232,236,239)'
+
                         }
                         else
                         {
