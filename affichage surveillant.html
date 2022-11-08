@@ -15,52 +15,42 @@
     />
     <title>Affichage</title>
   </head>
-  <body>
+ <body>
     <header>
-      <div class="logoOfppt">
-        <img src="./images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt" />
-      </div>
-      <div class="logoApp">
-        <img src="./images/logoApp.png" alt="logo" class="logoApp" />
-      </div>
-      <div class="déconnexion">
-        <button type="button" id="Déconnexion">
-          <a href="./logout.php">Déconnexion</a>
-        </button>
-      </div>
-    </header>
-    <!--********************************************************************************************************-->
-    <div class="millieu">
-      <!--************************--- [ nav ] --- ******************-->
-      <nav>
-        <ul>
-          <li>
-            <a href=""
-              ><button>
-                <i class="fa fa-home" aria-hidden="true"></i>ACCUEIL
-              </button></a
-            >
-          </li>
-          <li>
-            <a href="#"
-              ><button>
-                <i class="fa fa-pencil-square" aria-hidden="true"></i>MODIFIER
-              </button></a
-            >
-          </li>
-          <li>
-            <a href=""
-              ><button>
-                <i class="fa fa-calendar-times-o" aria-hidden="true"></i>ABSENCE
-              </button></a
-            >
+        <div class="logoOfppt">
+            <img src="./images/Ofpptlogo.png"  alt="logoOfppt" id="logoOfppt">
+        </div>
+        <div class="logoApp">
+            <img src="./images/logoApp.png"  alt="logo" class="logoApp">
+        </div>
+        <div class="déconnexion">
+        <button type="button" id="Déconnexion"><a href="./logout.php">Déconnexion</a></button>
+       </div> 
+    </header> 
+<!--********************************************************************************************************-->
+<div class="millieu">
+<!--************************--- [ nav ] --- ******************-->
+    <nav>
             <ul>
-              <li>
-                <a href=""><button>Affichage</button></a>
-              </li>
-              <li>
-                <a href=""><button>Saisir</button></a>
-              </li>
+                <li>
+                    <a href=""><button ><i class="fa fa-home" aria-hidden="true"></i>ACCUEIL</button></a>
+                </li>
+                <li>
+                    <a href="#"><button><i class="fa fa-pencil-square" aria-hidden="true"></i>MODIFIER</button></a> 
+                </li>
+                <li>
+                    <a href=""><button><i class="fa fa-calendar-times-o" aria-hidden="true"></i>ABSENCE</button></a>
+                    <ul>
+                        <li><a href=""><button>Affichage</button></a></li>
+                        <li><a href=""><button>Saisir</button></a></li>
+                    </ul>
+                </li>
+                <li>  
+                    <a href=""><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
+                </li>
+                <li>  
+                    <a href="#"><button ><i class="fa fa-plus-circle" aria-hidden="true"></i>AJOUTER</button></a>
+                </li>
             </ul>
     </nav>
 <!--******************** --- [ Affichage Nom groupe ] --- ********************-->
@@ -71,16 +61,6 @@
     <div class="inline">
                 <form >
                     <div class="liste">
-                            <div class="group">
-                                    <div class="box">
-                                            <label >Groupe</label>
-                                    </div>
-                                    <div class="box">
-                                            <select >
-                                                <option ></option>
-                                            </select>
-                                    </div>
-                            </div>
                             <div class="group">
                                     <div class="box">
                                             <label>Année</label>
@@ -109,6 +89,16 @@
                                             <select > </select>
                                     </div>
                             </div>
+                            <div class="group">
+                                <div class="box">
+                                        <label >Groupe</label>
+                                </div>
+                                <div class="box">
+                                        <select >
+                                            <option ></option>
+                                        </select>
+                                </div>
+                        </div>
                             <div class="btn_form">
                                 <input type="submit" value="Valider" >
                             </div>  
@@ -142,7 +132,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td ><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td ><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -155,7 +145,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -168,7 +158,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -181,7 +171,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -194,7 +184,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -207,7 +197,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td ><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -220,7 +210,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -233,10 +223,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
-            </table>
+                </table>
         </div>
     </div>
 <!--******************** --- [ Code button ] --- ********************-->
@@ -267,7 +257,8 @@
                         else
                         {
                             btn.disabled="true";
-
+                            
+                           Commentaire[i].style.backgroundColor='rgb(140, 138, 138)'
                         }
                      
                     }
