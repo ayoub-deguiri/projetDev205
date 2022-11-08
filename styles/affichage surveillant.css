@@ -252,12 +252,12 @@ body{
       text-align: center;
   }
   
-  [type="radio"] {
+  [type="checkbox"] {
       position: relative;
       cursor: pointer;
       outline:none;    
   } 
-    [type="radio"]:checked::before {
+    [type="checkbox"]:checked::before {
       content: "";
       width: 16px;
       height: 16px;
