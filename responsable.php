@@ -24,6 +24,7 @@ $resultfinale = $pdo_statement->fetchALL();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,8 +34,9 @@ $resultfinale = $pdo_statement->fetchALL();
     <link rel="icon" type="image/x-icon" href="./images/logo.jpeg">
     <link rel="stylesheet" href="./styles/styleResponsable.css">
     <link rel="stylesheet" href="mediaQueries.css">
-   
+
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -43,87 +45,90 @@ $resultfinale = $pdo_statement->fetchALL();
             </div>
             <div class="logoApp">
                 <img src="./images/logoApp.png" alt='logo' id="logoApp">
-            </div >
+            </div>
             <div class="buttonDeconexion"><a href="logout.php"> <button>Déconnexion</button></a>
             </div>
         </div>
         <section>
-            <h1>espace responsable  <?=$result['nomStagiaire']." ".$result['prenomStagiaire'];?></h1>
+            <h1>espace responsable <?= $result['nomStagiaire'] . " " . $result['prenomStagiaire']; ?>
+            </h1>
             <?php
-    $errormsg = "" ;
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    if (isset($_GET['errormsg'])) {
-        $errormsg = $_GET ["errormsg"] ;
-    }
-}
-?>
-            <h2 style="text-align: center;color : red;"><?php echo $errormsg;?></h2>
+            $errormsg = "";
+            if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                if (isset($_GET['errormsg'])) {
+                    $errormsg = $_GET["errormsg"];
+                }
+            }
+            ?>
+            <h2 style="text-align: center;color : red;">
+                <?php echo $errormsg; ?>
+            </h2>
             <div class="responsable">
-            <form action="./inc/InsertAbsence.php" method="POST" enctype="multipart/form-data">
-            <div class="listeEtudiants">
-                <div>
-                       Date  : <input  placeholder="La Date" name="date" class="textbox-n" type="text" onfocus="(this.type='date')" id="date" required>
-                </div>
-                <div>
-                      Formateur : <input type="text" name="formateur" id="formateur"  placeholder="Le Formateur" required>
-                </div>
-                <div> 
-                     Module : <input type="text" name="module" id="module" placeholder="Le Module" required>
-                </div>
-            </div>
-          
-                <table>
-                    <tr>
-                       
-                        <th>nom</th>
-                        <th>prénom</th>
-                        <th>absence</th>
-                        <th>retard</th>
-                        <th>heure debut</th>
-                        <th>heure fin</th>
-                    </tr>
-                    <?php
-                    if (!empty($resultfinale)) {
-                        foreach ($resultfinale as $row) {
-                            $id = $row['CEF'];
-                            $_SESSION['idgrp'] =$row['groupe_idGroupe']
+                <form action="./inc/InsertAbsence.php" method="POST" enctype="multipart/form-data">
+                    <div class="listeEtudiants">
+                        <div>
+                            Date : <input placeholder="La Date" name="date" class="textbox-n" type="text"
+                                onfocus="(this.type='date')" id="date" required>
+                        </div>
+                        <div>
+                            Formateur : <input type="text" name="formateur" id="formateur" placeholder="Le Formateur"
+                                required>
+                        </div>
+                        <div>
+                            Module : <input type="text" name="module" id="module" placeholder="Le Module" required>
+                        </div>
+                    </div>
+
+                    <table>
+                        <tr>
+
+                            <th>nom</th>
+                            <th>prénom</th>
+                            <th>absence</th>
+                            <th>retard</th>
+                            <th>heure debut</th>
+                            <th>heure fin</th>
+                        </tr>
+                        <?php
+                        if (!empty($resultfinale)) {
+                            foreach ($resultfinale as $row) {
+                                $id = $row['CEF'];
+                                $_SESSION['idgrp'] = $row['groupe_idGroupe']
                             ?>
-                     <tr>
-                        <td><?= $row['nomStagiaire']?></td>
-                        <td><?= $row['prenomStagiaire']?></td>
+                        <tr>
+                            <td>
+                                <?= $row['nomStagiaire'] ?>
+                            </td>
+                            <td>
+                                <?= $row['prenomStagiaire'] ?>
+                            </td>
 
-                        <td><input type="checkbox" name="absence-<?=$id?>" id="btnAb"  value="absence" /></td>
-                        <td><input type="checkbox" name="retard-<?=$id?>" id="btnRet" value="retard"/></td>
-                        <td><input type="time" name="debut-<?=$id?>" min="8:30" max="18:30" ></td>
-                        <td> <input type="time" name="Fin-<?=$id?>" min="8:30" max="18:30"></td>
-                    </tr>
-                     <?php
+                            <td><input type="checkbox" name="absence-<?= $id ?>" id="btnAb" value="absence" /></td>
+                            <td><input type="checkbox" name="retard-<?= $id ?>" id="btnRet" value="retard" /></td>
+                            <td><input type="time" name="debut-<?= $id ?>" min="8:30" max="18:30"></td>
+                            <td> <input type="time" name="Fin-<?= $id ?>" min="8:30" max="18:30"></td>
+                        </tr>
+                        <?php
 
+                            }
                         }
-                    }
-?> 
-      
-                </table>
-                
+                        ?>
+
+                    </table>
+
             </div>
             <div class="buttonVlaiderPhoto">
                 <div class="buttonPhoto">
-                <input type="file" name="file" id="buttonPhoto" required>
+                    <input type="file" name="file" id="buttonPhoto" required>
+                </div>
+                <input type="submit" value="valider" name="valider" id="buttonValider">
             </div>
-                <input type="submit" value="valider" name="valider" id="buttonValider" >
-            </div>
-        </form>
+            </form>
         </section>
         <footer>
-                <p>        © Copyright | DevWFS205 |2022 </p>
+            <p> © Copyright | DevWFS205 |2022 </p>
         </footer>
     </div>
 </body>
+
 </html>
-
-
-
-
-
-
-
