@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" media="screen" href="./styles/absence.css">
+    <link rel="stylesheet" media="screen" href="absence.css">
+  
     <title>Document</title>
 </head>
 <body>
@@ -72,7 +73,7 @@
                         <td></td>
                         <td></td> 
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable(this)"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -85,7 +86,7 @@
                         <td></td>
                         <td></td> 
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -98,7 +99,7 @@
                         <td></td>
                         <td></td> 
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -111,7 +112,7 @@
                         <td></td>
                         <td></td> 
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -124,7 +125,7 @@
                         <td></td>
                         <td></td> 
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -137,7 +138,7 @@
                         <td></td>
                         <td></td> 
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
                     <tr>
@@ -150,10 +151,10 @@
                         <td></td>
                         <td></td> 
                         <td></td>
-                        <td><input  type="radio" id="btn1" onclick="Enable()"  class="btn1"></td>
+                        <td><input  type="checkbox" id="btn1" onclick="Enable()"  class="btn1"></td>
                         <td><input class="commentaire" type="text" name="select" id="justifie"  disabled ></td>
                     </tr>
-                    
+                   
                     
                     
                     
@@ -163,37 +164,37 @@
                    
                   
                 </table>
+                
+                
 
             </main>
-            <div></div>
+           <div class="valider">
+                <input type="submit" value="valider" id="validee" >
+            </div>
             <footer>
                      <p>© Copyright | DevWFS205 |2022</p>
             </footer>   
             
             <script type="text/javascript">
-                var Commentaire=document.getElementsByClassName('commentaire');
-                    var btn=document.getElementsByClassName('btn1');
-                    var nombre1 = btn.length
-                    var nombre2 = Commentaire.length
-                 function Enable() {
-                    for(i=0;i<nombre1;i++)
-                    {
-                        if(btn[i].checked ==true)
-                        {
-                           Commentaire[i].removeAttribute('disabled')
+                      
+                    var Commentaire = document.getElementsByClassName("commentaire");
+                    var btn = document.getElementsByClassName("btn1");
+                    var nombre1 = btn.length;
+                    var nombre2 = Commentaire.length;
+                    function Enable() {
+                        for (i = 0; i < nombre1; i++) {
+                        if (btn[i].checked == true) {
+                            Commentaire[i].removeAttribute("disabled");
+                             
+                        } else {
+                            btn.disabled = "true";
+                            Commentaire[i].setAttribute("disabled", "");
+                            Commentaire[i].value = "";
+                        }     
                         }
-                        else
-                        {
-                            btn.disabled="true";
-
-                        }
-                     
                     }
-                 }
-
-
-
-            </script>
+    </script>
+                 
             
 </body>
 </html>
