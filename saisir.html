@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="images/logo.jpeg">
    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="main.js"></script>
+    <script src="./scripts/mainSaisir.js"></script>
    
 </head>
 <body>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="listeEtudiants">
-                <form action="" method="post">
+                <form action="" method="post" id="formulaire">
                     <div>
                         Groupe <input type="text" name = "groupe" id ="groupe"/>
                         Année <input type="text" name = "groupe" id ="annee"/>
@@ -116,7 +116,7 @@
             </div>
            
             </div>
-                <input type="submit" value="valider" id="buttonValider" >
+                <input type="submit" onclick="CheckSaisie(event)" value="valider" id="buttonValider" >
             </div>
         </form>
         </section>
