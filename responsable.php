@@ -2,7 +2,7 @@
 ini_set('display_errors', '1');
 include('inc/db.php');
 session_start();
-if (empty($_SESSION) or $_SESSION['compteType'] == "directrice") {
+if (empty($_SESSION) or $_SESSION['compteType'] != "stagiaire") {
     header('location:./login.php');
 }
 ?>
