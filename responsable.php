@@ -32,7 +32,6 @@ $resultfinale = $pdo_statement->fetchALL();
     <link rel="stylesheet" href="./styles/styleResponsable.css">
     <script src="./scripts/jquery-3.6.1.min.js"></script>
 </head>
-
 <body>
     <div class="container">
         <div class="header">
@@ -48,7 +47,6 @@ $resultfinale = $pdo_statement->fetchALL();
         <section>
             <h1>espace responsable <?= $result['nomStagiaire'] . " " . $result['prenomStagiaire']; ?>
             </h1>
-            <h1>Testing</h1>
             <?php
             $errormsg = "";
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -75,7 +73,6 @@ $resultfinale = $pdo_statement->fetchALL();
                             Module : <input type="text" name="module" id="module" placeholder="Le Module" required>
                         </div>
                     </div>
-
                     <table>
                         <tr>
                             <th>nom</th>
@@ -99,7 +96,6 @@ $resultfinale = $pdo_statement->fetchALL();
                             <td>
                                 <?= $row['prenomStagiaire'] ?>
                             </td>
-
                             <td><input type="checkbox" name="absence-<?= $id ?>" id="btnAb" value="absence" /></td>
                             <td><input type="checkbox" name="retard-<?= $id ?>" id="btnRet" value="retard" /></td>
                             <td><input type="time" class="debut" name="debut-<?= $id ?>" min="8:30" max="18:30"></td>
@@ -113,7 +109,6 @@ $resultfinale = $pdo_statement->fetchALL();
                         ?>
                         <input type="hidden" id="trcount" value="<?= $c ?>" />
                     </table>
-
             </div>
             <div class="buttonVlaiderPhoto">
                 <input type="submit" value="valider" name="valider" id="buttonValider" required>
@@ -123,7 +118,6 @@ $resultfinale = $pdo_statement->fetchALL();
         <script>
             $(document).ready(function () {
                 const countrow = parseInt($('#trcount').val())
-
                 $('#buttonValider').click(function (e) {
                     console.log('clicked!!')
                     let countDubt = 0
@@ -166,10 +160,7 @@ $resultfinale = $pdo_statement->fetchALL();
                                     errorgenral = 0
                                 }
                             })
-
                         }
-
-
                     }
                     if (errorgenral == 0 && $("$date") != "" && $("#formateur") != "" && $("#module") != "") {
                         alert("Enregistré avec succès")
@@ -178,7 +169,6 @@ $resultfinale = $pdo_statement->fetchALL();
                         alert('vous avez oublié quelque chose, veuillez revérifier ce que vous avez saisi')
                     }
                 })
-
             });
         </script>
         <footer>
@@ -186,5 +176,4 @@ $resultfinale = $pdo_statement->fetchALL();
         </footer>
     </div>
 </body>
-
 </html>
