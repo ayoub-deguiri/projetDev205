@@ -46,20 +46,24 @@
       <h1 id="title">DEV 205</h1>
       <main>
        
-        <form id="form">
+        <form id="form" >
             <table>
                 <tr>
                     <td><label for="cef" id="label">CEF:</label></td>
                     <td><input type="text" id="cef"/></td>
+                    
                 </tr>
+                <tr><td><div id="error"></div></td></tr>
                 <tr>
                     <td><label for="nom" id="label">Nom:</label></td>
-                    <td><input type="text"/></td>
+                    <td><input type="text" id="nom"/></td>
                 </tr>
+                <tr><td><div id="error2"></div></td></tr>
                 <tr>
                     <td for="prenom" id="label">Prenom:</td>
                     <td><input type="text" id="prenom"/></td>
                 </tr>
+                <tr><td><div id="error3"></div></td></tr>
                 <tr>
                     <td><button id="btn">Valider</button></td>
                 </tr>
@@ -73,5 +77,8 @@
      <footer>
         <p>© Copyright | DevWFS205 |2022</p>
      </footer>
+
+    <script src="./scripts/modification.js"></script>
+    
 </body>
 </html>
