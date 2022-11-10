@@ -127,13 +127,12 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
                         <select id="année" name="année" required></select>
                     </li>
                     <li> <label for="filier">filière</label></li>
-                    <li> <select id="filiére" name="filiere" required>
-                        </select>
+                    <li>
+                        <select id="filiére" name="filiere" required></select>
                     </li>
                     <li> <label for="">groupe</label></li>
                     <li>
-                        <select id="groupe" name="groupe" required>
-                        </select>
+                        <select id="groupe" name="groupe" required></select>
                     </li>
                     <li><input type="submit" value="valider" id="valider" onclick=" return checkdelects()"> </li>
                 </ul>
