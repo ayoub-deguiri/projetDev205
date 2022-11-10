@@ -1,0 +1,338 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Franklin Gothic Demi italic', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-transform: capitalize;
+    font-style: italic;
+  }
+  body{
+    background-color: var(--color3);
+  }
+  
+  /*---------------------------- header --------------------------------*/
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    height: 106px;
+    background-color: var(--color2);
+    padding: 1px 40px;
+    border-radius: 0 0 60px 60px;
+  
+  }
+  
+  #logoOfppt {
+    height: 100px;
+    width: 100px;
+  }
+  
+  .logoApp {
+    margin-right: -5%;
+    height: 100px;
+    width: 100px;
+  
+  }
+  
+  :root {
+    --color1: #FB931B;
+    --color2: #155A93;
+    --color3: #D8E6EA;
+    --color4: #ffffff;
+    --color5: #008845;
+  }
+  
+  #Déconnexion {
+    margin-right: 0px;
+    background-color: var(--color1);
+    text-align: center;
+    border-radius: 15px;
+    font-size: 20px;
+  
+    width: 150px;
+    height: 35px;
+    color: var(--color1);
+    cursor: pointer;
+    outline: none;
+    border: none;
+  }
+  
+  button[type=button]:hover {
+    background-color: var(--color1);
+    color: var(--color4);
+    border: 1px solid var(--color1);
+    align-items: center;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--color4);
+  }
+  
+  
+  @media (max-width:375px) {
+    header {
+      height: 150px;
+      display: block;
+  
+  
+    }
+  
+    .logoApp {
+      width: 10%;
+      height: 10%;
+    }
+  
+    .déconnexion {
+      height: 0%;
+      width: 10%;
+      margin-left: 10%;
+    }
+  
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
+  
+  /*------------------------body--------------------------------*/
+    main{
+      background-color: var(--color3);
+      
+    }
+    select {
+    width: 300px;
+    background-color:white;
+    padding: 5px;
+    border: 2px solid var(--color2);
+    border-radius: 25px;
+    resize: vertical;
+  
+  }
+  
+  label {
+    padding: 5px 27px 27px 0;
+    display: inline-block;
+    color: var(--color2);
+    font-size: larger;
+    font-weight: bolder;
+  
+  }
+  
+  .box-submit {
+  
+    position: relative;
+    right: 165px;
+    text-align: center;
+    padding: 1px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  
+  }
+  
+  input[type=submit] {
+    width: 70px;
+    background-color: var(--color5);
+    color: white;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    float: right;
+    font-size: larger;
+    position: relative;
+    top: 25px;
+    height: 33px;
+  }
+  
+  
+  input[type=submit]:hover {
+    background-color: var(--color1);
+  }
+  #button{
+    width: 70px;
+    background-color: var(--color5);
+    color: white;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    float: right;
+    font-size: larger;
+    position: relative;
+    top: 25px;
+    height: 33px;
+  }
+  #button:hover{
+    background-color: var(--color1);
+  }
+  
+  .container {
+    max-width: 500px;
+    border-radius: 5px;
+    padding: 3px;
+    position: relative;
+    margin: 40px auto 0;
+    justify-content:center;
+  }
+  
+  
+  .col-25,
+  .col-75 {
+    float: left;
+    width: 250px;
+    margin-top: 5px;
+  }
+  
+  .row::before {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  #color{
+    color: black;
+    font-size: 17px;
+    padding: 3px 15px 15px 0;
+    display: inline-block;
+    font-weight: bold;
+  }
+  #buttonPhoto{
+    background: gray;
+    border: 2px solid var(--color2);
+    border-radius: 10px;
+    margin-bottom: 2%;
+    padding: 5px 8px 20px 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 15px;
+    width: 75px;
+    height: 2px;;
+    text-align: center;
+    margin-left: 15px;
+    color: var(--color2);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   }
+   .form2{
+    border: 2px solid black;
+    width: max-content;
+    height: 120px;
+    border-radius: 5px;
+    padding: 11px;
+    position: relative;
+    margin: 40px auto 0;
+    display: flex;
+    justify-content:center;
+    background-color: var(--color4);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+   }
+   .div3{
+    padding-bottom: 1%;
+    justify-items: center;
+    position: absolute;
+    margin-top: 10%;
+   }
+   input[type="file"]{
+      display: none;
+   }
+   #accepter{
+    background-color: var(--color5);
+    color: white;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    float: right;
+    font-size: larger;
+    top: 25px;
+    height: 33px;
+    width: max-content;
+   }
+   #ok{
+    width: 200px;
+    height: max-content;
+    background-color: var(--color1);
+    padding: 6px 9px 9px 0;
+    
+   }
+   .valider{
+    margin-right:0%;
+    margin-bottom: 7%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  /*---------------------------footer--------------------------------*/
+  footer {
+    display: flex;
+    margin-top: 50px;
+    background-color: var(--color2);
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    color: white;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 7vh;
+  }
+  
+  footer p {
+    font-size: 20px;
+  }
+/*-------------navbar---------------------*/
+nav{
+  height: 35px;
+}
+ul {
+  list-style-type: none;
+   display: flex;
+   justify-content: center;
+}
+ul li{
+   margin-right: 10px;
+   width: 100px;
+}
+ul li button{
+   width: 100px;
+   padding: 10px;
+   border: 0;
+   border-radius: 0 0 25px 25px;
+   background-color: var(--color2); 
+   color: white;
+   font-size: 11px;
+   font-weight: bold;
+   text-decoration: none;  
+}
+ul li button:hover{
+   border: 2px solid rgb(147, 147, 147);
+   border-top: 0px;
+   border-radius: 0 0 25px 25px;
+   background-color: rgb(232,236,239);
+   color: var(--color2);
+   cursor: pointer;
+}
+ul li ul{
+   display: none;
+}
+ul li ul li button{
+   background-color:var(--color1);
+   font-size: 11px;
+   font-weight: bold;
+   border-radius: 0px;
+}
+ul li ul li button:hover{
+   background-color:white;
+   color: #FB931B;
+   border-radius: 0px;
+}
+ul li:hover>ul {
+   display: flex;
+   height:50px;
+}
+#ajouter{
+  background-color: var(--color3);
+  color: var(--color2);
+  border: 2px solid var(--color2);
+  font-weight: bold;
+}

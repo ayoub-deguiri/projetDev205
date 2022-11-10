@@ -1,3 +1,2 @@
 RewriteEngine On
-DirectoryIndex 404.html
-ErrorDocument 404 /projetDev205/scripts/404.html
+ErrorDocument 404 /404.html
