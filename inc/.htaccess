@@ -1,5 +1,2 @@
 RewriteEngine On
-DirectoryIndex login.php
 ErrorDocument 404 /404.html
-Redirect /inc/db.php /login.php
-Redirect /inc/WFS205.sql /login.php
