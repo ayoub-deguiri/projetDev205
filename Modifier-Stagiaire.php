@@ -17,6 +17,47 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
     <link rel="stylesheet" media="screen" href="./styles/modifier.css">
     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <title>modifier</title>
+    <script src="./scripts/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#année-scolaire').on('change', function () {
+                var annescolID = $(this).val();
+                if (annescolID) {
+                    $.get(
+                        './Ajax.php',
+                        { annescolID: annescolID },
+                        function (data) {
+                            $('#année').html(data);
+                        }
+                    );
+                }
+            })
+            $('#année').on('change', function () {
+                var anneeID = $(this).val();
+                if (anneeID) {
+                    $.get(
+                        './Ajax.php',
+                        { anneeID: anneeID },
+                        function (data) {
+                            $('#filiére').html(data);
+                        }
+                    );
+                }
+            })
+            $('#filiére').on('change', function () {
+                var filiereID = $(this).val();
+                if (filiereID) {
+                    $.get(
+                        './Ajax.php',
+                        { filiereID: filiereID },
+                        function (data) {
+                            $('#groupe').html(data);
+                        }
+                    );
+                }
+            })
+        });
+    </script>
 </head>
 
 <body>
@@ -59,38 +100,45 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
 
             <div class="selects">
                 <ul>
-                    <li> <label for="">année</label></li>
-                    <li><select name="annee" id="annee">
-                            <option value="rien" selected> choisr l'année</option>
-                            <option value="">1</option>
+                    <li> <label for="année-scolaire">année scolaire</label></li>
+                    <?php
+                    $sql = ("SELECT * FROM annee ");
+                    $pdo_statement = $conn->prepare($sql);
+                    $pdo_statement->execute();
+                    $annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+                    ?>
+                    <li><select name="anneescolaire" id="année-scolaire">
+                            <option value="" disabled selected>Année Scolaire</option>
+                            <?php
+                            if (isset($annee)) {
+                                foreach ($annee as $row) {
+                            ?>
+                            <option value="<?= $row['idAnnee'] ?>">
+                                <?= $row['nomAnnee'] ?>
+                            </option>
+                            <?php
+                                }
+                            }
+                            ?>
                         </select>
                     </li>
-                    <li> <label for="anneescolaire">année scolaire</label></li>
-                    <li><select name="anneescolaire" id="anneescolaire">
-                            <option value="rien" selected>choisr l'année scolaire</option>
-                            <option value="">1</option>
-                        </select>
+                    <li> <label for="année">année</label></li>
+                    <li>
+                        <select id="année" name="année" required></select>
                     </li>
-
                     <li> <label for="filier">filière</label></li>
-                    <li><select name="filier" id="filier">
-                            <option value="rien" selected> choisir filière</option>
-                            <option value="">1</option>
+                    <li> <select id="filiére" name="filiere" required>
                         </select>
                     </li>
                     <li> <label for="">groupe</label></li>
-
-                    <li><select name="groupe" id="groupe">
-                            <option value="rien" selected>choisir le groupe</option>
-                            <option value="">1</option>
-
+                    <li>
+                        <select id="groupe" name="groupe" required>
                         </select>
                     </li>
                     <li><input type="submit" value="valider" id="valider" onclick=" return checkdelects()"> </li>
                 </ul>
     </form>
     </div>
-
     <div class="listeEtudiants">
         <form action="test.php" method="post">
             <table>
