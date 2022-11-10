@@ -64,15 +64,15 @@ $resultfinale = $pdo_statement->fetchALL();
                 <form action="./inc/InsertAbsence.php" method="POST" id="form">
                     <div class="listeEtudiants">
                         <div>
-                            Date : <input required placeholder="La Date" name="date" class="textbox-n" type="text"
-                                onfocus="(this.type='date')" id="date">
+                            Date : <input placeholder="La Date" name="date" class="textbox-n" type="text"
+                                onfocus="(this.type='date')" id="date" required>
                         </div>
                         <div>
-                            Formateur : <input required type="text" name="formateur" id="formateur"
-                                placeholder="Le Formateur">
+                            Formateur : <input type="text" name="formateur" id="formateur" placeholder="Le Formateur"
+                                required>
                         </div>
                         <div>
-                            Module : <input required type="text" name="module" id="module" placeholder="Le Module">
+                            Module : <input type="text" name="module" id="module" placeholder="Le Module" required>
                         </div>
                     </div>
 
@@ -171,7 +171,7 @@ $resultfinale = $pdo_statement->fetchALL();
 
 
                     }
-                    if (errorgenral == 0) {
+                    if (errorgenral == 0 && $("$date") != "" && $("#formateur") != "" && $("#module") != "") {
                         alert("Enregistré avec succès")
                     } else {
                         e.preventDefault()
