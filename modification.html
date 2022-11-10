@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" media="screen" href="./styles/modification.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" media="screen" href="./styles/modification.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="logoOfppt">
-            <img src="./images/Ofpptlogo.png"  alt="logoOfppt" id="logoOfppt">
-        </div>
-        <div class="logoApp">
-            <img src="./images/logoApp.png"  alt="logo" class="logoApp">
-        </div>
-        <div class="déconnexion">
-        <button type="button" id="Déconnexion"><a href="./logout.php">Déconnexion</a></button>
-      </div> 
+      <div class="logoOfppt">
+        <img src="./images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt" />
+      </div>
+      <div class="logoApp">
+        <img src="./images/logoApp.png" alt="logo" class="logoApp" />
+      </div>
+      <div class="déconnexion">
+        <button type="button" id="Déconnexion">
+          <a href="./logout.php">Déconnexion</a>
+        </button>
+      </div>
     </header>
     <nav>
         <ul>
@@ -46,24 +51,21 @@
       <h1 id="title">DEV 205</h1>
       <main>
        
-        <form id="form" >
+        <form id="form">
             <table>
                 <tr>
                     <td><label for="cef" id="label">CEF:</label></td>
                     <td><input type="text" id="cef"/></td>
-                    
                 </tr>
-                <tr><td><div id="error"></div></td></tr>
+                <tr><div id="error"></div></tr>
                 <tr>
                     <td><label for="nom" id="label">Nom:</label></td>
-                    <td><input type="text" id="nom"/></td>
+                    <td><input type="text"/></td>
                 </tr>
-                <tr><td><div id="error2"></div></td></tr>
                 <tr>
                     <td for="prenom" id="label">Prenom:</td>
                     <td><input type="text" id="prenom"/></td>
                 </tr>
-                <tr><td><div id="error3"></div></td></tr>
                 <tr>
                     <td><button id="btn">Valider</button></td>
                 </tr>
@@ -77,8 +79,5 @@
      <footer>
         <p>© Copyright | DevWFS205 |2022</p>
      </footer>
-
-    <script src="./scripts/modification.js"></script>
-    
 </body>
 </html>

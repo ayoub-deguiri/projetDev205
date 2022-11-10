@@ -1,7 +1,7 @@
 <?php
 include('inc/db.php');
 session_start();
-if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
+if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
     header('location:./login.php');
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -39,11 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif ($result['compteType'] == 'directrice') {
       $_SESSION['compteType'] = $result['compteType'];
       header('location:./accueil-directrice.php');
+    } elseif ($result['compteType'] == 'serveillant') {
+      $_SESSION['compteType'] = $result['compteType'];
+      header('location:./Accueil-serveillant.html');
     }
-    // anzidoha fach yt9ado les page t surveillance general
-    //elseif ($result['compteType'] == 'sg') {
-    //     header('location:./accueil-sg.html');
-    // }
   }
 }
 

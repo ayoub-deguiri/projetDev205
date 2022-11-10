@@ -1,12 +1,12 @@
 <?php
 include('db.php');
 session_start();
-if (empty($_SESSION) or $_SESSION['compteType'] == "directrice") {
+if (empty($_SESSION) or $_SESSION['compteType'] != "stagiaire") {
     header('location:./../login.php');
 }
 ?>
 <?php
-$idgrp =$_SESSION['idgrp'];
+$idgrp = $_SESSION['idgrp'];
 // fetch all "stagiare" id's
 $sql = "SELECT CEF FROM stagiaire WHERE groupe_idGroupe = $idgrp";
 $pdo_statement = $conn->prepare($sql);
@@ -14,33 +14,20 @@ $pdo_statement->execute();
 $result = $pdo_statement->fetchALL();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["valider"])) {
-        // get image
-
-        if (isset($_FILES['file'])) {
-            $filename = $_FILES['file']['name'];
-            $tempname = file_get_contents($_FILES['file']['tmp_name']);
-            $sqlimg = "INSERT INTO `absenceimg` (`img_name`,`img_data`)
-            VALUES (?,?)";
-            $pdo_statement = $conn->prepare($sqlimg);
-            $pdo_statement->bindParam(1, $filename);
-            $pdo_statement->bindParam(2, $tempname);
-            $pdo_statement->execute();
-        }
-        $filename = $_FILES['file']['name'];
+        // get data
         $date = $_POST['date'];
         $formateur = $_POST['formateur'];
         $module = $_POST['module'];
-
         foreach ($result as $cef) {
             $error = 1;
             $type = "";
-            if (!empty($_POST['absence-'.$cef[0]])) {
+            if (!empty($_POST['absence-' . $cef[0]])) {
                 $type = 'absence';
-                $error =0;
+                $error = 0;
             }
-            if (!empty($_POST['retard-'.$cef[0]])) {
+            if (!empty($_POST['retard-' . $cef[0]])) {
                 $type = 'retard';
-                $error =0;
+                $error = 0;
             }
             if ($error == 0) {
                 // select for get id of annee + filire + anneescolaire
@@ -54,14 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $idannee = $vars['idannee'];
                 $idscolaire = $vars['idscolaire'];
 
-                $timeDebut =$_POST['debut-'.$cef[0]];
-                $timeFin =$_POST['Fin-'.$cef[0]];
+                $timeDebut = $_POST['debut-' . $cef[0]];
+                $timeFin = $_POST['Fin-' . $cef[0]];
+
 
                 // insert int absence table
-
-
-                $sql="INSERT INTO absence (dateAbsence,heureDebutAbsence,heureFinAbsence,moduleAbsence,formateurAbsence,type,annee_idAnnee,filiere_idFiliere,groupe_idGroupe,anneeScolaire_idAnneeScolaire,CEF,img_name)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                $sql = "INSERT INTO absence (dateAbsence,heureDebutAbsence,heureFinAbsence,moduleAbsence,formateurAbsence,type,annee_idAnnee,filiere_idFiliere,groupe_idGroupe,anneeScolaire_idAnneeScolaire,CEF)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                 $pdo_statement = $conn->prepare($sql);
                 $pdo_statement->bindParam(1, $date);
                 $pdo_statement->bindParam(2, $timeDebut);
@@ -74,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $pdo_statement->bindParam(9, $idgrp);
                 $pdo_statement->bindParam(10, $idscolaire);
                 $pdo_statement->bindParam(11, $cef[0]);
-                $pdo_statement->bindParam(12, $filename);
                 $pdo_statement->execute();
                 header('location:./../responsable.php');
             }

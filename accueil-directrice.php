@@ -1,7 +1,7 @@
 <?php
 include('inc/db.php');
 session_start();
-if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
+if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
 	header('location:./login.php');
 }
 ?>
@@ -20,9 +20,10 @@ if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
 				var annescolID = $(this).val();
 				if (annescolID) {
 					$.get(
-						'./DirectriceAjax.php',
+						'./Ajax.php',
 						{ annescolID: annescolID },
 						function (data) {
+
 							$('#année').html(data);
 						}
 					);
@@ -32,7 +33,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
 				var anneeID = $(this).val();
 				if (anneeID) {
 					$.get(
-						'./DirectriceAjax.php',
+						'./Ajax.php',
 						{ anneeID: anneeID },
 						function (data) {
 							$('#filiére').html(data);
@@ -44,7 +45,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
 				var filiereID = $(this).val();
 				if (filiereID) {
 					$.get(
-						'./DirectriceAjax.php',
+						'./Ajax.php',
 						{ filiereID: filiereID },
 						function (data) {
 							$('#groupe').html(data);

@@ -1,3 +1,2 @@
 RewriteEngine On
-DirectoryIndex login.php
 ErrorDocument 404 /404.html
