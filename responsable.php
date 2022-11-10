@@ -32,6 +32,7 @@ $resultfinale = $pdo_statement->fetchALL();
     <link rel="stylesheet" href="./styles/styleResponsable.css">
     <script src="./scripts/jquery-3.6.1.min.js"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -176,4 +177,5 @@ $resultfinale = $pdo_statement->fetchALL();
         </footer>
     </div>
 </body>
+
 </html>
