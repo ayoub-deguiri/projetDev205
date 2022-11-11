@@ -31,7 +31,7 @@
   .logoApp {
     margin-right: -5%;
     height: 100px;
-    width: 100px;
+    width: 140px;
   
   }
   
@@ -109,6 +109,14 @@
     border-radius: 25px;
     resize: vertical;
   
+  }
+  input[type="text"]{
+    width: 290px;
+    background-color:white;
+    padding: 5px;
+    border: 2px solid var(--color2);
+    border-radius: 25px;
+    resize: vertical;
   }
   
   label {
@@ -226,12 +234,13 @@
     justify-content:center;
     background-color: var(--color4);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    flex-direction: column;
    }
    .div3{
     padding-bottom: 1%;
     justify-items: center;
-    position: absolute;
-    margin-top: 10%;
+    margin-top: 2vh;
+    display:none;
    }
    input[type="file"]{
       display: none;
@@ -261,6 +270,7 @@
     margin-bottom: 7%;
     display: flex;
     justify-content: flex-end;
+    display: none;
   }
   /*---------------------------footer--------------------------------*/
   footer {
