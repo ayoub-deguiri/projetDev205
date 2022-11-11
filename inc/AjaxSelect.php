@@ -1,5 +1,5 @@
 <?php
-include('db.php');
+include_once('db.php');
 session_start();
 if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
     header('location:./login.php');
@@ -8,7 +8,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
 <?php
 if (isset($_GET['annescolID']) && !empty($_GET['annescolID'])) {
     $annescolID = $_GET['annescolID'];
-    $sql = ("SELECT * FROM anneeScolaire where annee_idAnnee = ?");
+    $sql = ("SELECT * FROM annee where idAnneeScolaire = ?");
     $pdo_statement = $conn->prepare($sql);
     $pdo_statement->bindParam(1, $annescolID);
     $pdo_statement->execute();
@@ -16,15 +16,15 @@ if (isset($_GET['annescolID']) && !empty($_GET['annescolID'])) {
     echo '<option disabled  selected >Année</option>';
     foreach ($result1 as $row) {
 ?>
-<option value="<?= $row['idAnneeScolaire'] ?>">
-    <?= $row['nomAnneeScolaire'] ?>
+<option value="<?= $row['idAnnee'] ?>">
+    <?= $row['nomAnnee'] ?>
 </option>
 <?php
     }
 }
 if (isset($_GET['anneeID']) && !empty($_GET['anneeID'])) {
     $anneeID = $_GET['anneeID'];
-    $sql = ("SELECT * FROM filiere where anneescolaire_idAnneeScolaire = ?");
+    $sql = ("SELECT * FROM filiere where idAnnee = ?");
     $pdo_statement = $conn->prepare($sql);
     $pdo_statement->bindParam(1, $anneeID);
     $pdo_statement->execute();
@@ -40,7 +40,7 @@ if (isset($_GET['anneeID']) && !empty($_GET['anneeID'])) {
 }
 if (isset($_GET['filiereID']) && !empty($_GET['filiereID'])) {
     $filiereID = $_GET['filiereID'];
-    $sql = ("SELECT * FROM groupe where filiere_idFiliere = ?");
+    $sql = ("SELECT * FROM groupe where idFiliere = ?");
     $pdo_statement = $conn->prepare($sql);
     $pdo_statement->bindParam(1, $filiereID);
     $pdo_statement->execute();

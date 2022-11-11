@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include_once("db.php");
 $userid = $_POST['userid'];
 $sql = "SELECT * FROM stagiaire WHERE CEF= ?";
 $pdo_statement = $conn->prepare($sql);
@@ -25,14 +25,14 @@ $nomberRetard = $pdo_statement->fetch(PDO::FETCH_ASSOC);
 $nbrRetard = $nomberRetard["nbrRetard"];
 
 // les Absence
-$sql = "SELECT dateAbsence,heureDebutAbsence,heureFinAbsence,moduleAbsence,formateurAbsence FROM `absence` WHERE type = 'absence' and CEF = ?";
+$sql = "SELECT dateAbsence,heureDebutAbsence,heureFinAbsence,moduleAbsence,matricule FROM `absence` WHERE type = 'absence' and CEF = ?";
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->bindParam(1, $userid);
 $pdo_statement->execute();
 $absence = $pdo_statement->fetchALL(PDO::FETCH_ASSOC);
 
 // les Retared
-$sql = "SELECT dateAbsence,heureDebutAbsence,heureFinAbsence,moduleAbsence,formateurAbsence FROM `absence` WHERE type = 'retard' and CEF = ?";
+$sql = "SELECT dateAbsence,heureDebutAbsence,heureFinAbsence,moduleAbsence,matricule FROM `absence` WHERE type = 'retard' and CEF = ?";
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->bindParam(1, $userid);
 $pdo_statement->execute();
@@ -65,7 +65,7 @@ $retard = $pdo_statement->fetchALL(PDO::FETCH_ASSOC);
                         Du : <?= $ab['heureDebutAbsence'] ?> &nbsp; &nbsp;
                             A : <?= $ab['heureFinAbsence'] ?> &nbsp; &nbsp;
                                 Module absente: <?= $ab['moduleAbsence'] ?> &nbsp; &nbsp;
-                                    formateur: <?= $ab['formateurAbsence'] ?>
+                                    formateur: <?= $ab['matricule'] ?>
                 </li>
                 <br>
                 <?php
@@ -75,7 +75,7 @@ $retard = $pdo_statement->fetchALL(PDO::FETCH_ASSOC);
             <?php
             }
             ?>
-            <p>Nomber de Reatred :
+            <p>Nomber de Retards :
                 <?php echo $nbrRetard; ?>
             </p>
             <?php
@@ -90,7 +90,7 @@ $retard = $pdo_statement->fetchALL(PDO::FETCH_ASSOC);
                         Du : <?= $ret['heureDebutAbsence'] ?> &nbsp; &nbsp;
                             A : <?= $ret['heureFinAbsence'] ?> &nbsp; &nbsp;
                                 Module absente: <?= $ret['moduleAbsence'] ?> &nbsp; &nbsp;
-                                    formateur: <?= $ret['formateurAbsence'] ?>
+                                    formateur: <?= $ret['matricule'] ?>
                 </li>
                 <br>
                 <?php
