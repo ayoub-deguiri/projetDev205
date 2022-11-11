@@ -20,7 +20,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
 				var annescolID = $(this).val();
 				if (annescolID) {
 					$.get(
-						'./Ajax.php',
+						'./inc/AjaxSelect.php',
 						{ annescolID: annescolID },
 						function (data) {
 
@@ -33,7 +33,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
 				var anneeID = $(this).val();
 				if (anneeID) {
 					$.get(
-						'./Ajax.php',
+						'./inc/AjaxSelect.php',
 						{ anneeID: anneeID },
 						function (data) {
 							$('#filiére').html(data);
@@ -45,7 +45,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
 				var filiereID = $(this).val();
 				if (filiereID) {
 					$.get(
-						'./Ajax.php',
+						'./inc/AjaxSelect.php',
 						{ filiereID: filiereID },
 						function (data) {
 							$('#groupe').html(data);

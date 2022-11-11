@@ -1,5 +1,5 @@
 <?php
-include('inc/db.php');
+include('db.php');
 session_start();
 if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
     header('location:./login.php');
