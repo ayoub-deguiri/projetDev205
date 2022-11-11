@@ -5,6 +5,48 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
     header('location:./login.php');
 }
 ?>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["AjaxValider"])) {
+        $_SESSION["anneeScolaire"] = $_POST["annee-Scolaire"];
+        $_SESSION["annee"] = $_POST["annee"];
+        $_SESSION["filiere"] = $_POST["filiere"];
+        $_SESSION["groupe"] = $_POST["groupe"];
+
+        // get all Stagiaire 
+        $sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where groupe_idGroupe in 
+                (select idGroupe from groupe where idGroupe=? and filiere_idFiliere in ( select idFiliere from filiere where 
+                idFiliere=? and anneeScolaire_idAnneeScolaire in 
+                (select idAnneeScolaire from anneeSColaire where idAnneeScolaire=? and annee_idAnnee in 
+                (select idAnnee from annee where idAnnee=?)
+                )));";
+        $pdo_statement = $conn->prepare($sql);
+        $pdo_statement->bindParam(1, $_SESSION["groupe"]);
+        $pdo_statement->bindParam(2, $_SESSION["filiere"]);
+        $pdo_statement->bindParam(3, $_SESSION["annee"]);
+        $pdo_statement->bindParam(4, $_SESSION["anneeScolaire"]);
+        $pdo_statement->execute();
+        $Stagiaires = $pdo_statement->fetchAll();
+        // get group name 
+        $sql = "SELECT nomGroupe from groupe where idGroupe = ?";
+        $pdo_statement = $conn->prepare($sql);
+        $pdo_statement->bindParam(1, $_SESSION["groupe"]);
+        $pdo_statement->execute();
+        $group = $pdo_statement->fetch();
+        // get Respo
+        $respo = "";
+        $sql = "SELECT user FROM compte";
+        $pdo_statement = $conn->prepare($sql);
+        $pdo_statement->execute();
+        $users = $pdo_statement->fetchAll(PDO::FETCH_COLUMN);
+        foreach ($Stagiaires as $stg) {
+            if (in_array($stg['CEF'], $users)) {
+                $respo = $stg['CEF'];
+            }
+        }
+    }
+}
+?>
 <!--html-->
 <!DOCTYPE html>
 <html lang="en">
@@ -17,14 +59,36 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
     <link rel="stylesheet" media="screen" href="./styles/modifier.css">
     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <title>modifier</title>
-    <script src="./scripts/jquery-3.6.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
+            $('.details').click(function (event) {
+                let userid = $(this).data('id');
+                $.ajax({
+                    url: './inc/AjaxModal.php',
+                    type: 'post',
+                    data: { userid: userid },
+                    success: function (response) {
+                        $('.modal-body').html(response);
+                        $('#empModal').modal('show');
+                    }
+                })
+
+            });
+            $('.close').click(function () {
+                $('#empModal').modal('hide');
+            })
             $('#année-scolaire').on('change', function () {
                 var annescolID = $(this).val();
                 if (annescolID) {
                     $.get(
-                        './Ajax.php',
+                        './inc/AjaxSelect.php',
                         { annescolID: annescolID },
                         function (data) {
                             $('#année').html(data);
@@ -36,7 +100,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
                 var anneeID = $(this).val();
                 if (anneeID) {
                     $.get(
-                        './Ajax.php',
+                        './inc/AjaxSelect.php',
                         { anneeID: anneeID },
                         function (data) {
                             $('#filiére').html(data);
@@ -48,7 +112,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
                 var filiereID = $(this).val();
                 if (filiereID) {
                     $.get(
-                        './Ajax.php',
+                        './inc/AjaxSelect.php',
                         { filiereID: filiereID },
                         function (data) {
                             $('#groupe').html(data);
@@ -95,9 +159,9 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
             </li>
         </ul>
     </nav>
-    <form action="action.php" method="post">
+    <!-- Ajax select -->
+    <form action="" method="post">
         <main>
-
             <div class="selects">
                 <ul>
                     <li> <label for="année-scolaire">année scolaire</label></li>
@@ -107,7 +171,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
                     $pdo_statement->execute();
                     $annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
                     ?>
-                    <li><select name="anneescolaire" id="année-scolaire">
+                    <li><select name="annee-Scolaire" id="année-scolaire">
                             <option value="" disabled selected>Année Scolaire</option>
                             <?php
                             if (isset($annee)) {
@@ -124,7 +188,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
                     </li>
                     <li> <label for="année">année</label></li>
                     <li>
-                        <select id="année" name="année" required></select>
+                        <select id="année" name="annee" required></select>
                     </li>
                     <li> <label for="filier">filière</label></li>
                     <li>
@@ -134,111 +198,82 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
                     <li>
                         <select id="groupe" name="groupe" required></select>
                     </li>
-                    <li><input type="submit" value="valider" id="valider" onclick=" return checkdelects()"> </li>
+                    <li><input type="submit" name="AjaxValider" value="valider" id="valider"
+                            onclick=" return checkdelects()"> </li>
                 </ul>
     </form>
     </div>
+    <!-- Main Table -->
     <div class="listeEtudiants">
-        <form action="test.php" method="post">
+        <form action="test.php" id='table-form' method="post">
+            <?php
+            if (empty($Stagiaires)) {
+                echo "<div class='first-msg'>" . "<span>&#8592;</span>" . " Veuillez sélectionner un groupe " . "<di>";
+            } else {
+            ?>
             <table>
-                <caption>nom group </caption>
+                <caption>Group :
+                    <?= $group['nomGroupe'] ?>
+                </caption>
                 <tr>
-
                     <th>cEF</th>
                     <th>nom</th>
                     <th>prénom</th>
                     <th>détails</th>
                     <th>responsable</th>
                     <th>supprimer</th>
-
                 </tr>
-                <tr>
-                    <td>12345678901</td>
-                    <td>mohamed achragf</td>
-                    <td>ait hmadobihi</td>
-                    <td><input type="button" value="cliquer" id="details" onclick="modalfn()"></td>
-                    <td> <input type="radio" name="responsable" id="responsable" class="radiobtn"> </td>
+                <?php
+                foreach ($Stagiaires as $row) {
+                    $c = 1;
+                ?>
+                <tr id="tr-<?= $c++ ?>">
+                    <td>
+                        <?= $row["CEF"] ?>
+                    </td>
+                    <td>
+                        <?= $row['prenomStagiaire'] ?>
+                    </td>
+                    <td>
+                        <?= $row['nomStagiaire'] ?>
+                    </td>
+                    <td>
+                        <input type="button" value="Info" data-id='<?php echo $row['CEF']; ?>' class="details " />
+                    </td>
+                    <td>
+                        <?php
+                    if ($row['CEF'] == $respo) {
+                        ?>
+                        <input type="radio" name="responsable" id="responsable" checked class="radiobtn">
+                        <?php
+                    } else {
+                        ?>
+                        <input type="radio" name="responsable" id="responsable" class="radiobtn">
+                        <?php
+                    }
+                        ?>
+                    </td>
                     <td><a href="#"> <img src="./images/trash.svg" id='trash' alt=""></a> </td>
                 </tr>
-                <tr>
-                    <td>12345678901</td>
-                    <td>mohamed achragf</td>
-                    <td>ait hmadobihi</td>
-                    <td><input type="button" value="cliquer" id="details" onclick="modalfn()"></td>
-                    <td> <input type="radio" name="responsable" id="responsable" class="radiobtn"> </td>
-                    <td><a href="#"> <img src="./images/trash.svg" id='trash' alt=""></a> </td>
-                </tr>
-                <tr>
-                    <td>12345678901</td>
-                    <td>mohamed achragf</td>
-                    <td>ait hmadobihi</td>
-                    <td><input type="button" value="cliquer" id="details" onclick="modalfn()"></td>
-                    <td> <input type="radio" name="responsable" id="responsable" class="radiobtn"> </td>
-                    <td><a href="#"> <img src="./images/trash.svg" id='trash' alt=""></a> </td>
-                </tr>
-                <tr>
-                    <td>12345678901</td>
-                    <td>mohamed achragf</td>
-                    <td>ait hmadobihi</td>
-                    <td><input type="button" value="cliquer" id="details" onclick="modalfn()"></td>
-                    <td> <input type="radio" name="responsable" id="responsable" class="radiobtn"> </td>
-                    <td><a href="#"> <img src="./images/trash.svg" id='trash' alt=""></a> </td>
-                </tr>
-                <tr>
-                    <td>12345678901</td>
-                    <td>mohamed achragf</td>
-                    <td>ait hmadobihi</td>
-                    <td><input type="button" value="cliquer" id="details" onclick="modalfn()"></td>
-                    <td> <input type="radio" name="responsable" id="responsable" class="radiobtn"> </td>
-                    <td><a href="#"> <img src="./images/trash.svg" id='trash' alt=""></a> </td>
-                </tr>
-                <tr>
-                    <td>12345678901</td>
-                    <td>mohamed achragf</td>
-                    <td>ait hmadobihi</td>
-                    <td><input type="button" value="cliquer" id="details" onclick="modalfn()"></td>
-                    <td> <input type="radio" name="responsable" id="responsable" class="radiobtn"> </td>
-                    <td><a href="#"> <img src="./images/trash.svg" id='trash' alt=""></a> </td>
-                </tr>
-                <tr>
-                    <td>12345678901</td>
-                    <td>mohamed achragf</td>
-                    <td>ait hmadobihi</td>
-                    <td><input type="button" value="cliquer" id="details" onclick="modalfn()"></td>
-                    <td> <input type="radio" name="responsable" id="responsable" class="radiobtn"> </td>
-                    <td><a href="#"> <img src="./images/trash.svg" id='trash' alt=""></a> </td>
-                </tr>
-                <tr>
-                    <td>12345678901</td>
-                    <td>mohamed achragf</td>
-                    <td>ait hmadobihi</td>
-                    <td><input type="button" value="cliquer" id="details" onclick="modalfn()"></td>
-                    <td> <input type="radio" name="responsable" id="responsable" class="radiobtn"> </td>
-                    <td><a href="#"> <img src="./images/trash.svg" id='trash' alt=""></a> </td>
-                </tr>
-                <tr>
-                    <td>12345678901</td>
-                    <td>mohamed achragf</td>
-                    <td>ait hmadobihi</td>
-                    <td><input type="button" value="cliquer" id="details" onclick="modalfn()"></td>
-                    <td> <input type="radio" name="responsable" id="responsable" class="radiobtn"> </td>
-                    <td><a href="#"> <img src="./images/trash.svg" id='trash' alt=""></a> </td>
-                </tr>
-
-
+                <?php
+                }
+            }
+                ?>
             </table>
     </div>
-
-
     </main>
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
+    </div>
+    <div class="modal fade" id="empModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-header">
+                    <h4 class="modal-title">User Info</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
         </div>
-
     </div>
     <div class="ajoute-valider">
         <div class="ajoute">
@@ -311,46 +346,14 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
             return etatgeneral
 
         }
-
-
         var radiobtn = document.getElementsByClassName('radiobtn')
         function btnr() {
             var etat = false;
             for (let i = 0; i < radiobtn.length; i++) {
-
-
                 if (radiobtn[i].checked == true)
                     etat = true
             }
             return etat
-        }
-
-
-        /* modal box */
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal
-
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks on the button, open the modal
-        function modalfn() {
-            modal.style.display = "block";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
         }
     </script>
 </body>
