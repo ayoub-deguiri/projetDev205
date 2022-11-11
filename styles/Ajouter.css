@@ -235,10 +235,12 @@
     background-color: var(--color4);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     flex-direction: column;
+    display: none;
    }
    .div3{
     padding-bottom: 1%;
     justify-items: center;
+    display: none;
     margin-top: 2vh;
     display:none;
    }
@@ -345,4 +347,7 @@ ul li:hover>ul {
   color: var(--color2);
   border: 2px solid var(--color2);
   font-weight: bold;
+}
+.importGroup{
+  height: auto;
 }
