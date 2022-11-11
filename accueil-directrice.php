@@ -1,5 +1,5 @@
 <?php
-include('inc/db.php');
+include_once('inc/db.php');
 session_start();
 if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
 	header('location:./login.php');
@@ -84,7 +84,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
 				<div class="col-25">
 					<label for="année-scolaire">Année Scolaire :</label>
 					<?php
-                    $sql = ("SELECT * FROM annee ");
+                    $sql = ("SELECT * FROM anneescolaire ");
                     $pdo_statement = $conn->prepare($sql);
                     $pdo_statement->execute();
                     $annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
@@ -92,13 +92,13 @@ if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
 				</div>
 				<div class="col-75">
 					<select id="année-scolaire" name="annee-Scolaire" required>
-						<option value="" disabled selected>Année Scolaire</option>
+						<option value="" selected>Année Scolaire</option>
 						<?php
                         if (isset($annee)) {
 	                        foreach ($annee as $row) {
                         ?>
-						<option value="<?= $row['idAnnee'] ?>">
-							<?= $row['nomAnnee'] ?>
+						<option value="<?= $row['idAnneeScolaire'] ?>">
+							<?= $row['nomAnneeScolaire'] ?>
 						</option>
 						<?php
 	                        }
