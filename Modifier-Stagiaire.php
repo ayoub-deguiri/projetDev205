@@ -1,5 +1,5 @@
 <?php
-include('inc/db.php');
+include_once('inc/db.php');
 session_start();
 if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
     header('location:./login.php');
@@ -14,12 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["groupe"] = $_POST["groupe"];
 
         // get all Stagiaire 
-        $sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where groupe_idGroupe in 
-                (select idGroupe from groupe where idGroupe=? and filiere_idFiliere in ( select idFiliere from filiere where 
-                idFiliere=? and anneeScolaire_idAnneeScolaire in 
-                (select idAnneeScolaire from anneeSColaire where idAnneeScolaire=? and annee_idAnnee in 
-                (select idAnnee from annee where idAnnee=?)
-                )));";
+        $sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where idGroupe in 
+        (select idGroupe from groupe where idGroupe= ? and idFiliere in ( select idFiliere from filiere where 
+        idFiliere=? and idAnnee in 
+        (select idAnnee from annee where idAnnee=? and idAnneeScolaire in 
+        (select idAnneeScolaire from anneescolaire where idAnneeScolaire=?)
+        )))";
         $pdo_statement = $conn->prepare($sql);
         $pdo_statement->bindParam(1, $_SESSION["groupe"]);
         $pdo_statement->bindParam(2, $_SESSION["filiere"]);
@@ -59,31 +59,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" media="screen" href="./styles/modifier.css">
     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <title>modifier</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+    <script src="./scripts/jquery-3.6.1.min.js"></script>
     <script>
         $(document).ready(function () {
+            // Ajax for Modal
             $('.details').click(function (event) {
                 let userid = $(this).data('id');
-                $.ajax({
+                $.get({
                     url: './inc/AjaxModal.php',
                     type: 'post',
                     data: { userid: userid },
                     success: function (response) {
                         $('.modal-body').html(response);
-                        $('#empModal').modal('show');
                     }
                 })
-
+                $('#myModal').show();
             });
             $('.close').click(function () {
-                $('#empModal').modal('hide');
+                $('#myModal').hide();
             })
+            // Ajax for select
             $('#année-scolaire').on('change', function () {
                 var annescolID = $(this).val();
                 if (annescolID) {
@@ -120,7 +115,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     );
                 }
             })
+            $("#valider").click(function (ev) {
+                if ($('#groupe').val() === null) {
+                    ev.preventDefault()
+                    alert("Choisissez s'il vous plaît  un groupe")
+                }
+            })
         });
+
     </script>
 </head>
 
@@ -166,19 +168,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <ul>
                     <li> <label for="année-scolaire">année scolaire</label></li>
                     <?php
-                    $sql = ("SELECT * FROM annee ");
+                    $sql = ("SELECT * FROM anneeScolaire ");
                     $pdo_statement = $conn->prepare($sql);
                     $pdo_statement->execute();
-                    $annee = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+                    $anneeScolaire = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                     <li><select name="annee-Scolaire" id="année-scolaire">
                             <option value="" disabled selected>Année Scolaire</option>
                             <?php
-                            if (isset($annee)) {
-                                foreach ($annee as $row) {
+                            if (isset($anneeScolaire)) {
+                                foreach ($anneeScolaire as $row) {
                             ?>
-                            <option value="<?= $row['idAnnee'] ?>">
-                                <?= $row['nomAnnee'] ?>
+                            <option value="<?= $row['idAnneeScolaire'] ?>">
+                                <?= $row['nomAnneeScolaire'] ?>
                             </option>
                             <?php
                                 }
@@ -198,8 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <li>
                         <select id="groupe" name="groupe" required></select>
                     </li>
-                    <li><input type="submit" name="AjaxValider" value="valider" id="valider"
-                            onclick=" return checkdelects()"> </li>
+                    <li><input type="submit" name="AjaxValider" value="valider" id="valider"> </li>
                 </ul>
     </form>
     </div>
@@ -238,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?= $row['nomStagiaire'] ?>
                     </td>
                     <td>
-                        <input type="button" value="Info" data-id='<?php echo $row['CEF']; ?>' class="details " />
+                        <input type="button" value="Info" data-id='<?php echo $row['CEF']; ?>' class="details" />
                     </td>
                     <td>
                         <?php
@@ -263,15 +264,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     </main>
     </div>
-    <div class="modal fade" id="empModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="modal-header">
-                    <h4 class="modal-title">User Info</h4>
-                </div>
-                <div class="modal-body">
-                </div>
+    <div id="myModal" class="modal" role="dialog">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h4 class="modal-title">User Info</h4>
+            </div>
+            <div class="modal-body">
             </div>
         </div>
     </div>
@@ -296,56 +297,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script>
 
-        /*                  check select form     */
-        var groupe = document.getElementById('groupe')
-        var annee = document.getElementById('annee')
-        var anneescolaire = document.getElementById('anneescolaire')
-        var filier = document.getElementById('filier')
-
-        function checkdelects() {
-            var etat1, etat2, etat3, etat4
-            if (groupe.value == 'rien') {
-                groupe.style.border = '2px solid red'
-                etat1 = true
-            }
-            else {
-                groupe.style.border = '2px solid  blue'
-                etat2 = false
-            }
-
-            if (annee.value == 'rien') {
-                annee.style.border = '2px solid red'
-                etat2 = true
-            }
-            else {
-                annee.style.border = '2px solid  blue'
-                etat2 = false
-            }
-
-            if (anneescolaire.value == 'rien') {
-                anneescolaire.style.border = '2px solid red'
-                etat3 = true
-            }
-            else {
-                anneescolaire.style.border = '2px solid  blue'
-                etat3 = false
-            }
-            if (filier.value == 'rien') {
-                filier.style.border = '2px solid red'
-                etat4 = true
-            }
-            else {
-                filier.style.border = '2px solid  blue'
-                etat4 = false
-            }
-            if (etat1 == true || etat2 == true || etat3 == true || etat4 == true)
-                etatgeneral = false
-            else
-                etatgeneral = true
-
-            return etatgeneral
-
-        }
         var radiobtn = document.getElementsByClassName('radiobtn')
         function btnr() {
             var etat = false;
