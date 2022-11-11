@@ -28,6 +28,7 @@ function infos() {
     }
     document.getElementById("btnvalider").style.display = "block";
     document.getElementById("valider").style.display = "block";
+    document.getElementById("form").style.display = "block";
   }
 }
 

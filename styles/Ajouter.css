@@ -225,7 +225,7 @@
    .form2{
     border: 2px solid black;
     width: max-content;
-    height: 120px;
+    height: auto;
     border-radius: 5px;
     padding: 11px;
     position: relative;
@@ -235,10 +235,12 @@
     background-color: var(--color4);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     flex-direction: column;
+    display: none;
    }
    .div3{
     padding-bottom: 1%;
     justify-items: center;
+    display: none;
     margin-top: 2vh;
     display:none;
    }
@@ -275,17 +277,16 @@
   /*---------------------------footer--------------------------------*/
   footer {
     display: flex;
-    margin-top: 50px;
+    margin-top: 34.8vh;
     background-color: var(--color2);
     justify-content: center;
     align-items: center;
-    position: fixed;
     color: white;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 7vh;
-  }
+}
   
   footer p {
     font-size: 20px;
@@ -345,4 +346,7 @@ ul li:hover>ul {
   color: var(--color2);
   border: 2px solid var(--color2);
   font-weight: bold;
+}
+.importGroup{
+  height: auto;
 }
