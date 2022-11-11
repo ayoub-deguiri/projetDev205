@@ -7,6 +7,13 @@
   }
   body{
     background-color: var(--color3);
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+  body::-webkit-scrollbar {
+      display: none;
   }
   
   /*---------------------------- header --------------------------------*/
@@ -245,7 +252,8 @@
     display:none;
    }
    input[type="file"]{
-      display: none;
+      
+      background-color: beige;
    }
    #accepter{
     background-color: var(--color5);
