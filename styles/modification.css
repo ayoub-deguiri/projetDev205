@@ -208,3 +208,13 @@ nav{
  body{
     background-color: var(--color3);
  }
+
+ #error,#error3,#error2 {
+    color: red;
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-size: 13px;
+   
+    height: 1px;
+    margin-top: 3px;
+}

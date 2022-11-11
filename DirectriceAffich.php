@@ -1,7 +1,7 @@
 <?php
-include('inc/db.php');
+include_once('inc/db.php');
 session_start();
-if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
+if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
     header('location:./login.php');
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,12 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["groupe"] = $_POST["groupe"];
     }
 }
-$sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where groupe_idGroupe in 
-(select idGroupe from groupe where idGroupe=? and filiere_idFiliere in ( select idFiliere from filiere where 
-idFiliere=? and anneeScolaire_idAnneeScolaire in 
-(select idAnneeScolaire from anneeSColaire where idAnneeScolaire=? and annee_idAnnee in 
-(select idAnnee from annee where idAnnee=?)
-)));";
+$sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where idGroupe in 
+(select idGroupe from groupe where idGroupe= ? and idFiliere in ( select idFiliere from filiere where 
+idFiliere=? and idAnnee in 
+(select idAnnee from annee where idAnnee=? and idAnneeScolaire in 
+(select idAnneeScolaire from anneescolaire where idAnneeScolaire=?)
+)))";
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->bindParam(1, $_SESSION["groupe"]);
 $pdo_statement->bindParam(2, $_SESSION["filiere"]);

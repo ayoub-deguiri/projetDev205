@@ -1,8 +1,7 @@
 <?php
-ini_set('display_errors', '1');
-include('inc/db.php');
+include_once('inc/db.php');
 session_start();
-if (empty($_SESSION) or $_SESSION['compteType'] == "directrice") {
+if (empty($_SESSION) or $_SESSION['compteType'] != "stagiaire") {
     header('location:./login.php');
 }
 ?>
@@ -12,9 +11,9 @@ $sql = "SELECT * FROM stagiaire WHERE CEF = $user";
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->execute();
 $result = $pdo_statement->fetch();
-$idgrp = $result['groupe_idGroupe'];
+$idgrp = $result['idGroupe'];
 
-$sql2 = "SELECT * FROM stagiaire WHERE groupe_idGroupe =$idgrp";
+$sql2 = "SELECT * FROM stagiaire WHERE idGroupe =$idgrp";
 $pdo_statement = $conn->prepare($sql2);
 $pdo_statement->execute();
 $resultfinale = $pdo_statement->fetchALL();
@@ -31,7 +30,22 @@ $resultfinale = $pdo_statement->fetchALL();
     <link rel="icon" type="image/x-icon" href="./images/logoApp.png">
     <link rel="stylesheet" href="./styles/styleResponsable.css">
     <script src="./scripts/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#search").keypress(function () {
+                var search = $(this).val();
+                $.get(
+                    './inc/search.php',
+                    { search: search },
+                    function (data) {
+                        $(".output").html(data);
+                    }
+                );
+            });
+        });
+    </script>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -66,8 +80,10 @@ $resultfinale = $pdo_statement->fetchALL();
                                 onfocus="(this.type='date')" id="date" required>
                         </div>
                         <div>
-                            Formateur : <input type="text" name="formateur" id="formateur" placeholder="Le Formateur"
-                                required>
+                            Formateur : <input name="formateur" list="brow" type="text" id="search"
+                                placeholder="Le Formateur" required>
+                            <datalist class="output" id="brow">
+                            </datalist>
                         </div>
                         <div>
                             Module : <input type="text" name="module" id="module" placeholder="Le Module" required>
@@ -87,7 +103,7 @@ $resultfinale = $pdo_statement->fetchALL();
                             $c = 1;
                             foreach ($resultfinale as $row) {
                                 $id = $row['CEF'];
-                                $_SESSION['idgrp'] = $row['groupe_idGroupe']
+                                $_SESSION['idgrp'] = $row['idGroupe']
                             ?>
                         <tr id="tr-<?= $c++ ?>">
                             <td>
@@ -176,4 +192,5 @@ $resultfinale = $pdo_statement->fetchALL();
         </footer>
     </div>
 </body>
+
 </html>

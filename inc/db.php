@@ -1,10 +1,9 @@
 <?php
-
 $servername = "localhost";
 $username = "root";
 
 $password = "";
-$db = "WFS205-2";
+$db = "wfs205";
 
 
 try {
