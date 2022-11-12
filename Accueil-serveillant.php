@@ -41,6 +41,7 @@ $nbrRet = $pdo_statement->fetch();
           data: { date: date },
           dataType: 'json',
           success: function (data) {
+            $("#date-ver").val(date)
             newRet = data['ret']
             newAbs = data['abs']
             newData = [newRet, newAbs]
@@ -49,9 +50,6 @@ $nbrRet = $pdo_statement->fetch();
             myChart.update();
           }
         });
-
-
-
       })
     });
   </script>
@@ -160,11 +158,13 @@ $nbrRet = $pdo_statement->fetch();
       });
     </script>
   </div>
-  <div class="btn">
-    <a href="#"><button type="button" name='absence' id="absence">ABSENCE</button></a>
-    <a href="#"><button type="button" name='retard' id="retard">RETARD</button></a>
-  </div>
-  <div id='ajax'></div>
+  <form action="./Absence_par_date.php" method="POST">
+    <div class="btn">
+      <input type="hidden" id="date-ver" name="date-sent" value=<?= $cureDate ?>>
+      <input type="submit" name='absence' id="absence" value="ABSENCE" />
+      <input type="submit" name="retard" id="retard" value="RETARD" />
+    </div>
+  </form>
   <footer>
     <p>© Copyright | DevWFS205 |2022</p>
   </footer>
