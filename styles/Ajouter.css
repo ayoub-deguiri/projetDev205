@@ -278,8 +278,8 @@
     content: "Telecharger";
     display: block;
     background: var(--color5);
-    border: 2px solid var(--color2);
-    border-radius: 8px;
+    border: none;
+    border-radius: 15px;
     padding-top: 4px;
     padding-right: 8px;
     padding-left: 8px;
@@ -287,12 +287,16 @@
     white-space: nowrap;
     cursor: pointer;
     font-size: 17px;
-    width: 90px;
-    height: 20px;
+    width: max-content;
+    height: 25px;
     text-align: center;
     margin-left: 8px;
+    margin-top: 1%;
     color: var(--color4);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   }
+   .buttonPhoto{
+    display:-webkit-inline-flex;
    }
   /*---------------------------footer--------------------------------*/
   footer {
