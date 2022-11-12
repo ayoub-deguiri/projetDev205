@@ -127,7 +127,7 @@ table{
 
     box-shadow: 10px 10px 8px rgb(147, 147, 147);
     background-color: rgb(232, 236, 239);
-    width: 90%;
+    width: 95%;
     
 
     
@@ -158,13 +158,6 @@ table td{
 
     
 
-}
-select{
-    margin-left: 74%;
-    background-color: rgb(232, 236, 239);
-    border: 1px solid black ;
-    border-radius: 5px;
-    padding-top: 5%;
 }
 .commentaire
 {

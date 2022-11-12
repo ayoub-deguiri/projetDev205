@@ -166,7 +166,7 @@ nav{
 
  }
  #form{
-    background-color:var(--color3);
+    background-color:rgb(232, 236, 239);
     padding: 40px;
     border:2px solid black;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
