@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2022 at 12:41 AM
+-- Generation Time: Nov 13, 2022 at 12:58 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -38,7 +38,7 @@ END$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `Get_CountAbs_Date` (`datein` DATE, `typein` VARCHAR(20)) RETURNS INT(11)  BEGIN
 	DECLARE nbr int ;
     if exists (select dateAbsence from absence where absence.dateAbsence = datein) then
-		set nbr =(SELECT COUNT(idAbsence) FROM absence where dateAbsence = datein and type = typein);
+		set nbr =(SELECT COUNT(idAbsence) FROM absence where dateAbsence = datein and type = typein and justifier = "no");
 	else
         set nbr = 0;
 	end if ;
@@ -65,18 +65,19 @@ CREATE TABLE `absence` (
   `idFiliere` int(11) DEFAULT NULL,
   `idGroupe` int(11) DEFAULT NULL,
   `idAnneeScolaire` int(11) DEFAULT NULL,
-  `CEF` varchar(50) DEFAULT NULL
+  `CEF` varchar(50) DEFAULT NULL,
+  `justifier` varchar(20) NOT NULL DEFAULT 'no'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `absence`
 --
 
-INSERT INTO `absence` (`idAbsence`, `dateAbsence`, `heureDebutAbsence`, `heureFinAbsence`, `moduleAbsence`, `matricule`, `type`, `idAnnee`, `idFiliere`, `idGroupe`, `idAnneeScolaire`, `CEF`) VALUES
-(19, '2022-11-11', '06:37:00', '17:31:00', 'React', '1', 'absence', 2, 15, 47, 1, '2000121600314'),
-(20, '2022-11-10', '06:38:00', '06:38:00', 'PHP', '2', 'absence', 2, 15, 47, 1, '2000121600314'),
-(21, '2022-11-11', '08:27:00', '10:27:00', 'LMAO', '2', 'absence', 1, 13, 41, 1, '199211260144'),
-(22, '2022-11-12', '02:16:00', '14:16:00', 'LMAO', '1', 'absence', 1, 13, 41, 1, '199211260144');
+INSERT INTO `absence` (`idAbsence`, `dateAbsence`, `heureDebutAbsence`, `heureFinAbsence`, `moduleAbsence`, `matricule`, `type`, `idAnnee`, `idFiliere`, `idGroupe`, `idAnneeScolaire`, `CEF`, `justifier`) VALUES
+(19, '2022-11-11', '06:37:00', '17:31:00', 'React', '1', 'absence', 2, 15, 47, 1, '2000121600314', 'oui'),
+(20, '2022-11-10', '06:38:00', '06:38:00', 'PHP', '2', 'absence', 2, 15, 47, 1, '2000121600314', 'no'),
+(21, '2022-11-11', '08:27:00', '10:27:00', 'LMAO', '2', 'absence', 1, 13, 41, 1, '199211260144', 'no'),
+(22, '2022-11-12', '02:16:00', '14:16:00', 'LMAO', '1', 'absence', 1, 13, 41, 1, '199211260144', 'no');
 
 -- --------------------------------------------------------
 
@@ -255,6 +256,28 @@ CREATE TABLE `justifierabsence` (
   `idAbsence` int(11) NOT NULL,
   `Justifie_motif` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `justifierabsence`
+--
+
+INSERT INTO `justifierabsence` (`idAbsence`, `Justifie_motif`) VALUES
+(19, 'wow oui ');
+
+--
+-- Triggers `justifierabsence`
+--
+DELIMITER $$
+CREATE TRIGGER `trigger_justifier_after` AFTER INSERT ON `justifierabsence` FOR EACH ROW BEGIN
+    UPDATE
+        absence
+    SET
+        absence.justifier = "oui"
+    WHERE
+        absence.idAbsence = NEW.idAbsence;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
