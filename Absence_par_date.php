@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dateAbsence = $_POST["date-sent"];
         $sql = "SELECT a.CEF ,s.nomStagiaire,s.prenomStagiaire,f.nomFormateur ,a.type,a.heureDebutAbsence
         ,a.heureFinAbsence,a.idAbsence,moduleAbsence,g.nomGroupe from absence a ,groupe g ,stagiaire s , 
-        formateur f where s.CEF=a.CEF and a.matricule=f.matricule and a.idGroupe=g.idGroupe and a.dateAbsence=? and a.type=?";
+        formateur f where s.CEF=a.CEF and a.matricule=f.matricule and a.idGroupe=g.idGroupe and a.dateAbsence=? and a.type=? and a.justifier = 'no' ";
         $pdo_statement = $conn->prepare($sql);
         $pdo_statement->bindParam(1, $dateAbsence);
         $pdo_statement->bindParam(2, $type);
