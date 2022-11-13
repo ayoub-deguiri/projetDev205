@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo_statement->bindParam(1, $_SESSION["groupe"]);
         $pdo_statement->execute();
         $group = $pdo_statement->fetch();
+        $_SESSION["nomGroupe"] = $group['nomGroupe'];
         // get Respo
         $respo = "";
         $sql = "SELECT user FROM compte";
@@ -209,7 +210,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="test.php" id='table-form' method="post">
             <?php
             if (empty($Stagiaires)) {
-                echo "<div class='first-msg'>" . "<span>&#8592;</span>" . " Veuillez sélectionner un groupe " . "<di>";
+                echo "<div class='first-msg'>" . "<span>&#8592;</span>" . " Veuillez sélectionner un groupe " . "</div>";
             } else {
             ?>
             <table>
@@ -278,7 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="ajoute-valider">
         <div class="ajoute">
-            <a href="#"><img src="./images/plus-circle.svg" alt="">
+            <a href="ajouterStagiaire.php"><img src="./images/plus-circle.svg" alt="">
                 <p>Ajouter</p>
             </a>
 
