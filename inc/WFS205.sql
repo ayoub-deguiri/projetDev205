@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2022 at 12:58 AM
+-- Generation Time: Nov 14, 2022 at 12:54 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -22,6 +22,25 @@ SET time_zone = "+00:00";
 --
 
 DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Delete_Stagiaire_From_Group` (IN `CEFIN` VARCHAR(50))   BEGIN
+	IF EXISTS ( SELECT CEF FROM stagiaire WHERE stagiaire.CEF = CEFIN ) THEN
+        UPDATE stagiaire SET stagiaire.idGroupe = NULL WHERE stagiaire.CEF = CEFIN;
+        IF EXISTS ( SELECT * FROM compte WHERE compte.user = CEFIN ) THEN
+            DELETE FROM `compte` WHERE compte.user = CEFIN;
+            END IF;
+     END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Update_Groupe_Respo` (IN `oldrespo` VARCHAR(50), IN `newrespo` VARCHAR(50))   BEGIN
+	if EXISTS (SELECT user from compte where compte.user = oldrespo) THEN
+    	DELETE FROM `compte` WHERE compte.user = oldrespo;
+    END IF ;
+   	INSERT INTO `compte`(`user`, `password`, `compteType`) VALUES (newrespo,newrespo,"stagiaire");
+END$$
+
 --
 -- Functions
 --
@@ -136,7 +155,8 @@ CREATE TABLE `compte` (
 
 INSERT INTO `compte` (`user`, `password`, `compteType`) VALUES
 ('199211260144', '123', 'stagiaire'),
-('2000121600314', '123', 'stagiaire'),
+('1993030100110', '1993030100110', 'stagiaire'),
+('2000121600314', '2000121600314', 'stagiaire'),
 ('admin', 'admin', 'serveillant'),
 ('directrice', 'directrice', 'directrice');
 
@@ -262,7 +282,7 @@ CREATE TABLE `justifierabsence` (
 --
 
 INSERT INTO `justifierabsence` (`idAbsence`, `Justifie_motif`) VALUES
-(19, 'wow oui ');
+(19, 'chahada tibiya');
 
 --
 -- Triggers `justifierabsence`
@@ -300,7 +320,7 @@ CREATE TABLE `stagiaire` (
   `CEF` varchar(50) NOT NULL,
   `nomStagiaire` varchar(60) NOT NULL,
   `prenomStagiaire` varchar(60) NOT NULL,
-  `idGroupe` int(11) NOT NULL
+  `idGroupe` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
