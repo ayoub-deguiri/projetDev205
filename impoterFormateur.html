@@ -63,7 +63,7 @@
         </form>
         </div>
         
-        <div class="listeEtudiants">
+        <div class="listeFormateur">
             <table>
                 <tr>
                     
@@ -127,7 +127,17 @@
 
 
     </main>
-
+    
+        <div class="ajoute">
+        <a href="#" ><img src="./images/plus-circle.svg" alt="">
+            
+            <p>Ajouter</p>
+            </a>
+            
+        </div>
+        
+        </form>
+    
     <footer>
         <p>© Copyright | DevWFS205 |2022</p>
     </footer>
@@ -141,7 +151,7 @@
         if(file.value=='')
         {
             etat =false
-            lbimport.innerHTML="Veuillez vérifier votre fichier d'importation"
+            lbimport.innerHTML='Veuillez vérifier votre fichier d'importation '
         }
         else{
             etat =true

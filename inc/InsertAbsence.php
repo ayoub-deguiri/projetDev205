@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $state = $pdo_statement->fetch();
         // var_dump($stats);
         if ($state['state'] === -1) {
-            header('location:./../responsable.php?errormsg="veuillez vérifier le code du formatuer"');
+            header('location:./../responsable.php?errormsg="veuillez vérifier le code du formateur"');
         } else {
             foreach ($result as $cef) {
                 $error = 1;
