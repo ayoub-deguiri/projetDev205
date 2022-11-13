@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" media="screen" href="./styles/modifierFormateur.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="logoOfppt">
+        <img src="./images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt" />
+      </div>
+      <div class="logoApp">
+        <img src="./images/logoApp.png" alt="logo" class="logoApp" />
+      </div>
+      <div class="déconnexion">
+        <button type="button" id="Déconnexion">
+          <a href="./logout.php">Déconnexion</a>
+        </button>
+      </div>
+    </header>
+    <nav>
+        <ul>
+          <li>
+              <a href=""><button ><i class="fa fa-home" aria-hidden="true"></i>ACCUEIL</button></a>
+          </li>
+          <li>
+              <a href="#"><button><i class="fa fa-pencil-square" aria-hidden="true"></i>MODIFIER</button></a> 
+          </li>
+          <li>
+              <a href=""><button><i class="fa fa-calendar-times-o" aria-hidden="true"></i>ABSENCE</button></a>
+              <ul>
+                  <li><a href=""><button>Affichage</button></a></li>
+                  <li><a href=""><button>Saisir</button></a></li>
+              </ul>
+          </li>
+          <li>  
+              <a href=""><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
+          </li>
+          <li>  
+              <a href="#"><button ><i class="fa fa-plus-circle" aria-hidden="true"></i>AJOUTER</button></a>
+          </li>
+        </ul>
+      </nav>
+      <main>
+       
+        <form id="form">
+            <table>
+                <tr>
+                    <td><label for="cef" id="label">Matricule:</label></td>
+                    <td><input type="text" id="cef" required /></td>
+                </tr>
+                <tr><td><div id="error"></div></td></tr>
+                <tr>
+                    <td><label for="nom" id="label">Nom:</label></td>
+                    <td><input type="text" id="nom" required /></td>
+                </tr>
+                <tr><td><div id="error2"></div></td></tr>
+                <tr>
+                    <td><label for="prenom" id="label">Prenom:</label></td>
+                    <td><input type="text" id="prenom" required /></td>
+                </tr>
+                <tr><td><div id="error3"></div></td></tr>
+                <tr>
+                    <td><button id="btn">Valider</button></td>
+                </tr>
+               
+               
+
+            </table>
+        </form>
+
+      </main>
+     <footer>
+        <p>© Copyright | DevWFS205 |2022</p>
+     </footer>
+
+     <!-- <script src="./scripts/modifierFormateur.js"></script> -->
+</body>
+</html>
