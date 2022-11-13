@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <p>© Copyright | DevWFS205 |2022</p>
   </footer>
 
-  <script src="./scripts/modification.js"></script>
+  <script src="./scripts/AjouterStagaire.js"></script>
 </body>
 
 </html>
