@@ -176,6 +176,10 @@ $resultfinale = $pdo_statement->fetchALL();
                                     errorgenral = 0
                                 }
                             })
+                        } else {
+                            $('#tr-' + i).css({
+                                "color": "black",
+                            });
                         }
                     }
                     if (errorgenral == 0 && $("$date") != "" && $("#formateur") != "" && $("#module") != "") {

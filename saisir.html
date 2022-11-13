@@ -2,24 +2,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" media="screen" href="./styles/StyleSaisir.css">
-    <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
-    <title> Saisir </title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-    <script src="./scripts/mainSaisir.js">  </script>
-  
-</head>
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" media="screen" href="./styles/StyleSaisir.css">
+        <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
+        <title> Saisir </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+            integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+        <script src="./scripts/mainSaisir.js">  </script>
+      
+    </head>
 
 <body>
     <header>
@@ -62,23 +65,27 @@
                 <ul>
                     <li> <label for="année-scolaire">année scolaire</label></li>
                 
-                    <li><select name="annee-Scolaire" id="année-scolaire">
+                    <li><select name="annee-Scolaire" id="année-scolaire" required>
                            
-                           
-                           
+
                         </select>
                     </li>
                     <li> <label for="année">année</label></li>
                     <li>
-                        <select id="année" name="annee" required></select>
+                        <select id="année" name="annee" required>
+                        </select>
                     </li>
                     <li> <label for="filier">filière</label></li>
                     <li>
-                        <select id="filiére" name="filiere" required></select>
+                        <select id="filiére" name="filiere" required>
+
+                        </select>
                     </li>
                     <li> <label for="">groupe</label></li>
                     <li>
-                        <select id="groupe" name="groupe" required></select>
+                        <select id="groupe" name="groupe" required>
+
+                        </select>
                     </li>
                     <li><input type="submit" name="AjaxValider" value="valider" id="valider"
                            > </li>
@@ -127,8 +134,8 @@
                     <td> </td>
                     <td> </td>
                     <td> </td>
-                    <td> <input type="radio" name="absence" id="absence"></td>
-                    <td> <input type="radio" name="retard" id="retard"></td>
+                    <td> <input type="checkbox" name="absence" id="absence"></td>
+                    <td> <input type="checkbox" name="retard" id="retard"></td>
                     <td> </td>
                     <td> </td>
 
@@ -154,7 +161,7 @@
 
         </div>
         <div class="valider">
-            <input type="submit" value="valider" id="valider-responsable" >
+            <input type="submit" value="valider" onclick="CheckBox(event)" id="valider-responsable" >
         </div>
         </form>
     </div>

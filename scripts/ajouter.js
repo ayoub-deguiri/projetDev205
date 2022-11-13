@@ -18,17 +18,16 @@ function infos() {
     div.innerHTML = "";
     for (let i = 1; i <= parseInt(Nombre.value); i++) {
       div.innerHTML += `
-    <div>
-        <label id='color' for='NG'> N.G :</label>
-        <input type='text' name='NG' id='NG'>
-        <input type='file' name='file-${i}'  required>
-        <label for="file" id='buttonPhoto'>importer</label>
-    </div>
+      <div>
+          <label id='color' for='NG'> N.G :</label>
+          <input type='text' name='NG' id='NG'>
+          <div class='buttonPhoto'>
+            <input type='file'  name='file-${i}' id='buttonPhoto' required>
+          </div>
+      </div>
 `;
     }
-    document.getElementById("btnvalider").style.display = "block";
-    document.getElementById("valider").style.display = "block";
     document.getElementById("form").style.display = "block";
+    document.getElementById("valider").style.display = "block";
   }
 }
-

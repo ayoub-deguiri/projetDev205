@@ -43,7 +43,7 @@ header {
 .logoApp {
     margin-right: -5%;
     height: 100px;
-    width: 100px;
+    width: 140px;
 
 }
 
@@ -208,7 +208,7 @@ form {
     border-collapse: collapse;
     background-color: var(--color4);
     box-shadow: 3px 2px 4px 6px rgb(176, 176, 176);
-    width: 280px;
+    width: 300px;
     border-radius: 4%;
     height: 263px;
     margin-left: 18px;

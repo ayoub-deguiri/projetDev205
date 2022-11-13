@@ -10,8 +10,16 @@
     --color2:#155A93;
     --color3:#D8E6EA;
     --color4:#ffffff;
-    --color5:rgb(203, 230, 230);
 }
+body{
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+  body::-webkit-scrollbar {
+      display: none;
+  }
 /*---------------------------- header --------------------------------*/
 header{
     display:flex;
@@ -85,15 +93,113 @@ a{
     }
 }
 
-    /*---------------------------footer--------------------------------*/
-footer {
+/*------------------------------------------------------------------*/
+
+main{
     display: flex;
-    margin-top: 50px;
-    background-color: var( --color2);
+    justify-content: center;
+    width: 100%;
+    margin-top: -20px;
+    
+   
+    
+}
+
+body{
+    height: 100%;
+    background-color: var(--color3);
+
+}
+html{
+    height: 100%;
+}
+.titre
+{
+    text-align: center;
+    padding: 50px;
+    font-size: 30px;
+    color: #155A93;
+   
+
+
+}
+table{
+
+    box-shadow: 10px 10px 8px rgb(147, 147, 147);
+    background-color: rgb(232, 236, 239);
+    width: 95%;
+    
+
+    
+}
+
+table ,th ,td{ 
+   margin: auto;
+   font-size: 20px;
+   text-align: center;
+   border:2px solid black ;
+   border-collapse:collapse;
+   padding: 5px;
+  
+}
+
+
+table th{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight:900;
+    text-align: center;
+    height:10px;
+    width:150px; 
+    color: var(--color2);
+}
+table td{
+    font: weight 50px;
+    font-size: 20px;
+
+    
+
+}
+.commentaire
+{
+    outline: none;
+    background-color: #D8E6EA;
+    border: none;
+}
+.valider input{
+    border: none;
+    border-radius: 30px;
+    text-align: center;
+    width: 190px;
+    font-size: 25px;
+    color: var(--color4);
+    padding: 5px 0px;
+    margin :30px 70px;
+    background-color: var(--color1);
+    cursor: pointer;
+    transition: 0.5s;
+    float:right;
+    margin-top: 5%;
+}
+
+.valider input:hover{
+
+
+   
+    padding: 4px ;
+    width: 145px;
+    background-color: var(--color2);
+
+}
+
+    /*---------------------------footer--------------------------------*/
+   footer {
+    display: flex;
+    margin-top: 20vh;
+    background-color: var(--color2);
     justify-content: center;
     align-items: center;
+
     color: white;
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -102,10 +208,6 @@ footer {
 
 footer p {
     font-size: 20px;
-}
-/*________________ body ______________________*/
-body{
-    background-color: var(--color5);
 }
 /*--------------------------navbar---------------------------*/
 nav{
@@ -157,86 +259,3 @@ nav{
      display: flex;
      height:50px;
  }
- /*----------------------------- SELECT DATE------------------------------*/
-
- table {
-    max-width: 360px;
-    border-radius: 5px;
-    padding: 20px;
-    position: relative;
-    margin: 10px auto 0;
-    justify-content: center;
-  }
-  
-#date{
-    width: 160px;
-    background-color:var( --color1);
-    color: white;  
-    border: 1px solid black;
-    border-radius: 25px;
-    float: left;
-    margin-left: 60px;
-    font-size: larger;
-    position: relative;
-    top: 20px;
-    height: 33px;
-    text-align: center;
-  }
-  label {
-
-    color:var( --color2);
-    font-size:larger;
-    font-weight: bolder;
-    position: relative;
-    top: 20px;
-    
-  }
-  /************************* CHART *****************************/
-   #myChart{
-    max-width: 500px;
-    padding: 20px;
-    position: relative;
-    margin: 10px auto 0;
-    justify-content: center;
-   }
-   /**********************************************************/
-
-   /*-----------------------BUTTON---------------------------*/
-  #absence,#retard{
-    cursor: pointer;
-    border-radius: 10px;
-    width:120px;
-    height: 32px;
-    position: relative;
-    top:20px;
-    color: #155A93;
-    border: 2px solid gray;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow',italic;
-}
-#absence{
-    float:right;
-    margin-right: 38%;
-
-}
-#retard{
-    float:left;
-    margin-left: 38%;
-}
-#absence:hover,#retard:hover{
-    background-color: white;
-    color: var(--color1);
-
-}
-
-  
-   
-    
- 
-
-
-
-   

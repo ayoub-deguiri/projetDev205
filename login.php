@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       header('location:./accueil-directrice.php');
     } elseif ($result['compteType'] == 'serveillant') {
       $_SESSION['compteType'] = $result['compteType'];
-      header('location:./Accueil-serveillant.html');
+      header('location:./Accueil-serveillant.php');
     }
   }
 }
