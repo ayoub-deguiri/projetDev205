@@ -14,19 +14,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["groupe"] = $_POST["groupe"];
 
         // get all Stagiaire 
-        $sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where idGroupe in 
-        (select idGroupe from groupe where idGroupe= ? and idFiliere in ( select idFiliere from filiere where 
-        idFiliere=? and idAnnee in 
-        (select idAnnee from annee where idAnnee=? and idAnneeScolaire in 
-        (select idAnneeScolaire from anneescolaire where idAnneeScolaire=?)
-        )))";
+        $sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where idGroupe = ?";
         $pdo_statement = $conn->prepare($sql);
         $pdo_statement->bindParam(1, $_SESSION["groupe"]);
-        $pdo_statement->bindParam(2, $_SESSION["filiere"]);
-        $pdo_statement->bindParam(3, $_SESSION["annee"]);
-        $pdo_statement->bindParam(4, $_SESSION["anneeScolaire"]);
         $pdo_statement->execute();
         $Stagiaires = $pdo_statement->fetchAll();
+        // $sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where idGroupe in 
+        // (select idGroupe from groupe where idGroupe= ? and idFiliere in ( select idFiliere from filiere where 
+        // idFiliere=? and idAnnee in 
+        // (select idAnnee from annee where idAnnee=? and idAnneeScolaire in 
+        // (select idAnneeScolaire from anneescolaire where idAnneeScolaire=?)
+        // )))";
+        // $pdo_statement = $conn->prepare($sql);
+        // $pdo_statement->bindParam(1, $_SESSION["groupe"]);
+        // $pdo_statement->bindParam(2, $_SESSION["filiere"]);
+        // $pdo_statement->bindParam(3, $_SESSION["annee"]);
+        // $pdo_statement->bindParam(4, $_SESSION["anneeScolaire"]);
+        // $pdo_statement->execute();
+        // $Stagiaires = $pdo_statement->fetchAll();
         // get group name 
         $sql = "SELECT nomGroupe from groupe where idGroupe = ?";
         $pdo_statement = $conn->prepare($sql);
@@ -121,8 +126,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     alert("Choisissez s'il vous plaît  un groupe")
                 }
             })
-        });
-
+            // count var
+            const countrow = parseInt($('#trcount').val())
+            // ajax for update Respo
+            for (i = 1; i <= countrow; i++) {
+                $("#tr-" + i + " input[type=radio]").on("click", function () {
+                    let newRespo = $(this).val()
+                    let oldRespo = $("#oldResponsable").val()
+                    if (newRespo != "") {
+                        $.post({
+                            url: './inc/UpdateRespo.php',
+                            data: { newRespo: newRespo, oldRespo: oldRespo },
+                            success: function (data) {
+                                $("#success-update").html(data)
+                            }
+                        });
+                    }
+                })
+            }
+            // ajax for Delete Stagiaire
+            for (i = 1; i <= countrow; i++) {
+                $("#tr-" + i + " button").on("click", function (ev) {
+                    ev.preventDefault()
+                    const CEF = $(this).val()
+                    alert("clicked ")
+                    if (CEF) {
+                        $.post({
+                            url: './inc/DeleteStagiaire.php',
+                            data: { CEF: CEF },
+                            success: function (data) {
+                                $("#success-delete").html(data)
+                            }
+                        });
+                    }
+                })
+            }
+        })
     </script>
 </head>
 
@@ -141,20 +180,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <nav>
         <ul>
             <li>
-                <a href="#"><button><i class="fa fa-home" aria-hidden="true"></i>ACCUEIL</button></a>
+                <a href="./Accueil-serveillant.php"><button><i class="fa fa-home"
+                            aria-hidden="true"></i>ACCUEIL</button></a>
             </li>
             <li>
-                <a href="#"><button><i class="fa fa-pencil-square" aria-hidden="true"></i>MODIFIER</button></a>
+                <a href=""><button><i class="fa fa-pencil-square" aria-hidden="true"></i>MODIFIER</button></a>
             </li>
             <li>
                 <a href="#"><button><i class="fa fa-calendar-times-o" aria-hidden="true"></i>ABSENCE</button></a>
                 <ul>
-                    <li><a href="#"><button>Affichage</button></a></li>
-                    <li><a href="#"><button>Saisir</button></a></li>
+                    <li><a href="./Affichage-surveillant.html"><button>Affichage</button></a></li>
+                    <li><a href="./saisir.html"><button>Saisir</button></a></li>
                 </ul>
             </li>
             <li>
-                <a href="#"><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
+                <a href="./note.html"><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
             </li>
             <li>
                 <a href="#"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>AJOUTER</button></a>
@@ -206,7 +246,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <!-- Main Table -->
     <div class="listeEtudiants">
-        <form action="test.php" id='table-form' method="post">
+        <form id='table-form'>
             <?php
             if (empty($Stagiaires)) {
                 echo "<div class='first-msg'>" . "<span>&#8592;</span>" . " Veuillez sélectionner un groupe " . "<di>";
@@ -225,6 +265,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <th>supprimer</th>
                 </tr>
                 <?php
+
                 foreach ($Stagiaires as $row) {
                     $c = 1;
                 ?>
@@ -245,21 +286,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php
                     if ($row['CEF'] == $respo) {
                         ?>
-                        <input type="radio" name="responsable" id="responsable" checked class="radiobtn">
+                        <input type="radio" name="respo" value="<?= $row['CEF'] ?>" id="oldResponsable" checked
+                            class="radiobtn">
                         <?php
                     } else {
                         ?>
-                        <input type="radio" name="responsable" id="responsable" class="radiobtn">
+                        <input type="radio" name="respo" value="<?= $row['CEF'] ?>" id="responsable" class="radiobtn">
                         <?php
                     }
                         ?>
                     </td>
-                    <td><a href="#"> <img src="./images/trash.svg" id='trash' alt=""></a> </td>
+                    <td>
+                        <button class="btn-click" value="<?= $row['CEF'] ?>"><img src="./images/trash-2.svg" id='trash'
+                                alt="Delete"></button>
+                    </td>
                 </tr>
                 <?php
                 }
             }
                 ?>
+                <input type="hidden" id="trcount" value="<?= $c ?>" />
             </table>
     </div>
     </main>
@@ -278,35 +324,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="ajoute-valider">
         <div class="ajoute">
-            <a href="#"><img src="./images/plus-circle.svg" alt="">
+            <a href="./AjouterStagiaire.html?idgrp=<?= $_SESSION["groupe"] ?>"><img src="./images/plus-circle.svg"
+                    alt="">
                 <p>Ajouter</p>
             </a>
-
-        </div>
-        <div class="valider">
-            <input type="submit" value="valider" id="valider-responsable" onclick="return btnr()">
         </div>
         </form>
     </div>
-
+    <input type="hidden" id="success-update"></input>
+    <input type="hidden" id="success-delete"></input>
     <footer>
         <p>© Copyright | DevWFS205 |2022</p>
     </footer>
-
-
-
-    <script>
-
-        var radiobtn = document.getElementsByClassName('radiobtn')
-        function btnr() {
-            var etat = false;
-            for (let i = 0; i < radiobtn.length; i++) {
-                if (radiobtn[i].checked == true)
-                    etat = true
-            }
-            return etat
-        }
-    </script>
 </body>
 
 </html>
