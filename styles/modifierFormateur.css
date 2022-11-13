@@ -194,11 +194,12 @@ nav{
     align-items: center;
 }
  input[type=text]{
-    border-radius: 10px;
-    padding:5px 10px;
-    margin:10px;
-    outline: none;
-    border: 2px solid black;;
+    border-radius: 15px;
+    padding: 5px 10px;
+    margin:8px;
+    background-color: rgb(232, 236, 239);
+    border: 2.3px solid black;
+    padding-right: 10%;
  }
 
  #label{
@@ -206,6 +207,7 @@ nav{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     font-style: normal;
+    margin-left: 27%;
  }
 
  body{
