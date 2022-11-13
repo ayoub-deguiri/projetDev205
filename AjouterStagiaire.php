@@ -1,3 +1,25 @@
+<?php
+include('inc/db.php');
+session_start();
+// $_SESSION["groupe"];
+
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    if(isset($_POST['valider'])){
+        $sql="INSERT INTO stagiaire  VALUES (?,?,?,?)";
+        $pdo_statement=$conn->prepare($sql);
+        $pdo_statement->bindParam(1,$_POST['cef']);
+        $pdo_statement->bindParam(2,$_POST['nom']);
+        $pdo_statement->bindParam(3,$_POST['prenom']);
+        $pdo_statement->bindParam(4,$_SESSION["groupe"]);
+
+        $pdo_statement->execute();
+        header("location:Modifier-Stagiaire.php");
+
+
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,28 +70,29 @@
           </li>
         </ul>
       </nav>
-      <h1 id="title">DEV 205</h1>
+      <h1 id="title"><?= $_SESSION['nomGroupe']?></h1>
+
       <main>
        
-        <form id="form">
+        <form id="form" method="POST">
             <table>
                 <tr>
                     <td><label for="cef" id="label">CEF:</label></td>
-                    <td><input type="text" id="cef"/></td>
+                    <td><input type="text" id="cef" name="cef"/></td>
                 </tr>
                 <tr><td><div id="error"></div></td></tr>
                 <tr>
                     <td><label for="nom" id="label">Nom:</label></td>
-                    <td><input type="text" id="nom"/></td>
+                    <td><input type="text" id="nom" name="nom"/></td>
                 </tr>
                 <tr><td><div id="error2"></div></td></tr>
                 <tr>
                     <td for="prenom" id="label">Prenom:</td>
-                    <td><input type="text" id="prenom"/></td>
+                    <td><input type="text" id="prenom" name="prenom"/></td>
                 </tr>
                 <tr><td><div id="error3"></div></td></tr>
                 <tr>
-                    <td><button id="btn">Valider</button></td>
+                    <td><input type="submit" id= "btn" value = "valider" name="valider"></td>
                 </tr>
                
                
