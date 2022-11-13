@@ -150,7 +150,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $("#tr-" + i + " button").on("click", function (ev) {
                     ev.preventDefault()
                     const CEF = $(this).val()
-                    alert("clicked ")
                     if (CEF) {
                         $.post({
                             url: './inc/DeleteStagiaire.php',
