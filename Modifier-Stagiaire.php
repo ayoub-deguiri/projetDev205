@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo_statement->bindParam(1, $_SESSION["groupe"]);
         $pdo_statement->execute();
         $Stagiaires = $pdo_statement->fetchAll();
+        // get group name
         $sql = "SELECT nomGroupe from groupe where idGroupe = ?";
         $pdo_statement = $conn->prepare($sql);
         $pdo_statement->bindParam(1, $_SESSION["groupe"]);
@@ -260,10 +261,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?= $row["CEF"] ?>
                     </td>
                     <td>
-                        <?= $row['prenomStagiaire'] ?>
+                        <?= $row['nomStagiaire'] ?>
+
                     </td>
                     <td>
-                        <?= $row['nomStagiaire'] ?>
+                        <?= $row['prenomStagiaire'] ?>
                     </td>
                     <td>
                         <input type="button" value="Info" data-id='<?php echo $row['CEF']; ?>' class="details" />
