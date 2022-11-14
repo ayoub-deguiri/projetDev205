@@ -26,8 +26,8 @@ $resultfinale = $pdo_statement->fetchALL();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>responsable </title>
- <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
-    
+    <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
+
     <link rel="stylesheet" href="./styles/styleResponsable.css">
     <script src="./scripts/jquery-3.6.1.min.js"></script>
     <script>
@@ -80,7 +80,7 @@ $resultfinale = $pdo_statement->fetchALL();
                         });
                     }
                 }
-                if (errorgenral == 0 && $("$date").val() != "" && $("#formateur").val() != "" && $("#module").val() != "") {
+                if (errorgenral == 0) {
                     alert("Enregistré avec succès")
                 } else {
                     e.preventDefault()
@@ -131,7 +131,7 @@ $resultfinale = $pdo_statement->fetchALL();
                             $pdo_statement->execute();
                             $formateur = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
                             ?>
-                            Formateur : <select required class="selectFormateur" name="formateur" id="search">
+                            Formateur : <select required class="selectFormateur" name="formateur" id="formateur">
                                 <option value="" disabled selected class="first-option">Formateur</option>
                                 <?php
                                 if (isset($formateur)) {

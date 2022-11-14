@@ -296,6 +296,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="hidden" id="trcount" value="<?= $c ?>" />
             </table>
     </div>
+    <!-- Main Table -->
     </main>
     </div>
     <div id="myModal" class="modal" role="dialog">
