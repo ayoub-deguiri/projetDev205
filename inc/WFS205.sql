@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 12:54 AM
+-- Generation Time: Nov 14, 2022 at 03:26 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -54,7 +54,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `check_formatuer` (`datain` VARCHAR(5
     RETURN  state;
 END$$
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `Get_CountAbs_Date` (`datein` DATE, `typein` VARCHAR(20)) RETURNS INT(11)  BEGIN
+CREATE DEFINER=`root`@`localhost` FUNCTION `Get_CountAbs_Date` (`datein` DATE, `typein` VARCHAR(20)) RETURNS INT(11) READS SQL DATA BEGIN
 	DECLARE nbr int ;
     if exists (select dateAbsence from absence where absence.dateAbsence = datein) then
 		set nbr =(SELECT COUNT(idAbsence) FROM absence where dateAbsence = datein and type = typein and justifier = "no");
@@ -96,7 +96,13 @@ INSERT INTO `absence` (`idAbsence`, `dateAbsence`, `heureDebutAbsence`, `heureFi
 (19, '2022-11-11', '06:37:00', '17:31:00', 'React', '1', 'absence', 2, 15, 47, 1, '2000121600314', 'oui'),
 (20, '2022-11-10', '06:38:00', '06:38:00', 'PHP', '2', 'absence', 2, 15, 47, 1, '2000121600314', 'no'),
 (21, '2022-11-11', '08:27:00', '10:27:00', 'LMAO', '2', 'absence', 1, 13, 41, 1, '199211260144', 'no'),
-(22, '2022-11-12', '02:16:00', '14:16:00', 'LMAO', '1', 'absence', 1, 13, 41, 1, '199211260144', 'no');
+(22, '2022-11-12', '02:16:00', '14:16:00', 'LMAO', '1', 'absence', 1, 13, 41, 1, '199211260144', 'no'),
+(27, '2022-11-14', '12:00:00', '12:00:00', 'k', '2', 'retard', 1, 13, 41, 1, '199211260144', 'no'),
+(28, '2022-11-15', '10:09:00', '04:09:00', 'LOL', '1', 'absence', 1, 13, 41, 1, '199211260144', 'no'),
+(29, '2022-11-09', '14:44:00', '14:44:00', 'test', '2', 'retard', 1, 13, 41, 1, '199211260144', 'no'),
+(30, '2022-11-15', '14:44:00', '14:44:00', 'lkkkkk', '2', 'retard', 1, 13, 41, 1, '199211260144', 'no'),
+(31, '2022-11-14', '14:45:00', '14:45:00', 'lkl', '2', 'retard', 1, 13, 41, 1, '199211260144', 'no'),
+(32, '2022-11-13', '14:46:00', '02:46:00', 'LMAOjj', '1', 'absence', 1, 13, 41, 1, '199211260144', 'no');
 
 -- --------------------------------------------------------
 
@@ -1361,7 +1367,7 @@ ALTER TABLE `stagiaire`
 -- AUTO_INCREMENT for table `absence`
 --
 ALTER TABLE `absence`
-  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `annee`
