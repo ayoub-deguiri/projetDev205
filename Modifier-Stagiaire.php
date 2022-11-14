@@ -19,20 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo_statement->bindParam(1, $_SESSION["groupe"]);
         $pdo_statement->execute();
         $Stagiaires = $pdo_statement->fetchAll();
-        // $sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where idGroupe in 
-        // (select idGroupe from groupe where idGroupe= ? and idFiliere in ( select idFiliere from filiere where 
-        // idFiliere=? and idAnnee in 
-        // (select idAnnee from annee where idAnnee=? and idAnneeScolaire in 
-        // (select idAnneeScolaire from anneescolaire where idAnneeScolaire=?)
-        // )))";
-        // $pdo_statement = $conn->prepare($sql);
-        // $pdo_statement->bindParam(1, $_SESSION["groupe"]);
-        // $pdo_statement->bindParam(2, $_SESSION["filiere"]);
-        // $pdo_statement->bindParam(3, $_SESSION["annee"]);
-        // $pdo_statement->bindParam(4, $_SESSION["anneeScolaire"]);
-        // $pdo_statement->execute();
-        // $Stagiaires = $pdo_statement->fetchAll();
-        // get group name 
         $sql = "SELECT nomGroupe from groupe where idGroupe = ?";
         $pdo_statement = $conn->prepare($sql);
         $pdo_statement->bindParam(1, $_SESSION["groupe"]);
