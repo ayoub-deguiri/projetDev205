@@ -1,11 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
-
 $password = "";
 $db = "wfs205";
-
-
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
     // set the PDO error mode to exception
