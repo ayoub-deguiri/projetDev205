@@ -1,9 +1,10 @@
 <?php
 include_once('inc/db.php');
 session_start();
-// if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
-// 	header('location:./login.php');
-// }
+$NomGrp = "";
+if (empty($_SESSION) or $_SESSION['compteType'] != "serveillant") {
+    header('location:./login.php');
+}
 ?>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,10 +13,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["annee"] = $_POST["annee"];
         $_SESSION["filiere"] = $_POST["filiere"];
         $_SESSION["groupe"] = $_POST["groupe"];
-        // get all Stagiaire 
+       
+        $idGroupeV = $_SESSION["groupe"];
+
+       
+        $sql = "SELECT CEF,nomStagiaire,prenomStagiaire FROM stagiaire WHERE idGroupe = ? ";
+        $pdo_statement = $conn->prepare($sql);
+        $pdo_statement->bindParam(1, $idGroupeV);
+        $pdo_statement->execute();
+        $result = $pdo_statement->fetchall();
+
+        $sql = 'SELECT nomGroupe from groupe where idGroupe= ? ';
+        $pdo_statement = $conn->prepare($sql);
+        $pdo_statement->bindParam(1, $idGroupeV);
+        $pdo_statement->execute();
+        $NomGrp = $pdo_statement->fetch();
     }
 }
+// fetching all the Formateurs 
+$sql = "SELECT Matricule,nomFormateur,prenomFormateur from formateur ";
+$pdo_statement = $conn->prepare($sql);
+$pdo_statement->execute();
+$Formateurs = $pdo_statement->fetchAll();
+
+
+
+
+// $sql2 = "SELECT * FROM stagiaire WHERE idGroupe =$idgrp";
+// $pdo_statement = $conn->prepare($sql2);
+// $pdo_statement->execute();
+// $resultfinale = $pdo_statement->fetchALL();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" media="screen" href="./styles/StyleSaisir.css">
-     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <title> Saisir </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
@@ -164,13 +193,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="responsable">
                 <div>
                     date
-                    <select name="date" id="date"></select>
+                    <!-- <select name="date" id="date"></select> -->
+                    <input type="date" name="" id="">
 
 
                 </div>
                 <div>
                     formateur
-                    <select name="formateur" id="formateur"></select>
+                    <select name="formateur" id="formateur">
+                        <option value="" disabled selected>Choisir Formateur</option>
+                        <?php
+                        if (isset($Formateurs)) {
+                            foreach ($Formateurs as $row) {
+                        ?>
+                                <option value="<?= $row['Matricule'] ?>">
+                                    <?= $row['nomFormateur'] ?> <?= $row['prenomFormateur'] ?>
+                                </option>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </select>
 
 
 
@@ -178,13 +221,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div>
                     module
-                    <select name="module" id="module"></select>
+                    <!-- <select name="module" id="module"></select> -->
+                    <input type="text" name="" id="" placeholder="Saisir le nom module">
 
 
                 </div>
             </div>
             <table>
-                <caption> Nom Groupe :
+                <caption> Nom Groupe : <?php echo $NomGrp["nomGroupe"] ?>
 
                 </caption>
                 <tr>
@@ -196,37 +240,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <th>Heure debut </th>
                     <th>Heure Fin </th>
                 </tr>
+                <?php
+                if (isset($result)) {
+                    foreach ($result as $row) {
+                ?>
+                        <tr>
+                            <td><?= $row['CEF'] ?> </td>
+                            <td><?= $row['nomStagiaire'] ?></td>
+                            <td> <?= $row['prenomStagiaire'] ?></td>
+                            <td> <input type="checkbox" name="absence" id="absence"></td>
+                            <td> <input type="checkbox" name="retard" id="retard"></td>
+                            <td> <input type="time" name="heureDebut" id="heureDebut" /> </td>
+                            <td> <input type="time" name="heureFin" id="heureFin" /> </td>
 
-                <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> <input type="checkbox" name="absence" id="absence"></td>
-                    <td> <input type="checkbox" name="retard" id="retard"></td>
-                    <td> <input type="time" name="heureDebut" id="heureDebut" /> </td>
-                    <td> <input type="time" name="heureFin" id="heureFin" /> </td>
+                        </tr>
+                <?php
+                    }
+                }
+                ?>
 
-                </tr>
 
             </table>
     </div>
     </main>
     </div>
-    <div class="modal fade" id="empModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
 
-                </div>
-                <div class="modal-body">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="ajoute-valider">
-
-
-    </div>
     <div class="valider">
         <input type="submit" value="valider" onclick="CheckBox(event)" id="valider-responsable">
     </div>
