@@ -12,7 +12,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" media="screen" href="./styles/Accueil_directrice.css">
-	<link rel="shortcut icon" type="image/png" href="./images/icon.png" />
+	<link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
 	<script src="./scripts/jquery-3.6.1.min.js"></script>
 	<script>
 		$(document).ready(function () {
@@ -55,7 +55,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] != "directrice") {
 			})
 		});
 	</script>
-	<title>Directrice 👩‍⚖️</title>
+	<title>Directrice </title>
 </head>
 
 <body>
