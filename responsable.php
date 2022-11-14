@@ -65,10 +65,6 @@ $resultfinale = $pdo_statement->fetchALL();
                                 onfocus="(this.type='date')" id="date" required>
                         </div>
                         <div>
-                            <!-- Formateur : <input name="formateur" list="brow" type="text" id="search"
-                                placeholder="Le Formateur" required>
-                            <datalist class="output" id="brow">
-                            </datalist> -->
                             <?php
                             $sql = ("SELECT * FROM formateur ");
                             $pdo_statement = $conn->prepare($sql);
@@ -89,7 +85,6 @@ $resultfinale = $pdo_statement->fetchALL();
                                 }
                                 ?>
                             </select>
-
                         </div>
                         <div>
                             Module : <input type="text" name="module" id="module" placeholder="Le Module" required>
