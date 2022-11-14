@@ -260,10 +260,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?= $row["CEF"] ?>
                     </td>
                     <td>
-                        <?= $row['prenomStagiaire'] ?>
+                        <?= $row['nomStagiaire'] ?>
+
                     </td>
                     <td>
-                        <?= $row['nomStagiaire'] ?>
+                        <?= $row['prenomStagiaire'] ?>
                     </td>
                     <td>
                         <input type="button" value="Info" data-id='<?php echo $row['CEF']; ?>' class="details" />
