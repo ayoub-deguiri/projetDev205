@@ -98,6 +98,29 @@ section h1 {
   padding-left: 10px;
 }
 
+select:required:invalid {
+  color: #666;
+}
+
+option[value=""][disabled] {
+  display: none;
+}
+
+option {
+  color: #000;
+}
+
+
+.selectFormateur {
+  width: 170px;
+  height: 28px;
+  outline: none;
+  border: 2px solid var(--color1);
+  border-radius: 10px;
+  font-size: 17px;
+  padding-left: 10px;
+}
+
 .responsable div {
   margin: 15px 65px 25px;
 }

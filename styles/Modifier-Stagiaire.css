@@ -187,6 +187,20 @@ main {
 
 }
 
+.success {
+    display: none;
+    max-width: 0;
+    max-height: 0;
+}
+
+.btn-click {
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    border: none !important;
+    font-size: 0;
+}
+
 .selects {
     border: 3px solid #999999;
     background-color: var(--color5);

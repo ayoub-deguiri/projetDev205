@@ -29,21 +29,6 @@ $resultfinale = $pdo_statement->fetchALL();
     <link rel="shortcut icon" type="image/png" href="./images/icon.png" />
     <link rel="icon" type="image/x-icon" href="./images/logoApp.png">
     <link rel="stylesheet" href="./styles/styleResponsable.css">
-    <script src="./scripts/jquery-3.6.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#search").keypress(function () {
-                var search = $(this).val();
-                $.get(
-                    './inc/search.php',
-                    { search: search },
-                    function (data) {
-                        $(".output").html(data);
-                    }
-                );
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -80,10 +65,26 @@ $resultfinale = $pdo_statement->fetchALL();
                                 onfocus="(this.type='date')" id="date" required>
                         </div>
                         <div>
-                            Formateur : <input name="formateur" list="brow" type="text" id="search"
-                                placeholder="Le Formateur" required>
-                            <datalist class="output" id="brow">
-                            </datalist>
+                            <?php
+                            $sql = ("SELECT * FROM formateur ");
+                            $pdo_statement = $conn->prepare($sql);
+                            $pdo_statement->execute();
+                            $formateur = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
+                            Formateur : <select required class="selectFormateur" name="formatuer" id="search">
+                                <option value="" disabled selected class="first-option">Formateur</option>
+                                <?php
+                                if (isset($formateur)) {
+                                    foreach ($formateur as $row) {
+                                ?>
+                                <option value=<?= $row['Matricule'] ?>>
+                                    <?= $row['nomFormateur'] . ' ' . $row['prenomFormateur'] ?>
+                                </option>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div>
                             Module : <input type="text" name="module" id="module" placeholder="Le Module" required>

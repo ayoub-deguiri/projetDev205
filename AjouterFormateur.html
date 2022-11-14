@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" media="screen" href="./styles/modification.css" />
+    <link rel="stylesheet" media="screen" href="./styles/modifierFormateur.css" />
     <title>Document</title>
   </head>
   <body>
@@ -48,24 +48,23 @@
           </li>
         </ul>
       </nav>
-      <h1 id="title">DEV 205</h1>
       <main>
        
         <form id="form">
             <table>
                 <tr>
-                    <td><label for="cef" id="label">CEF:</label></td>
-                    <td><input type="text" id="cef"/></td>
+                    <td><label for="cef" id="label">Matricule:</label></td>
+                    <td><input type="text" id="cef" required /></td>
                 </tr>
                 <tr><td><div id="error"></div></td></tr>
                 <tr>
                     <td><label for="nom" id="label">Nom:</label></td>
-                    <td><input type="text" id="nom"/></td>
+                    <td><input type="text" id="nom" required /></td>
                 </tr>
                 <tr><td><div id="error2"></div></td></tr>
                 <tr>
-                    <td for="prenom" id="label">Prenom:</td>
-                    <td><input type="text" id="prenom"/></td>
+                    <td><label for="prenom" id="label">Prenom:</label></td>
+                    <td><input type="text" id="prenom" required /></td>
                 </tr>
                 <tr><td><div id="error3"></div></td></tr>
                 <tr>
@@ -82,6 +81,6 @@
         <p>© Copyright | DevWFS205 |2022</p>
      </footer>
 
-     <script src="./scripts/modification.js"></script>
+     <!-- <script src="./scripts/modifierFormateur.js"></script> -->
 </body>
 </html>
