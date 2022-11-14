@@ -29,6 +29,66 @@ $resultfinale = $pdo_statement->fetchALL();
     <link rel="shortcut icon" type="image/png" href="./images/icon.png" />
     <link rel="icon" type="image/x-icon" href="./images/logoApp.png">
     <link rel="stylesheet" href="./styles/styleResponsable.css">
+    <script src="./scripts/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const countrow = parseInt($('#trcount').val())
+            $('#buttonValider').click(function (e) {
+                let countDubt = 0
+                let countFin = 0
+                let checkboxLength2 = $("input:checkbox:checked").length
+                let errorgenral = 1
+                let breaker = false
+                for (i = 1; i <= countrow; i++) {
+                    if (breaker) {
+                        break
+                    }
+                    let checkboxLength = $("#tr-" + i + " input:checkbox:checked").length
+                    if (checkboxLength == 1) {
+                        $("#tr-" + i + " input[type=time]").each(function () {
+                            let debut = 0
+                            let fin = 0
+                            if ($(this).hasClass("debut")) {
+                                if ($(this).val() != '') {
+                                    debut = 1
+                                }
+                            }
+                            if ($(this).hasClass("fin")) {
+                                if ($(this).val() != '') {
+                                    fin = 1
+
+                                }
+                            }
+
+                            if (debut !== 1 && fin !== 1) {
+                                $('#tr-' + i).css({
+                                    "color": "red",
+                                });
+                                errorgenral = 1
+                                breaker = true
+                                return false
+                            } else {
+                                $('#tr-' + i).css({
+                                    "color": "green",
+                                });
+                                errorgenral = 0
+                            }
+                        })
+                    } else {
+                        $('#tr-' + i).css({
+                            "color": "black",
+                        });
+                    }
+                }
+                if (errorgenral == 0 && $("$date").val() != "" && $("#formateur").val() != "" && $("#module").val() != "") {
+                    alert("Enregistré avec succès")
+                } else {
+                    e.preventDefault()
+                    alert('vous avez oublié quelque chose, veuillez revérifier ce que vous avez saisi')
+                }
+            })
+        });
+    </script>
 </head>
 
 <body>
@@ -71,7 +131,7 @@ $resultfinale = $pdo_statement->fetchALL();
                             $pdo_statement->execute();
                             $formateur = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
                             ?>
-                            Formateur : <select required class="selectFormateur" name="formatuer" id="search">
+                            Formateur : <select required class="selectFormateur" name="formateur" id="search">
                                 <option value="" disabled selected class="first-option">Formateur</option>
                                 <?php
                                 if (isset($formateur)) {
@@ -132,66 +192,6 @@ $resultfinale = $pdo_statement->fetchALL();
             </div>
             </form>
         </section>
-        <script>
-            $(document).ready(function () {
-                const countrow = parseInt($('#trcount').val())
-                $('#buttonValider').click(function (e) {
-                    console.log('clicked!!')
-                    let countDubt = 0
-                    let countFin = 0
-                    let checkboxLength2 = $("input:checkbox:checked").length
-                    let errorgenral = 1
-                    let breaker = false
-                    for (i = 1; i <= countrow; i++) {
-                        if (breaker) {
-                            break
-                        }
-                        let checkboxLength = $("#tr-" + i + " input:checkbox:checked").length
-                        if (checkboxLength == 1) {
-                            $("#tr-" + i + " input[type=time]").each(function () {
-                                let debut = 0
-                                let fin = 0
-                                if ($(this).hasClass("debut")) {
-                                    if ($(this).val() != '') {
-                                        debut = 1
-                                    }
-                                }
-                                if ($(this).hasClass("fin")) {
-                                    if ($(this).val() != '') {
-                                        fin = 1
-
-                                    }
-                                }
-
-                                if (debut !== 1 && fin !== 1) {
-                                    $('#tr-' + i).css({
-                                        "color": "red",
-                                    });
-                                    errorgenral = 1
-                                    breaker = true
-                                    return false
-                                } else {
-                                    $('#tr-' + i).css({
-                                        "color": "green",
-                                    });
-                                    errorgenral = 0
-                                }
-                            })
-                        } else {
-                            $('#tr-' + i).css({
-                                "color": "black",
-                            });
-                        }
-                    }
-                    if (errorgenral == 0 && $("$date") != "" && $("#formateur") != "" && $("#module") != "") {
-                        alert("Enregistré avec succès")
-                    } else {
-                        e.preventDefault()
-                        alert('vous avez oublié quelque chose, veuillez revérifier ce que vous avez saisi')
-                    }
-                })
-            });
-        </script>
         <footer>
             <p> © Copyright | DevWFS205 |2022 </p>
         </footer>
