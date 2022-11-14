@@ -16,7 +16,7 @@ form.addEventListener("keyup", () => {
   let prenomValue = prenom.value.trim();
   errorValue = error.value;
   if (cefValue == "") {
-    error.innerText = "cef obligatoire";
+    error.innerText = "Matricule obligatoire";
 
     etat1 = false;
   } else {
