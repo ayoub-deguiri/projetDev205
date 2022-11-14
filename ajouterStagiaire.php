@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $pdo_statement->execute();
         $resultCef = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
 
-      if(!isset($resultCef)){
+      if(empty($resultCef)){
         $sql="INSERT INTO stagiaire  VALUES (?,?,?,?)";
         $pdo_statement=$conn->prepare($sql);
         $pdo_statement->bindParam(1,$_POST['cef']);
