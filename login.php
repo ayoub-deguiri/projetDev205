@@ -55,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="./styles/login.css" media="screen" type="text/css" />
-  <link rel="shortcut icon" type="image/png" href="./images/icon.png" />
-  <title>Login 🐱‍👤</title>
+ <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
+  <title>Login </title>
 </head>
 
 <body>
