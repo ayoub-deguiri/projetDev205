@@ -46,7 +46,7 @@ $nbrRet = $pdo_statement->fetch();
             newAbs = data['abs']
             newData = [newRet, newAbs]
             myChart.data.datasets[0].data = newData
-            myChart.options.title.text = `Les Absence et le Retards de ${date}`
+            myChart.options.title.text = `Nombre des absences et retards du ${$date} non justifiés`
             myChart.update();
           }
         });
@@ -138,7 +138,7 @@ $nbrRet = $pdo_statement->fetch();
         options: {
           title: {
             display: true,
-            text: `Les Absence et le Retards de ${currentDate}`,
+            text: `Nombre des absences et retards du ${currentDate} non justifiés `,
           },
         },
       });
