@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $pdo_statement->bindParam(10, $idscolaire);
                 $pdo_statement->bindParam(11, $cef[0]);
                 $pdo_statement->execute();
-                header('location:./../SasireAbsence.php');
+                header('location:./../SasireAbsence-surveillant.php');
             }
         }
 
