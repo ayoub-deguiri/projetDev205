@@ -62,8 +62,8 @@
       <li>
         <a href=""><button><i class="fa fa-calendar-times-o" aria-hidden="true"></i>ABSENCE</button></a>
         <ul>
-          <li><a href="./Affichage-surveillant.html"><button>Affichage</button></a></li>
-          <li><a href="./saisir.html"><button>Saisir</button></a></li>
+          <li><a href="./Affichage-surveillant.php"><button>Affichage</button></a></li>
+          <li><a href="./SasireAbsence-surveillant.php"><button>Saisir</button></a></li>
         </ul>
       </li>
       <li>
