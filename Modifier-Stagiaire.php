@@ -229,6 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </li>
                     <li><input type="submit" name="AjaxValider" value="valider" id="valider"> </li>
                 </ul>
+            </div>
     </form>
     </div>
     <!-- Main Table -->
@@ -252,9 +253,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <th>supprimer</th>
                 </tr>
                 <?php
-
+                $c = 1;
                 foreach ($Stagiaires as $row) {
-                    $c = 1;
                 ?>
                 <tr id="tr-<?= $c++ ?>">
                     <td>
@@ -291,13 +291,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </tr>
                 <?php
                 }
-            }
+
                 ?>
                 <input type="hidden" id="trcount" value="<?= $c ?>" />
             </table>
-    </div>
-    <!-- Main Table -->
-    </main>
+            <div class="ajoute-valider">
+                <div class="ajoute">
+                    <a href="./ajouterStagiaire.php?idgrp=<?= $_SESSION["groupe"] ?>"><img
+                            src="./images/plus-circle.svg" alt="">
+                        <p>Ajouter</p>
+                    </a>
+                </div>
+
+            </div>
+            <?php
+            }
+
+            ?>
+            <!-- Main Table -->
+            </main>
     </div>
     <div id="myModal" class="modal" role="dialog">
 
@@ -311,14 +323,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
-    <div class="ajoute-valider">
-        <div class="ajoute">
-            <a href="./ajouterStagiaire.php?idgrp=<?= $_SESSION["groupe"] ?>"><img src="./images/plus-circle.svg"
-                    alt="">
-                <p>Ajouter</p>
-            </a>
-        </div>
-        </form>
+    </form>
     </div>
     <input type="hidden" id="success-update"></input>
     <input type="hidden" id="success-delete"></input>
