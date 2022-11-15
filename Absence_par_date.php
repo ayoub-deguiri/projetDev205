@@ -101,22 +101,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             aria-hidden="true"></i>ACCUEIL</button></a>
             </li>
             <li>
-                <a href="./modification.html"><button><i class="fa fa-pencil-square"
+                <a href="./Modifier-Stagiaire.php"><button><i class="fa fa-pencil-square"
                             aria-hidden="true"></i>MODIFIER</button></a>
             </li>
             <li>
-                <a href="#"><button><i class="fa fa-calendar-times-o" aria-hidden="true"></i>ABSENCE</button></a>
+                <a href=""><button><i class="fa fa-calendar-times-o" aria-hidden="true"></i>ABSENCE</button></a>
                 <ul>
-                    <li><a href=""><button>Affichage</button></a></li>
-                    <li><a href=""><button>Saisir</button></a></li>
+                    <li><a href="./Affichage-surveillant.php"><button>Affichage</button></a></li>
+                    <li><a href="./SasireAbsence-surveillant.php"><button>Saisir</button></a></li>
                 </ul>
             </li>
             <li>
                 <a href="./note.html"><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
             </li>
             <li>
-                <a href="./Ajouter.html"><button><i class="fa fa-plus-circle"
-                            aria-hidden="true"></i>AJOUTER</button></a>
+                <a href="#"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>AJOUTER</button></a>
             </li>
         </ul>
     </nav>
@@ -197,7 +196,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </table>
         </main>
         <div class="valider">
-            <input type="submit" value="valider" id="validee" name="sent">
+            <input type="submit" value="valider" id="validee" name="sent-verf">
         </div>
         </form>
         <script type="text/javascript">
