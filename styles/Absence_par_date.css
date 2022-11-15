@@ -107,8 +107,9 @@ a {
     font-size: 2vw;
     width: 100%;
     text-align: center;
-    border: 3px solid #FB931B;
-    border-radius: 8px;
+    border-top: 3px solid #FB931B;
+    border-bottom: 3px solid #FB931B;
+    border-radius: 5px;
     padding: 10px;
 }
 
