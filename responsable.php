@@ -80,7 +80,7 @@ $resultfinale = $pdo_statement->fetchALL();
                         });
                     }
                 }
-                if (errorgenral == 0) {
+                if (errorgenral == 0 && $("#date").val() != "" && $("#formateur").val() != "" && $("#module").val() != "") {
                     alert("Enregistré avec succès")
                 } else {
                     e.preventDefault()
