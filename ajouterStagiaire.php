@@ -1,16 +1,15 @@
 <?php
 include('inc/db.php');
 session_start();
+$sucsess = "";
 $errorCsef = "";
-
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['valider'])) {
-    $sqlCef = "SELECT * FROM stagiaire where cef = ?";
+    $sqlCef = "SELECT CEF FROM stagiaire where cef = ?";
     $pdo_statement = $conn->prepare($sqlCef);
     $pdo_statement->bindParam(1, $_POST['cef']);
     $pdo_statement->execute();
-    $resultCef = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+    $resultCef = $pdo_statement->fetch();
 
     if (empty($resultCef)) {
       $sql = "INSERT INTO stagiaire  VALUES (?,?,?,?)";
@@ -20,12 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $pdo_statement->bindParam(3, $_POST['prenom']);
       $pdo_statement->bindParam(4, $_SESSION["groupe"]);
       $pdo_statement->execute();
+      $sucsess = "Le stagiaire est bien Ajouter";
       $errorCsef = "";
-      header('HTTP/1.1 307 Temporary Redirect');
-      $previsepage = $_SERVER['HTTP_REFERER'];
-      header("location:$previsepage");
     } else {
       $errorCsef = "le stagiaire déja exist";
+      $sucsess = "";
     }
 
   }
@@ -90,8 +88,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <form id="form" method="POST">
       <table>
-        <caption style="color:red">
-          <?= $errorCsef ?>
+        <caption>
+          <?php
+          if (!empty($sucsess)) {
+            echo "<span style='color:green'>" . $sucsess . "</span>";
+          } else {
+            echo "<span style='color:red'>" . $errorCsef . "</span>";
+          }
+          ?>
         </caption>
         <tr>
           <td><label for="cef" id="label">CEF:</label></td>
@@ -129,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <footer>
     <p>© Copyright | DevWFS205 |2022</p>
   </footer>
-  <script src="./scripts/modification.js"></script>
+  <script src="./scripts/AjouterStagaire.js"></script>
 </body>
 
 </html>
