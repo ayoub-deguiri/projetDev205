@@ -5,7 +5,9 @@
   text-transform: capitalize;
   font-style: italic;
 }
-
+body {
+  background-color: #D8E6EA;
+}
 /*---------------------------- header --------------------------------*/
 header {
   display: flex;
@@ -28,7 +30,7 @@ header {
 .logoApp {
   margin-right: -5%;
   height: 100px;
-  width: 100px;
+  width: 140px;
 
 }
 

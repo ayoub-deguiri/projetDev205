@@ -9,7 +9,7 @@
 
 
 body {
-    background: white;
+    background-color: #D8E6EA;
     max-height: 100%;
     margin: 0;
     padding: 0;
@@ -37,10 +37,12 @@ a {
     width: 100px;
 }
 .logoApp{
-    margin-right: 43%;
-
-  }
-
+    margin-right: 40%;
+}
+#logoApp{
+    height: 100px;
+    width: 140px;
+}
 #container {
     width: 600px;
     margin: 0 auto;
@@ -54,8 +56,8 @@ a {
 form {
     width: 100%;
     padding: 25px;
-    border: 1px solid black;
-    background: var( --color3);
+    border: 2px solid black;
+    background:rgb(232, 236, 239);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     font-family: arial black;
     border-radius: 10px;
@@ -73,8 +75,6 @@ form {
     max-width: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
-
 input[type=text],
 input[type=password] {
     width: 90%;
@@ -87,29 +87,33 @@ input[type=password] {
     border-radius: 10px;
     outline: 0;
     margin-bottom: 0;
+    background-color:white;
 
 }
 
-
-button[type=submit] {
-    background-color: var( --color2);
-    color: white;
-    padding: 14px 20px;
-    font-size: 20px;
-    margin: 8px 25%;
-    border: none;
-    cursor: pointer;
-    width: 50%;
-    border-radius: 10px;
-
+button[type=submit]{
+display: inline-block;
+outline: 0;
+border: none;
+box-shadow: none;
+cursor: pointer;
+padding: 14px 20px;
+margin: 8px 30%;
+font-size: 22px;
+height: 50px;
+width: 40%;
+font-weight: 400;
+color: #fff;
+text-align: center;
+line-height: normal;
+background: linear-gradient(90deg,var( --color2)0,var( --color2) 100%);
+border-radius: 50px;
+transition: color .2s ease,background-color .2s ease,box-shadow .2s ease;
 }
-
-button[type=submit]:hover {
-    background-color: var( --color2);
-    color:white;
-    border: 0 solid#008B45;
+button[type=submit]:hover{
+    box-shadow: 0 0 0 0.20rem white;
+    color: #155A93;
 }
-
 label {
     font-size: 19px;
 }

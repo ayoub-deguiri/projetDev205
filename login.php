@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <img src="./images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt" />
       </div>
       <div class="logoApp">
-        <img src="./images/logoApp.png" width="100px" height="100px" alt="logo" id="logoApp" />
+        <img src="./images/logoApp.png" alt="logo" id="logoApp" />
       </div>
     </div>
     <div id="container">
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div id="formControl">
           <label><b> Password :</b></label>
           <span id="star">*</span>
-          <input type="password" placeholder="Entrer le mot de passe" name="password" id="password" />
+          <input type="password" placeholder="Entrer votre mot de passe" name="password" id="password" />
           <div class="error" id="error"></div>
         </div>
 
