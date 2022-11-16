@@ -59,6 +59,7 @@ header {
   border: none;
 }
 
+
 button[type="button"]:hover {
   background-color: var(--color1);
   color: var(--color4);
@@ -246,8 +247,6 @@ td {
   border-collapse: collapse;
   height: 28px;
   font-size: 17px;
-
-
 }
 
 table th {
@@ -311,7 +310,7 @@ table td {
   width: 170px;
   padding: 0px;
   margin: 0px;
-  height: 28px;
+  height: 100%;
 }
 
 /*----------------------------------------------------------------------------------------*/
@@ -366,4 +365,12 @@ section h1 {
   padding: 4px;
   width: 140px;
   background-color: var(--color2);
+}
+
+#trashbtn {
+  border: 0;
+}
+
+#trashbtn:hover {
+  background-color: transparent;
 }
