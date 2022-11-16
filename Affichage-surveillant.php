@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       // Ajax for select
       $('#année-scolaire').on('change', function () {
-        var annescolID = $(this).val();
+        let annescolID = $(this).val();
         if (annescolID) {
           $.get(
             './inc/AjaxSelect.php',
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
       })
       $('#année').on('change', function () {
-        var anneeID = $(this).val();
+        let anneeID = $(this).val();
         if (anneeID) {
           $.get(
             './inc/AjaxSelect.php',
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
       })
       $('#filiére').on('change', function () {
-        var filiereID = $(this).val();
+        let filiereID = $(this).val();
         if (filiereID) {
           $.get(
             './inc/AjaxSelect.php',
@@ -89,18 +89,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       })
       const countrow = parseInt($('#trcount').val())
+
+
+
+
       // ajax for Delete Ansence
       for (i = 1; i <= countrow; i++) {
-        $("#tr-" + i + " option").on("click", function (ev) {
-          const idAbsence = $(this).val()
-          if (idAbsence) {
-            $.post({
-              url: './inc/DeleteAbsence.php ',
-              data: { idAbsence: idAbsence },
-              success: function (data) {
-                $("#success-delete").html(data)
-              }
-            });
+        $("#tr-" + i + " button").on("click", function (ev) {
+
+          if (confirm("Êtes - vous sûr de faire ce processus") == true) {
+            const idAbsence = $(this).val()
+            if (idAbsence) {
+              $.post({
+                url: './inc/DeleteAbsence.php ',
+                data: { idAbsence: idAbsence },
+                success: function (data) {
+                  $("#success-delete").html(data)
+                }
+              });
+            }
           }
         })
       }
@@ -109,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
+      // justifier
       let errorgenral = 1
       $('#validerJutification').click(function (ev) {
         for (i = 1; i <= countrow; i++) {
@@ -133,7 +140,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
         }
         if (errorgenral == 0) {
-          alert("Enregistré avec succès")
+          if (confirm("Enregistré avec succès") != true) {
+
+            ev.preventDefault()
+          }
         } else {
           ev.preventDefault()
           alert('vous avez oublié quelque chose, veuillez revérifier ce que vous avez saisi')
@@ -301,16 +311,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?= $row["heureFinAbsence"] ?>
           </td>
           <td>
-            <input type="checkbox" id='checkbox' name="check-btn-<?= $row['CEF'] ?>" class="btncheckbox" />
+            <input type="checkbox" id='checkbox' name="check-btn-<?= $row['CEF'] ?>" class="btncheckbox"
+              onclick="Enable(this)" />
           </td>
           <td>
-            <input class="commentaire" type="text" name="justif-<?= $row['CEF'] ?>" name="select" />
+            <input class="commentaire" type="text" name="justif-<?= $row['CEF'] ?>" name="select" disabled />
           </td>
           <input type="hidden" name="idAbs-<?= $row['CEF'] ?>" value="<?= $row['idAbsence'] ?>">
           <td>
-            <option class="option-sent" value="<?= $row['idAbsence'] ?>">
-              <img src="./images/trash-2.svg" id='trash' alt="supperimer" />
-            </option>
+            <button type="button" id="trashbtn" class="option-sent" value="<?= $row['idAbsence'] ?>">
+              <img src="./images/trash-2.svg" id='trash' alt="Delete">
+            </button>
           </td>
         </tr>
         <?php
@@ -336,39 +347,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <!--**********************--- [ Code js ] ---*******************************************************-->
   <script type="text/javascript">
-    //-----------[ Code js 1 : checkbox ]-----------
-    // var Commentaire = document.getElementsByClassName("commentaire");
-    // var btncheckbox = document.getElementsByClassName("btncheckbox");
-    // var nombre1 = btncheckbox.length;
-    // var nombre2 = Commentaire.length;
-    // function Enable() {
-    //   for (i = 0; i < trcount; i++) {
-    //     if (btncheckbox[i].checked == true) {
-    //       Commentaire[i].removeAttribute("disabled");
-    //       Commentaire[i].style.backgroundColor = "rgb(232,236,239)";
-    //     } else {
-    //       Commentaire[i].style.backgroundColor = "rgb(140, 138, 138)";
-    //       Commentaire[i].setAttribute("disabled", "");
-    //       Commentaire[i].value = "";
-    //     }
-    //   }
-    // }
-    /*-----------[ Code js 2 : btn orange valider  ]-----------
-  function CheckBox(event) {
-  var btncheckbox = document.getElementsByClassName("btncheckbox");
- 
-  if (btncheckbox.checked != true ) {
-    alert("Champs case obligatoire ! ");
-    event.preventDefault();
-  }
-}*/
-    //-----------[ Code js 3 : btn vert valider  ]-----------
-    function btnliste(event) {
-      var selectbox = document.getElementsByClassName("selectbox");
 
-      if (selectbox.checked != true) {
-        alert(" Champs liste obligatoire ! ");
-        event.preventDefault();
+    /*----------- [Code js 1 : checkbox]-----------*/
+    let Commentaire = document.getElementsByClassName("commentaire");
+    let btn = document.getElementsByClassName("btncheckbox");
+    let nombre1 = btn.length;
+    let nombre2 = Commentaire.length;
+    function Enable() {
+      for (i = 0; i < nombre1; i++) {
+        if (btn[i].checked == true) {
+          Commentaire[i].removeAttribute("disabled");
+          Commentaire[i].style.backgroundColor = 'rgb(232, 236, 239)';
+        } else {
+          btn.disabled = "true";
+          Commentaire[i].setAttribute("disabled", "");
+          Commentaire[i].value = "";
+          Commentaire[i].style.backgroundColor = 'rgb(140, 138, 138)';
+        }
       }
     }
   </script>
