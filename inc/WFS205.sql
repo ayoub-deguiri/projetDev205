@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 03:26 PM
+-- Generation Time: Nov 17, 2022 at 12:19 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -93,16 +93,8 @@ CREATE TABLE `absence` (
 --
 
 INSERT INTO `absence` (`idAbsence`, `dateAbsence`, `heureDebutAbsence`, `heureFinAbsence`, `moduleAbsence`, `matricule`, `type`, `idAnnee`, `idFiliere`, `idGroupe`, `idAnneeScolaire`, `CEF`, `justifier`) VALUES
-(19, '2022-11-11', '06:37:00', '17:31:00', 'React', '1', 'absence', 2, 15, 47, 1, '2000121600314', 'oui'),
-(20, '2022-11-10', '06:38:00', '06:38:00', 'PHP', '2', 'absence', 2, 15, 47, 1, '2000121600314', 'no'),
-(21, '2022-11-11', '08:27:00', '10:27:00', 'LMAO', '2', 'absence', 1, 13, 41, 1, '199211260144', 'no'),
-(22, '2022-11-12', '02:16:00', '14:16:00', 'LMAO', '1', 'absence', 1, 13, 41, 1, '199211260144', 'no'),
-(27, '2022-11-14', '12:00:00', '12:00:00', 'k', '2', 'retard', 1, 13, 41, 1, '199211260144', 'no'),
-(28, '2022-11-15', '10:09:00', '04:09:00', 'LOL', '1', 'absence', 1, 13, 41, 1, '199211260144', 'no'),
-(29, '2022-11-09', '14:44:00', '14:44:00', 'test', '2', 'retard', 1, 13, 41, 1, '199211260144', 'no'),
-(30, '2022-11-15', '14:44:00', '14:44:00', 'lkkkkk', '2', 'retard', 1, 13, 41, 1, '199211260144', 'no'),
-(31, '2022-11-14', '14:45:00', '14:45:00', 'lkl', '2', 'retard', 1, 13, 41, 1, '199211260144', 'no'),
-(32, '2022-11-13', '14:46:00', '02:46:00', 'LMAOjj', '1', 'absence', 1, 13, 41, 1, '199211260144', 'no');
+(38, '2022-11-17', '02:16:00', '02:16:00', 'LMAO', '1', 'absence', 2, 15, 47, 1, '1998121700398', 'no'),
+(39, '2022-11-16', '02:49:00', '02:49:00', 'mexampel', '2', 'absence', 2, 15, 47, 1, '1999030200448', 'no');
 
 -- --------------------------------------------------------
 
@@ -284,15 +276,19 @@ CREATE TABLE `justifierabsence` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `justifierabsence`
---
-
-INSERT INTO `justifierabsence` (`idAbsence`, `Justifie_motif`) VALUES
-(19, 'chahada tibiya');
-
---
 -- Triggers `justifierabsence`
 --
+DELIMITER $$
+CREATE TRIGGER `Affter_delete_Justification` AFTER DELETE ON `justifierabsence` FOR EACH ROW BEGIN
+    UPDATE
+        absence
+    SET
+        absence.justifier = "no"
+    WHERE
+        absence.idAbsence = old.idAbsence;
+END
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `trigger_justifier_after` AFTER INSERT ON `justifierabsence` FOR EACH ROW BEGIN
     UPDATE
@@ -334,6 +330,8 @@ CREATE TABLE `stagiaire` (
 --
 
 INSERT INTO `stagiaire` (`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) VALUES
+('1', 'Holako', 'Holako', NULL),
+('100', '12', '3', NULL),
 ('199211260144', 'EL HANINE', 'KHAIR ALLAH', 41),
 ('1993030100110', 'ACHEIKH', 'ALI LOOL', 22),
 ('199402200533', 'ELHADDAD', 'ABDELMOUNAIM', 43),
@@ -487,6 +485,7 @@ INSERT INTO `stagiaire` (`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) V
 ('1999122600436', 'GUYAR', 'YOUSSEF', 52),
 ('1999122600505', 'AIT DAOUD', 'LAMIA', 26),
 ('1999123000197', 'LBIDA', 'MAHDI', 34),
+('2', '1', '1', NULL),
 ('2000010103101', 'LAKSIOUER', 'MEHDI', 45),
 ('2000010500353', 'BOUTERHAQ', 'ABDERRAHIM', 55),
 ('2000011200545', 'IBNOUBAR', 'AMINE', 52),
@@ -1283,7 +1282,16 @@ INSERT INTO `stagiaire` (`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) V
 ('2006012300022', 'SEMMAÂ', 'WALID', 62),
 ('2006020300015', 'FARCHIOUI', 'AMINA', 62),
 ('2006021100020', 'BOUKDIR', 'AYOUB', 62),
-('2006040800006', 'KALSADI', 'AIMRANE', 62);
+('2006040800006', 'KALSADI', 'AIMRANE', 62),
+('22', '5', '54', NULL),
+('3', '5', '5', NULL),
+('32', '456', '45', NULL),
+('35', 'Holako', 'gjkl', NULL),
+('5', '4', '6', NULL),
+('50', '5', '5', NULL),
+('500', '64', '45', NULL),
+('7', '7', '7', NULL),
+('8', '8', '8', NULL);
 
 --
 -- Indexes for dumped tables
@@ -1367,7 +1375,7 @@ ALTER TABLE `stagiaire`
 -- AUTO_INCREMENT for table `absence`
 --
 ALTER TABLE `absence`
-  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `annee`
