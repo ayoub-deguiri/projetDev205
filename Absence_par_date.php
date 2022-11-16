@@ -45,6 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="./scripts/jquery-3.6.1.min.js"></script>
     <script>
         $(document).ready(function () {
+            $("#back_btn").click(function (ev) {
+                ev.preventDefault()
+                window.history.back();
+            });
             let errorgenral = 0
             const countrow = parseInt($('#trcount').val())
             $('#validee').click(function (ev) {
@@ -119,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </li>
         </ul>
     </nav>
-    <h2 class="titre">Les absences de
+    <h2 class="titre"> Le :
         <?php echo $dateAbsence ?>
     </h2>
     <article>
@@ -128,10 +132,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php
                 if (empty($AbsencesAujourdhui)) {
                     if (isset($_POST['absence'])) {
-                        echo "<div class='first-msg'>" . "Pas d'absentéisme de se jour Monsieur" . "<di>";
+                        echo "<div class='flex'>";
+                        echo "<div class='first-msg'>Il n'y a pas d'absence ce jour</div>";
+                        echo "<button class='back-btn' id='back_btn'>retournez à la page précédente</button>";
+                        echo "</div>";
                     }
                     if (isset($_POST['retard'])) {
-                        echo "<div class='first-msg'>" . " Aucun retard cette journée, Monsieur." . "<di>";
+                        echo "<div class='flex'>";
+                        echo "<div class='first-msg'>Il n'y a pas de retard pour ce jour</div>";
+                        echo "<button class='back-btn' id='back_btn'>retournez à la page précédente</button>";
+                        echo "</div>";
                     }
                 } else {
                 ?>
@@ -190,14 +200,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </tr>
                     <?php
                     }
-                }
+
                     ?>
                     <input type="hidden" id="trcount" value="<?= $c ?>" />
                 </table>
+                <div class="valider">
+                    <input type="submit" value="valider" id="validee" name="sent-verf">
+                </div>
+                <?php
+                }
+
+                ?>
         </main>
-        <div class="valider">
-            <input type="submit" value="valider" id="validee" name="sent-verf">
-        </div>
+
         </form>
         <script type="text/javascript">
             var Commentaire = document.getElementsByClassName("commentaire");
