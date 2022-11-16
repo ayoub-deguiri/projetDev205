@@ -223,11 +223,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 for (i = 0; i < nombre1; i++) {
                     if (btn[i].checked == true) {
                         Commentaire[i].removeAttribute("disabled");
-
+                        Commentaire[i].style.backgroundColor = 'rgb(232, 236, 239)';
                     } else {
                         btn.disabled = "true";
                         Commentaire[i].setAttribute("disabled", "");
                         Commentaire[i].value = "";
+                        Commentaire[i].style.backgroundColor = 'rgb(140, 138, 138)';
                     }
                 }
             }
