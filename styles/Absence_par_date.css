@@ -175,6 +175,16 @@ table {
 
 }
 
+[type="text"] {
+    outline: none;
+    background-color: rgb(140, 138, 138);
+    border: none;
+    width: 170px;
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
 [type="checkbox"] {
     position: relative;
     cursor: pointer;
@@ -201,6 +211,8 @@ td {
     text-align: center;
     border: 2px solid black;
     border-collapse: collapse;
+    height: 28px;
+    font-size: 17px;
 
 }
 
@@ -208,23 +220,12 @@ td {
 table th {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 900;
-    text-align: center;
-    height: 10px;
     width: 140px;
 }
 
 table td {
     font-weight: 100;
-    font-size: 30px;
-
-
-
-}
-
-.commentaire {
-    outline: none;
-    background-color: #D8E6EA;
-    border: none;
+    text-align: center;
 }
 
 .valider input {
