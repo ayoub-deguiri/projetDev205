@@ -81,7 +81,9 @@ $resultfinale = $pdo_statement->fetchALL();
                     }
                 }
                 if (errorgenral == 0 && $("#date").val() != "" && $("#formateur").val() != "" && $("#module").val() != "") {
-                    alert("Enregistré avec succès")
+                    if (confirm("Enregistré avec succès") != true) {
+                        e.preventDefault()
+                    }
                 } else {
                     e.preventDefault()
                     alert('vous avez oublié quelque chose, veuillez revérifier ce que vous avez saisi')
@@ -107,18 +109,19 @@ $resultfinale = $pdo_statement->fetchALL();
             <h1>espace responsable <?= $result['nomStagiaire'] . " " . $result['prenomStagiaire']; ?>
             </h1>
             <?php
-            $errormsg = "";
+            $msg = "";
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 if (isset($_GET['errormsg'])) {
-                    $errormsg = $_GET["errormsg"];
+                    $msg = $_GET["errormsg"];
+                    echo '<h2 style="text-align: center;color : red;">' . $msg . '</h2>';
+                } elseif (isset($_GET['successmsg'])) {
+                    $msg = $_GET["successmsg"];
+                    echo '<h2 style="text-align: center;color : green;">' . $msg . '</h2>';
                 }
             }
             ?>
-            <h2 style="text-align: center;color : red;">
-                <?php echo $errormsg; ?>
-            </h2>
             <div class="responsable">
-                <form action="./inc/InsertAbsence.php" method="POST" id="form">
+                <form action="./inc/InsertAbsence.php" method="GET" id="form">
                     <div class="listeEtudiants">
                         <div>
                             Date : <input placeholder="La Date" name="date" class="textbox-n" type="text"
