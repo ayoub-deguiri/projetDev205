@@ -2,7 +2,6 @@
 include_once('inc/db.php');
 session_start();
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // get user and password
   $user = $_POST["matricule"];
@@ -20,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $password = stripslashes($password);
 
 
-  // feching the data
+  // fetching the data
   $sql = "SELECT * FROM  compte  WHERE user = ? and password = ?";
   $pdo_statement = $conn->prepare($sql);
   $pdo_statement->bindParam(1, $user);
@@ -29,9 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $result = $pdo_statement->fetch();
 
 
-  // redrection to main pages
+  // redirection to main pages
   if (empty($result)) {
-    header('location:./logout.php');
+    header('location:./login.php?msg=Login Or Password incorrect');
+
   } else {
     if ($result['compteType'] == 'stagiaire') {
       $_SESSION['compteType'] = $result['compteType'];
@@ -50,12 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // hiba test
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="./styles/login.css" media="screen" type="text/css" />
- <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
   <title>Login </title>
 </head>
 
@@ -71,15 +71,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <div id="container">
       <h1>Bienvenue!</h1>
+      <div class="error-msg">
+        <?php
+        if (isset($_GET['msg'])) {
+
+          echo $_GET['msg'];
+        }
+        ?>
+      </div>
       <form id="form" action="#" method="POST">
         <div id="formControl ">
-          <label><b> Login :</b></label>
+          <label><strong> Utilisateur :</strong></label>
           <span id="star">*</span>
           <input type="text" placeholder="Entrer votre login" name="matricule" id="matricule" />
           <div class="error" id="error"></div>
         </div>
         <div id="formControl">
-          <label><b> Password :</b></label>
+          <label><strong> Mot de passe :</strong></label>
           <span id="star">*</span>
           <input type="password" placeholder="Entrer votre mot de passe" name="password" id="password" />
           <div class="error" id="error"></div>
