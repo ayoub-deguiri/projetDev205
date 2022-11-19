@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ev.preventDefault()
                 window.history.back();
             });
-            let errorgenral = 0
+            let errorgenral = 1
             const countrow = parseInt($('#trcount').val())
             $('#validee').click(function (ev) {
                 for (i = 1; i <= countrow; i++) {
