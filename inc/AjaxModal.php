@@ -40,18 +40,18 @@ $retard = $pdo_statement->fetchALL(PDO::FETCH_ASSOC);
 
 
 ?>
-<table border='0' width='100%'>
+<table class='userInfo'>
     <tr>
-
-        <td style="padding:20px;">
-            <p>Name :
-                <?php echo $nom; ?>
-            </p>
-            <p>Prénom :
-                <?php echo $prenom; ?>
-            </p>
-            <p>Nomber d'absence :
-                <?php echo $nbrAbs; ?>
+        <th>nom  : </th>
+        <td> <?php echo $nom; ?></td>
+    </tr>
+    <tr>
+        <th>Prénom</th>
+        <td>  <?php echo $prenom; ?></td>
+    </tr>
+    <tr>
+        <th>Nomber d'absence :</th>
+        <td>         <?php echo $nbrAbs; ?>
             </p>
             <?php
             if (!empty($absence)) {
@@ -67,7 +67,6 @@ $retard = $pdo_statement->fetchALL(PDO::FETCH_ASSOC);
                                 Module absente: <?= $ab['moduleAbsence'] ?> &nbsp; &nbsp;
                                     formateur: <?= $ab['matricule'] ?>
                 </li>
-                <br>
                 <?php
                 }
                 ?>
@@ -75,31 +74,36 @@ $retard = $pdo_statement->fetchALL(PDO::FETCH_ASSOC);
             <?php
             }
             ?>
-            <p>Nomber de Retards :
-                <?php echo $nbrRetard; ?>
-            </p>
-            <?php
-            if (!empty($retard)) {
-            ?>
-            <ol>
-                <?php
-                foreach ($retard as $ret) {
-                ?>
-                <li>
-                    La Date d'absence : <?= $ret['dateAbsence'] ?> &nbsp; &nbsp;
-                        Du : <?= $ret['heureDebutAbsence'] ?> &nbsp; &nbsp;
-                            A : <?= $ret['heureFinAbsence'] ?> &nbsp; &nbsp;
-                                Module absente: <?= $ret['moduleAbsence'] ?> &nbsp; &nbsp;
-                                    formateur: <?= $ret['matricule'] ?>
-                </li>
-                <br>
-                <?php
-                }
-                ?>
-            </ol>
-            <?php
-            }
-            ?>
-        </td>
+            </td>
     </tr>
+      <tr>
+        <th>Nomber de Retards : </td>
+        <td>
+            <p>
+                    <?php echo $nbrRetard; ?>
+                </p>
+                <?php
+                if (!empty($retard)) {
+                ?>
+                <ol>
+                    <?php
+                    foreach ($retard as $ret) {
+                    ?>
+                    <li>
+                        La Date d'absence : <?= $ret['dateAbsence'] ?> &nbsp; &nbsp;
+                            Du : <?= $ret['heureDebutAbsence'] ?> &nbsp; &nbsp;
+                                A : <?= $ret['heureFinAbsence'] ?> &nbsp; &nbsp;
+                                    Module absente: <?= $ret['moduleAbsence'] ?> &nbsp; &nbsp;
+                                        formateur: <?= $ret['matricule'] ?>
+                    </li>
+                    <br>
+                    <?php
+                    }
+                    ?>
+                </ol>
+                <?php
+                }
+                ?>
+        </td>
+      </tr>
 </table>
