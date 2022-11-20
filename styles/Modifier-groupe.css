@@ -1,0 +1,280 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Franklin Gothic Demi italic', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-transform: capitalize;
+    font-style: italic;
+}
+
+:root {
+    --color1: #FB931B;
+    --color2: #155A93;
+    --color3: #D8E6EA;
+    --color4: #ffffff;
+    --color5: rgb(232, 236, 239);
+    --color6: rgb(247, 187, 10);
+}
+
+/*---------------------------- header --------------------------------*/
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    height: 106px;
+    background-color: var(--color2);
+    padding: 1px 40px;
+    border-radius: 0 0 60px 60px;
+
+}
+
+#logoOfppt {
+    height: 100px;
+    width: 100px;
+}
+
+.logoApp {
+    margin-right: -5%;
+    height: 100px;
+    width: 140px;
+
+}
+
+#Déconnexion {
+    margin-right: 0px;
+    background-color: var(--color1);
+    text-align: center;
+    border-radius: 15px;
+    font-size: 20px;
+
+    width: 150px;
+    height: 35px;
+
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+button[type=button]:hover {
+    background-color: var(--color1);
+    color: var(--color4);
+    border: 1px solid var(--color1);
+    align-items: center;
+}
+a {
+    text-decoration: none;
+    color: var(--color4);
+}
+/*--------------------------navbar---------------------------*/
+nav {
+    height: 35px;
+}
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+nav ul li {
+    margin-right: 10px;
+    width: 100px;
+}
+nav ul li button {
+    width: 100px;
+    padding: 10px;
+    border: 0;
+    border-radius: 0 0 25px 25px;
+    background-color: var(--color2);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+}
+nav ul li button:hover {
+    border: 2px solid rgb(147, 147, 147);
+    border-top: 0px;
+    border-radius: 0 0 25px 25px;
+    background-color: rgb(232, 236, 239);
+
+    color: var(--color2);
+    cursor: pointer;
+}
+nav ul li ul {
+    display: none;
+}
+
+nav ul li ul li button {
+    background-color: var(--color1);
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+nav ul li ul li button:hover {
+    background-color: white;
+    color: #FB931B;
+    border-radius: 0px;
+}
+
+nav ul li:hover>ul {
+    display: flex;
+    height: 50px;
+}
+/*          main   */
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    
+}
+.container{
+    
+    width: 30%;
+    height: fit-content;
+    background-color: var(--color5);
+    border-radius: 20px 20px 20px 0px;
+}
+.container table{
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    text-transform: capitalize;
+}
+.container table tr td{
+    padding: 15px;
+}
+.container table tr th{
+    color: var(--color2);
+    
+}
+.container table tr td select{
+   width: 85%;
+   height: 25px;
+   border-radius: 10px;
+   border: 2px solid var(--color2);
+   outline: none;
+   background-color: var(--color6);
+   text-align: center;
+   font-size: 17px;
+} 
+.container table tr td input{
+    width: 79%;
+    height: 24px;
+    border-radius: 10px;
+    border: 2px solid var(--color2);
+    background-color: var(--color6);
+    outline: none;
+    text-align: center;
+ }
+ .container table tr td input:placeholder-shown{
+    
+    text-indent: 10px;
+    font-size: 17px;
+ }
+.button {
+ padding: 10px 25px;
+ font-size: 20px;
+ background: transparent;
+ border: none;
+ position: relative;
+ color: white;
+ z-index: 1;
+}
+
+.button::after,
+ .button::before {
+ content: '';
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ z-index: -99999;
+ transition: all .4s;
+}
+
+.button::before {
+ transform: translate(0%, 0%);
+ width: 100%;
+ height: 100%;
+ background: rgb(0, 139, 69);
+ border-radius: 50px;
+}
+
+.button::after {
+ transform: translate(0px, 0px);
+ width: 10px;
+ height: 10px;
+ background:var(--color2);
+ backdrop-filter: blur(5px);
+ border-radius: 50px;
+}
+
+.button:hover::before {
+ transform: translate(5%, 20%);
+ width: 10px;
+ height: 10px;
+}
+
+.button:hover::after {
+ border-radius: 50px;
+ transform: translate(0, 0);
+ width: 100%;
+ height: 100%;
+}
+
+.button:active::after {
+ transition: 0s;
+ transform: translate(0, 5%);
+}
+   
+
+/*---------------------------footer--------------------------------*/
+footer {
+    display: flex;
+    margin-top: 102px;
+    background-color: var(--color2);
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 7vh;
+}
+
+footer p {
+    font-size: 20px;
+}
+
+
+/*          box border anm */
+.container {
+    --border-size: 3px;
+    --border-angle: 0turn;
+    width: 60vmin;
+    height: 50vmin;
+    background-image: conic-gradient( var(--color5), var(--color5) , var(--color5)), conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+    background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)), cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-animation: bg-spin 3s linear infinite;
+            animation: bg-spin 3s linear infinite;
+  }
+  @-webkit-keyframes bg-spin {
+    to {
+      --border-angle: 1turn;
+    }
+  }
+  @keyframes bg-spin {
+    to {
+      --border-angle: 1turn;
+    }
+  }
+
+  
+  @property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+  }
