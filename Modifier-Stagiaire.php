@@ -1,5 +1,4 @@
-
- <?php
+<?php
 include_once('inc/db.php');
 session_start();
 if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
@@ -7,43 +6,44 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
 }
 ?>
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["AjaxValider"])) {
-        $_SESSION["anneeScolaire"] = $_POST["annee-Scolaire"];
-        $_SESSION["annee"] = $_POST["annee"];
-        $_SESSION["filiere"] = $_POST["filiere"];
-        $_SESSION["groupe"] = $_POST["groupe"];
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
 
-        // get all Stagiaire 
-        $sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where idGroupe = ?";
-        $pdo_statement = $conn->prepare($sql);
-        $pdo_statement->bindParam(1, $_SESSION["groupe"]);
-        $pdo_statement->execute();
-        $Stagiaires = $pdo_statement->fetchAll();
-        // get group name
-        $sql = "SELECT nomGroupe from groupe where idGroupe = ?";
-        $pdo_statement = $conn->prepare($sql);
-        $pdo_statement->bindParam(1, $_SESSION["groupe"]);
-        $pdo_statement->execute();
-        $group = $pdo_statement->fetch();
-        $_SESSION["nomGroupe"] = $group['nomGroupe'];
-        // get Respo
-        $respo = "";
-        $sql = "SELECT user FROM compte";
-        $pdo_statement = $conn->prepare($sql);
-        $pdo_statement->execute();
-        $users = $pdo_statement->fetchAll(PDO::FETCH_COLUMN);
-        foreach ($Stagiaires as $stg) {
-            if (in_array($stg['CEF'], $users)) {
-                $respo = $stg['CEF'];
-            }
+    $_SESSION["anneeScolaire"] = $_GET["annee-Scolaire"];
+    $_SESSION["annee"] = $_GET["annee"];
+    $_SESSION["filiere"] = $_GET["filiere"];
+    $_SESSION["groupe"] = $_GET["groupe"];
+
+    // get all Stagiaire 
+    $sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from stagiaire where idGroupe = ?";
+    $pdo_statement = $conn->prepare($sql);
+    $pdo_statement->bindParam(1, $_SESSION["groupe"]);
+    $pdo_statement->execute();
+    $Stagiaires = $pdo_statement->fetchAll();
+    // get group name
+    $sql = "SELECT nomGroupe from groupe where idGroupe = ?";
+    $pdo_statement = $conn->prepare($sql);
+    $pdo_statement->bindParam(1, $_SESSION["groupe"]);
+    $pdo_statement->execute();
+    $group = $pdo_statement->fetch();
+    $_SESSION["nomGroupe"] = $group['nomGroupe'];
+    // get Respo
+    $respo = "";
+    $sql = "SELECT user FROM compte";
+    $pdo_statement = $conn->prepare($sql);
+    $pdo_statement->execute();
+    $users = $pdo_statement->fetchAll(PDO::FETCH_COLUMN);
+    foreach ($Stagiaires as $stg) {
+        if (in_array($stg['CEF'], $users)) {
+            $respo = $stg['CEF'];
         }
     }
+
 }
 ?>
 <!--html-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 let userid = $(this).data('id');
                 $.get({
                     url: './inc/AjaxModal.php',
-                    type: 'post',
+                    type: 'GET',
                     data: { userid: userid },
                     success: function (response) {
                         $('.modal-body').html(response);
@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     let newRespo = $(this).val()
                     let oldRespo = $("#oldResponsable").val()
                     if (newRespo != "") {
-                        $.post({
+                        $.GET({
                             url: './inc/UpdateRespo.php',
                             data: { newRespo: newRespo, oldRespo: oldRespo },
                             success: function (data) {
@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ev.preventDefault()
                     const CEF = $(this).val()
                     if (CEF) {
-                        $.post({
+                        $.GET({
                             url: './inc/DeleteStagiaire.php',
                             data: { CEF: CEF },
                             success: function (data) {
@@ -190,7 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
     </nav>
     <!-- Ajax select -->
-    <form action="" method="post">
+    <form action="" method="GET">
         <main>
             <div class="selects">
                 <ul>
@@ -280,25 +280,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php
                     } else {
                         ?>
-                        <input type="checkbox" name="respo" value="<?= $row['CEF'] ?>" id="responsable" class="checkboxbtn">
+                        <input type="checkbox" name="respo" value="<?= $row['CEF'] ?>" id="responsable"
+                            class="checkboxbtn">
                         <?php
                     }
                         ?>
                     </td>
                     <td>
-                       
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
                         </label>
-
                         </label>
-                           
                     </td>
                 </tr>
                 <?php
                 }
-
                 ?>
                 <input type="hidden" id="trcount" value="<?= $c ?>" />
             </table>
@@ -325,7 +322,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div><span class="close">&times;</span></div>
             <div class="modal-header">
                 <h4 class="modal-title">User Info </h4>
-                
+
             </div>
             <div class="modal-body">
             </div>
@@ -338,7 +335,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <footer>
         <p>© Copyright | DevWFS205 |2022</p>
     </footer>
-    
+
 </body>
 
 </html>
