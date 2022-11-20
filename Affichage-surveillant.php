@@ -6,12 +6,12 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
 }
 ?>
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (isset($_POST["AjaxValider"])) {
-    $_SESSION["anneeScolaire"] = $_POST["annee-Scolaire"];
-    $_SESSION["annee"] = $_POST["annee"];
-    $_SESSION["filiere"] = $_POST["filiere"];
-    $_SESSION["groupe"] = $_POST["groupe"];
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  if (isset($_GET["AjaxValider"])) {
+    $_SESSION["anneeScolaire"] = $_GET["annee-Scolaire"];
+    $_SESSION["annee"] = $_GET["annee"];
+    $_SESSION["filiere"] = $_GET["filiere"];
+    $_SESSION["groupe"] = $_GET["groupe"];
 
     // get Absence 
     $sql = "SELECT * from absence where idGroupe = ? and justifier ='no'";
@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           if (confirm("Êtes - vous sûr de faire ce processus") == true) {
             const idAbsence = $(this).val()
             if (idAbsence) {
-              $.post({
+              $.GET({
                 url: './inc/DeleteAbsence.php ',
                 data: { idAbsence: idAbsence },
                 success: function (data) {
@@ -195,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!--******************** --- [ Main ] --- ********************-->
   <main>
     <!-- liste  -->
-    <form action="" method="post">
+    <form action="" method="GET">
       <div class="selects">
         <ul>
           <li> <label for="année-scolaire">année scolaire</label></li>
@@ -237,9 +237,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </form>
     <!--  Table -->
-    <form action="./inc/JestufierAbs.php" method="post">
+    <form action="./inc/JestufierAbs.php" method="POST">
       <?php
-      if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["AjaxValider"]) and empty($absence)) {
+      if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET["AjaxValider"]) and empty($absence)) {
         echo "<div class='first-msg-2'>" . "<span>&#8592;</span>" . " Aucune absence pour ce groupe ,Veuillez sélectionner un autre  groupe " . "</div>";
       } elseif (empty($absence)) {
         echo "<div class='first-msg'>" . "<span>&#8592;</span>" . " Veuillez sélectionner un groupe " . "</div>";

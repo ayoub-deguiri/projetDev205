@@ -321,8 +321,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
         <div class="modal-content">
             <div><span class="close">&times;</span></div>
             <div class="modal-header">
-                <h4 class="modal-title">User Info </h4>
-
+                <h4 class="modal-title">l'historique du stagiaire :</h4>
             </div>
             <div class="modal-body">
             </div>
