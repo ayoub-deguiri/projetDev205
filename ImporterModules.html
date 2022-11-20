@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" media="screen" href="./styles/modifier.css">
+    <link rel="stylesheet" href="./styles/ImporterModule.css">
+    <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
+    <title>modifier</title>
+</head>
+<body>
+    <header>
+        <div class="logoOfppt">
+            <img src="./images/Ofpptlogo.png"  alt="logoOfppt" id="logoOfppt">
+        </div>
+        <div class="logoApp">
+            <img src="./images/logoApp.png"  alt="logo" class="logoApp">
+        </div>
+        <div class="déconnexion">
+        <button type="button" id="Déconnexion"><a href="./logout.php">Déconnexion</a></button>
+    </div> 
+    </header>
+    <nav>
+        <ul>
+        <li>
+            <a href="#"><button >Création</button></a>
+        </li>
+        <li>
+            <a href="#"><button class="module">Module</button></a> 
+        </li>
+        <li>
+            <a href="#"><button>Formateur</button></a>
+        </li>
+        <li>  
+            <a href="#"><button>Stagiaire</button> </a>
+        </li>
+        </ul>
+    </nav>
+    <form action="action.php" method="post">
+    <main>
+        
+        <div class="selects">
+            <ul>
+                <li>  <label for=""><h3>importer module</h3></label></li>
+                <li> <label for="année">Année scolaire :</label> <select id="select" class="inputSelect"><option value="année" disabed></option></select></li>
+                <li>  <div class="telecharger"> <img src="./images/upload-cloud.svg" alt="" srcset="" id="icon-upload">
+                    <input type="button" value="télécharger" id="telecherger"></div></li>
+                
+                <li><div class="validerImporter">
+                    <input type="submit" value="valider" id="valider" onclick=" return vk()"> <input type="file" name="" id="file"> 
+                    <label for="file" id='buttonPhoto' >importer</label>
+                </div><span id="lbimport"></span></li>
+          
+            </ul>
+        </form>
+        </div>
+        
+        <div class="listeModules">
+            <table>
+                <tr>
+                    
+                        <th>Nom module</th>
+                        <th>Filière</th>
+                    
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>.</td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>.</td>
+                    
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>.</td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>.</td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>.</td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>.</td>
+                    
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>.</td>
+                    
+                </tr>
+            
+            </table>
+        </div>
+        <div class="buttonInserer">
+           <a href=""><button type="button" id="inserer"> Insérer Formateur &#10154;</button></a> 
+        </div>
+
+
+    </main>
+
+    <footer>
+        <p>© Copyright | DevWFS205 |2022</p>
+    </footer>
+
+<script>
+    var file = document.getElementById('file')
+    var lbimport = document.getElementById('lbimport')
+    var Année = document.getElementById('select')
+    function vk()
+    {
+        var etat;
+        if(file.value =='')
+        {
+            etat =false
+            lbimport.innerHTML='please check your import file '
+        }
+        else{
+            etat =true
+        }
+        return etat 
+    }
+</script>
+
+</body>
+</html>
