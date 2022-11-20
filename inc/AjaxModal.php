@@ -61,10 +61,10 @@ $retard = $pdo_statement->fetchALL(PDO::FETCH_ASSOC);
                 foreach ($absence as $ab) {
                 ?>
                 <li>
-                    La Date d'absence : <?= $ab['dateAbsence'] ?> &nbsp; &nbsp;
+                    La Date d'absence : <?= $ab['dateAbsence'] ?> &nbsp; &nbsp; <br>
                         Du : <?= $ab['heureDebutAbsence'] ?> &nbsp; &nbsp;
-                            A : <?= $ab['heureFinAbsence'] ?> &nbsp; &nbsp;
-                                Module absente: <?= $ab['moduleAbsence'] ?> &nbsp; &nbsp;
+                            A : <?= $ab['heureFinAbsence'] ?> &nbsp; &nbsp; <br>
+                                Module absente: <?= $ab['moduleAbsence'] ?> &nbsp; &nbsp; <br>
                                     formateur: <?= $ab['matricule'] ?>
                 </li>
                 <?php
