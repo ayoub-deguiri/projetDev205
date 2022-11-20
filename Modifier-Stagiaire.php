@@ -1,4 +1,5 @@
-<?php
+
+ <?php
 include_once('inc/db.php');
 session_start();
 if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
@@ -43,13 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!--html-->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/Modifier-Stagiaire.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" media="screen" href="./styles/Modifier-Stagiaire.css">
     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <title>Modifier-Stagiaire</title>
     <script src="./scripts/jquery-3.6.1.min.js"></script>
@@ -275,19 +275,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php
                     if ($row['CEF'] == $respo) {
                         ?>
-                        <input type="radio" name="respo" value="<?= $row['CEF'] ?>" id="oldResponsable" checked
-                            class="radiobtn">
+                        <input type="checkbox" name="respo" value="<?= $row['CEF'] ?>" id="oldResponsable" checked
+                            class="checkboxbtn">
                         <?php
                     } else {
                         ?>
-                        <input type="radio" name="respo" value="<?= $row['CEF'] ?>" id="responsable" class="radiobtn">
+                        <input type="checkbox" name="respo" value="<?= $row['CEF'] ?>" id="responsable" class="checkboxbtn">
                         <?php
                     }
                         ?>
                     </td>
                     <td>
-                        <button class="btn-click" value="<?= $row['CEF'] ?>"><img src="./images/trash-2.svg" id='trash'
-                                alt="Delete"></button>
+                       
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                        </label>
+
+                        </label>
+                           
                     </td>
                 </tr>
                 <?php
@@ -316,9 +322,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <div><span class="close">&times;</span></div>
             <div class="modal-header">
-                <h4 class="modal-title">User Info</h4>
+                <h4 class="modal-title">User Info </h4>
+                
             </div>
             <div class="modal-body">
             </div>
@@ -331,6 +338,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <footer>
         <p>© Copyright | DevWFS205 |2022</p>
     </footer>
+    
 </body>
 
 </html>
