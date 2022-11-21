@@ -28,16 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
     $_SESSION["nomGroupe"] = $group['nomGroupe'];
     // get Respo
     $respo = "";
-    $sql = "SELECT user FROM compte";
+    $sql = "SELECT user FROM compte where compteType ='stagiaire'";
     $pdo_statement = $conn->prepare($sql);
     $pdo_statement->execute();
     $users = $pdo_statement->fetchAll(PDO::FETCH_COLUMN);
-    foreach ($Stagiaires as $stg) {
-        if (in_array($stg['CEF'], $users)) {
-            $respo = $stg['CEF'];
-        }
-    }
-
 }
 ?>
 <!--html-->
@@ -114,31 +108,41 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                     alert("Choisissez s'il vous plaît  un groupe")
                 }
             })
-            // count var
-            const countrow = parseInt($('#trcount').val())
-            // ajax for update Respo
-            for (i = 1; i <= countrow; i++) {
-                $("#tr-" + i + " input[type=radio]").on("click", function () {
-                    let newRespo = $(this).val()
-                    let oldRespo = $("#oldResponsable").val()
-                    if (newRespo != "") {
-                        $.GET({
-                            url: './inc/UpdateRespo.php',
-                            data: { newRespo: newRespo, oldRespo: oldRespo },
+            //  update responsable
+            $(".respo").on('change', function () {
+                // add new one
+                if ($(this).is(':checked')) {
+                    const CEF = $(this).val()
+                    if (CEF) {
+                        $.get({
+                            url: './inc/AddRespo.php',
+                            data: { CEF: CEF },
                             success: function (data) {
-                                $("#success-update").html(data)
+                                $("#result").html(data)
                             }
                         });
                     }
-                })
-            }
-            // ajax for Delete Stagiaire
-            for (i = 1; i <= countrow; i++) {
-                $("#tr-" + i + " button").on("click", function (ev) {
-                    ev.preventDefault()
+                    // remove exists one
+                } else {
                     const CEF = $(this).val()
                     if (CEF) {
-                        $.GET({
+                        $.get({
+                            url: './inc/RemoveRespo.php',
+                            data: { CEF: CEF },
+                            success: function (data) {
+                                $("#result").html(data)
+                            }
+                        });
+                    }
+                }
+            })
+
+            // ajax for Delete Stagiaire
+            $(".switcher").on('change', function () {
+                if ($(this).is(':checked')) {
+                    const CEF = $(this).val()
+                    if (CEF) {
+                        $.get({
                             url: './inc/DeleteStagiaire.php',
                             data: { CEF: CEF },
                             success: function (data) {
@@ -146,8 +150,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                             }
                         });
                     }
-                })
-            }
+                }
+            })
         })
     </script>
 </head>
@@ -273,22 +277,28 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                     </td>
                     <td>
                         <?php
-                    if ($row['CEF'] == $respo) {
+                    if (in_array($row['CEF'], $users)) {
                         ?>
-                        <input type="checkbox" name="respo" value="<?= $row['CEF'] ?>" id="oldResponsable" checked
-                            class="checkboxbtn">
+                        <label class="switch">
+                            <input class="respo" type="checkbox" value="<?= $row['CEF'] ?>" checked />
+                            <span class="slider round"></span>
+                        </label>
+                        </label>
                         <?php
                     } else {
                         ?>
-                        <input type="checkbox" name="respo" value="<?= $row['CEF'] ?>" id="responsable"
-                            class="checkboxbtn">
+                        <label class="switch">
+                            <input class="respo" type="checkbox" value="<?= $row['CEF'] ?>" />
+                            <span class="slider round"></span>
+                        </label>
+                        </label>
                         <?php
                     }
                         ?>
                     </td>
                     <td>
                         <label class="switch">
-                            <input type="checkbox">
+                            <input class="switcher" type="checkbox" value="<?= $row['CEF'] ?>" />
                             <span class="slider round"></span>
                         </label>
                         </label>
@@ -329,7 +339,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
     </div>
     </form>
     </div>
-    <input type="hidden" id="success-update"></input>
+    <input type="hidden" id="result"></input>
     <input type="hidden" id="success-delete"></input>
     <footer>
         <p>© Copyright | DevWFS205 |2022</p>
