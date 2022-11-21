@@ -6,17 +6,15 @@ if (empty($_SESSION) or $_SESSION['compteType'] != "serveillant") {
 }
 ?>
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST["CEF"])) {
-        $CEF = $_POST["CEF"];
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (!empty($_GET["CEF"])) {
+        $CEF = $_GET["CEF"];
         $sql = ' CALL Delete_Stagiaire_From_Group(?)';
         $pdo_statement = $conn->prepare($sql);
         $pdo_statement->bindParam(1, $CEF);
         $pdo_statement->execute();
-
 ?>
 <script>
-    alert("Opération terminée avec succès")
     location.reload();
 </script>;
 <?php
@@ -24,12 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
 ?>
 <script>
-    alert("L'opération n'a pas réussi")
     location.reload();
 </script>;
 <?php
     }
 } else {
-    header('location:./login.php');
+    header('location:./Accueil-serveillant.php');
 }
 ?>
