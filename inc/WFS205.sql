@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2022 at 12:19 AM
+-- Generation Time: Nov 21, 2022 at 01:47 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -32,13 +32,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Delete_Stagiaire_From_Group` (IN `C
             DELETE FROM `compte` WHERE compte.user = CEFIN;
             END IF;
      END IF;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Update_Groupe_Respo` (IN `oldrespo` VARCHAR(50), IN `newrespo` VARCHAR(50))   BEGIN
-	if EXISTS (SELECT user from compte where compte.user = oldrespo) THEN
-    	DELETE FROM `compte` WHERE compte.user = oldrespo;
-    END IF ;
-   	INSERT INTO `compte`(`user`, `password`, `compteType`) VALUES (newrespo,newrespo,"stagiaire");
 END$$
 
 --
@@ -94,7 +87,13 @@ CREATE TABLE `absence` (
 
 INSERT INTO `absence` (`idAbsence`, `dateAbsence`, `heureDebutAbsence`, `heureFinAbsence`, `moduleAbsence`, `matricule`, `type`, `idAnnee`, `idFiliere`, `idGroupe`, `idAnneeScolaire`, `CEF`, `justifier`) VALUES
 (38, '2022-11-17', '02:16:00', '02:16:00', 'LMAO', '1', 'absence', 2, 15, 47, 1, '1998121700398', 'no'),
-(39, '2022-11-16', '02:49:00', '02:49:00', 'mexampel', '2', 'absence', 2, 15, 47, 1, '1999030200448', 'no');
+(43, '2022-11-17', '12:19:00', '13:19:00', 'React', '1', 'absence', 2, 15, 47, 1, '1998121700398', 'no'),
+(44, '2022-11-17', '12:19:00', '13:19:00', 'React', '1', 'absence', 2, 15, 47, 1, '1999022300367', 'no'),
+(46, '2022-11-19', '14:19:00', '14:19:00', 'React', '2', 'retard', 1, 11, 22, 1, '1993030100110', 'no'),
+(49, '2022-11-20', '17:07:00', '17:07:00', 'LMAO', '2', 'retard', 2, 15, 47, 1, '1998121700398', 'no'),
+(50, '2022-11-04', '17:08:00', '17:08:00', 'PHP', '2', 'retard', 2, 15, 47, 1, '1998121700398', 'no'),
+(51, '2022-11-17', '16:20:00', '10:20:00', 'LMAO', '1', 'absence', 2, 15, 47, 1, '1998121700398', 'no'),
+(52, '2022-11-20', '09:52:00', '10:52:00', '30', '1', 'absence', 2, 15, 44, 1, '1996100700208', 'no');
 
 -- --------------------------------------------------------
 
@@ -157,6 +156,19 @@ INSERT INTO `compte` (`user`, `password`, `compteType`) VALUES
 ('2000121600314', '2000121600314', 'stagiaire'),
 ('admin', 'admin', 'serveillant'),
 ('directrice', 'directrice', 'directrice');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `deleted_stagiaire`
+--
+
+CREATE TABLE `deleted_stagiaire` (
+  `CEF` varchar(50) NOT NULL,
+  `nomStagiaire` varchar(60) NOT NULL,
+  `prenomStagiaire` varchar(60) NOT NULL,
+  `idGroupe` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -330,8 +342,6 @@ CREATE TABLE `stagiaire` (
 --
 
 INSERT INTO `stagiaire` (`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) VALUES
-('1', 'Holako', 'Holako', NULL),
-('100', '12', '3', NULL),
 ('199211260144', 'EL HANINE', 'KHAIR ALLAH', 41),
 ('1993030100110', 'ACHEIKH', 'ALI LOOL', 22),
 ('199402200533', 'ELHADDAD', 'ABDELMOUNAIM', 43),
@@ -485,7 +495,6 @@ INSERT INTO `stagiaire` (`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) V
 ('1999122600436', 'GUYAR', 'YOUSSEF', 52),
 ('1999122600505', 'AIT DAOUD', 'LAMIA', 26),
 ('1999123000197', 'LBIDA', 'MAHDI', 34),
-('2', '1', '1', NULL),
 ('2000010103101', 'LAKSIOUER', 'MEHDI', 45),
 ('2000010500353', 'BOUTERHAQ', 'ABDERRAHIM', 55),
 ('2000011200545', 'IBNOUBAR', 'AMINE', 52),
@@ -1282,16 +1291,38 @@ INSERT INTO `stagiaire` (`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) V
 ('2006012300022', 'SEMMAÂ', 'WALID', 62),
 ('2006020300015', 'FARCHIOUI', 'AMINA', 62),
 ('2006021100020', 'BOUKDIR', 'AYOUB', 62),
-('2006040800006', 'KALSADI', 'AIMRANE', 62),
-('22', '5', '54', NULL),
-('3', '5', '5', NULL),
-('32', '456', '45', NULL),
-('35', 'Holako', 'gjkl', NULL),
-('5', '4', '6', NULL),
-('50', '5', '5', NULL),
-('500', '64', '45', NULL),
-('7', '7', '7', NULL),
-('8', '8', '8', NULL);
+('2006040800006', 'KALSADI', 'AIMRANE', 62);
+
+--
+-- Triggers `stagiaire`
+--
+DELIMITER $$
+CREATE TRIGGER `After_Delete_Stagiaire` AFTER UPDATE ON `stagiaire` FOR EACH ROW BEGIN  
+        IF (NEW.idGroupe IS NULL) THEN
+    INSERT INTO deleted_stagiaire(
+        CEF,
+        nomStagiaire,
+        prenomStagiaire,
+        idGroupe
+    )
+VALUES(
+    OLD.CEF,
+    OLD.nomStagiaire,
+    OLD.prenomStagiaire,
+    OLD.idGroupe
+);
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `Restore_Stagiaiare` AFTER UPDATE ON `stagiaire` FOR EACH ROW BEGIN  
+        IF (NEW.idGroupe IS NOT NULL) THEN
+    	DELETE FROM deleted_stagiaire WHERE deleted_stagiaire.CEF = OLD.CEF;
+    END IF;
+END
+$$
+DELIMITER ;
 
 --
 -- Indexes for dumped tables
@@ -1327,6 +1358,13 @@ ALTER TABLE `anneescolaire`
 --
 ALTER TABLE `compte`
   ADD PRIMARY KEY (`user`);
+
+--
+-- Indexes for table `deleted_stagiaire`
+--
+ALTER TABLE `deleted_stagiaire`
+  ADD PRIMARY KEY (`CEF`),
+  ADD KEY `deletedstg_group` (`idGroupe`);
 
 --
 -- Indexes for table `filiere`
@@ -1375,7 +1413,7 @@ ALTER TABLE `stagiaire`
 -- AUTO_INCREMENT for table `absence`
 --
 ALTER TABLE `absence`
-  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `annee`
@@ -1421,6 +1459,12 @@ ALTER TABLE `absence`
 --
 ALTER TABLE `annee`
   ADD CONSTRAINT `annee_anneescolaire` FOREIGN KEY (`idAnneeScolaire`) REFERENCES `anneescolaire` (`idAnneeScolaire`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `deleted_stagiaire`
+--
+ALTER TABLE `deleted_stagiaire`
+  ADD CONSTRAINT `deletedstg_group` FOREIGN KEY (`idGroupe`) REFERENCES `groupe` (`idGroupe`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `filiere`
