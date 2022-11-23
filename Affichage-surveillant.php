@@ -96,12 +96,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
       // ajax for Delete Ansence
       for (i = 1; i <= countrow; i++) {
         $("#tr-" + i + " button").on("click", function (ev) {
-
           if (confirm("Êtes - vous sûr de faire ce processus") == true) {
             const idAbsence = $(this).val()
             if (idAbsence) {
-              $.GET({
-                url: './inc/DeleteAbsence.php ',
+              $.post({
+                url: './inc/DeleteAbsence.php',
                 data: { idAbsence: idAbsence },
                 success: function (data) {
                   $("#success-delete").html(data)
