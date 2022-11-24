@@ -21,6 +21,7 @@ $formateur = $pdo_statement->fetchAll();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" media="screen" href="./styles/importerFormateur.css">
     <link rel="stylesheet" href="./styles/importerFormateur.css">
+    <link rel="stylesheet" href="./styles/snackbar.css">
     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <title>Formateur</title>
     <script src="./scripts/jquery-3.6.1.min.js"></script>
@@ -151,6 +152,7 @@ $formateur = $pdo_statement->fetchAll();
         </a>
     </div>
     <input type="hidden" id="success-delete"></input>
+    <div id="snackbar">l'opération terminée avec succes..</div>
     <footer>
         <p>© Copyright | DevWFS205 |2022</p>
     </footer>

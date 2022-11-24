@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" media="screen" href="./styles/Affichage-surveillant.css" />
+  <link rel="stylesheet" href="./styles/snackbar.css">
   <title>Affichage</title>
   <script src="./scripts/jquery-3.6.1.min.js"></script>
   <script>
@@ -338,6 +339,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
       ?>
     </form>
   </main>
+  <div id="snackbar">l'opération terminée avec succes..</div>
   <input type="hidden" id="success-delete"></input>
 
   <footer>

@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/Modifier-Stagiaire.css">
+    <link rel="stylesheet" href="./styles/snackbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <title>Modifier-Stagiaire</title>
@@ -339,6 +340,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
     </div>
     </form>
     </div>
+    <div id="snackbar">l'opération terminée avec succes..</div>
     <input type="hidden" id="result"></input>
     <input type="hidden" id="success-delete"></input>
     <footer>
