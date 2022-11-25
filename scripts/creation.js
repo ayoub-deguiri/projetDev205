@@ -30,3 +30,14 @@ function infos() {
     document.getElementById("valider").style.display = "block";
   }
 }
+
+function myFunction() {
+ 
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'message',
+    showConfirmButton: false,
+    timer: 3000
+  })
+}

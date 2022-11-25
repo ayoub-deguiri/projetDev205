@@ -388,3 +388,25 @@ ul li:hover>ul {
 
 margin-bottom: 15px;
 }
+
+
+
+/* --------------------- */
+#btnValider{
+ 
+    background-color: var(--color1);
+    text-align: center;
+    border-radius: 15px;
+    font-size: 20px;
+  color: #D8E6EA;
+    width: 100px;
+    height: 35px;
+    color: var(--color3);
+    cursor: pointer;
+    outline: none;
+    border: none;
+   bottom: 10px;
+   margin-top: 40px;
+   margin-left: 100px;
+   margin-bottom: 0px;
+}
