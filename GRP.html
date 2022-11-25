@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,11 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" media="screen" href="./styles/GRP.css" />
-  <title>GRP</title>
+  <link rel="stylesheet" media="screen" href="./styles/Absence Justifier.css" />
+  <title>Absence Justifier</title>
 </head>
 
 <body>
+<!--******************** --- [ header   ] --- ********************-->
   <header>
     <div class="logoOfppt">
       <img src="./images/Ofpptlogo.png" alt="logoOfppt" id="logoOfppt" />
@@ -25,57 +25,61 @@
       </button>
     </div>
   </header>
-  <!--******************** --- [ nav   ] --- ********************-->
-  <nav>
-    <ul>
-      <li>
-        <a href="./Accueil-serveillant.php"><button><i class="fa fa-home" aria-hidden="true"></i>ACCUEIL</button></a>
-      </li>
-      <li>
-        <a href="./Modifier-Stagiaire.php"><button><i class="fa fa-pencil-square"
-              aria-hidden="true"></i>MODIFIER</button></a>
-      </li>
-      <li>
+<!--******************** --- [ nav   ] --- ********************-->
+<nav> 
+  <ul>
+    <li>
+        <a href=""><button ><i class="fa fa-home "  ></i>ACCUEIL</button></a>
+    </li>
+    <li>
+        <a href="#"><button><i class="fa fa-pencil-square" aria-hidden="true"></i>MODIFIER</button></a> 
+    </li>
+    <li>
         <a href=""><button><i class="fa fa-calendar-times-o" aria-hidden="true"></i>ABSENCE</button></a>
         <ul>
-          <li><a href="./Affichage-surveillant.php"><button>Affichage</button></a></li>
-          <li><a href="./SasireAbsence-surveillant.php"><button>Saisir</button></a></li>
+            <li><a href=""><button>Affichage</button></a></li>
+            <li><a href=""><button>Saisir</button></a></li>
         </ul>
-      </li>
-      <li>
-        <a href="./note.html"><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
-      </li>
-      <li>
-        <a href="#"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>AJOUTER</button></a>
-      </li>
-    </ul>
-  </nav>
-  <!--******************** --- [ Main ] --- ********************-->
+    </li>
+    <li>  
+        <a href=""><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
+    </li>
+    <li>  
+        <a href="#"><button ><i class="fa fa-plus-circle" aria-hidden="true"></i>AJOUTER</button></a>
+    </li>
+  </ul>
+</nav>
   <main>
-    <!-- liste  -->
+<!--******************** --- [ liste   ] --- ********************-->
     <form action="" method="post">
       <div class="selects">
         <ul>
-                <li> <label for="année-scolaire">année scolaire</label></li>
-                    <li><select name="annee-Scolaire" id="année-scolaire"></select> </li>
-                <li> <label for="année">année</label></li>
-                     <li> <select id="année" name="annee" required></select></li>
-                <li> <label for="filier">filière</label></li>
-                      <li> <select id="filiére" name="filiere" required></select></li>
-                <li> <label for="">groupe</label></li>
-                     <li><select id="groupe" name="groupe" required></select> </li>
-                <li><input type="submit" name="AjaxValider" value="valider" id="valider"> </li>
+                
+                <li> <label for="année-scolaire"  >année scolaire</label>
+                    <select name="annee-Scolaire" id="année-scolaire"></select> </li>
+            
+                <li> <label for="année">année</label>
+                      <select id="année" name="annee" required></select></li>
+
+                <li> <label for="filier">filière</label>
+                       <select id="filiére" name="filiere" required></select></li>
+            
+                <li> <label for="">groupe</label>
+                     <select id="groupe" name="groupe" required></select> </li>
+             
+                <li><input type="submit"  value="valider" id="valider"> </li>
         </ul>
       </div>
     </form>
-    <!--  Table -->
+
+<!--******************** --- [ Affichage Nom groupe ] --- ********************-->
+    <caption>
+      <div class="affiche_nom_groupe"> NOM GROUPE </div>
+    </caption>
+<!--******************** --- [ table   ] --- ********************-->
     <form action="./inc/JestufierAbs.php" method="post">
       <table>
-        <caption>
-          <!--******************** --- [ Affichage Nom groupe ] --- ********************-->
-          <div class="affiche_nom_groupe"> NOM GROUPE </div>
-        </caption>
-        <tr>
+      <tr>
           <th>CEF</th>
           <th>Nom</th>
           <th>Prénom</th>
@@ -87,10 +91,9 @@
           <th>Heure fin</th>
           <th>Justifier</th>
           <th>Nature de Justifier</th>
-          <th>Switch</th>
-        </tr>
+      </tr>
        
-        <tr>
+      <tr>
           <td></td>
           <td> </td>
           <td></td>
@@ -100,195 +103,69 @@
           <td></td>
           <td></td>
           <td></td>
+
           <td>
-            <input type="checkbox" id='checkbox'  class="btncheckbox"
-              onclick="Enable(this)" />
+             <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+            </label>
           </td>
+
           <td>
-            <input class="commentaire" type="text"  name="select" disabled />
+            <input class="commentaire" type="text"   />
           </td>
-          <input type="hidden"  >
-          <td> <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span></label>
-         </td>
-        </tr>
+
+         
+          
 
 
-        <tr>
-          <td></td>
-          <td> </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <input type="checkbox" id='checkbox'  class="btncheckbox"
-              onclick="Enable(this)" />
-          </td>
-          <td>
-            <input class="commentaire" type="text"  name="select" disabled />
-          </td>
-          <input type="hidden"  >
-          <td> <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span></label>
-         </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td> </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <input type="checkbox" id='checkbox'  class="btncheckbox"
-              onclick="Enable(this)" />
-          </td>
-          <td>
-            <input class="commentaire" type="text"  name="select" disabled />
-          </td>
-          <input type="hidden"  >
-          <td> <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span></label>
-         </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td> </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <input type="checkbox" id='checkbox'  class="btncheckbox"
-              onclick="Enable(this)" />
-          </td>
-          <td>
-            <input class="commentaire" type="text"  name="select" disabled />
-          </td>
-          <input type="hidden"  >
-          <td> <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span></label>
-         </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td> </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <input type="checkbox" id='checkbox'  class="btncheckbox"
-              onclick="Enable(this)" />
-          </td>
-          <td>
-            <input class="commentaire" type="text"  name="select" disabled />
-          </td>
-          <input type="hidden"  >
-          <td> <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span></label>
-         </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td> </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <input type="checkbox" id='checkbox'  class="btncheckbox"
-              onclick="Enable(this)" />
-          </td>
-          <td>
-            <input class="commentaire" type="text"  name="select" disabled />
-          </td>
-          <input type="hidden"  >
-          <td> <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span></label>
-         </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td> </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <input type="checkbox" id='checkbox'  class="btncheckbox"
-              onclick="Enable(this)" />
-          </td>
-          <td>
-            <input class="commentaire" type="text"  name="select" disabled />
-          </td>
-          <input type="hidden"  >
-          <td> <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span></label>
-         </td>
-        </tr>  
-      </table>
 
-      <!--  btn valider -->
-      <div class="valider">
-        <input type="submit" value="valider"  id="validerJutification" />
-      </div>
-      
+          <tr>
+            <td></td>
+            <td> </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+  
+            <td>
+               <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+              </label>
+            </td>
+  
+            <td>
+              <input class="commentaire" type="text"   />
+            </td>
+            <tr>
+              <td></td>
+              <td> </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+    
+              <td>
+                 <label class="switch">
+                      <input type="checkbox">
+                      <span class="slider round"></span>
+                </label>
+              </td>                         
+      </tr>
+      </table>  
     </form>
   </main>
-
+<!--******************** --- [ footer   ] --- ********************-->
   <footer>
     <p>© Copyright | DevWFS205 |2022</p>
   </footer>
 
-  <!--**********************--- [ Code js ] ---*******************************************************-->
-  <script type="text/javascript">
-
-    /*----------- [Code js 1 : checkbox]-----------*/
-    let Commentaire = document.getElementsByClassName("commentaire");
-    let btn = document.getElementsByClassName("btncheckbox");
-    let nombre1 = btn.length;
-    let nombre2 = Commentaire.length;
-    function Enable() {
-      for (i = 0; i < nombre1; i++) {
-        if (btn[i].checked == true) {
-          Commentaire[i].removeAttribute("disabled");
-          Commentaire[i].style.backgroundColor = 'rgb(232, 236, 239)';
-        } else {
-          btn.disabled = "true";
-          Commentaire[i].setAttribute("disabled", "");
-          Commentaire[i].value = "";
-          Commentaire[i].style.backgroundColor = 'rgb(140, 138, 138)';
-        }
-      }
-    }
-  </script>
 </body>
-
 </html>
