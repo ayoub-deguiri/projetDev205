@@ -6,7 +6,6 @@
     text-transform: capitalize;
     font-style: italic;
   }
-  
   :root {
     --color1: #fb931b;
     --color2: #155a93;
@@ -16,11 +15,10 @@
     --color6: rgb(247, 187, 7);
   
   }
-  
   body {
     background-color: var(--color3);
   }
-  
+/*<!--******************** --- [ header   ] --- ********************-->*/
   header {
     display: flex;
     flex-wrap: wrap;
@@ -32,25 +30,21 @@
     padding: 1px 40px;
     border-radius: 0 0 60px 60px;
   }
-  
   #logoOfppt {
     height: 100px;
     width: 100px;
   }
-  
   .logoApp {
     margin-right: -5%;
     height: 100px;
     width: 140px;
   }
-  
   #Déconnexion {
     margin-right: 0px;
     background-color: var(--color1);
     text-align: center;
     border-radius: 15px;
     font-size: 20px;
-  
     width: 150px;
     height: 35px;
     color: var(--color1);
@@ -58,165 +52,305 @@
     outline: none;
     border: none;
   }
-  
-  
   button[type="button"]:hover {
     background-color: var(--color1);
     color: var(--color4);
     border: 1px solid var(--color1);
     align-items: center;
   }
-  
   a {
     text-decoration: none;
     color: var(--color4);
   }
+/*<!--******************** --- [ footer   ] --- ********************-->*/
+footer {
+  display: flex;
+  background-color: var(--color2);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5.5vh;
+  position: absolute;
+  bottom:0;
   
-  nav {
-    height: 35px;
+}
+
+footer p {
+  font-size: 20px;
+}
+/*<!--******************** --- [ nav ] --- ********************-->*/
+nav{
+  height: 35px;
+}
+ul {
+  list-style-type: none;
+   display: flex;
+   justify-content: center;
+}
+ul li{
+   margin-right: 20px;
+   width: 100px;
+}
+ul li button{
+   width: 110px;
+   padding: 10px;
+   border: 0;
+   border-radius: 0 0 25px 25px;
+   background-color: var(--color2); 
+   color: white;
+   font-size: 13px;
+   font-weight: bold;
+   text-decoration: none;
+   
+}
+ul li button:hover{
+   border: 2px solid rgb(147, 147, 147);
+   border-top: 0px;
+   border-radius: 0 0 25px 25px;
+   background-color: rgb(232,236,239);
+   color: var(--color2);
+   cursor: pointer;
+}
+ul li ul{
+   display: none;
+}
+ul li ul li button{
+   background-color:var(--color1);
+   font-size: 11px;
+   font-weight: bold;
+   border-radius: 0px;
+}
+ul li ul li button:hover{
+   background-color:white;
+   color: #FB931B;
+   border-radius: 0px;
+}
+ul li:hover>ul {
+   display: flex;
+   height:50px;
+}
+
+/* ------------------------------------------------ */
+/*          navbav -pop      */
+.navbar-pop{
+  display: none;
+  width: 25px;
+  height: 25px;
+}
+.navbar-pop div {
+  width: 100%;
+  height: 3px ;
+  background-color: wheat;
+  margin-top: 3.5px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 70%;
+  top: 0;
+  /* float: left; */
+  width: 30%;
+  height: 100vh;
+  overflow: auto;
+  /* background-color: rgb(0, 0, 0); */
+  background-color: rgba(0, 0, 0, 0.9);
+  color: var(--color1);
+}
+
+
+.close {
+  color: var(--color1);
+  float: right;
+  font-size: 38px;
+  font-weight: bold;
+  display: block;
+
+  margin-bottom: 30px;
+ 
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.body-model{
+  background-color: black; 
+  clear: both;
+}
+.body-model ol{
+  list-style: none;
+  
+ 
+}
+.body-model ol li{
+
+  text-align: center;
+  margin-top: 0px;
+  background-color: black;
+  margin-top: 10px;
+
+}
+.body-model ol li button{
+
+  text-align: center;
+  background-color: black;
+  width: 100%;
+  padding: 6px 0px 6px 0px ;
+}
+.body-model ol li :hover,
+.body-model ol li:focus
+{
+
+  background-color: var(--color1);
+  color: var(--color2);
+
+ 
+}
+.body-model ol button{
+  background-color: transparent;
+  font-size: 17px;
+  color: var(--color3);
+  border: none;
+  cursor: pointer;
+  color: white;
+  
+  font-weight: bold;
+  text-decoration: none;
+  
+}
+.body-model ol li ol {
+  display: none;
+  
+}
+.body-model ol li ol:hover
+{
+  background-color:rgba(0, 0, 0, 0.9); ;
+  
+  
+}
+
+#btnlougout{
+ 
+  background-color: transparent;
+  margin-left: 20px;
+  margin-top: 25px;
+  padding: 3px 3px;
+  border-radius: 5px;
+  transition: 0.5s;
+  
+}
+#btnlougout img{
+ 
+  width: 37px;
+  height: 37px;
+}
+
+#btnlougout:hover{
+
+  padding: 5px 5px;
+  border-radius: 6px;
+}
+
+
+@media (max-width:640px){
+  #Déconnexion{
+      display: none;
   }
-  
-  nav ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
+  .navbar-pop{
+      display: block;
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
   }
-  
-  nav ul li {
-    margin-right: 10px;
-    width: 100px;
+  nav{
+      display: none;
   }
-  
-  nav ul li button {
-    width: 100px;
-    padding: 10px;
-    border: 0;
-    border-radius: 0 0 25px 25px;
-    background-color: var(--color2);
-    color: white;
-    font-size: 11px;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  nav ul li button:hover {
-    border: 2px solid rgb(147, 147, 147);
-    border-top: 0px;
-    border-radius: 0 0 25px 25px;
-    background-color: rgb(232, 236, 239);
-  
-    color: var(--color2);
-    cursor: pointer;
-  }
-  
-  nav ul li ul {
+
+}
+.fa-home,.fa-pencil-square,.fa-calendar-times-o,.fa-calendar,.fa-plus-circle{
+      font-size: 20px;
+      margin-right: 5px;
+}
+nav{
+  margin-bottom: 30px;
+}
+  /*<!--******************** --- [ main ] --- ********************-->*/
+  body::-webkit-scrollbar {
     display: none;
   }
-  
-  nav ul li ul li button {
-    background-color: var(--color1);
-    font-size: 11px;
-    font-weight: bold;
-    border-radius: 0px;
+  main {
+    margin-top: 16px;
   }
-  
-  nav ul li ul li button:hover {
-    background-color: white;
-    color: #fb931b;
-    border-radius: 0px;
-  }
-  
-  nav ul li:hover>ul {
-    display: flex;
-    height: 50px;
-  }
-  
-  footer {
-    display: flex;
-    margin-top: 6vh;
-    background-color: var(--color2);
-    justify-content: center;
-    align-items: center;
-    color: white;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 5.5vh;
-  }
-  
-  footer p {
-    font-size: 20px;
-  }
-  
-  /*------------------------------------------------------------------------------------------------------*/
-  /* ----------------------------------[ affiche_nom_groupe ]----------------------------------------------------------------- */
+  /* ----------------------------------[ affiche_nom_groupe ]----------------------------------------------------- */
   .affiche_nom_groupe {
     color: var(--color2);
     font-size: 23px;
     font-weight: 700;
     font-family: 'Franklin Gothic Medium', 'italic';
     text-align: center;
+    margin-bottom:20px
   }
-  
-  /*------------------------------------------------------------------------------------------------------*/
-  body::-webkit-scrollbar {
-    display: none;
-  }
-  
-  main {
-    margin-top: 16px;
-  }
-  .selects ul {
+  /* ----------------------------------[ liste ]----------------------------------------------------------------- */
+   .selects ul {
     list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: nowrap;
+    margin-right: 30px;
+    margin-left: 70px;
+    padding-left: 50px;
   }
   .selects ul li {
-    margin: 8px ;
-    font-weight: 900;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:170px;
+    margin-right:40px;
   } 
   .selects ul li label {
     color: var(--color2);
     font-size: 18px;
-    margin: 8px 0px;
-    font-weight: 900;
+    width:50px;
   }
   .selects ul li select {
-    width: 100px;
     background-color: var(--color6);
     height: 20px;
     border: 2px solid var(--color2);
     border-radius: 8px;
     font-size: 12px;
-    text-align: center;
+    text-align: center;  
+    width:100px;
   }
   .selects input[type="submit"] {
     background-color: rgb(0, 139, 69);
     color: var(--color4);
-    font-size: 20px;
+    font-size: 15px;
     width: 70px;
     padding: 3px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
     transition: 0.5s;
+    height:30px
   }
   .selects input[type="submit"]:hover {
     width: 70px;
     padding: 5px;
     background-color: var(--color2);
   }
-  /*------------------------------------------------------------------------------------------*/
-  
+/* ----------------------------------[ table ]----------------------------------------------------------------- */
   table {
     background-color: rgb(232, 236, 239);
     box-shadow: 3px 2px 4px 4px rgb(176, 176, 176);
     margin-left: 50px;
     width: 90%;
   }
-  
   table,
   th,
   td {
@@ -225,136 +359,25 @@
     height: 28px;
     font-size: 17px;
   }
-  
   table th {
     font-family: 'Franklin Gothic Medium', 'italic';
     font-weight: 900;
     width: 170px;
   }
-  
   table td {
     font-weight: 100;
     text-align: center;
   }
-  
-  .first-msg {
-    font-size: 2vw;
-    margin-top: 25%;
-    margin-left: 50%;
-    width: 100%;
-    text-align: center;
-    border: 3px solid green;
-    padding: 10px;
-  }
-  
-  .first-msg-2 {
-    font-size: 2vw;
-    margin-top: 15%;
-    margin-left: 15%;
-    width: 100%;
-    text-align: center;
-    border: 3px solid green;
-    padding: 10px;
-  
-  }
-  
-  .option-sent {
-    cursor: pointer;
-  }
-  
-  [type="checkbox"] {
-    position: relative;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  [type="checkbox"]:checked::before {
-    content: "";
-    width: 16px;
-    height: 16px;
-    background-color: var(--color2);
-    position: absolute;
-    top: -1.75px;
-    left: -1.75px;
-    opacity: 1;
-    border-radius: 50%;
-  }
-  
   [type="text"] {
     outline: none;
-    background-color: rgb(140, 138, 138);
+    background-color: rgb(232, 236, 239);;
     border: none;
     width: 170px;
     padding: 0px;
     margin: 0px;
     height: 100%;
   }
-  caption{
-    margin-bottom:15px;
-  }
-  
-  /*----------------------------------------------------------------------------------------*/
-  
-  .ajoute-valider {
-    position: relative;
-    margin-top: 50px;
-    width: 70%;
-    left: 25%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .ajoute {
-    width: 100px;
-  }
-  
-  .ajoute img {
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
-  }
-  
-  section h1 {
-    text-align: center;
-    padding: 20px;
-    font-size: 45px;
-    color: #008b45;
-  }
-  
-  
-  
-  /*_____________________________________________________________________________*/
-  
-  .valider input {
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-    width: 140px;
-    font-size: 20px;
-    color: var(--color4);
-    padding: 2px 0px;
-    background-color: var(--color1);
-    cursor: pointer;
-    transition: 0.5s;
-    margin-top: 2%;
-    margin-left: 80%;
-  }
-  
-  .valider input:hover {
-    padding: 4px;
-    width: 140px;
-    background-color: var(--color2);
-  }
-  
-  #trashbtn {
-    border: 0;
-  }
-  
-  #trashbtn:hover {
-    background-color: transparent;
-  }
-  /*-------------------------------------------------*/
+  /*--Switch-----------------------------------------------*/
   .switch {
     position: relative;
     display: inline-block;
