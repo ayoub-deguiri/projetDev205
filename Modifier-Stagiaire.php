@@ -43,7 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/Modifier-Stagiaire.css">
-    <link rel="stylesheet" href="./styles/snackbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <title>Modifier-Stagiaire</title>
@@ -168,6 +167,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
         <div class="déconnexion">
             <button type="button" id="Déconnexion"><a href="./logout.php">Déconnexion</a></button>
         </div>
+        <div class="navbar-pop" onclick="modalfn()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
     </header>
     <nav>
         <ul>
@@ -225,7 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                     <li>
                         <select id="année" name="annee" required></select>
                     </li>
-                    <li> <label for="filier">filière</label></li>
+                    <li> <label for="filier" id='filiérelb'>filière</label></li>
                     <li>
                         <select id="filiére" name="filiere" required></select>
                     </li>
@@ -326,6 +330,43 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
             <!-- Main Table -->
             </main>
     </div>
+    <div id="mynav" class="navpop">
+        <div class="modalnav-content">
+            <span class="closenav">&times;</span>
+            
+                <div class="body-nav">
+                    <ol>
+                        <li>
+                            <a href=""><button ><i class="fa fa-home" aria-hidden="true"></i> Accueil</button></a>
+                        </li>
+                        <li>
+                            <a href="#"><button><i class="fa fa-pencil-square" aria-hidden="true"></i> Modifier</button></a> 
+                        </li>
+                        <li>
+                        <button onclick="showUl()"><i class="fa fa-calendar-times-o" aria-hidden="true"></i>  Absence</button>
+                            <ol id="olshow">
+                                <li><a href=""><button>Affichage</button></a></li>
+                                <li><a href=""><button>Saisir</button></a></li>
+                            </ol>
+                        </li>
+                        <li>  
+                            <a href=""><button><i class="fa fa-calendar" aria-hidden="true"></i> Notes</button> </a>
+                        </li>
+                        <li>  
+                            <a href="#"><button ><i class="fa fa-plus-circle" aria-hidden="true"></i>Ajouter</button></a>
+                        </li>
+                    </ol>
+                    <div class="btnlougout">
+                        <button type="button" id="btnlougout">
+                        <a href="./logout.php"><img src="./images/log-out.svg" alt=""></a>
+                        </button>
+                    </div>
+                </div>
+                
+                
+         </div>
+    
+    </div>
     <div id="myModal" class="modal" role="dialog">
 
         <!-- Modal content -->
@@ -340,13 +381,52 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
     </div>
     </form>
     </div>
-    <div id="snackbar">l'opération terminée avec succes..</div>
     <input type="hidden" id="result"></input>
     <input type="hidden" id="success-delete"></input>
     <footer>
         <p>© Copyright | DevWFS205 |2022</p>
     </footer>
+<script>
+     /* nav bar  box */
+                // Get the nav bar pop
+                var nav = document.getElementById("mynav");
 
+                // Get the button that opens the modal
+                
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("closenav")[0];
+
+                // When the user clicks on the button, open the modal
+                function modalfn() {
+                  nav.style.display = "block";
+                }
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                  nav.style.display = "none";
+                var ol = document.getElementById('olshow')
+                  ol.style.display='none'
+                  
+                }
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                if (event.target == nav) {
+                  nav.style.display = "none";
+                }
+                }
+
+                function showUl()
+                {
+                  var ol = document.getElementById('olshow')
+                  ol.style.display='block'
+                  ol.style.marginLeft ='40px';
+                  
+
+                  
+                }
+</script>
 </body>
 
 </html>
