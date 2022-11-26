@@ -44,7 +44,7 @@
         <div class="selects">
             <ul>
                 <li>  <label for=""><h3>importer module</h3></label></li>
-                <li> <label for="année">Année scolaire :</label> <select id="select" class="inputSelect"><option value="année" disabed></option></select></li>
+                <li> <label for="année">Année scolaire :</label> <select class="inputSelect" required><option value="année" disabed></option></select></li>
                 <li>  <div class="telecharger"> <img src="./images/upload-cloud.svg" alt="" srcset="" id="icon-upload">
                     <input type="button" value="télécharger" id="telecherger"></div></li>
                 
@@ -61,8 +61,8 @@
             <table>
                 <tr>
                     
-                        <th>Nom module</th>
                         <th>Filière</th>
+                        <th>Nom module</th>
                     
                 </tr>
                 <tr>
@@ -121,7 +121,6 @@
 <script>
     var file = document.getElementById('file')
     var lbimport = document.getElementById('lbimport')
-    var Année = document.getElementById('select')
     function vk()
     {
         var etat;
