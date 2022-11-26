@@ -38,19 +38,31 @@
         </li>
         </ul>
     </nav>
-    <form action="action.php" method="post">
+     <form action="" method="post">
+         <div class="container">
+              <ul>
+                  <li> <label for="année-scolaire">Année scolaire :</label>
+                    <select name="annee-Scolaire" id="année-scolaire"><option value="" ></option><option value="1">test</option></select> </li>
+
+                  <li> <label for="année">Année :</label>
+                  <select id="année" name="annee" required><option value="" ></option><option value="1">test</option></select></li>
+                   
+                <li><input type="submit" onclick="checkobligatoire()" value="Valider" id="valider"> </li>
+              </ul>
+            </div>
+        </form>
     <main>
-        
-        <div class="selects">
+        <form action="" method="post">
+         <div class="selects">
             <ul>
-                <li>  <label for=""><h3>importer module</h3></label></li>
+                <li>  <label for=""><h3>Importer module</h3></label></li>
                 <li> <label for="année">Année scolaire :</label> <select class="inputSelect" required><option value="année" disabed></option></select></li>
                 <li>  <div class="telecharger"> <img src="./images/upload-cloud.svg" alt="" srcset="" id="icon-upload">
-                    <input type="button" value="télécharger" id="telecherger"></div></li>
+                    <input type="button" value="Télécharger" id="telecherger"></div></li>
                 
                 <li><div class="validerImporter">
-                    <input type="submit" value="valider" id="valider" onclick=" return vk()"> <input type="file" name="" id="file"> 
-                    <label for="file" id='buttonPhoto' >importer</label>
+                    <input type="submit" value="Valider" id="valider" onclick=" return vk()"> <input type="file" name="" id="file"> 
+                    <label for="file" id='buttonPhoto' >Importer</label>
                 </div><span id="lbimport"></span></li>
           
             </ul>
@@ -133,6 +145,44 @@
             etat =true
         }
         return etat 
+    }
+</script>
+ <script>
+    var annéescolaire = document.getElementById('année-scolaire')
+    var année = document.getElementById('année')
+    function checkobligatoire()
+    {
+        var etat1,etat2;
+        if(annéescolaire.value =='')
+        {
+            etat1 =false
+            annéescolaire.style.border='2px solid red'
+        }
+        else{
+            etat1 =true
+            annéescolaire.style.border='2px solid var(--color2)'
+        }
+        if(année.value =='')
+        {
+            etat3 =false
+            année.style.border='2px solid red'
+        }
+        else{
+            etat3 =true
+            année.style.border='2px solid var(--color2)'
+        }
+
+        if(etat1 ==false|| etat2==false)
+        {
+     
+            return false
+        }
+        else{
+           
+            return true
+        }
+       
+       
     }
 </script>
 
