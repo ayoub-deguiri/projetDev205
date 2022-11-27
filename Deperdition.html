@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <link rel="stylesheet" media="screen" href="./styles/DeperditionCss.css">
+    <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
 
   
     <title>Document</title>
 </head>
 <body>
+    <!--header-->
     <header>
         <div class="logoOfppt">
             <img src="./images/Ofpptlogo.png"  alt="logoOfppt" id="logoOfppt">
@@ -23,6 +24,8 @@
         <button type="button" id="Déconnexion"><a href="./logout.php">Déconnexion</a></button>
       </div> 
     </header>
+    <!--Fin-header-->
+    <!--nav-bar-->
     <nav>
         <ul>
           <li>
@@ -45,15 +48,36 @@
               <a href="#"><button ><i class="fa fa-calendar-times-o" aria-hidden="true"></i>DEPERDITION</button></a>
           </li>
         </ul>
+        
       </nav>
-      <h2 class="titre"> </h2>
+    <!--fin-navbar-->
+    <!--filtrer-tableau-->
+     <div class="filtrer">
+
+        <form>
+            <label for="date">Filtrer :</label>
+             <select id="date">
+                <option></option>
+                <option></option>
+                <option></option>
+                <option></option>
+             </select>
+        
+           
+        </form>    
+    </div>
+    <!--Fin-filtrer-tableau-->
+    <!--Filtrer-tableau-->
+    <div class="title">
+        <h1 id="bienvenue">Bienvenue !</h1>
+    </div>
+    <!--fin-filtrer-tableau-->
+    <!--tableau-->
       <div>
-      
-            <main>
-               
+       
+            <main> 
             <form>
-               
-               
+                
                 <table>
                     <tr>
                             <th>CEF</th>
@@ -207,31 +231,23 @@
                             <span class="slider round"></span>
                         </label></td>
                     </tr>
-                   
-                    
-                    
-                    
-                  
-                  
 
-                   
-                  
                 </table>
                 
             </form>
 
             </main>
       </div>
-           <div class="valider">
-                <input type="submit" value="valider" id="validee" >
-            </div>
-            <footer>
-                     <p>© Copyright | DevWFS205 |2022</p>
-            </footer>   
-            
-         
-    
-                 
-            
+    <!--fin-tableau-->
+    <!--valider-tableau-->
+    <div class="valider">
+        <input type="submit" value="valider" id="validee" >
+    </div>
+    <!--fin-valider-tableau-->
+    <!--footer-->
+    <footer>
+        <p>© Copyright | DevWFS205 |2022</p>
+    </footer>   
+    <!--fin-->          
 </body>
 </html>
