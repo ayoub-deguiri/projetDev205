@@ -44,16 +44,16 @@ if (empty($result1)) {
     <title>Directrice </title>
 </head>
 
-<body>
+<body style="background-color:#D8E6EA">
     <div id="HomePage">
         <div id="container">
             <!--*********************************************************************************-->
             <header>
                 <div class="logo-OFPPT">
-                    <img src="./images/Ofpptlogo.png" width='100px' height='100px' alt="ErreurlogoOFPPT">
+                    <img src="./images/Ofpptlogo.png" height="100px" width="100px" alt="ErreurlogoOFPPT">
                 </div>
                 <div class="logo-APP">
-                    <img src="./images/logoApp.png" width='100px' height='100px' alt="ErreurlogoOFPPT">
+                    <img src="./images/logoApp.png" height="100px" width="140px" alt="ErreurlogoOFPPT">
                 </div>
                 <div class="déconnexion">
                     <button type="button" id="Déconnexion"><a href="logout.php">Déconnexion</a></button>
@@ -64,7 +64,7 @@ if (empty($result1)) {
                 <div>
                     <h2> </h2>
                 </div>
-                <table>
+                <table style="background-color:#ffffff">
                     <tr>
                         <th>CEF</th>
                         <th>Nom</th>
