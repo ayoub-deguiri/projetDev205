@@ -410,3 +410,10 @@ margin-bottom: 15px;
    margin-left: 100px;
    margin-bottom: 0px;
 }
+
+
+.creation{
+  background-color:  rgb(232, 236, 239);
+  color: var(--color2);
+  border: 2px solid rgb(147, 147, 147);
+}
