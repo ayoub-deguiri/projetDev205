@@ -338,3 +338,9 @@ footer {
 footer p {
     font-size: 20px;
 }
+
+.Formateur{
+    background-color:  rgb(232, 236, 239);
+    color: var(--color2);
+    border: 2px solid rgb(147, 147, 147);
+  }
