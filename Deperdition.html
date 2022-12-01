@@ -52,24 +52,41 @@
       </nav>
     <!--fin-navbar-->
     <!--filtrer-tableau-->
-     <div class="filtrer">
-
-        <form>
-            <label for="date">Filtrer :</label>
-             <select id="date">
-                <option></option>
-                <option></option>
-                <option></option>
-                <option></option>
-             </select>
-        
+    <form action="" method="">
+        <div class="selects">
+          <ul>
+            <li> <label for="année-scolaire">année scolaire 
+            </label></li>
            
-        </form>    
-    </div>
+            <li><select name="annee-Scolaire" id="année-scolaire">
+                <option value="" disabled selected> </option>
+               
+                <option calss='option-sent' value="">
+                 
+                </option>
+               
+              </select>
+            </li>
+            <li> <label for="année">année</label></li>
+            <li>
+              <select id="année" name="annee" required></select>
+            </li>
+            <li> <label for="filier">filière</label></li>
+            <li>
+              <select id="filiére" name="filiere" required></select>
+            </li>
+            <li> <label for="">groupe</label></li>
+            <li>
+              <select id="groupe" name="groupe" required></select>
+            </li>
+            <li><input type="submit" name="" value="valider" id="valider"> </li>
+          </ul>
+        </div>
+      </form>
     <!--Fin-filtrer-tableau-->
     <!--Filtrer-tableau-->
     <div class="title">
-        <h1 id="bienvenue">Bienvenue !</h1>
+        <h1 id="bienvenue">Liste </h1>
     </div>
     <!--fin-filtrer-tableau-->
     <!--tableau-->

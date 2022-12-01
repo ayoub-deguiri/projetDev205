@@ -72,39 +72,66 @@ a{
   font-weight: bolder;
   text-align: center;
 }
-.filtrer{
-  text-align: center;
-  margin:40px auto 0px;
-  
-}
 
-.filtrer select{
-  width: 12%;
-  padding: 4px;
-  border-radius: 25px;
-  background-color: var(--color1);
-}
-.filtrer label{
-  color: var(--color2);
-  font-style: italic;
-  font-size: larger;
-  font-weight: bolder;
-  font-family: Arial, Helvetica, sans-serif;
-  justify-content: center;
-}
-main{
+
+.selects ul {
+    list-style: none;
+    margin-right: 40px;
+    margin-left: 70px;
+    padding-left: 50px;
+  }
+  .selects ul li {
+    font-weight: 600;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:170px;
+    margin-right:40px;
+  } 
+  .selects ul li label {
+    color: var(--color2);
+    font-size: 15px;
+    width:100%;
+  }
+  .selects ul li select {
+    background-color: var(--color1);
+    height: 25px;
+    border: 2px solid var(--color2);
+    border-radius: 8px;
+    font-size: 12px;
+    text-align: center;  
+    width:100px;
+  }
+  .selects input[type="submit"] {
+    background-color: rgb(0, 139, 69);
+    color: var(--color4);
+    font-size: 15px;
+    width: 70px;
+    padding: 3px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s;
+    height:30px
+  }
+  .selects input[type="submit"]:hover {
+    width: 70px;
+    padding: 5px;
+    background-color: var(--color2);
+  }
+
+
+main{
+    
     justify-content: center;
     width: 100%;
     margin-top: -20px;
-    
    
-    
 }
 
 body{
     height: 100%;  
-
+    background-color: var(--color3);
 }
 html{
     height: 100%;
