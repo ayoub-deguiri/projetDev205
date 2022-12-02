@@ -95,6 +95,9 @@ $nbrRet = $pdo_statement->fetch();
       <li>
         <a href="#"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>AJOUTER</button></a>
       </li>
+      <li>
+        <a href="#"><button><i  aria-hidden="true"></i>Justifier</button></a>
+      </li>
     </ul>
   </nav>
   <table>
