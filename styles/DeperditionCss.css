@@ -234,30 +234,7 @@ table tr td {
     
 
 
-.valider input{
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-    width: 140px;
-    font-size: 20px;
-    color: var(--color4);
-    padding: 2px 0px;
-    margin :20px 70px;
-    background-color: var(--color1);
-    cursor: pointer;
-    transition: 0.5s;
-    float:right;
-}
 
-.valider input:hover{
-
-
-   
-    padding: 4px ;
-    width: 145px;
-    background-color: var(--color2);
-
-}
     footer {
         display: flex;
         margin-top: 102px;
