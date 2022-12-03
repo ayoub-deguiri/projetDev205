@@ -42,7 +42,7 @@
          <div class="container">
               <ul>
                   <li> <label for="année-scolaire">Année scolaire :</label>
-                    <select name="annee-Scolaire" id="année-scolaire"><option value="" ></option><option value="1">test</option></select> </li>
+                    <select name="annee-Scolaire" id="année-scolaire" required><option value="" ></option><option value="1">test</option></select> </li>
 
                   <li> <label for="année">Année :</label>
                   <select id="année" name="annee" required><option value="" ></option><option value="1">test</option></select></li>
