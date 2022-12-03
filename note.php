@@ -75,7 +75,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><select><option value="" disabled></option></select></td>
+                        <td><<input type="text"/></td>
                         <td></td>
                     </tr>
                     <tr>
