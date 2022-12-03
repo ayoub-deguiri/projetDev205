@@ -60,14 +60,9 @@
           <ul>
             <li> <label for="année-scolaire">année scolaire 
             </label></li>
-           
-            <li><select name="annee-Scolaire" id="année-scolaire">
-                <option value="" disabled selected> </option>
-               
-                <option calss='option-sent' value="">
-                 
+            <li><select name="annee-Scolaire" id="année-scolaire" required>
+                <option calss='option-sent' value="">  
                 </option>
-               
               </select>
             </li>
             <li> <label for="année">année</label></li>
