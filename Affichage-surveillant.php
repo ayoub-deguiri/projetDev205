@@ -192,6 +192,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
       </li>
     </ul>
   </nav>
+  
+  <caption>
+          <!--******************** --- [ Affichage Nom groupe ] --- ********************-->
+          <div class="affiche_nom_groupe">Group : <?= $group['nomGroupe'] ?>
+          </div>
+        </caption>
   <!--******************** --- [ Main ] --- ********************-->
   <main>
     <!-- liste  -->
@@ -246,11 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
       } else {
       ?>
       <table>
-        <caption>
-          <!--******************** --- [ Affichage Nom groupe ] --- ********************-->
-          <div class="affiche_nom_groupe">Group : <?= $group['nomGroupe'] ?>
-          </div>
-        </caption>
+        
         <tr>
           <th>CEF</th>
           <th>Nom</th>
