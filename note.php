@@ -75,7 +75,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><<input type="text"/></td>
+                        <td><input type="text"/></td>
                         <td></td>
                     </tr>
                     <tr>
