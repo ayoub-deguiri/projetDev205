@@ -62,13 +62,13 @@ $formateur = $pdo_statement->fetchAll();
     <nav>
         <ul>
         <li>
-            <a href="#"><button >Création</button></a>
+            <a href="./creation.php"><button >Création</button></a>
         </li>
         <li>
-            <a href="#"><button class="module">Module</button></a> 
+            <a href="./ImporterModules.php"><button class="module">Module</button></a> 
         </li>
         <li>
-            <a href="#"><button class="Formateur">Formateur</button></a>
+            <a href="./Main-Formateur.php"><button class="Formateur">Formateur</button></a>
         </li>
         <li>  
             <a href="#"><button>Stagiaire</button> </a>
