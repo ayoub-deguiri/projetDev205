@@ -171,4 +171,12 @@ main .container div {
   text-align: center;
   margin-right: 30px;
   background-color: rgb(236, 236, 236);
+  transition: 0.5s ease all;
+  box-shadow: 10px 10px 6px;
+
+}
+
+.container div:hover{
+    box-shadow: 0 0 ;
+
 }
