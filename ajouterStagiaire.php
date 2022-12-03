@@ -73,13 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </ul>
       </li>
       <li>
-        <a href="./note.html"><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
+        <a href="./note.php"><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
       </li>
       <li>
-        <a href="#"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>deperdition</button></a>
+        <a href="./Deperdition.php"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>deperdition</button></a>
       </li>
       <li>
-        <a href="#"><button><i  aria-hidden="true"></i>Justifier</button></a>
+        <a href="./Absence_Justifier.php"><button><i  aria-hidden="true"></i>Justifier</button></a>
       </li>
     </ul>
   </nav>
