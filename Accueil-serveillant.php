@@ -93,7 +93,7 @@ $nbrRet = $pdo_statement->fetch();
         <a href="./note.html"><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
       </li>
       <li>
-        <a href="#"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>AJOUTER</button></a>
+        <a href="#"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>deperdition</button></a>
       </li>
       <li>
         <a href="#"><button><i  aria-hidden="true"></i>Justifier</button></a>
