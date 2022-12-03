@@ -60,7 +60,7 @@
         <ul>
                 
                 <li> <label for="année-scolaire"  >année scolaire</label>
-                    <select name="annee-Scolaire" id="année-scolaire"></select> </li>
+                    <select name="annee-Scolaire" id="année-scolaire" required></select> </li>
             
                 <li> <label for="année">année</label>
                       <select id="année" name="annee" required></select></li>
