@@ -30,7 +30,7 @@
           <li>
               <a href="#"><button><i class="fa fa-pencil-square" aria-hidden="true"></i>MODIFIER</button></a> 
           </li>
-          <li>
+          <li> 
               <a href=""><button><i class="fa fa-calendar-times-o" aria-hidden="true"></i>ABSENCE</button></a>
               <ul>
                   <li><a href=""><button>Affichage</button></a></li>
