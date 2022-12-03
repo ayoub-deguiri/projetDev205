@@ -188,11 +188,16 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <a href="./note.html"><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
       </li>
       <li>
-        <a href="#"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>AJOUTER</button></a>
+        <a href="#"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>deperdition</button></a>
+      </li>
+      <li>
+        <a href="#"><button><i  aria-hidden="true"></i>Justifier</button></a>
       </li>
     </ul>
   </nav>
   
+            <!--******************** --- [  Fin Nav ] --- ********************-->
+
   <caption>
           <!--******************** --- [ Affichage Nom groupe ] --- ********************-->
           <div class="affiche_nom_groupe">Group : <?= $group['nomGroupe'] ?>
