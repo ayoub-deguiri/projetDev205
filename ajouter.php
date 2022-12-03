@@ -69,13 +69,13 @@
         </ul>
       </li>
       <li>
-        <a href="./note.html"><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
+        <a href="./note.php"><button><i class="fa fa-calendar" aria-hidden="true"></i>NOTES</button> </a>
       </li>
       <li>
-        <a href="#"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>deperdition</button></a>
+        <a href="./Deperdition.php"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>deperdition</button></a>
       </li>
       <li>
-        <a href="#"><button><i  aria-hidden="true"></i>Justifier</button></a>
+        <a href="./Absence_Justifier.php"><button><i  aria-hidden="true"></i>Justifier</button></a>
       </li>
     </ul>
   </nav>
@@ -85,7 +85,7 @@
           <a href="./ajouterStagiaire.php">
             <div class="nvCandidat">ajouter un nouveau candidat</div>
           </a>
-          <a href="./modifier-groupe.html">
+          <a href="./modifier-groupe.php">
             <div class="chGroupe">changement de groupe</div>
           </a>
         </div>
