@@ -29,13 +29,13 @@
     <nav>
       <ul>
       <li>
-          <a href="#"><button class="creation" >Création</button></a>
+          <a href="./creation.php"><button class="creation" >Création</button></a>
       </li>
       <li>
-          <a href="#"><button class="module">Module</button></a> 
+          <a href="./ImporterModules.php"><button class="module">Module</button></a> 
       </li>
       <li>
-          <a href="#"><button>Formateur</button></a>
+          <a href="./Main-Formateur.php"><button>Formateur</button></a>
       </li>
       <li>  
           <a href="#"><button>Stagiaire</button> </a>
