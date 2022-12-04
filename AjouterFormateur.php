@@ -62,7 +62,7 @@
             <a href="./Main-Formateur.php"><button>Formateur</button></a>
         </li>
         <li>  
-            <a href="#"><button class="stagiare">Stagiaire</button> </a>
+            <a href="#"><button>Stagiaire</button> </a>
         </li>
         </ul>
     </nav>

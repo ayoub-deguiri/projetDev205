@@ -112,11 +112,6 @@ nav ul {
     display: flex;
     justify-content: center;
 }
-.stagiare{
-    background-color:  rgb(232, 236, 239);
-    color: var(--color2);
-    border: 2px solid rgb(147, 147, 147);
-}
 nav ul li {
     margin-right: 10px;
     width: 120px;
