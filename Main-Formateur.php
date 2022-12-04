@@ -71,7 +71,7 @@ $formateur = $pdo_statement->fetchAll();
             <a href="./Main-Formateur.php"><button class="Formateur">Formateur</button></a>
         </li>
         <li>  
-            <a href="#"><button>Stagiaire</button> </a>
+            <a href="./Importer_stagiaire.php"><button>Stagiaire</button> </a>
         </li>
         </ul>
     </nav>

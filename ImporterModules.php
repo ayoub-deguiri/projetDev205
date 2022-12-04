@@ -34,7 +34,7 @@
             <a href="./Main-Formateur.php"><button>Formateur</button></a>
         </li>
         <li>  
-            <a href="#"><button>Stagiaire</button> </a>
+            <a href="./Importer_stagiaire.php"><button>Stagiaire</button> </a>
         </li>
         </ul>
     </nav>
