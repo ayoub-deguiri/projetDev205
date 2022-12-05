@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" media="screen" href="./styles/DeperditionCss.css">
     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
     <title>Document</title>
 </head>
@@ -108,7 +108,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -119,7 +119,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -130,7 +130,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -141,7 +141,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -152,7 +152,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -163,7 +163,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -174,7 +174,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -185,7 +185,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -196,7 +196,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -207,7 +207,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -218,7 +218,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -229,7 +229,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -240,7 +240,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input  type="button" id="btn1" value="Cliquer"></td>
+                        <td><input  type="button" id="btn1" value="Cliquer" onclick="myFunction()"></td>
                         <td> <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -260,6 +260,22 @@
     <footer>
         <p>© Copyright | DevWFS205 |2022</p>
     </footer>   
+
+
+    
+        <script>
+        function myFunction() {
+ 
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'message',
+            showConfirmButton: false,
+            timer: 3000
+ })
+}
+    </script>
+   
     <!--fin-->          
 </body>
 </html>

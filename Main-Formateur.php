@@ -125,7 +125,10 @@ $formateur = $pdo_statement->fetchAll();
                     </td>
                     <td>
                         <button class="btn-click" value=<?= $row['Matricule'] ?>>
-                            <img src="./images/trash-2.svg" id='trash' alt="">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
                         </button>
                     </td>
                 </tr>
