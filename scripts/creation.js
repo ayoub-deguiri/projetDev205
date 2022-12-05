@@ -7,7 +7,10 @@ function checkSelect() {
     Année_Scolaire.value == "" ||
     Année.value == "" ||
   
-    Nombre.value == ""
+    Nombre.value == ""||
+    Nombre.value>=100||
+    isNaN(Nombre.value) === true||
+    Nombre.value<0
   )
     return false;
   else return true;

@@ -27,21 +27,21 @@
       </div>
     </header>
     <nav>
-      <ul>
-      <li>
-          <a href="./creation.php"><button class="creation" >Création</button></a>
-      </li>
-      <li>
-          <a href="./ImporterModules.php"><button class="module">Module</button></a> 
-      </li>
-      <li>
-          <a href="./Main-Formateur.php"><button>Formateur</button></a>
-      </li>
-      <li>  
-          <a href="./Importer_stagiaire.php"><button>Stagiaire</button> </a>
-      </li>
-      </ul>
-  </nav>
+        <ul>
+        <li>
+            <a href="./creation.php"><button class="creation">Création</button></a>
+        </li>
+        <li>
+            <a href="./ImporterModules.php"><button>Module</button></a> 
+        </li>
+        <li>
+            <a href="./Main-Formateur.php"><button>Formateur</button></a>
+        </li>
+        <li>  
+            <a href="./Importer_stagiaire.php"><button>Stagiaire</button> </a>
+        </li>
+        </ul>
+    </nav>
     <main>
       <div class="container">
         <form action="" method="POST">
