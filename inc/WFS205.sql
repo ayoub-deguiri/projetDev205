@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2022 at 01:47 AM
+-- Generation Time: Dec 07, 2022 at 07:49 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -86,14 +86,10 @@ CREATE TABLE `absence` (
 --
 
 INSERT INTO `absence` (`idAbsence`, `dateAbsence`, `heureDebutAbsence`, `heureFinAbsence`, `moduleAbsence`, `matricule`, `type`, `idAnnee`, `idFiliere`, `idGroupe`, `idAnneeScolaire`, `CEF`, `justifier`) VALUES
-(38, '2022-11-17', '02:16:00', '02:16:00', 'LMAO', '1', 'absence', 2, 15, 47, 1, '1998121700398', 'no'),
-(43, '2022-11-17', '12:19:00', '13:19:00', 'React', '1', 'absence', 2, 15, 47, 1, '1998121700398', 'no'),
-(44, '2022-11-17', '12:19:00', '13:19:00', 'React', '1', 'absence', 2, 15, 47, 1, '1999022300367', 'no'),
-(46, '2022-11-19', '14:19:00', '14:19:00', 'React', '2', 'retard', 1, 11, 22, 1, '1993030100110', 'no'),
-(49, '2022-11-20', '17:07:00', '17:07:00', 'LMAO', '2', 'retard', 2, 15, 47, 1, '1998121700398', 'no'),
-(50, '2022-11-04', '17:08:00', '17:08:00', 'PHP', '2', 'retard', 2, 15, 47, 1, '1998121700398', 'no'),
-(51, '2022-11-17', '16:20:00', '10:20:00', 'LMAO', '1', 'absence', 2, 15, 47, 1, '1998121700398', 'no'),
-(52, '2022-11-20', '09:52:00', '10:52:00', '30', '1', 'absence', 2, 15, 44, 1, '1996100700208', 'no');
+(46, '2022-11-19', '14:19:00', '14:19:00', 'React', NULL, 'retard', 1, 11, 22, 1, '1993030100110', 'no'),
+(51, '2022-11-17', '16:20:00', '10:20:00', 'LMAO', '1', 'absence', 2, 15, 47, 1, '1998121700398', 'oui'),
+(52, '2022-11-20', '09:52:00', '10:52:00', '30', '1', 'absence', 2, 15, 44, 1, '1996100700208', 'no'),
+(53, '2022-11-21', '15:18:00', '16:18:00', 'React', NULL, 'absence', 1, 11, 22, 1, '1993030100110', 'oui');
 
 -- --------------------------------------------------------
 
@@ -170,6 +166,16 @@ CREATE TABLE `deleted_stagiaire` (
   `idGroupe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Triggers `deleted_stagiaire`
+--
+DELIMITER $$
+CREATE TRIGGER `Restore_Stagiaiare` AFTER DELETE ON `deleted_stagiaire` FOR EACH ROW BEGIN  
+   UPDATE `stagiaire` SET `idGroupe`= OLD.idGroupe WHERE `CEF` = OLD.CEF;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -216,7 +222,7 @@ CREATE TABLE `formateur` (
 
 INSERT INTO `formateur` (`Matricule`, `nomFormateur`, `prenomFormateur`) VALUES
 ('1', 'Ouatoch', 'Abd Jalil'),
-('2', 'Holako', 'Noob');
+('123', 'hgjk', 'ghj');
 
 -- --------------------------------------------------------
 
@@ -288,6 +294,14 @@ CREATE TABLE `justifierabsence` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `justifierabsence`
+--
+
+INSERT INTO `justifierabsence` (`idAbsence`, `Justifie_motif`) VALUES
+(51, 'done'),
+(53, 'justif1');
+
+--
 -- Triggers `justifierabsence`
 --
 DELIMITER $$
@@ -312,6 +326,18 @@ CREATE TRIGGER `trigger_justifier_after` AFTER INSERT ON `justifierabsence` FOR 
 END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `module`
+--
+
+CREATE TABLE `module` (
+  `idModule` int(11) NOT NULL,
+  `nomModule` varchar(255) NOT NULL,
+  `idFiliere` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -342,6 +368,7 @@ CREATE TABLE `stagiaire` (
 --
 
 INSERT INTO `stagiaire` (`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) VALUES
+('1', 'Holako', 'Noob', 47),
 ('199211260144', 'EL HANINE', 'KHAIR ALLAH', 41),
 ('1993030100110', 'ACHEIKH', 'ALI LOOL', 22),
 ('199402200533', 'ELHADDAD', 'ABDELMOUNAIM', 43),
@@ -1315,14 +1342,6 @@ VALUES(
 END
 $$
 DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `Restore_Stagiaiare` AFTER UPDATE ON `stagiaire` FOR EACH ROW BEGIN  
-        IF (NEW.idGroupe IS NOT NULL) THEN
-    	DELETE FROM deleted_stagiaire WHERE deleted_stagiaire.CEF = OLD.CEF;
-    END IF;
-END
-$$
-DELIMITER ;
 
 --
 -- Indexes for dumped tables
@@ -1393,6 +1412,13 @@ ALTER TABLE `justifierabsence`
   ADD PRIMARY KEY (`idAbsence`);
 
 --
+-- Indexes for table `module`
+--
+ALTER TABLE `module`
+  ADD PRIMARY KEY (`idModule`),
+  ADD KEY `fk_module_filiere` (`idFiliere`);
+
+--
 -- Indexes for table `note`
 --
 ALTER TABLE `note`
@@ -1413,7 +1439,7 @@ ALTER TABLE `stagiaire`
 -- AUTO_INCREMENT for table `absence`
 --
 ALTER TABLE `absence`
-  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `annee`
@@ -1438,6 +1464,12 @@ ALTER TABLE `filiere`
 --
 ALTER TABLE `groupe`
   MODIFY `idGroupe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
+--
+-- AUTO_INCREMENT for table `module`
+--
+ALTER TABLE `module`
+  MODIFY `idModule` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -1483,6 +1515,12 @@ ALTER TABLE `groupe`
 --
 ALTER TABLE `justifierabsence`
   ADD CONSTRAINT `justifierabsence_absence` FOREIGN KEY (`idAbsence`) REFERENCES `absence` (`idAbsence`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `module`
+--
+ALTER TABLE `module`
+  ADD CONSTRAINT `fk_module_filiere` FOREIGN KEY (`idFiliere`) REFERENCES `filiere` (`idFiliere`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `note`
