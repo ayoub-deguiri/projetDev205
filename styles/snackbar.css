@@ -6,31 +6,25 @@
   margin-left: -125px;
   /* Divide value of min-width by 2 */
   background-color: rgb(53, 205, 56);
-  /* Black background color */
   color: #fff;
-  /* White text color */
   text-align: center;
-  /* Centered text */
-  border-radius: 2px;
-  /* Rounded borders */
+  border-radius: 25px;
   padding: 16px;
-  /* Padding */
   position: fixed;
-  /* Sit on top of the screen */
   z-index: 1;
-  /* Add a z-index if needed */
   left: 50%;
-  /* Center the snackbar */
-  top: 150px;
-  /* 150px from the top */
+  top: 5%;
 }
 
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
 #snackbar.show {
   visibility: visible;
-  /* Show the snackbar */
-  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+#snackbar.showfailed {
+  background-color: red;
+  visibility: visible;
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
@@ -43,7 +37,7 @@
   }
 
   to {
-    top: 150px;
+    top: 5%;
     opacity: 1;
   }
 }
@@ -55,14 +49,14 @@
   }
 
   to {
-    top: 150px;
+    top: 5%;
     opacity: 1;
   }
 }
 
 @-webkit-keyframes fadeout {
   from {
-    top: 150px;
+    top: 5%;
     opacity: 1;
   }
 
@@ -74,7 +68,7 @@
 
 @keyframes fadeout {
   from {
-    top: 150px;
+    top: 5%;
     opacity: 1;
   }
 
