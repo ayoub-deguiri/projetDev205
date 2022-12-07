@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </button>
     </div>
   </header>
- <nav>
+  <nav>
     <ul>
       <li>
         <a href="./Accueil-serveillant.php"><button><i class="fa fa-home" aria-hidden="true"></i>ACCUEIL</button></a>
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="./Deperdition.php"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>deperdition</button></a>
       </li>
       <li>
-        <a href="./Absence_Justifier.php"><button><i  aria-hidden="true"></i>Justifier</button></a>
+        <a href="./Absence_Justifier.php"><button><i aria-hidden="true"></i>Justifier</button></a>
       </li>
     </ul>
   </nav>
