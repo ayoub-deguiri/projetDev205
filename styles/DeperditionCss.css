@@ -72,7 +72,15 @@ a{
   font-weight: bolder;
   text-align: center;
 }
-
+.first-msg {
+  font-size: 2vw;
+  margin-top: 10%;
+  margin-left: 33%;
+  width: 33%;
+  text-align: center;
+  border: 3px solid green;
+  padding: 10px;
+}
 
 .selects ul {
     list-style: none;
@@ -327,6 +335,7 @@ nav{
      display: flex;
      height:50px;
  }
+ 
  .switch {
     position: relative;
     display: inline-block;
