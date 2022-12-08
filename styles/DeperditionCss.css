@@ -271,7 +271,7 @@ table tr td {
         bottom: 0;
         width: 100%;
         height: 7vh;
-        position: relative;
+        position: fixed;
     }
     
     footer p {
