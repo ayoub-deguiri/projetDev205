@@ -246,7 +246,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                 </ul>
             </div>
     </form>
-    </div>
     <!-- Main Table -->
     <div class="listeEtudiants">
         <form id='table-form'>
