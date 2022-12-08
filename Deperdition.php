@@ -249,7 +249,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <td><?= $row['prenomStagiaire'] ?></td>
                                 <td><?= $row['nomStagiaire'] ?></td>
                                 <td><?= $_SESSION["nomGroupe"] ?></td>
-                                <td><input type="button" id="btn1" onclick="modalfn()" class='details' value="Cliquer"></td>
+                                <td><input type="button" id="btn1" onclick="modalfn()" data-id='<?php echo $row['CEF']; ?>' class='details' value="Cliquer"></td>
 
                                 <td> <label class="switch">
                                         <input value="<?= $row['CEF'] ?>" class="DeperditionCHECK" type="checkbox">
