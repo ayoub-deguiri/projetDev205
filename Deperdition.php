@@ -8,29 +8,27 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["AjaxValider"])) {
-        $_SESSION["anneeScolaire"] = $_POST["annee-Scolaire"];
-        $_SESSION["annee"] = $_POST["annee"];
-        $_SESSION["filiere"] = $_POST["filiere"];
-        $_SESSION["groupe"] = $_POST["groupe"];
 
-        // get all Stagiaire 
+        // Fetch all Stagiaire by Group
         $sql = "SELECT CEF ,nomStagiaire,prenomStagiaire from deleted_stagiaire where idGroupe = ?";
         $pdo_statement = $conn->prepare($sql);
-        $pdo_statement->bindParam(1, $_SESSION["groupe"]);
+        $pdo_statement->bindParam(1, $_POST["groupe"]);
         $pdo_statement->execute();
         $Stagiaires = $pdo_statement->fetchAll();
-        // get group name
+
+
+        // Fetch Group Name
         $sql = "SELECT nomGroupe from groupe where idGroupe = ?";
         $pdo_statement = $conn->prepare($sql);
-        $pdo_statement->bindParam(1, $_SESSION["groupe"]);
+        $pdo_statement->bindParam(1, $_POST["groupe"]);
         $pdo_statement->execute();
         $group = $pdo_statement->fetch();
-        $_SESSION["nomGroupe"] = $group['nomGroupe'];
+
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -41,11 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" media="screen" href="./styles/DeperditionCss.css">
     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <script src="./scripts/jquery-3.6.1.min.js"></script>
-
-
-    <title>Document</title>
+    <title>Deperdition</title>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.details').click(function (event) {
                 let userid = $(this).data('id');
                 $.get({
@@ -62,40 +58,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $('#myModal').hide();
             })
             // Ajax for select
-            $('#année-scolaire').on('change', function() {
+            $('#année-scolaire').on('change', function () {
                 var annescolID = $(this).val();
                 if (annescolID) {
                     $.get(
                         './inc/AjaxSelect.php', {
-                            annescolID: annescolID
-                        },
-                        function(data) {
+                        annescolID: annescolID
+                    },
+                        function (data) {
                             $('#année').html(data);
                         }
                     );
                 }
             })
-            $('#année').on('change', function() {
+            $('#année').on('change', function () {
                 var anneeID = $(this).val();
                 if (anneeID) {
                     $.get(
                         './inc/AjaxSelect.php', {
-                            anneeID: anneeID
-                        },
-                        function(data) {
+                        anneeID: anneeID
+                    },
+                        function (data) {
                             $('#filiére').html(data);
                         }
                     );
                 }
             })
-            $('#filiére').on('change', function() {
+            $('#filiére').on('change', function () {
                 var filiereID = $(this).val();
                 if (filiereID) {
                     $.get(
                         './inc/AjaxSelect.php', {
-                            filiereID: filiereID
-                        },
-                        function(data) {
+                        filiereID: filiereID
+                    },
+                        function (data) {
                             $('#groupe').html(data);
                         }
                     );
@@ -116,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 }
             })
-            
+
         })
     </script>
 
@@ -141,10 +137,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <nav>
         <ul>
             <li>
-                <a href="./Accueil-serveillant.php"><button><i class="fa fa-home" aria-hidden="true"></i>ACCUEIL</button></a>
+                <a href="./Accueil-serveillant.php"><button><i class="fa fa-home"
+                            aria-hidden="true"></i>ACCUEIL</button></a>
             </li>
             <li>
-                <a href="./Modifier-Stagiaire.php"><button><i class="fa fa-pencil-square" aria-hidden="true"></i>MODIFIER</button></a>
+                <a href="./Modifier-Stagiaire.php"><button><i class="fa fa-pencil-square"
+                            aria-hidden="true"></i>MODIFIER</button></a>
             </li>
             <li>
                 <a href=""><button><i class="fa fa-calendar-times-o" aria-hidden="true"></i>ABSENCE</button></a>
@@ -182,9 +180,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($anneeScolaire)) {
                             foreach ($anneeScolaire as $row) {
                         ?>
-                                <option value="<?= $row['idAnneeScolaire'] ?>">
-                                    <?= $row['nomAnneeScolaire'] ?>
-                                </option>
+                        <option value="<?= $row['idAnneeScolaire'] ?>">
+                            <?= $row['nomAnneeScolaire'] ?>
+                        </option>
                         <?php
                             }
                         }
@@ -211,9 +209,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!--Filtrer-tableau-->
     <div class="title">
         <h1 id="bienvenue">
-            <?php if (isset($_SESSION["nomGroupe"])) {
-                echo 'Liste ' . $_SESSION["nomGroupe"];
-            }  ?>
+            <?php if (isset($group)) {
+                echo 'Liste ' . $group[0];
+            } ?>
         </h1>
     </div>
     <!--fin-filtrer-tableau-->
@@ -224,47 +222,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
 
                 <?php
-
-                if (empty($Stagiaires)) {
-                    echo "<div class='first-msg'>" . "<span>&uarr;</span>" . " Veuillez sélectionner un groupe " . "</div>";
-                } else {
+                if (!isset($_POST['AjaxValider'])) {
+                    echo "<div class='first-msg'> Veuillez sélectionner un groupe </div>";
+                }
+                if (isset($_POST['AjaxValider']) && empty($Stagiaires)) {
+                    echo "<div class='first-msg'> Acune Deperdition pour ce groupe </div>";
+                } elseif (isset($_POST['AjaxValider']) && !empty($Stagiaires)) {
                 ?>
-                    <table>
-                        <tr>
-                            <th>CEF</th>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Groupe</th>
-                            <th>Details</th>
-                            <th>Supprimer</th>
+                <table>
+                    <tr>
+                        <th>CEF</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Groupe</th>
+                        <th>Details</th>
+                        <th>Supprimer</th>
 
-                        </tr>
-                        <?php
-                        $c = 1;
-                        foreach ($Stagiaires as $row) {
-                            $id = $row['CEF'];
-                        ?>
-                            <tr id="tr-<?= $c++ ?>">
-                                <td><?= $row['CEF'] ?></td>
-                                <td><?= $row['prenomStagiaire'] ?></td>
-                                <td><?= $row['nomStagiaire'] ?></td>
-                                <td><?= $_SESSION["nomGroupe"] ?></td>
-                                <td><input type="button" id="btn1" onclick="modalfn()" data-id='<?php echo $row['CEF']; ?>' class='details' value="Cliquer"></td>
+                    </tr>
+                    <?php
+                    $c = 1;
+                    foreach ($Stagiaires as $row) {
+                        $id = $row['CEF'];
+                    ?>
+                    <tr id="tr-<?= $c++ ?>">
+                        <td>
+                            <?= $row['CEF'] ?>
+                        </td>
+                        <td>
+                            <?= $row['prenomStagiaire'] ?>
+                        </td>
+                        <td>
+                            <?= $row['nomStagiaire'] ?>
+                        </td>
+                        <td>
+                            <?= $_SESSION["nomGroupe"] ?>
+                        </td>
+                        <td><input type="button" id="btn1" onclick="modalfn()" data-id='<?php echo $row['CEF']; ?>'
+                                class='details' value="Cliquer"></td>
 
-                                <td> <label class="switch">
-                                        <input value="<?= $row['CEF'] ?>" class="DeperditionCHECK" type="checkbox">
-                                        <span class="slider round"></span>
-                                    </label></td>
-                            </tr>
-                        <?php
-                        }
-                        ?>
+                        <td> <label class="switch">
+                                <input value="<?= $row['CEF'] ?>" class="DeperditionCHECK" type="checkbox">
+                                <span class="slider round"></span>
+                            </label></td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
 
-                    </table>
+                </table>
                 <?php
                 }
                 ?>
-               
+
             </div>
         </main>
 
@@ -309,12 +318,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
         }
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
