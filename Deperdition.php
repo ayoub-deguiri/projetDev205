@@ -226,7 +226,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "<div class='first-msg'> Veuillez sélectionner un groupe </div>";
                 }
                 if (isset($_POST['AjaxValider']) && empty($Stagiaires)) {
-                    echo "<div class='first-msg'> Acune Deperdition pour ce groupe </div>";
+                    echo "<div class='first-msg'> Aucune Deperdition pour ce groupe </div>";
                 } elseif (isset($_POST['AjaxValider']) && !empty($Stagiaires)) {
                 ?>
                 <table>
