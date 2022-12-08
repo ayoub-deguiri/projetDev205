@@ -6,6 +6,7 @@
   text-transform: capitalize;
   font-style: italic;
 }
+
 :root {
   --color1: #fb931b;
   --color2: #155a93;
@@ -15,9 +16,11 @@
   --color6: rgb(247, 187, 7);
 
 }
+
 body {
   background-color: var(--color3);
 }
+
 /*<!--******************** --- [ header   ] --- ********************-->*/
 header {
   display: flex;
@@ -30,15 +33,18 @@ header {
   padding: 1px 40px;
   border-radius: 0 0 60px 60px;
 }
+
 #logoOfppt {
   height: 100px;
   width: 100px;
 }
+
 .logoApp {
   margin-right: -5%;
   height: 100px;
   width: 140px;
 }
+
 #Déconnexion {
   margin-right: 0px;
   background-color: var(--color1);
@@ -52,16 +58,19 @@ header {
   outline: none;
   border: none;
 }
+
 button[type="button"]:hover {
   background-color: var(--color1);
   color: var(--color4);
   border: 1px solid var(--color1);
   align-items: center;
 }
+
 a {
   text-decoration: none;
   color: var(--color4);
 }
+
 /*<!--******************** --- [ footer   ] --- ********************-->*/
 footer {
   display: flex;
@@ -82,64 +91,76 @@ footer {
 footer p {
   font-size: 20px;
 }
+
 /*<!--******************** --- [ nav ] --- ********************************************************************-->*/
-nav{
+nav {
   height: 35px;
 }
+
 ul {
   list-style-type: none;
-   display: flex;
-   justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-ul li{
-   margin-right: 10px;
-   width: 100px;
+
+ul li {
+  margin-right: 10px;
+  width: 100px;
 }
-ul li button{
-   width: 100px;
-   padding: 10px;
-   border: 0;
-   border-radius: 0 0 25px 25px;
-   background-color: var(--color2); 
-   color: white;
-   font-size: 11px;
-   font-weight: bold;
-   text-decoration: none;  
+
+ul li button {
+  width: 100px;
+  padding: 10px;
+  border: 0;
+  border-radius: 0 0 25px 25px;
+  background-color: var(--color2);
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  text-decoration: none;
 }
-ul li button:hover{
-   border: 2px solid rgb(147, 147, 147);
-   border-top: 0px;
-   border-radius: 0 0 25px 25px;
-   background-color: rgb(232,236,239);
-   color: var(--color2);
-   cursor: pointer;
+
+ul li button:hover {
+  border: 2px solid rgb(147, 147, 147);
+  border-top: 0px;
+  border-radius: 0 0 25px 25px;
+  background-color: rgb(232, 236, 239);
+  color: var(--color2);
+  cursor: pointer;
 }
-ul li ul{
-   display: none;
+
+ul li ul {
+  display: none;
 }
-ul li ul li button{
-   background-color:var(--color1);
-   font-size: 11px;
-   font-weight: bold;
-   border-radius: 0px;
+
+ul li ul li button {
+  background-color: var(--color1);
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 0px;
 }
-ul li ul li button:hover{
-   background-color:white;
-   color: #FB931B;
-   border-radius: 0px;
+
+ul li ul li button:hover {
+  background-color: white;
+  color: #FB931B;
+  border-radius: 0px;
 }
+
 ul li:hover>ul {
-   display: flex;
-   height:50px;
+  display: flex;
+  height: 50px;
 }
+
 /*_____________________________________________________________________________________________________________________*/
 /*<!--******************** --- [ main ] --- ********************-->*/
 body::-webkit-scrollbar {
   display: none;
 }
+
 main {
   margin-top: 16px;
 }
+
 /* ----------------------------------[ affiche_nom_groupe ]----------------------------------------------------- */
 .affiche_nom_groupe {
   color: var(--color2);
@@ -147,37 +168,42 @@ main {
   font-weight: 700;
   font-family: 'Franklin Gothic Medium', 'italic';
   text-align: center;
-  margin-bottom:20px
+  margin-bottom: 20px
 }
+
 /* ----------------------------------[ liste ]----------------------------------------------------------------- */
- .selects ul {
+.selects ul {
   list-style: none;
   margin-right: 30px;
   margin-left: 70px;
   padding-left: 50px;
 }
+
 .selects ul li {
   font-weight: 600;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width:170px;
-  margin-right:40px;
-} 
+  width: 170px;
+  margin-right: 40px;
+}
+
 .selects ul li label {
   color: var(--color2);
   font-size: 18px;
-  width:50px;
+  width: 50px;
 }
+
 .selects ul li select {
   background-color: var(--color6);
   height: 20px;
   border: 2px solid var(--color2);
   border-radius: 8px;
   font-size: 12px;
-  text-align: center;  
-  width:100px;
+  text-align: center;
+  width: 100px;
 }
+
 .selects input[type="submit"] {
   background-color: rgb(0, 139, 69);
   color: var(--color4);
@@ -188,13 +214,15 @@ main {
   border: none;
   cursor: pointer;
   transition: 0.5s;
-  height:30px
+  height: 30px
 }
+
 .selects input[type="submit"]:hover {
   width: 70px;
   padding: 5px;
   background-color: var(--color2);
 }
+
 /* ----------------------------------[ table ]----------------------------------------------------------------- */
 table {
   background-color: rgb(232, 236, 239);
@@ -202,6 +230,7 @@ table {
   margin-left: 50px;
   width: 90%;
 }
+
 table,
 th,
 td {
@@ -210,24 +239,39 @@ td {
   height: 28px;
   font-size: 17px;
 }
+
 table th {
   font-family: 'Franklin Gothic Medium', 'italic';
   font-weight: 900;
   width: 170px;
 }
+
 table td {
   font-weight: 100;
   text-align: center;
 }
+
 [type="text"] {
   outline: none;
-  background-color: rgb(232, 236, 239);;
+  background-color: rgb(232, 236, 239);
+  ;
   border: none;
   width: 170px;
   padding: 0px;
   margin: 0px;
   height: 100%;
 }
+
+.first-msg {
+  font-size: 2vw;
+  margin-top: 10%;
+  margin-left: 33%;
+  width: 33%;
+  text-align: center;
+  border: 3px solid green;
+  padding: 10px;
+}
+
 /*--Switch-----------------------------------------------*/
 .switch {
   position: relative;
@@ -236,7 +280,7 @@ table td {
   height: 20px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -266,15 +310,15 @@ table td {
   transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #2196F3;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(10px);
   -ms-transform: translateX(10px);
   transform: translateX(10px);
@@ -289,30 +333,30 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-  /*____[ btn valider ]_____________________________________________________________________*/
-  
+/*____[ btn valider ]_____________________________________________________________________*/
 
-  .valider input{
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-    width: 140px;
-    font-size: 20px;
-    color: var(--color4);
-    padding: 2px 0px;
-    margin :20px 70px;
-    background-color: var(--color1);
-    cursor: pointer;
-    transition: 0.5s;
-    float:right;
+
+.valider input {
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  width: 140px;
+  font-size: 20px;
+  color: var(--color4);
+  padding: 2px 0px;
+  margin: 20px 70px;
+  background-color: var(--color1);
+  cursor: pointer;
+  transition: 0.5s;
+  float: right;
 }
 
-.valider input:hover{
+.valider input:hover {
 
 
-   
-    padding: 4px ;
-    width: 145px;
-    background-color: var(--color2);
+
+  padding: 4px;
+  width: 145px;
+  background-color: var(--color2);
 
 }
