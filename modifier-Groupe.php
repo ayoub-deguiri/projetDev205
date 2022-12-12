@@ -5,6 +5,7 @@ if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
     header('location:./login.php');
 }
 ?>
+
 <!--html-->
 <!DOCTYPE html>
 <html lang="en">
