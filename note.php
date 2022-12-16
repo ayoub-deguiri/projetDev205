@@ -48,6 +48,26 @@
         </li>
         </ul>
       </nav>
+      <form action="" method="post">
+      <div class="selects">
+        <ul>
+                
+                <li> <label for="année-scolaire"  >année scolaire</label>
+                    <select name="annee-Scolaire" id="année-scolaire"></select> </li>
+            
+                <li> <label for="année">année</label>
+                      <select id="année" name="annee" required></select></li>
+
+                <li> <label for="filier">filière</label>
+                       <select id="filiére" name="filiere" required></select></li>
+            
+                <li> <label for="">groupe</label>
+                     <select id="groupe" name="groupe" required></select> </li>
+             
+                <li><input type="submit"  value="valider" id="valider"> </li>
+        </ul>
+      </div>
+    </form>
       <h2 class="titre">Nom-groupe de filière</h2>
             <main>
                
