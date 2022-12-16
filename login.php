@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
       <form id="form" action="#" method="POST">
         <div id="formControl ">
-          <label><strong> Utilisateur :</strong></label>
+          <label><strong> Login :</strong></label>
           <span id="star">*</span>
           <input type="text" placeholder="Entrer votre login" name="matricule" id="matricule" />
           <div class="error" id="error"></div>
