@@ -1,6 +1,6 @@
 <?php
 include_once('inc/db.php');
-include_once('inc/Calc_Abs.php');
+include_once('inc/Calc_Note_sur_15.php');
 session_start();
 if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
     header('location:./login.php');
