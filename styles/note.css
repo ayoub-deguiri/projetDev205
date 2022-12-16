@@ -107,7 +107,7 @@ a{
     flex-direction: row;
     justify-content: space-between;
     width:170px;
-    margin-right:40px;
+    margin-right:60px;
   } 
   .selects ul li label {
     color: var(--color2);
