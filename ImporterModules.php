@@ -143,7 +143,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                     <li>
                         <div class="telecharger"> <img src="./images/upload-cloud.svg" alt="" srcset=""
                                 id="icon-upload">
-                            <input type="button" value="Télécharger" id="telecherger">
+                            <a href="./CSV_Files_Examples/Module.csv" download="Module.csv"><input type="button"
+                                    value="Télécharger" id="telecherger"></a>
                         </div>
                     </li>
 
