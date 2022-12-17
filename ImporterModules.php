@@ -1,3 +1,22 @@
+<?php
+include_once('inc/db.php');
+session_start();
+?>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
+
+    $_SESSION["anneeScolaire"] = $_GET["annee-Scolaire"];
+    $_SESSION["annee"] = $_GET["annee"];
+    $_SESSION["filiere"] = $_GET["filiere"];
+    // get all filiere 
+    $sql = "SELECT nomModule from module where idFiliere = ?";
+    $pdo_statement = $conn->prepare($sql);
+    $pdo_statement->bindParam(1, $_GET["filiere"]);
+    $pdo_statement->execute();
+    $Modules = $pdo_statement->fetchAll(PDO::FETCH_COLUMN);
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +29,42 @@
     <link rel="stylesheet" href="./styles/ImporterModule.css">
     <link rel="shortcut icon" href="./images/logoApp.png" type="image/x-icon">
     <title>modifier</title>
+    <script src="./scripts/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Ajax for select
+            $('#année-scolaire').on('change', function () {
+                var annescolID = $(this).val();
+                if (annescolID) {
+                    $.get(
+                        './inc/AjaxSelect.php',
+                        { annescolID: annescolID },
+                        function (data) {
+                            $('#année').html(data);
+                        }
+                    );
+                }
+            })
+            $('#année').on('change', function () {
+                var anneeID = $(this).val();
+                if (anneeID) {
+                    $.get(
+                        './inc/AjaxSelect.php',
+                        { anneeID: anneeID },
+                        function (data) {
+                            $('#filiére').html(data);
+                        }
+                    );
+                }
+            })
+            $("#validerAjax").click(function (ev) {
+                if ($('#année').val() === null) {
+                    ev.preventDefault()
+                    alert("Choisissez s'il vous plaît  un groupe")
+                }
+            })
+        })
+    </script>
 </head>
 
 <body>
@@ -40,24 +95,41 @@
             </li>
         </ul>
     </nav>
-    <form action="" method="post">
+    <form action="" method="GET">
         <div class="container">
             <ul>
-                <li> <label for="année-scolaire">Année scolaire :</label>
-                    <select name="annee-Scolaire" id="année-scolaire" required>
-                        <option value=""></option>
-                        <option value="1">test</option>
+                <li> <label for="année-scolaire">année scolaire</label></li>
+                <?php
+                $sql = ("SELECT * FROM anneeScolaire ");
+                $pdo_statement = $conn->prepare($sql);
+                $pdo_statement->execute();
+                $anneeScolaire = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+                <li><select name="annee-Scolaire" id="année-scolaire">
+                        <option value="" disabled selected>Année Scolaire</option>
+                        <?php
+                        if (isset($anneeScolaire)) {
+                            foreach ($anneeScolaire as $row) {
+                        ?>
+                        <option value="<?= $row['idAnneeScolaire'] ?>">
+                            <?= $row['nomAnneeScolaire'] ?>
+                        </option>
+                        <?php
+                            }
+                        }
+                        ?>
                     </select>
                 </li>
-
-                <li> <label for="année">Année :</label>
-                    <select id="année" name="annee" required>
-                        <option value=""></option>
-                        <option value="1">test</option>
-                    </select>
+                <li> <label for="année">année</label></li>
+                <li>
+                    <select id="année" name="annee" required></select>
                 </li>
-
-                <li><input type="submit" onclick="checkobligatoire()" value="Valider" id="valider"> </li>
+                <li> <label for="filier" id='filiérelb'>filière</label></li>
+                <li>
+                    <select id="filiére" name="filiere" required></select>
+                </li>
+                <li><input type="submit" name="AjaxValider" onclick="checkobligatoire()" value="Valider"
+                        id="validerAjax"> </li>
             </ul>
         </div>
     </form>
@@ -89,56 +161,38 @@
         <br>
 
         </div>
-
         <div class="listeModules">
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET["AjaxValider"]) and empty($Modules)) {
+                echo "<div class='first-msg-2'>" . "<span>&#8593;</span>" . " Aucune Module attribuée a ce groupe ,Veuillez sélectionner un autre groupe " . "</div>";
+            } elseif (empty($Modules)) {
+                echo "<div class='first-msg'>" . "<span>&#8593;</span>" . " Veuillez sélectionner un groupe " . "</div>";
+            } else {
+            ?>
             <table>
                 <tr>
-
-                    <th>Filière</th>
                     <th>Nom module</th>
-
                 </tr>
+                <?php
+                $c = 1;
+                foreach ($Modules as $row) {
+                ?>
                 <tr>
-                    <td></td>
-                    <td>.</td>
+                    <td>
+                        <?= $row ?>
+                    </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td>.</td>
+                <?php
+                }
 
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>.</td>
 
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>.</td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>.</td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>.</td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>.</td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>.</td>
-
-                </tr>
-
+                ?>
             </table>
+            <?php
+            }
+
+
+            ?>
         </div>
         <div class="buttonInserer">
             <a href="./Main-Formateur.php"><button type="button" id="inserer"> Insérer Formateur &#10154;</button></a>
