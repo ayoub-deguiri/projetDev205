@@ -1,9 +1,9 @@
 <?php
 include_once('db.php');
 session_start();
-if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
-    header('location:./login.php');
-}
+// if (empty($_SESSION) or $_SESSION['compteType'] == "stagiaire") {
+//     header('location:./login.php');
+// }
 ?>
 <?php
 if (isset($_GET['annescolID']) && !empty($_GET['annescolID'])) {
