@@ -5,6 +5,7 @@
         "Arial Narrow", Arial, sans-serif;
     font-style: italic;
 }
+
 :root {
     --color1: #fb931b;
     --color2: #155a93;
@@ -13,16 +14,21 @@
     --color5: rgb(232, 236, 239);
     --color6: rgb(247, 187, 7);
 }
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 body::-webkit-scrollbar {
     display: none;
 }
-  /* Hide scrollbar for IE, Edge and Firefox */
+
+/* Hide scrollbar for IE, Edge and Firefox */
 body {
     background-color: #D8E6EA;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
+
 /*---------------------------- header --------------------------------*/
 header {
     display: flex;
@@ -35,15 +41,18 @@ header {
     padding: 1px 40px;
     border-radius: 0 0 60px 60px;
 }
+
 #logoOfppt {
     height: 100px;
     width: 100px;
 }
+
 .logoApp {
     margin-right: -5%;
     height: 100px;
     width: 140px;
 }
+
 #Déconnexion {
     margin-right: 0px;
     background-color: var(--color1);
@@ -69,24 +78,29 @@ a {
     text-decoration: none;
     color: var(--color4);
 }
+
 /*--------------------------navbar---------------------------*/
 nav {
     height: 35px;
 }
+
 nav ul {
     list-style-type: none;
     display: flex;
     justify-content: center;
 }
-.module{
-    background-color:  rgb(232, 236, 239);
+
+.module {
+    background-color: rgb(232, 236, 239);
     color: var(--color2);
     border: 2px solid rgb(147, 147, 147);
 }
+
 nav ul li {
     margin-right: 10px;
     width: 120px;
 }
+
 nav ul li button {
     width: 120px;
     padding: 10px;
@@ -98,6 +112,7 @@ nav ul li button {
     font-weight: bold;
     text-decoration: none;
 }
+
 nav ul li button:hover {
     border: 2px solid rgb(147, 147, 147);
     border-top: 0px;
@@ -106,6 +121,7 @@ nav ul li button:hover {
     color: var(--color2);
     cursor: pointer;
 }
+
 /* -------------------------------------------------------------- */
 
 main {
@@ -113,9 +129,11 @@ main {
     justify-content: space-around;
     margin-top: 30px;
 }
-h3{
+
+h3 {
     font-style: normal;
 }
+
 .selects {
     border: 3px solid #999999;
     background: #DCDCDC;
@@ -127,19 +145,22 @@ h3{
     height: 290px;
 
 }
+
 .selects ul {
     list-style: none;
 }
+
 .selects ul li {
     margin: 30px 0px;
 }
 
-.selects ul li .telecharger{
+.selects ul li .telecharger {
     width: fit-content;
     margin: 50px;
-    
+
 }
-.selects #telecherger{
+
+.selects #telecherger {
     background-color: #5a5656;
     color: var(--color4);
     font-weight: bolder;
@@ -149,16 +170,18 @@ h3{
     border: none;
     cursor: pointer;
 }
-.selects #icon-upload{
-    background-color:white;
+
+.selects #icon-upload {
+    background-color: white;
     position: relative;
     height: 39px;
     margin-right: -4px;
-    margin-bottom: -13px; 
+    margin-bottom: -13px;
     cursor: pointer;
     padding: 0px 2px;
 }
-.selects #telecherger:hover{
+
+.selects #telecherger:hover {
     background-color: var(--color2);
     padding: 6px 9px;
 }
@@ -168,12 +191,13 @@ h3{
     font-size: 25px;
 }
 
-.selects .validerImporter{
+.selects .validerImporter {
     padding-bottom: 20px;
 }
+
 .selects input[type="submit"] {
-    background-color:var(--color1);
-    color:black;
+    background-color: var(--color1);
+    color: black;
     margin-top: 10px;
     font-size: 20px;
     width: 80px;
@@ -183,26 +207,28 @@ h3{
     cursor: pointer;
     transition: 0.5s;
     background: linear-gradient(90deg, var(--color1)20%, yellow 100%);
-    
+
 }
+
 .selects input[type="submit"]:hover {
     width: 95px;
     padding: 3px 4px;
     background-color: var(--color2);
     color: var(--color4);
 }
-.inputSelect{
+
+.inputSelect {
     width: 35%;
     background-color: var(--color1);
     padding: 3px;
     border-radius: 10px;
 }
 
-input[type="file"]{
+input[type="file"] {
     display: none;
 }
 
-#buttonPhoto{      
+#buttonPhoto {
     text-align: center;
     margin-left: 35px;
     /* background-color: var(--color1); */
@@ -216,15 +242,18 @@ input[type="file"]{
     transition: 0.5s;
     background: linear-gradient(90deg, var(--color1)0, yellow 100%);
 }
+
 #buttonPhoto:hover {
     width: 95px;
     padding: 5px 12px;
     background-color: var(--color2);
-    color:var(--color4);
+    color: var(--color4);
 }
+
 .listeModules {
     width: 45%;
 }
+
 table {
     width: 90%;
     font-size: 24px;
@@ -245,15 +274,18 @@ th {
     text-align: center;
     padding: 7px;
 }
-#lbimport{
+
+#lbimport {
     color: red;
     font-size: 19px;
-   padding-top: 6vh;
+    padding-top: 6vh;
 }
-.buttonInserer{
+
+.buttonInserer {
     margin-top: 25%;
 }
-#inserer{
+
+#inserer {
     background-color: var(--color1);
     border-radius: 20px;
     padding: 2%;
@@ -265,44 +297,51 @@ th {
     font-style: normal;
     cursor: pointer;
 }
-#inserer:hover{
+
+#inserer:hover {
     background-color: var(--color2);
     border: 4px solid var(--color4);
 }
+
 /*___________________________________filtrage________________________________________________*/
-.container{
-   margin-top:30px;
-   -webkit-column-count: 3;
-   margin-left: 50px;
+.container {
+    margin-top: 30px;
+    -webkit-column-count: 3;
+    margin-left: 50px;
 }
+
 .container ul {
     list-style: none;
     margin-right: 30px;
     margin-left: 70px;
     padding-left: 50px;
-  }
-  .container ul li {
+}
+
+.container ul li {
     font-weight: 600;
-    display:flex;
-    flex-direction:row;
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    width:390px;
-  } 
-  .container ul li label {
+    width: 390px;
+}
+
+.container ul li label {
     color: var(--color2);
     font-size: 20px;
-    width:200px;
-  }
-  .container ul li select {
+    width: 200px;
+}
+
+.container ul li select {
     background-color: var(--color6);
     height: 20px;
     border: 2px solid var(--color2);
     border-radius: 8px;
     font-size: 12px;
-    text-align: center;  
-    width:200px;
-  }
-  .container input[type="submit"] {
+    text-align: center;
+    width: 200px;
+}
+
+.container input[type="submit"] {
     background-color: rgb(0, 139, 69);
     color: var(--color4);
     font-size: 20px;
@@ -312,12 +351,14 @@ th {
     border: none;
     cursor: pointer;
     transition: 0.5s;
-    height:30px
-  }
-  .container input[type="submit"]:hover {
+    height: 30px
+}
+
+.container input[type="submit"]:hover {
     width: 70px;
     padding: 5px;
-    background-color: var(--color2)}
+    background-color: var(--color2)
+}
 
 /*---------------------------footer--------------------------------*/
 footer {
@@ -335,4 +376,27 @@ footer {
 
 footer p {
     font-size: 20px;
+}
+
+
+/* Csutom css */
+.first-msg {
+    font-size: 2vw;
+    margin-top: 25%;
+    margin-left: 50%;
+    width: 100%;
+    text-align: center;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+.first-msg-2 {
+    font-size: 2vw;
+    margin-top: 15%;
+    margin-left: 15%;
+    width: 100%;
+    text-align: center;
+    border: 3px solid green;
+    padding: 10px;
+
 }
