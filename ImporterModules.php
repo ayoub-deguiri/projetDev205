@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                 $anneeScolaire = $pdo_statement->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                 <li><select name="annee-Scolaire" id="année-scolaire">
-                        <option value="" disabled selected>Année Scolaire</option>
+                        <option value="" disabled selected>Année Scolaire</option><
                         <?php
                         if (isset($anneeScolaire)) {
                             foreach ($anneeScolaire as $row) {
@@ -124,15 +124,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                         }
                         ?>
                     </select>
-                </li>
-                <li> <label for="année">année</label></li>
+                </li><br>
+                <br>
+                <br>
+                <li><label for="année">année</label></li>
                 <li>
                     <select id="année" name="annee" required></select>
                 </li>
                 <li> <label for="filier" id='filiérelb'>filière</label></li>
                 <li>
                     <select id="filiére" name="filiere" required></select>
-                </li>
+                </li><br><br><br>
                 <li><input type="submit" name="AjaxValider" onclick="checkobligatoire()" value="Valider"
                         id="validerAjax"> </li>
             </ul>
