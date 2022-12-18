@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
         <div class="selects">
             <ul>
 
-                <li> <label for="année-scolaire">année scolaire</label>
+                <li> <label for="année-scolaire">Année scolaire</label>
                     <?php
                     $sql = ("SELECT * FROM anneeScolaire ");
                     $pdo_statement = $conn->prepare($sql);
@@ -177,22 +177,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                         }
                         ?>
                     </select>
-                </li>
-                <li> <label for="année">année</label></li>
-                <li>
-                    <select id="année" name="annee" required></select>
-                </li>
-                <li> <label for="filier" id='filiérelb'>filière</label></li>
-                <li>
-                    <select id="filiére" name="filiere" required></select>
-                </li>
-                <li> <label for="">groupe</label></li>
-                <li>
-                    <select id="groupe" name="groupe" required></select>
-                </li>
-                <li><input type="submit" name="AjaxValider" value="valider" id="valider"> </li>
-            </ul>
-        </div>
+                    </li>
+                    <li> <label for="année">Année</label></li>
+                    <li>
+                        <select id="année" name="annee" required></select>
+                    </li>
+                    <li> <label for="filier">Filière</label></li>
+                    <li>
+                        <select id="filiére" name="filiere" required></select>
+                    </li>
+                    <li> <label for="">Groupe</label></li>
+                    <li>
+                        <select id="groupe" name="groupe" required></select>
+                    </li>
+                    <li><input type="submit" name="AjaxValider" value="Valider" id="valider"> </li>
+                </ul>
+            </div>
     </form>
     <main>
         <?php

@@ -11,19 +11,21 @@
     --color3: #D8E6EA;
     --color4: #ffffff;
 }
+html{
+    height: 100%;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
 
+body{
+    height: 100%;
+}
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
-}
-
-body::-webkit-scrollbar {
-    display: none;
 }
 
 /*---------------------------- header --------------------------------*/
@@ -106,42 +108,35 @@ a {
 }
 
 /*--------------------------------filtrage----------------------------------*/
-.selects {
-    margin-top: 20px;
-}
-
 .selects ul {
     list-style: none;
-    margin-right: 20px;
-    margin-left: 50px;
+    margin-right: 40px;
+    margin-left: 70px;
     padding-left: 50px;
-}
-
+    margin-top: 15px;
+  }
 .selects ul li {
     font-weight: 600;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 170px;
-    margin-right: 60px;
-}
-
+    width:170px;
+    margin-right:100px;
+  } 
 .selects ul li label {
     color: var(--color2);
-    font-size: 18px;
-    width: 30px;
-}
-
+    font-size: 15px;
+    width:3%;
+  }
 .selects ul li select {
     background-color: var(--color1);
-    height: 20px;
+    height: 25px;
     border: 2px solid var(--color2);
     border-radius: 8px;
     font-size: 12px;
-    text-align: center;
-    width: 200px;
-}
-
+    text-align: center;  
+    width:100px;
+  }
 .selects input[type="submit"] {
     background-color: rgb(0, 139, 69);
     color: var(--color4);
@@ -152,14 +147,13 @@ a {
     border: none;
     cursor: pointer;
     transition: 0.5s;
-    height: 30px
-}
-
+    height:30px
+  }
 .selects input[type="submit"]:hover {
     width: 70px;
     padding: 5px;
     background-color: var(--color2);
-}
+  }
 
 /*------------------------------------------------------------------*/
 
