@@ -61,39 +61,42 @@ $formateur = $pdo_statement->fetchAll();
     </header>
     <nav>
         <ul>
-        <li>
-            <a href="./creation.php"><button >Création</button></a>
-        </li>
-        <li>
-            <a href="./ImporterModules.php"><button class="module">Module</button></a> 
-        </li>
-        <li>
-            <a href="./Main-Formateur.php"><button class="Formateur">Formateur</button></a>
-        </li>
-        <li>  
-            <a href="./Importer_stagiaire.php"><button>Stagiaire</button> </a>
-        </li>
+            <li>
+                <a href="./creation.php"><button>Création</button></a>
+            </li>
+            <li>
+                <a href="./ImporterModules.php"><button class="module">Module</button></a>
+            </li>
+            <li>
+                <a href="./ImporterFormateur.php"><button class="Formateur">Formateur</button></a>
+            </li>
+            <li>
+                <a href="./Importer_stagiaire.php"><button>Stagiaire</button> </a>
+            </li>
         </ul>
     </nav>
     <main>
-        <div class="selects">
-            <ul>
-                <li> <label for="">importer formateur</label></li>
-                <li>
-                    <div class="telecharger">
-                        <a href="/examples/Formateur.csv" download='Formateur.csv'><img src="./images/upload-cloud.svg"
-                                alt="" srcset="" id="icon-upload">
-                            <input type="button" value="telecherger" id="telecherger"></a>
-                    </div>
-                <li>
-                    <div class="validerImporter">
-                        <input type="submit" value="valider" id="valider" onclick=" return vk()"> <input type="file"
-                            name="" id="file">
-                        <label for="file" id='buttonPhoto'>importer</label>
-                    </div>
-                </li>
-                <li><span id="lbimport"></span></li>
-            </ul>
+        <form method="POST" action="./libs/Main.php" enctype="multipart/form-data">
+            <div class="selects">
+                <ul>
+                    <li> <label for="">importer formateur</label></li>
+                    <li>
+                        <div class="telecharger">
+                            <a href="./CSV_Files_Examples/Formateur.xlsx" download='Formateur.xlsx'><img
+                                    src="./images/upload-cloud.svg" alt="" srcset="" id="icon-upload">
+                                <input type="button" value="telecherger" id="telecherger"></a>
+                        </div>
+                    <li>
+                        <div class="validerImporter">
+                            <input type="hidden" name="table" value="Formateur">
+                            <input type="submit" name="Submit" value="Valider" id="valider" onclick=" return vk()">
+                            <input type="file" name="file" id="file">
+                            <label for="file" id='buttonPhoto'>Importer</label>
+                        </div><span id="lbimport"></span>
+                    </li>
+                    <li><span id="lbimport"></span></li>
+                </ul>
+        </form>
         </div>
         <div class="listeFormateur">
             <?php
@@ -125,10 +128,10 @@ $formateur = $pdo_statement->fetchAll();
                     </td>
                     <td>
                         <button class="btn-click" value=<?= $row['Matricule'] ?>>
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
                         </button>
                     </td>
                 </tr>
