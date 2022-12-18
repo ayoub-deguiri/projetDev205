@@ -43,6 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $_SESSION['compteType'] = $result['compteType'];
       header('location:./Accueil-serveillant.php');
     }
+    elseif ($result['compteType'] == 'superAdmin') {
+        $_SESSION['compteType'] = $result['compteType'];
+        header('location:./creation.php');
+      }
   }
 }
 
