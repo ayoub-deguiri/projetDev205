@@ -6,9 +6,9 @@ $sql = "SELECT * FROM stagiaire WHERE CEF= ?";
 $pdo_statement = $conn->prepare($sql);
 $pdo_statement->bindParam(1, $userid);
 $pdo_statement->execute();
-$stagaire = $pdo_statement->fetch(PDO::FETCH_ASSOC);
-$nom = $stagaire['nomStagiaire'];
-$prenom = $stagaire['prenomStagiaire'];
+$stagiaire = $pdo_statement->fetch(PDO::FETCH_ASSOC);
+$nom = $stagiaire['nomStagiaire'];
+$prenom = $stagiaire['prenomStagiaire'];
 
 // nbr abs
 $sql = "SELECT COUNT(idAbsence) as nbrAbs FROM `absence` WHERE type = 'absence' and CEF = ?";
