@@ -95,6 +95,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
             </li>
         </ul>
     </nav>
+    <?php
+    if (!empty($_GET['msg'])) {
+        echo '<h2 style="text-align: center;color : green;margin-top:2%">' . $_GET['msg'] . '</h2>';
+    }
+    ?>
     <form action="" method="GET">
         <div class="container">
             <ul>
@@ -134,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
         </div>
     </form>
     <main>
-        <form method="POST" action="./inc/ModuleUpload.php" enctype="multipart/form-data">
+        <form method="POST" action="./libs/Main.php" enctype="multipart/form-data">
             <div class="selects">
                 <ul>
                     <li> <label for="">
@@ -150,8 +155,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
 
                     <li>
                         <div class="validerImporter">
+                            <input type="hidden" name="table" value="Module">
                             <input type="submit" name="Submit" value="Valider" id="valider" onclick=" return vk()">
-                            <input type="file" name="csv_file" id="file">
+                            <input type="file" name="file" id="file">
                             <label for="file" id='buttonPhoto'>Importer</label>
                         </div><span id="lbimport"></span>
 
