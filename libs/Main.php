@@ -1,8 +1,10 @@
 <?php
+// requier db and class :
 include_once('../inc/db.php');
 include_once('XLSXReader.php');
-include_once('../inc/pprint.php');
 
+
+// geting data and file
 $file = $_FILES['file']['tmp_name'];
 $table = $_POST['table'];
 $xlsx = new XLSXReader($file);
@@ -13,7 +15,8 @@ foreach ($sheetNames as $sheetName) {
     insterinto($data, $table);
 }
 
-// fonction pour les Module
+
+// Module Function
 function insertModule($row)
 {
     global $conn;
@@ -44,8 +47,29 @@ function insertModule($row)
 }
 
 
+// Formateur Function
+function insertFormateur($row)
+{
+    global $conn;
+    // check if Formateur allready exist
+    $check = "SELECT * FROM formateur WHERE Matricule = ?";
+    $pdo_statement = $conn->prepare($check);
+    $pdo_statement->bindParam(1, $row[0]);
+    $pdo_statement->execute();
+    $checkresult = $pdo_statement->fetch();
+    if (empty($checkresult)) {
+        // convert to array to str 
+        $value = "'" . implode("','", $row) . "'";
+        // insert int table
+        $sql = "INSERT INTO formateur(`Matricule`,`nomFormateur`,`prenomFormateur`) VALUES (" . $value . ")";
+        $pdo_statement = $conn->prepare($sql);
+        $pdo_statement->execute();
+    }
 
-// fonction  insertion
+}
+
+
+// Main Function 
 function insterinto($data, $table)
 {
     global $conn;
@@ -56,6 +80,20 @@ function insterinto($data, $table)
             insertModule($arr);
         }
         header('location:../ImporterModules.php?msg=Operation Terminer Avec Success');
+
+    }
+    if ($table == "Formateur") {
+        foreach ($data as $arr) {
+            insertFormateur($arr);
+        }
+        header('location:../ImporterFormateur.php?msg=Operation Terminer Avec Success');
+
+    }
+    if ($table == "Stagiare") {
+        foreach ($data as $arr) {
+            insertFormateur($arr);
+        }
+        header('location:../ImporterFormateur.php?msg=Operation Terminer Avec Success');
 
     }
 
