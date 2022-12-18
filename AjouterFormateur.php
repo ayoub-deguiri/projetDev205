@@ -51,21 +51,21 @@
     </div>
   </header>
   <nav>
-        <ul>
-        <li>
-            <a href="./creation.php"><button >Création</button></a>
-        </li>
-        <li>
-            <a href="./ImporterModules.php"><button >Module</button></a> 
-        </li>
-        <li>
-            <a href="./Main-Formateur.php"><button>Formateur</button></a>
-        </li>
-        <li>  
-            <a href="#"><button>Stagiaire</button> </a>
-        </li>
-        </ul>
-    </nav>
+    <ul>
+      <li>
+        <a href="./creation.php"><button>Création</button></a>
+      </li>
+      <li>
+        <a href="./ImporterModules.php"><button>Module</button></a>
+      </li>
+      <li>
+        <a href="./ImporterFormateur.php"><button>Formateur</button></a>
+      </li>
+      <li>
+        <a href="#"><button>Stagiaire</button> </a>
+      </li>
+    </ul>
+  </nav>
   <main>
     <form id="form" method="POST" action="">
       <table>

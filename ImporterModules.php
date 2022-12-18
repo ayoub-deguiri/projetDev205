@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                 <a href="./ImporterModules.php"><button class="module">Module</button></a>
             </li>
             <li>
-                <a href="./Main-Formateur.php"><button>Formateur</button></a>
+                <a href="./ImporterFormateur.php"><button>Formateur</button></a>
             </li>
             <li>
                 <a href="./Importer_stagiaire.php"><button>Stagiaire</button> </a>
@@ -202,7 +202,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
             ?>
         </div>
         <div class="buttonInserer">
-            <a href="./Main-Formateur.php"><button type="button" id="inserer"> Insérer Formateur &#10154;</button></a>
+            <a href="./ImporterFormateur.php"><button type="button" id="inserer"> Insérer Formateur
+                    &#10154;</button></a>
         </div>
 
 
