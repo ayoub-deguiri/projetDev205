@@ -125,6 +125,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                         ?>
                     </select>
                 </li>
+                <br>
+                <br>
                 <li> <label for="année">année</label></li>
                 <li>
                     <select id="année" name="annee" required></select>
