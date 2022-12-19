@@ -7,6 +7,11 @@ include_once('XLSXReader.php');
 // geting data and file
 $file = $_FILES['file']['tmp_name'];
 $table = $_POST['table'];
+if (!empty($_POST["annee-Scolaire"])) {
+    $anneeScolaire = $_POST["annee-Scolaire"];
+} else {
+    $anneeScolaire = "";
+}
 $xlsx = new XLSXReader($file);
 $sheetNames = $xlsx->getSheetNames();
 foreach ($sheetNames as $sheetName) {
@@ -14,6 +19,22 @@ foreach ($sheetNames as $sheetName) {
     $data = $sheet->getData();
     insterinto($data, $table);
 }
+
+
+// repetitve sql query ;
+
+function getIdGrp($name, $idfilier)
+{
+    global $conn;
+    $sql = "SELECT idGroupe FROM groupe WHERE nomGroupe = ? and idFiliere = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(1, $name);
+    $stmt->bindParam(2, $idfilier);
+    $stmt->execute();
+    $idgrp = $stmt->fetch(PDO::FETCH_COLUMN);
+    return $idgrp;
+}
+
 
 
 // Module Function
@@ -68,6 +89,68 @@ function insertFormateur($row)
 
 }
 
+// Stagiaire Function
+
+function insertStagiaire($row)
+{
+    global $conn;
+    global $anneeScolaire;
+    if (!empty($anneeScolaire)) {
+
+        // check if Stagiaire allready exist
+        $check = "SELECT * FROM stagiaire WHERE CEF = ?";
+        $pdo_statement = $conn->prepare($check);
+        $pdo_statement->bindParam(1, $row[0]);
+        $pdo_statement->execute();
+        $checkresult = $pdo_statement->fetch();
+        if (empty($checkresult)) {
+            // Get Annee id 
+            $sql = "SELECT idAnnee FROM annee WHERE  nomAnnee = ? and idAnneeScolaire = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(1, $row[3]);
+            $stmt->bindParam(2, $anneeScolaire);
+            $stmt->execute();
+            $anneeID = $stmt->fetch(PDO::FETCH_COLUMN);
+            if ($anneeID) {
+                // Get filiere id 
+                $sql = "SELECT idFiliere FROM filiere WHERE  nomFiliere = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(1, $row[4]);
+                $stmt->execute();
+                $filierID = $stmt->fetch(PDO::FETCH_COLUMN);
+                if ($filierID) {
+                    ;
+
+                    // check if group exists if it does not create it
+                    $checkGrp = getIdGrp($row[5], $filierID);
+                    if (!$checkGrp) {
+                        $sql = "INSERT INTO `groupe`(`nomGroupe`,`idFiliere`) VALUES (?,?)";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bindParam(1, $row[5]);
+                        $stmt->bindParam(2, $filierID);
+                        $stmt->execute();
+                    }
+
+
+                    // insert Stagiaire 
+                    $idgrp = getIdGrp($row[5], $filierID);
+                    $sql = "INSERT INTO `stagiaire`(`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) VALUES (?,?,?,?)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bindParam(1, $row[0]);
+                    $stmt->bindParam(2, $row[1]);
+                    $stmt->bindParam(3, $row[2]);
+                    $stmt->bindParam(4, $idgrp);
+                    $stmt->execute();
+                }
+
+            }
+        }
+    }
+}
+
+
+
+
 
 // Main Function 
 function insterinto($data, $table)
@@ -75,27 +158,10 @@ function insterinto($data, $table)
     global $conn;
     array_shift($data);
     pprint($data);
-    if ($table == "Module") {
-        foreach ($data as $arr) {
-            insertModule($arr);
-        }
-        header('location:../ImporterModules.php?msg=Operation Terminer Avec Success');
-
+    echo "<hr>";
+    $funcName = "insert" . "$table";
+    foreach ($data as $arr) {
+        $funcName($arr);
     }
-    if ($table == "Formateur") {
-        foreach ($data as $arr) {
-            insertFormateur($arr);
-        }
-        header('location:../ImporterFormateur.php?msg=Operation Terminer Avec Success');
-
-    }
-    if ($table == "Stagiare") {
-        foreach ($data as $arr) {
-            insertFormateur($arr);
-        }
-        header('location:../ImporterFormateur.php?msg=Operation Terminer Avec Success');
-
-    }
-
-
+    header("location:../Importer" . $table . ".php?msg=Operation Terminer Avec Success");
 }
