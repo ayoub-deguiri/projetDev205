@@ -56,7 +56,7 @@
         <a href="./creation.php"><button>Création</button></a>
       </li>
       <li>
-        <a href="./ImporterModules.php"><button>Module</button></a>
+        <a href="./ImporterModule.php"><button>Module</button></a>
       </li>
       <li>
         <a href="./ImporterFormateur.php"><button>Formateur</button></a>
