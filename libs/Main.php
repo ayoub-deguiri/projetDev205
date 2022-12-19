@@ -8,6 +8,8 @@ include_once('../inc/db.php');
 include_once('XLSXReader.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_FILES) && !empty($_POST)) {
+
+
     // geting Post data
     $file = $_FILES['file']['tmp_name'];
     $table = $_POST['table'];
@@ -16,33 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_FILES) && !empty($_POST)) {
         $anneeScolaire = $_POST["annee-Scolaire"];
     }
 
-
-    // geting data from the xlxs file
-    $xlsx = new XLSXReader($file);
-    $sheetNames = $xlsx->getSheetNames();
-    foreach ($sheetNames as $sheetName) {
-        $sheet = $xlsx->getSheet($sheetName);
-        $data = $sheet->getData();
-        insterinto($data, $table);
-    }
-
-
-    // repetitve sql query ;
-    function getIdGrp($name, $idfilier)
-    {
-        global $conn;
-        $sql = "SELECT idGroupe FROM groupe WHERE nomGroupe = ? and idFiliere = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(1, $name);
-        $stmt->bindParam(2, $idfilier);
-        $stmt->execute();
-        $idgrp = $stmt->fetch(PDO::FETCH_COLUMN);
-        return $idgrp;
-    }
-
-
-
-    // Module Function
     function insertModule($row)
     {
         global $conn;
@@ -154,8 +129,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_FILES) && !empty($_POST)) {
 
 
 
-
-
     // Main Function 
     function insterinto($data, $table)
     {
@@ -169,6 +142,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_FILES) && !empty($_POST)) {
         }
         header("location:../Importer" . $table . ".php?msg=Operation Terminer Avec Success");
     }
+
+    // geting data from the xlxs file
+    $xlsx = new XLSXReader($file);
+    $sheetNames = $xlsx->getSheetNames();
+    foreach ($sheetNames as $sheetName) {
+        $sheet = $xlsx->getSheet($sheetName);
+        $data = $sheet->getData();
+        insterinto($data, $table);
+    }
+
+
+    // repetitve sql query ;
+    function getIdGrp($name, $idfilier)
+    {
+        global $conn;
+        $sql = "SELECT idGroupe FROM groupe WHERE nomGroupe = ? and idFiliere = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1, $name);
+        $stmt->bindParam(2, $idfilier);
+        $stmt->execute();
+        $idgrp = $stmt->fetch(PDO::FETCH_COLUMN);
+        return $idgrp;
+    }
+
+
+
+    // Module Function
+
+
+
+
+
 } else {
     header('location:../login.php');
 }
