@@ -23,7 +23,7 @@ function infos() {
       div.innerHTML += `
       <div>
           <label id='color' for='NG'> Nom Filiere :</label>
-          <input type='text' name='NG' id='NG'>
+          <input type='text' name='filiere-${i}' id='filiere'>
         
         
       </div>
