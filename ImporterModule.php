@@ -264,5 +264,3 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
     </script>
 
 </body>
-
-</html>

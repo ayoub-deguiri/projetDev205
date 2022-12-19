@@ -42,56 +42,64 @@
     </ul>
   </nav>
   <main>
-    <div class="container">
-      <form action="" method="POST">
-        <div class="row">
-          <div class="col-25">
-            <label for="année">Année :</label>
-          </div>
-          <div class="col-75">
-            <select id="année" name="annee" required>
-              <option value="" disabled selected></option>
-              <option value="1">Affichage</option>
-            </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="année-scolaire">Année Scolaire :</label>
-          </div>
-          <div class="col-75">
-            <select id="année-scolaire" name="annee-Scolaire" required>
-              <option value="" disabled selected></option>
-              <option value="1">Affichage</option>
-            </select>
-          </div>
-        </div>
+      <div class="container">
+        <form action="infosCreaction.php" method="POST">
+          <div class="row">
+              <div class="col-25">
+                <label for="année-scolaire">Année Scolaire :</label>
+              </div>
+              <div class="col-75">
+                        <select class = "anneeScolaire" id="année-scolaire" name="anneeScolaire" required>
+                          <option value="-1" disabled >select annee scolaire</option>
+                          <option value="2023-2024">2023-2024</option>
+                          <option value="2024-2025">2024-2025</option>
+                          <option value="2025-2026">2025-2026</option>
+                          <option value="2026-2027">2026-2027</option>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="groupe" disabled>Nombre:</label>
+                        </select>
+              </div>
+            </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="année">Année :</label>
+            </div>
+            <div class="col-75">
+                  <td>
+                      <select class = "annee" id="année" name="annee" required>
+                        <option value="-1" disabled >select anne</option>
+                        <option value="1ere Annee">1ere Annee</option>
+                        <option value="2eme Annee">2eme Annee</option>
+                      </select>
+                  </td>
+                </tr>
+            </div>
           </div>
-          <div class="col-75">
-            <input type="text" id="groupe" name="groupe" required />
+
+          <div class="row">
+            <div class="col-25">
+              <label for="groupe" disabled>Nombre:</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="groupe" name="nombre" required />
+            </div>
           </div>
+
+          <div class="box-submit">
+            <input type="button" value="OK" onclick="infos()" id="button" />
+          </div>
+          <div id="importGroup">
+        <div id="form" class="form2">
+          <div id="here">
         </div>
+          <input type="submit" name = "valider" value ="valider" onclick="myFunction()" id="btnValider" />
+      </div>
+        </form>
+      </div>
 
-        <div class="box-submit">
-          <input type="button" value="OK" onclick="infos()" id="button" />
-        </div>
-      </form>
-    </div>
-    <div id="importGroup">
-      <form id="form" class="form2">
-        <div id="here">
-        </div>
+       
+        
 
-
-
-      </form>
-    </div>
-  </main>
-  <button onclick="myFunction()" id="btnValider">valider</button>
+    </main>
   <footer>
     <p>© Copyright | DevWFS205 |2022</p>
   </footer>
