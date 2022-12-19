@@ -1,6 +1,9 @@
 <?php
 include_once('inc/db.php');
 session_start();
+if (empty($_SESSION) or $_SESSION['compteType'] !== "superAdmin") {
+    header('location:./login.php');
+}
 ?>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {

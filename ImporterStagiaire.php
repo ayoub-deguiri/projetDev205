@@ -1,3 +1,10 @@
+<?php
+include_once('inc/db.php');
+session_start();
+if (empty($_SESSION) or $_SESSION['compteType'] !== "superAdmin") {
+    header('location:./login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

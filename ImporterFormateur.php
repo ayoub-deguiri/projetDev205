@@ -1,7 +1,9 @@
 <?php
 include_once('inc/db.php');
 session_start();
-
+if (empty($_SESSION) or $_SESSION['compteType'] !== "superAdmin") {
+    header('location:./login.php');
+}
 ?>
 <?php
 $sql = "SELECT * from formateur ";
