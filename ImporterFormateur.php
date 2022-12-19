@@ -65,13 +65,13 @@ $formateur = $pdo_statement->fetchAll();
                 <a href="./creation.php"><button>Création</button></a>
             </li>
             <li>
-                <a href="./ImporterModules.php"><button class="module">Module</button></a>
+                <a href="./ImporterModule.php"><button class="module">Module</button></a>
             </li>
             <li>
                 <a href="./ImporterFormateur.php"><button class="Formateur">Formateur</button></a>
             </li>
             <li>
-                <a href="./Importer_stagiaire.php"><button>Stagiaire</button> </a>
+                <a href="./ImporterStagiaire.php"><button>Stagiaire</button> </a>
             </li>
         </ul>
     </nav>

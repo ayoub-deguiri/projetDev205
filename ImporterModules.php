@@ -85,13 +85,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["AjaxValider"])) {
                 <a href="./creation.php"><button>Création</button></a>
             </li>
             <li>
-                <a href="./ImporterModules.php"><button class="module">Module</button></a>
+                <a href="./ImporterModule.php"><button class="module">Module</button></a>
             </li>
             <li>
                 <a href="./ImporterFormateur.php"><button>Formateur</button></a>
             </li>
             <li>
-                <a href="./Importer_stagiaire.php"><button>Stagiaire</button> </a>
+                <a href="./ImporterStagiaire.php"><button>Stagiaire</button> </a>
             </li>
         </ul>
     </nav>

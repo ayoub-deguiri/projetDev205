@@ -31,13 +31,13 @@
         <a href="./creation.php"><button class="creation">Création</button></a>
       </li>
       <li>
-        <a href="./ImporterModules.php"><button>Module</button></a>
+        <a href="./ImporterModule.php"><button>Module</button></a>
       </li>
       <li>
         <a href="./ImporterFormateur.php"><button>Formateur</button></a>
       </li>
       <li>
-        <a href="./Importer_stagiaire.php"><button>Stagiaire</button> </a>
+        <a href="./ImporterStagiaire.php"><button>Stagiaire</button> </a>
       </li>
     </ul>
   </nav>
