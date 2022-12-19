@@ -1,9 +1,7 @@
 <?php
 include_once('inc/db.php');
 session_start();
-if (empty($_SESSION) or $_SESSION['compteType'] !== "serveillant") {
-    header('location:./login.php');
-}
+
 ?>
 <?php
 $sql = "SELECT * from formateur ";
