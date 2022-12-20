@@ -1,7 +1,7 @@
 <?php
 include_once('db.php');
 session_start();
-if (empty($_SESSION) or $_SESSION['compteType'] != "serveillant") {
+if (empty($_SESSION) or $_SESSION['compteType'] != "superAdmin") {
     header('location:./login.php');
 }
 ?>
