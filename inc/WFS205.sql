@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2022 at 01:42 AM
+-- Generation Time: Dec 21, 2022 at 12:30 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -87,10 +87,9 @@ CREATE TABLE `absence` (
 --
 
 INSERT INTO `absence` (`idAbsence`, `dateAbsence`, `heureDebutAbsence`, `heureFinAbsence`, `Duree`, `moduleAbsence`, `matricule`, `type`, `idAnnee`, `idFiliere`, `idGroupe`, `idAnneeScolaire`, `CEF`, `justifier`) VALUES
-(56, '2022-12-08', '08:44:00', '11:44:00', 180, 'React', '1', 'absence', 2, 15, 47, 1, '1999030200448', 'no'),
 (57, '2022-12-08', '10:44:00', '13:44:00', 180, 'React', '1', 'absence', 2, 15, 47, 1, '1999042300229', 'no'),
 (58, '2022-12-08', '15:45:00', '16:44:00', 59, 'React', '1', 'absence', 2, 15, 47, 1, '1999070400397', 'no'),
-(60, '2022-12-08', '10:45:00', '13:44:00', 179, 'React', '1', 'absence', 2, 15, 47, 1, '2000071200332', 'oui'),
+(60, '2022-12-08', '10:45:00', '13:44:00', 179, 'React', '1', 'absence', 2, 15, 47, 1, '2000071200332', 'no'),
 (61, '2022-12-08', '10:45:00', '14:44:00', 239, 'React', '1', 'absence', 2, 15, 47, 1, '2000102900407', 'oui'),
 (103, '2022-12-16', '16:07:28', '21:07:28', 300, 'PP', '1', 'abs', 1, 12, 23, 1, '199211260144', 'no'),
 (659, '2022-12-16', '08:30:00', '13:30:00', 300, 'Pk', '1', 'absence', 2, 15, 43, 1, '199402200533', 'no'),
@@ -100,7 +99,8 @@ INSERT INTO `absence` (`idAbsence`, `dateAbsence`, `heureDebutAbsence`, `heureFi
 (664, '2022-12-17', '09:40:00', '09:40:00', 0, 'pp', '1', 'retard', 1, 11, 22, 1, '1997030900003', 'no'),
 (665, '2022-12-09', '09:40:00', '09:40:00', 0, 'JK', '1', 'retard', 1, 11, 22, 1, '1993030100110', 'no'),
 (666, '2022-12-16', '09:40:00', '09:40:00', 0, 'FCHF', '1', 'retard', 1, 11, 22, 1, '1993030100110', 'no'),
-(667, '2022-12-23', '09:41:00', '09:41:00', 0, 'FGDS', '1', 'retard', 1, 11, 22, 1, '1993030100110', 'no');
+(667, '2022-12-23', '09:41:00', '09:41:00', 0, 'FGDS', '1', 'retard', 1, 11, 22, 1, '1993030100110', 'no'),
+(668, '2022-12-19', '08:46:00', '10:46:00', 120, 'React', NULL, 'absence', 1, 11, 22, 1, '1993030100110', 'oui');
 
 --
 -- Triggers `absence`
@@ -139,7 +139,10 @@ CREATE TABLE `annee` (
 INSERT INTO `annee` (`idAnnee`, `nomAnnee`, `idAnneeScolaire`) VALUES
 (1, '1ere Annee', 1),
 (2, '2eme Annee', 1),
-(3, '3eme  Annee', 1);
+(3, '3eme  Annee', 1),
+(4, '1ere Annee', 2),
+(5, '2eme Annee', 2),
+(6, '1ere Annee', 3);
 
 -- --------------------------------------------------------
 
@@ -157,7 +160,9 @@ CREATE TABLE `anneescolaire` (
 --
 
 INSERT INTO `anneescolaire` (`idAnneeScolaire`, `nomAnneeScolaire`) VALUES
-(1, '2021-2023');
+(1, '2021-2023'),
+(2, '2023-2024'),
+(3, '2024-2025');
 
 -- --------------------------------------------------------
 
@@ -180,7 +185,8 @@ INSERT INTO `compte` (`user`, `password`, `compteType`) VALUES
 ('1993030100110', '1993030100110', 'stagiaire'),
 ('2000121600314', '2000121600314', 'stagiaire'),
 ('admin', 'admin', 'serveillant'),
-('directrice', 'directrice', 'directrice');
+('directrice', 'directrice', 'directrice'),
+('sp', 'sp', 'superAdmin');
 
 -- --------------------------------------------------------
 
@@ -194,6 +200,13 @@ CREATE TABLE `deleted_stagiaire` (
   `prenomStagiaire` varchar(60) NOT NULL,
   `idGroupe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `deleted_stagiaire`
+--
+
+INSERT INTO `deleted_stagiaire` (`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) VALUES
+('1999022300367', 'MOUSSAOUI', 'ABDELKARIM', 47);
 
 --
 -- Triggers `deleted_stagiaire`
@@ -231,7 +244,8 @@ INSERT INTO `filiere` (`idFiliere`, `nomFiliere`, `idAnnee`) VALUES
 (17, 'Infrastructure Digitale option Cyber securite', 2),
 (18, 'Infrastructure Digitale option Cloud Computin', 2),
 (19, 'Developpement Digital option Applications Mob', 2),
-(20, 'Maintenance Informatique et Reseaux', 3);
+(20, 'Maintenance Informatique et Reseaux', 3),
+(28, 'lol', 6);
 
 -- --------------------------------------------------------
 
@@ -251,7 +265,10 @@ CREATE TABLE `formateur` (
 
 INSERT INTO `formateur` (`Matricule`, `nomFormateur`, `prenomFormateur`) VALUES
 ('1', 'Ouatoch', 'Abd Jalil'),
-('123', 'hgjk', 'ghj');
+('123', 'hgjk', 'ghj'),
+('M1', 'Nom1', 'Prenom1'),
+('M2', 'Nom2', 'Prenom2'),
+('M3', 'Nom3', 'Prenom3');
 
 -- --------------------------------------------------------
 
@@ -309,7 +326,8 @@ INSERT INTO `groupe` (`idGroupe`, `nomGroupe`, `idFiliere`) VALUES
 (59, 'IDOCC201', 18),
 (60, 'IDOCC202', 18),
 (61, 'DEVOAM201', 19),
-(62, 'MIR301', 20);
+(62, 'MIR301', 20),
+(72, 'DEV101', 12);
 
 -- --------------------------------------------------------
 
@@ -327,8 +345,8 @@ CREATE TABLE `justifierabsence` (
 --
 
 INSERT INTO `justifierabsence` (`idAbsence`, `Justifie_motif`) VALUES
-(60, 'JESTUFIER1'),
-(61, 'JESTUFIER1');
+(61, 'JESTUFIER1'),
+(668, 'test');
 
 --
 -- Triggers `justifierabsence`
@@ -368,6 +386,18 @@ CREATE TABLE `module` (
   `idFiliere` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `module`
+--
+
+INSERT INTO `module` (`idModule`, `nomModule`, `idFiliere`) VALUES
+(104, 'Module1', 11),
+(105, 'Module2', 12),
+(106, 'Module3', 11),
+(107, 'Module4', 15),
+(108, 'Module5', 13),
+(109, 'Module1', 15);
+
 -- --------------------------------------------------------
 
 --
@@ -400,7 +430,7 @@ INSERT INTO `note` (`CEF`, `note`) VALUES
 ('1998121700398', 20),
 ('1999010200483', 15),
 ('1999021700041', 15),
-('1999022300367', 15),
+('1999022300367', 20),
 ('1999030200448', 15),
 ('1999030400265', 15),
 ('1999032000551', 15),
@@ -610,7 +640,7 @@ INSERT INTO `stagiaire` (`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) V
 ('1999012100466', 'IDA BBOU', 'NOHAYLA', 58),
 ('1999020900293', 'BELGHOUL', 'MEHDI', 60),
 ('1999021700041', 'ABBAD', 'AYOUB', 22),
-('1999022300367', 'MOUSSAOUI', 'ABDELKARIM', 47),
+('1999022300367', 'MOUSSAOUI', 'ABDELKARIM', NULL),
 ('1999030200262', 'RAISI', 'HAMZA', 42),
 ('1999030200448', 'AITIDAR', 'NIAMA', 47),
 ('1999030200460', 'TELMOUDI', 'NOUAMANE', 31),
@@ -1475,7 +1505,13 @@ INSERT INTO `stagiaire` (`CEF`, `nomStagiaire`, `prenomStagiaire`, `idGroupe`) V
 ('2006012300022', 'SEMMAÂ', 'WALID', 62),
 ('2006020300015', 'FARCHIOUI', 'AMINA', 62),
 ('2006021100020', 'BOUKDIR', 'AYOUB', 62),
-('2006040800006', 'KALSADI', 'AIMRANE', 62);
+('2006040800006', 'KALSADI', 'AIMRANE', 62),
+('666', 'TEST&', 'TETS2', 45),
+('CEF1', 'NS1', 'PS1', 24),
+('CEF2', 'NS2', 'PS2', 35),
+('CEF3', 'NS3', 'PS3', 22),
+('CEF4', 'NS4', 'PS4', 58),
+('CEF5', 'NS5', 'PS5', 60);
 
 --
 -- Triggers `stagiaire`
@@ -1597,37 +1633,37 @@ ALTER TABLE `stagiaire`
 -- AUTO_INCREMENT for table `absence`
 --
 ALTER TABLE `absence`
-  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=668;
+  MODIFY `idAbsence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=670;
 
 --
 -- AUTO_INCREMENT for table `annee`
 --
 ALTER TABLE `annee`
-  MODIFY `idAnnee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idAnnee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `anneescolaire`
 --
 ALTER TABLE `anneescolaire`
-  MODIFY `idAnneeScolaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idAnneeScolaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `filiere`
 --
 ALTER TABLE `filiere`
-  MODIFY `idFiliere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idFiliere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `groupe`
 --
 ALTER TABLE `groupe`
-  MODIFY `idGroupe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `idGroupe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
-  MODIFY `idModule` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idModule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- Constraints for dumped tables
