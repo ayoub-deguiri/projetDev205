@@ -49,7 +49,6 @@ $nbrRet = $pdo_statement->fetch();
             newAbs = data['abs']
             newData = [newRet, newAbs]
             myChart.data.datasets[0].data = newData
-            myChart.options.title.text = `Nombre des absences et retards du ${date} non justifiés`
             myChart.update();
           }
         });
@@ -96,7 +95,7 @@ $nbrRet = $pdo_statement->fetch();
         <a href="./Deperdition.php"><button><i class="fa fa-plus-circle" aria-hidden="true"></i>deperdition</button></a>
       </li>
       <li>
-        <a href="./Absence_Justifier.php"><button><i  aria-hidden="true"></i>Justifier</button></a>
+        <a href="./Absence_Justifier.php"><button><i aria-hidden="true"></i>Justifier</button></a>
       </li>
     </ul>
   </nav>
@@ -126,7 +125,7 @@ $nbrRet = $pdo_statement->fetch();
       // chart
       let nbrAbs = document.getElementById('nbrAbs').value;
       let nbrRet = document.getElementById('nbrRet').value;
-      var xValues = ["Retard", "Absence"];
+      var xValues = ["Retard Non Justifier", "Absence Non Justifier"];
       var yValues = [nbrRet, nbrAbs];
 
       var barColors = ["#FB931B", "#155A93"];
@@ -140,12 +139,6 @@ $nbrRet = $pdo_statement->fetch();
               data: yValues,
             },
           ],
-        },
-        options: {
-          title: {
-            display: true,
-            text: `Nombre des absences et retards du ${currentDate} non justifiés `,
-          },
         },
       });
     </script>
