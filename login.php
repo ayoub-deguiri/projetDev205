@@ -3,21 +3,9 @@ include_once('inc/db.php');
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  // get user and password
-  $user = $_POST["matricule"];
-  $password = $_POST["password"];
-
-
   // Validate Form Data
-  $user = htmlspecialchars($user);
-  $user = trim($user);
-  $user = stripslashes($user);
-  $_SESSION['CEF'] = $user;
-
-  $password = htmlspecialchars($password);
-  $password = trim($password);
-  $password = stripslashes($password);
-
+  $user = Validate($_POST["matricule"]);
+  $password = Validate($_POST["password"]);
 
   // fetching the data
   $sql = "SELECT * FROM  compte  WHERE user = ? and password = ?";
@@ -33,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header('location:./login.php?msg=Login Or Password incorrect');
 
   } else {
+    $_SESSION['CEF'] = $user;
     if ($result['compteType'] == 'stagiaire') {
       $_SESSION['compteType'] = $result['compteType'];
       header('location:./responsable.php');
@@ -42,11 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif ($result['compteType'] == 'serveillant') {
       $_SESSION['compteType'] = $result['compteType'];
       header('location:./Accueil-serveillant.php');
+    } elseif ($result['compteType'] == 'superAdmin') {
+      $_SESSION['compteType'] = $result['compteType'];
+      header('location:./creation.php');
     }
-    elseif ($result['compteType'] == 'superAdmin') {
-        $_SESSION['compteType'] = $result['compteType'];
-        header('location:./creation.php');
-      }
   }
 }
 

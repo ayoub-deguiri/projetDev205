@@ -17,3 +17,11 @@ function pprint($data)
     print_r($data);
     echo '</pre>';
 }
+
+function Validate($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
