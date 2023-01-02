@@ -19,21 +19,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if ($result['compteType'] == 'stagiaire') {
         $_SESSION['compteType'] = $result['compteType'];
         header('location:./responsable.php');
+        exit();
       } elseif ($result['compteType'] == 'directrice') {
         $_SESSION['compteType'] = $result['compteType'];
         header('location:./accueil-directrice.php');
+        exit();
       } elseif ($result['compteType'] == 'serveillant') {
         $_SESSION['compteType'] = $result['compteType'];
         header('location:./Accueil-serveillant.php');
+        exit();
       } elseif ($result['compteType'] == 'superAdmin') {
         $_SESSION['compteType'] = $result['compteType'];
         header('location:./creation.php');
+        exit();
       }
     } else {
       header('location:./login.php?msg=Login Or Password incorrect');
+      exit();
     }
+
   } else {
     header('location:./login.php?msg=Login Or Password incorrect');
+    exit();
   }
 }
 
