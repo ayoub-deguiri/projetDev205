@@ -6,26 +6,27 @@ if (empty($_SESSION) or $_SESSION['compteType'] != "serveillant") {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['CEF'])) {
-    $cef = $_GET['CEF'];
+    $cef = Validate($_GET['CEF']);
     $comptetype = 'stagiaire';
+    $hashed_password = password_hash($cef, PASSWORD_DEFAULT);
     $sql = 'INSERT INTO  compte VALUES (?,?,?)';
     $pdo_statement = $conn->prepare($sql);
     $pdo_statement->bindParam(1, $cef);
-    $pdo_statement->bindParam(2, $cef);
+    $pdo_statement->bindParam(2, $hashed_password);
     $pdo_statement->bindParam(3, $comptetype);
     $pdo_statement->execute();
-?>
-<script>
+    ?>
+    <script>
 
-    // Get the snackbar DIV
-    var x = document.getElementById("snackbar");
-    // Add the "show" class to DIV
-    x.className = "show";
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); location.reload(); }, 2000);
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+        // Add the "show" class to DIV
+        x.className = "show";
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () { x.className = x.className.replace("show", ""); location.reload(); }, 2000);
 
 
-</script>;
+    </script>;
 <?php
 } else {
     header('location:./Accueil-serveillant.php');

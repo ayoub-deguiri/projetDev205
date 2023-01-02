@@ -1,40 +1,39 @@
 <?php
 include_once('inc/db.php');
 session_start();
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Validate Form Data
   $user = Validate($_POST["matricule"]);
   $password = Validate($_POST["password"]);
-
   // fetching the data
-  $sql = "SELECT * FROM  compte  WHERE user = ? and password = ?";
+  $sql = "SELECT * FROM  compte  WHERE user = ?";
   $pdo_statement = $conn->prepare($sql);
   $pdo_statement->bindParam(1, $user);
-  $pdo_statement->bindParam(2, $password);
   $pdo_statement->execute();
   $result = $pdo_statement->fetch();
-
-
-  // redirection to main pages
-  if (empty($result)) {
-    header('location:./login.php?msg=Login Or Password incorrect');
-
-  } else {
-    $_SESSION['CEF'] = $user;
-    if ($result['compteType'] == 'stagiaire') {
-      $_SESSION['compteType'] = $result['compteType'];
-      header('location:./responsable.php');
-    } elseif ($result['compteType'] == 'directrice') {
-      $_SESSION['compteType'] = $result['compteType'];
-      header('location:./accueil-directrice.php');
-    } elseif ($result['compteType'] == 'serveillant') {
-      $_SESSION['compteType'] = $result['compteType'];
-      header('location:./Accueil-serveillant.php');
-    } elseif ($result['compteType'] == 'superAdmin') {
-      $_SESSION['compteType'] = $result['compteType'];
-      header('location:./creation.php');
+  $hashed_password = $result[1];
+  if (!empty($result)) {
+    if (password_verify($password, $hashed_password)) {
+      // redirection to main pages
+      $_SESSION['CEF'] = $user;
+      if ($result['compteType'] == 'stagiaire') {
+        $_SESSION['compteType'] = $result['compteType'];
+        header('location:./responsable.php');
+      } elseif ($result['compteType'] == 'directrice') {
+        $_SESSION['compteType'] = $result['compteType'];
+        header('location:./accueil-directrice.php');
+      } elseif ($result['compteType'] == 'serveillant') {
+        $_SESSION['compteType'] = $result['compteType'];
+        header('location:./Accueil-serveillant.php');
+      } elseif ($result['compteType'] == 'superAdmin') {
+        $_SESSION['compteType'] = $result['compteType'];
+        header('location:./creation.php');
+      }
+    } else {
+      header('location:./login.php?msg=Login Or Password incorrect');
     }
+  } else {
+    header('location:./login.php?msg=Login Or Password incorrect');
   }
 }
 
